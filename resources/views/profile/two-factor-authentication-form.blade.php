@@ -1,22 +1,22 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Two Factor Authentication') }}
+        {{ __(' Autenticación de dos factores') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Add additional security to your account using two factor authentication.') }}
+        {{ __('Agregue seguridad adicional a su cuenta utilizando la autenticación de dos factores.') }}
     </x-slot>
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)
-                    {{ __('Finish enabling two factor authentication.') }}
+                    {{ __('Termine de habilitar la autenticación de dos factores.') }}
                 @else
-                    {{ __('You have enabled two factor authentication.') }}
+                    {{ __('Ha habilitado la autenticación de dos factores.') }}
                 @endif
             @else
-                {{ __('You have not enabled two factor authentication.') }}
+                {{ __('No ha habilitado la autenticación de dos factores.') }}
             @endif
         </h3>
 
@@ -79,8 +79,8 @@
         <div class="mt-5">
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
-                    <x-button type="button" wire:loading.attr="disabled">
-                        {{ __('Enable') }}
+                    <x-button type="button" wire:loading.attr="deshabilitado">
+                        {{ __('Habilitar') }}
                     </x-button>
                 </x-confirms-password>
             @else
@@ -93,7 +93,7 @@
                 @elseif ($showingConfirmation)
                     <x-confirms-password wire:then="confirmTwoFactorAuthentication">
                         <x-button type="button" class="mr-3" wire:loading.attr="disabled">
-                            {{ __('Confirm') }}
+                            {{ __('Confirmar') }}
                         </x-button>
                     </x-confirms-password>
                 @else

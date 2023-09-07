@@ -23,14 +23,13 @@
         <input type="search" id="search-box" placeholder="que estas buscando...">
         <label for="search-box" class="fas fa-search"></label>
     </div>
-
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative"   >
+                <div class="ml-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger" >
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" width="60px" />
                                 </button >
                             @else
                                 <span class="inline-flex rounded-md" >
@@ -44,13 +43,11 @@
                                 </span>
                             @endif
                         </x-slot>
-
-                        <x-slot name="content">
-                            <!-- Account Management -->
+                        <!--administracion de cuentas-->
+                        <x-slot name="content" >
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Administrar cuenta') }}
                             </div>
-
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
@@ -61,14 +58,13 @@
                             @endif
 
                             <div class="border-t border-gray-200"></div>
-
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Cerrar sesión') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
