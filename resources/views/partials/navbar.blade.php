@@ -14,7 +14,7 @@
     <div class="icons">
         <div class="fas fa-search" id="search-btn"></div>
         <div class="fas fa-shopping-cart" id="cart-btn">
-        {{-- {{ \Cart::getTotalQuantity()}} --}}
+        {{ \Cart::getTotalQuantity()}}
         </div>
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
@@ -24,12 +24,12 @@
         <label for="search-box" class="fas fa-search"></label>
     </div>
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
-                    <x-dropdown align="right" width="48">
+                <div class="ml-3 relative " >
+                    <x-dropdown align="right" width="48"  >
                         <x-slot name="trigger" >
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" width="60px" />
+                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition ">
+                                    <img class="h-8 w-8 rounded-full object-cover " src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button >
                             @else
                                 <span class="inline-flex rounded-md" >

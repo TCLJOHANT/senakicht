@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Models\Cart;
 use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
@@ -51,7 +52,7 @@ Route::middleware([
     Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
 
     //Menu
-    Route::get('/menu',[CartController::class,'shop'])->name('menu');
+    Route::get('menu',[CartController::class,'shop'])->name('menu');
     Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
