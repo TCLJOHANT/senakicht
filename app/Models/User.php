@@ -64,11 +64,11 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function comentarios(): HasMany
-    {
-        return $this->hasMany(Comentarios::class, 'idUser', 'id');
+    //RELACION  UNO A MUCHOS
+    public function comentarios(){
+        return $this->hasMany('App\Models\Comentarios');
     }
-    
+
     public function Users(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'idUser', 'id');

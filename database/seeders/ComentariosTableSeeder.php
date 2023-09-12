@@ -17,27 +17,27 @@ class ComentariosTableSeeder extends Seeder
     {
         Comentarios::create([
             'description' => 'Que Meloooo, Ojala Pudieran Haber Mas Paginas Asi Tan Buenas, Ojala Las Demas Paginas Puedan Tomar Ejemplo De Paginas Asi Como Estas.',
-            'idUser' => 1,
+            'user_id' => 1,
         ]);
 
         Comentarios::create([
             'description' => 'Que Buena Web, Puedo Encontrar Todo Lo Que Busco Tanto En Recetas Como En Productos Pero Creo Que Le Falta Algo, Aun Pueden Mejorar Sigan Asi Que Bendicion.',
-            'idUser' => 2,
+            'user_id' => 2,
         ]);
 
         Comentarios::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
-            'idUser' => 3,
+            'user_id' => 3,
         ]);
 
         Comentarios::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
-            'idUser' => 4,
+            'user_id' => 4,
         ]);
 
         Comentarios::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
-            'idUser' => 5,
+            'user_id' => 5,
         ]);
 
 
