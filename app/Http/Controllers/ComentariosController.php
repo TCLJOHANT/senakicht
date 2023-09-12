@@ -37,13 +37,7 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        // $comentarios = new Comentarios;
-        // $comentarios->description=$request->input('description');
-        // $comentarios->user_id=$request->input('user_id');
-        // $comentarios->save();
-        
-        // return to_route('opiniones');
-        Comentarios::create($request->all()); //agarra todod los  datos de form y los guarda en base de datos pero ahi un problem de seguridad que se debe cooregir en el modelo
+        Comentarios::create($request->all());
         return to_route('opiniones');
     }
 

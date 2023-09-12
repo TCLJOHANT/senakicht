@@ -1,5 +1,4 @@
 <x-app-layout title="Senakicth">
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <section class="home" id="home">
     
         <div class="content">

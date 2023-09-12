@@ -13,7 +13,6 @@ class ContactanosController extends Controller
         return view('home.contactos');
 
     }
-
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
@@ -23,9 +22,7 @@ class ContactanosController extends Controller
             'message' => 'required',
         ]);
         $correo = new ContactanosMailable($request->all());
-    
-        Mail::to('yoniersebastian23@gmail.com')->send($correo);
+        Mail::to('jachate7@misena.edu.co')->send($correo);
         return redirect()->route('contactos')->with('info','mensaje enviado');
-
     }
 }

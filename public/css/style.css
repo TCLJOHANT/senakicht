@@ -205,6 +205,9 @@ section{
     text-align: center;
 }
 
+
+/* home */
+
 .home{
     min-height: 100vh;
     display: flex;
@@ -278,51 +281,8 @@ section{
     line-height: 1.8;
 }
 
-/* Menu */
 
-.menu .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap:1.5rem;
-}
-
-.menu .box-container .box{
-    padding:5rem;
-    text-align: center;
-    border:var(--border);    
-}
-
-.menu .box-container .box img{
-    height: 10rem;
-}
-
-.menu .box-container .box h3{
-    color: #fff;
-    font-size: 2rem;
-    padding:1rem 0;
-}
-
-.menu .box-container .box .price{
-    color: #fff;
-    font-size: 2.5rem;
-    padding:.5rem 0;
-}
-
-.menu .box-container .box .price span{
-    font-size: 1.5rem;
-    text-decoration: line-through;
-    font-weight: lighter;
-}
-
-.menu .box-container .box:hover{
-    background:#fff;
-}
-
-.menu .box-container .box:hover > *{
-    color:var(--black);
-}
-
-/* Productos */
+/* Productos home */
 
 .products .box-container{
     display: grid;
@@ -383,6 +343,7 @@ section{
     font-size: 1.5rem;
 }
 
+/*  opinion home */
 .review h1{
     font-size: 55px;
     display: flex;
@@ -435,6 +396,7 @@ section{
     color:var(--main-color);
 }
 
+/* para nuestro menu de home */
 .contact .row{
     display: flex;
     background:var(--black);
@@ -483,6 +445,53 @@ section{
     text-transform: none;
     background:none;
 }
+
+/* Menu en home*/
+
+.menu .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:1.5rem;
+}
+
+.menu .box-container .box{
+    padding:5rem;
+    text-align: center;
+    border:var(--border);    
+}
+
+.menu .box-container .box img{
+    height: 10rem;
+}
+
+.menu .box-container .box h3{
+    color: #fff;
+    font-size: 2rem;
+    padding:1rem 0;
+}
+
+.menu .box-container .box .price{
+    color: #fff;
+    font-size: 2.5rem;
+    padding:.5rem 0;
+}
+
+.menu .box-container .box .price span{
+    font-size: 1.5rem;
+    text-decoration: line-through;
+    font-weight: lighter;
+}
+
+.menu .box-container .box:hover{
+    background:#fff;
+}
+
+.menu .box-container .box:hover > *{
+    color:var(--black);
+}
+
+
+/* para card recetas  home*/
 
 .blogs .box-container{
     display: grid;
@@ -536,8 +545,21 @@ section{
     line-height: 1.8;
     color:#ccc;
     padding:1rem 0;
-}
+} 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
 .footer{
     background:var(--black);
     text-align: center;
@@ -597,7 +619,12 @@ section{
     color:var(--main-color);
 }
 
-/* Modal para comentarios */
+
+
+
+
+
+/* Modal para comentarios  */
 .modal {
     display: none;
     z-index: 1;
@@ -636,6 +663,7 @@ section{
 .card{
     margin-top: 20%;
 }
+
 
    /* Estilos para el modal */
    .modal {

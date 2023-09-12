@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 
+// Incluir archivo de rutas "admin"
+require __DIR__.'/admin.php';
 /*
 |--------------------------------------------------------------------------
 | Web Routes

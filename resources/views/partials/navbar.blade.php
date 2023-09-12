@@ -13,9 +13,13 @@
     </nav>
     <div class="icons">
         <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn">
-        {{ \Cart::getTotalQuantity()}}
-        </div>
+        <a href="{{ route ('cart.index') }}">
+            <div class="fas fa-shopping-cart" id="cart-btn">
+                @if(\Cart::getTotalQuantity() != 0)
+                    {{ \Cart::getTotalQuantity() }}
+                @endif
+            </div>
+        </a>
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
 
@@ -50,6 +54,10 @@
                             </div>
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Perfil') }}
+                            </x-dropdown-link>
+                            {{-- url admin --}}
+                            <x-dropdown-link href="{{ route('admin.home') }}">
+                                {{ __('Admin') }}
                             </x-dropdown-link>
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">

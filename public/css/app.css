@@ -204,21 +204,7 @@ section{
     text-align: center;
 }
 
-.cont-perfil{
-    width: auto;
-}
-#perfil{
-    width: 20%;
-}
- .img-profile{
-    width: 10%;
-    object-fit: contain;
-    border-radius: 50%;
-}
-.caca{
-    height: auto;
-    width: auto;
-}
+
 
 
 
