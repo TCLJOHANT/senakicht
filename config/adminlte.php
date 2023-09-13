@@ -316,10 +316,10 @@ return [
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'administrador'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'usuarios',
+            'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
