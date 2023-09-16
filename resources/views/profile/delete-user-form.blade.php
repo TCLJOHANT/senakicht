@@ -1,6 +1,6 @@
 <x-action-section>
     <x-slot name="title">
-        {{ __('Delete Account') }}
+        {{ __('Eliminar Cuenta') }}
     </x-slot>
 
     <x-slot name="description">
@@ -21,11 +21,11 @@
         <!-- Delete User Confirmation Modal -->
         <x-dialog-modal wire:model.live="confirmingUserDeletion">
             <x-slot name="title">
-                {{ __('Delete Account') }}
+                {{ __('Eliminar Cuenta') }}
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                {{ __('¿Estás seguro de que quieres eliminar tu cuenta? Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán permanentemente. Ingrese su contraseña para confirmar que desea eliminar permanentemente su cuenta.') }}
 
                 <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-input type="password" class="mt-1 block w-3/4"

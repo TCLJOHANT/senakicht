@@ -15,7 +15,7 @@
         <a href="<?php echo e(route('nosotros')); ?>" >acerca de</a>
         <a href="<?php echo e(route('menu')); ?>">menu</a>
         <a href="<?php echo e(route('productos')); ?>">productos</a>
-        <a href="<?php echo e(route('opiniones')); ?>">opiniones</a>
+        <a href="<?php echo e(route('comentarios.index')); ?>">opiniones</a>
         <a href="{{route('contactos')}}">contacto</a>
         <a href="<?php echo e(route('recetas')); ?>">Recetas</a>
     </div>

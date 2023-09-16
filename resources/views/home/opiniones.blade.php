@@ -1,4 +1,5 @@
-<x-app-layout title="Opiniones">
+<x-app-layout>
+    <x-slot name="title">Comentarios</x-slot>
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <section class="review" id="review">
 

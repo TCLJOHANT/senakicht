@@ -1,4 +1,5 @@
-<x-app-layout title="Senakicth">
+<x-app-layout>
+    <x-slot name="title">Contacto</x-slot>
      <!-- ANIMATE CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="{{ asset ('css/contacto.css') }}">

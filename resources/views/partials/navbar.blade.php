@@ -7,7 +7,7 @@
         <a href="{{ route('nosotros') }}">acerca de</a>
         <a href="{{ route('menu') }}">menu</a>
         <a href="{{ route('productos') }}">productos</a>
-        <a href="{{ route('opiniones') }}">opiniones</a>
+        <a href="{{ route('comentarios.index') }}">opiniones</a>
         <a href="{{route('contactos')}}">contacto</a>
         <a href="{{ route('recetas') }}">Recetas</a>
     </nav>

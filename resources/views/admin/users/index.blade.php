@@ -37,7 +37,6 @@
 
     <div class="card">
         <div class="card-header">
-            <a href="#"  class="cta crearBoton" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Crear Artista</a>
             <button  class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Agregar Usuario</button>
         </div>
         <div class="card-body">
@@ -84,7 +83,4 @@
 @stop
 
 @section('js')
-    <script>$('#crearBoton').click(function() {
-        alert('caca');
-      });</script>
 @stop

@@ -38,7 +38,7 @@ class ComentariosController extends Controller
     public function store(Request $request)
     {
         Comentarios::create($request->all());
-        return to_route('opiniones');
+        return to_route('comentarios.index');
     }
 
     /**

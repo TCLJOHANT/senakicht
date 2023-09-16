@@ -1,4 +1,5 @@
-<x-app-layout title="Senakicth">
+<x-app-layout >
+    <x-slot name="title">Menu</x-slot>
     <link rel="stylesheet" href="{{ asset ('css/menu.css') }}">
 <section class="menu" id="menu">
     <div class="container" style="margin-top: 80px">

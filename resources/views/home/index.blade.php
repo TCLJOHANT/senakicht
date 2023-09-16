@@ -1,4 +1,5 @@
-<x-app-layout title="Senakicth">
+<x-app-layout >
+    <x-slot name="title">Inicio</x-slot>
     <section class="home" id="home">
     
         <div class="content">

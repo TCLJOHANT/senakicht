@@ -8,18 +8,6 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 
-// Incluir archivo de rutas "admin"
-require __DIR__.'/admin.php';
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -28,10 +16,7 @@ Route::middleware([
     Route::get('', [HomeController::class, 'index'])->name('home');
     
     //Opiniones
-    Route::resource('/opiniones',ComentariosController::class)->names([
-        'index' => 'opiniones',
-        'store' => 'comentarios.store',
-    ]);
+    Route::resource('comentarios',ComentariosController::class)->names('comentarios');
 
     //Productos
     Route::get('/productos',[HomeController::class,'productos'])->name('productos');

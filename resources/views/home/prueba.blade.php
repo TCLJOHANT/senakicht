@@ -1,4 +1,5 @@
 <x-layauts.appPerfil>
+  
   <div class="container-fluid">
   @auth
     <div class="row flex-nowrap">

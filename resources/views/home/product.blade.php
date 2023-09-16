@@ -1,4 +1,5 @@
-<x-app-layout title="Productos">
+<x-app-layout >
+    <x-slot name="title">Productos</x-slot>
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <section class="products" id="products">
 
