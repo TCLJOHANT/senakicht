@@ -1,90 +1,93 @@
-
 /* carrito */
-
-h1{
-    margin-top: 4%;
-    margin-bottom: 0;
+.heading {
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  padding-bottom: 3.5rem;
+  font-size: 4rem;
+}
+.heading span {
+  color: var(--main-color);
+  text-transform: uppercase;
 }
 
-.contain{
-    margin-top: 3%;
-    margin-left: 8%;
-    color: white; 
+h1 {
+  margin-top: 4%;
+  margin-bottom: 0;
 }
 
-.contain li{
-    font-size: 30px;
-    
+.contain {
+  margin-top: 3%;
+  margin-left: 8%;
+  color: white;
 }
-.contain .comp{
-   margin: 10px;
-   margin-right: 30px;
-  
+.contain li {
+  font-size: 30px;
 }
-
-.contain .comp1 h4{
-    font-size: 26px;
-    
+.contain .comp {
+  margin: 10px;
+  margin-right: 30px;
 }
-.comp1{
-    max-width: 70%;  
+.contain .comp1 {
+  max-width: 70%;
 }
-
-.contain .row{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    display: flex;
+.contain .comp1 h4 {
+  font-size: 26px;
 }
-.contain .row .ros img{
-    width: 150px;
-    height: 150px;
-    margin-left: 30px; 
+.contain .row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: flex;
 }
-.contain .row .des{
-    margin-left: 40px;
-    display: flex;
-    align-items: center;
-    max-width: 50%;
+.contain .row .ros img {
+  width: 150px;
+  height: 150px;
+  margin-left: 30px;
 }
-.contain .row .des a{
-    font-size: 20px;
-    margin-right: 20px;
-    margin-bottom: 10px;
-    color: white;
+.contain .row .des {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  max-width: 50%;
 }
-.contain .row .des b{
-    font-size: 20px;
+.contain .row .des a {
+  font-size: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  color: white;
 }
-
-.contain .row .des span{
-    font-size: 20px;
+.contain .row .des b {
+  font-size: 20px;
+}
+.contain .row .des span {
+  font-size: 20px;
 }
 .contain .rov {
-    margin-left: 10%;
-    margin-top: 40px;
+  margin-left: 10%;
+  margin-top: 40px;
 }
-.contain .rov .rovs{
-    display: flex;
-    align-items: center;
+.contain .rov .rovs {
+  display: flex;
+  align-items: center;
+}
+.contain .tot {
+  float: right;
+  position: absolute;
+  top: 40%;
+  left: 70%;
+}
+.contain .inpu input[type=number] {
+  width: 50px;
+  height: 38px;
+  background: transparent;
+  font-size: 20px;
+  color: white;
+  border: var(--border);
+  margin-right: 10px;
+}
+.contain .comp1 .btn {
+  margin-left: 8px;
 }
 
-.contain .tot{
-    float: right;
-    position: absolute;
-    top: 40%;
-    left: 70%;
-} 
-.inpu input[type='number']{
-    width: 50px;
-    height: 38px;
-    background: transparent;
-    font-size: 20px;
-    color: white;
-    border:var(--border); 
-    margin-right: 10px;
-    
-}
-.comp1 .btn{
-    margin-left: 8px;
-}
+/*# sourceMappingURL=carrito.css.map */

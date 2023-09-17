@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="title">Comentarios</x-slot>
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/style.css')}}"> --}}
+     <link rel="stylesheet" href="{{ asset('css/shared/opinion.css')}}"> 
     <section class="review" id="review">
 
         <h1 class="heading"> su <span>opinion</span> </h1>

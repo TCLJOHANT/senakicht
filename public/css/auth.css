@@ -1,186 +1,139 @@
 body {
-    margin: 0;
-    padding:0;
-    background: url(../img/chefsito.png) no-repeat center top;
-    background-size: cover;
-    font-family: sans-serif;
-    height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: url(../img/chefsito.png) no-repeat center top;
+  background-size: cover;
+  font-family: sans-serif;
+  height: 100vh;
 }
 
 .Login-box {
-    margin-top: 2%;
-    width: 370px;
-    height: auto;
-    background: #fff;
-    color: #000;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 30px 40px ;
-    border-radius: 20px;
-    border-color: rgb(51, 137, 51);
-    
+  margin-top: 2%;
+  width: 370px;
+  height: auto;
+  background: #fff;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px 40px;
+  border-radius: 20px;
+  border-color: rgb(51, 137, 51);
 }
-
 .Login-box .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: -10%;
-    left: calc(50% - 50px);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -10%;
+  left: calc(50% - 50px);
 }
-
 .Login-box h1 {
-    margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
 }
-
 .Login-box h4 {
-    margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 15px;
-    
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 15px;
 }
-
 .Login-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  display: block;
 }
-
 .Login-box input {
-    width: 100%;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
-
-.Login-box input[type="text"],
-.Login-box input[type="email"],
-.Login-box input[type="password"] {
- 
-    border: none;
-    border-bottom: 1px solid rgb(51, 137, 51);
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: rgb(51, 137, 51);
-    font-size: 16px;
-
+.Login-box input[type=text],
+.Login-box input[type=email],
+.Login-box input[type=password] {
+  border: none;
+  border-bottom: 1px solid rgb(51, 137, 51);
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: rgb(51, 137, 51);
+  font-size: 16px;
 }
-
-.Login-box button{
-    width: 100%;
-    margin-bottom:20px;
+.Login-box button {
+  width: 100%;
+  margin-bottom: 20px;
 }
-.Login-box button[type="submit"] {
-    
-    border: none;
-    outline: none;
-    height: 40px;
-    background: rgb(51, 137, 51);
-    color: #fff;
-    font-size: 16px;
-    border-radius: 40px;
-    cursor: pointer;
-    
+.Login-box button[type=submit] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: rgb(51, 137, 51);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 40px;
+  cursor: pointer;
 }
-.login-button {
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    outline: none;
-    background: #d70c0c;
-    color: #fff;
-    font-size: 46px;
-    border-radius: 50px;
-    padding: 10px 20px;
-    cursor: pointer;
-    height: 23px;
-    width: 85%;
+.Login-box button[type=submit]:hover {
+  letter-spacing: 0.1, 1rem;
+  transition: 1s;
+  transform: scale(1.1);
 }
-
-/* .Login-box input[type="submit"] {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #ed1717;
-    color: #fff;
-    font-size: 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    
-} */
-
+.Login-box .login-button {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  background: #d70c0c;
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  cursor: pointer;
+  height: 23px;
+  width: 85%;
+}
+.Login-box .login-button:hover {
+  background-color: rgb(255, 18, 14);
+  letter-spacing: 0.1, 1rem;
+  transition: 1s;
+  transform: scale(1.1);
+  color: white;
+}
 .Login-box a {
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 20px;
-    
-    color:#000(228, 115, 10);
-    text-align: center;
-    margin-bottom: 10%;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000 228, 115, 10;
+  text-align: center;
+  margin-bottom: 10%;
 }
-
-.Login-box input[type="button"]:hover{
-    letter-spacing: .1,1rem;
-    transition:1s;
-    transform:scale(1.1);
-
-    
+.Login-box a:hover {
+  color: #20b73c;
 }
-
-.Login-box button[type="submit"]:hover{
-    letter-spacing: .1,1rem;
-    transition:1s;
-    transform:scale(1.1);
-    
-
+.Login-box input[type=button]:hover {
+  letter-spacing: 0.1, 1rem;
+  transition: 1s;
+  transform: scale(1.1);
 }
-
-button[type="submit"]:hover{
- 
-    background-color: rgb(0, 171, 0);
-
-}
-
-.login-button:hover{
-
-    background-color: rgb(255, 18, 14);
-
-}
-
-.login-button:hover{
-    letter-spacing: .1,1rem;
-    transition:1s;
-    transform:scale(1.1);
-    color: white;
-}
-
-.a:hover{
-    color: #20b73c;
-}
-.a{
-    font-size: 30px;
-    color: #000;
+.Login-box .text-olvide-password {
+  font-size: 15px;
+  text-align: left;
+  margin: 10%;
 }
 
 .small {
-    
-    color: #c2380a; /* color rojo */
-    background-color: #f8d7da; /* color de fondo rosado */
-    padding: 0.3rem; /* espaciado alrededor del texto */
-    border-radius: 0.2rem; /* bordes redondeados */
+  color: #c2380a;
+  background-color: #f8d7da;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
 }
 
-.text-olvide-password{
-    font-size: 15px;
-    text-align: left;
-    margin: 10%;
+.a {
+  font-size: 30px;
+  color: #000;
 }
+
+/*# sourceMappingURL=auth.css.map */

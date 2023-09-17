@@ -1,8 +1,7 @@
+@charset "UTF-8";
 .caja {
-    padding: 5% 5% 5% 5%;
-
-  }
-
+  padding: 5% 5% 5% 5%;
+}
 
 /* Estilos para el modal */
 .modal-dialog {
@@ -52,9 +51,6 @@
   border-color: #545b62; /* Color del borde del botón secundario al pasar el mouse */
 }
 
-
-
-
 .modal-content {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -73,7 +69,7 @@
 }
 
 .modal-title {
-    font-family: "Edu SA Beginner", cursive;
+  font-family: "Edu SA Beginner", cursive;
   font-size: 24px;
   margin: 0;
 }
@@ -91,8 +87,6 @@
   font-weight: bold;
   margin-bottom: 5px;
 }
-
-
 
 .form-control {
   width: 100%;
@@ -145,6 +139,8 @@
   background-color: #45a049;
 }
 
-.texto{
-    font-family: "Edu SA Beginner", cursive;
+.texto {
+  font-family: "Edu SA Beginner", cursive;
 }
+
+/*# sourceMappingURL=profile.css.map */

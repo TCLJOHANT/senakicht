@@ -1,4 +1,4 @@
-<x-app-layout >
+<x-app-layout>
     <x-slot name="title">Menu</x-slot>
     <link rel="stylesheet" href="{{ asset ('css/menu.css') }}">
 <section class="menu" id="menu">

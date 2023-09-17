@@ -1,6 +1,6 @@
 <x-app-layout >
     <x-slot name="title">Productos</x-slot>
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/shared/productos.css')}}">
     <section class="products" id="products">
 
         <h1 class="heading"> nuestros <span>productos</span> </h1>        
