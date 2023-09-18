@@ -1,17 +1,19 @@
-@import '../variables';
+@import '../../shared/variables';
 .home {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(0, 2, 0, .6), rgba(0, 0, 2, .6), rgba(0, 0, 0, .45) ), url(../../images/chef.png) no-repeat;
+    background: linear-gradient(to bottom, rgba(0, 2, 0, .6), rgba(0, 0, 2, .6), rgba(0, 0, 0, .45) ), url(../../../images/chef.png) no-repeat;
     background-size: cover;
     background-position: center;
     
     .content {
       max-width: 60rem;
+      margin: 0 5%;
       
       h3 {
         font-size: $font-size-large;
+        font-weight: 700;
         text-transform: uppercase;
         color: $white;
       }
@@ -90,8 +92,8 @@
       }
     }
   }
-  @import '../shared/productos';
-  @import '../shared/opinion';
+  @import '../../shared/opinion';
+  @import '../../shared/productos';
   @import 'contacto';
   @import 'menu';
   @import 'recetas';

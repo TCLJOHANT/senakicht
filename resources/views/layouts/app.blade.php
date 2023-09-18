@@ -12,7 +12,6 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
          @vite(['resources/css/app.css', 'resources/js/app.js']) 
         <!-- Styles -->
-         <link rel="stylesheet" href="{{ asset('css/style.css')}}"> 
         <link rel="stylesheet" href="{{ asset('css/app/app.css')}}">
         {{-- @livewireStyles --}}
     </head>

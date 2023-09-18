@@ -1,6 +1,6 @@
 <x-app-layout title="Senakicth">
     <section class="home" id="home">
-        <link rel="stylesheet" href="{{ asset ('css/home/home.css') }}">
+        <link rel="stylesheet" href="{{ asset ('css/home/index/home.css') }}">
     
         <div class="content">
             <h3>conoce acerca  </h3>

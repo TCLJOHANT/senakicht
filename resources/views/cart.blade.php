@@ -1,5 +1,6 @@
 <x-app-layout title="Senakicth">
-    <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}"> 
+    {{-- <link rel="stylesheet" href="{{ asset ('js/c.css') }}"> --}}
 <section >
 <h1 class="heading"> Carro de <span>Compras</span> </h1>
 

@@ -34,7 +34,9 @@ var btn = document.getElementById("modal-btn");
 var closeBtn = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
-  modal.style.display = "block";
+  modal.style.display = "flex";
+  modal.style.justifyContent = "center"; 
+  modal.style.alignItems = "center"; 
 }
 
 closeBtn.onclick = function() {

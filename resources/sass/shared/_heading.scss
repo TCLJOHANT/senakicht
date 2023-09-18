@@ -1,9 +1,9 @@
-@import '../variables';
+@import 'variables';
 .heading {
+  margin: 3%;
     text-align: center;
     color: $white;
     text-transform: uppercase;
-    padding-bottom: 3.5rem;
     font-size: $font-size-medium;
     span {
       color: $main-color;

@@ -18,9 +18,8 @@
                 <form action="{{route('comentarios.store')}}" method="POST">
                     @csrf
                     <div>
-                        
-                    <img src="{{Auth::user()->profile_photo_url }}" class="imagh" alt="avatar">
-                    <input  value="{{ Auth::user()->name }}" readonly class="plain-input">
+                        <img src="{{Auth::user()->profile_photo_url }}" class="imagh" alt="avatar">
+                        <input  value="{{ Auth::user()->name }}" readonly class="plain-input">
                     </div>
                     <div class="line"></div>     
                     <div>

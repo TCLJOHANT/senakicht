@@ -1,9 +1,9 @@
 /* carrito */
 .heading {
+  margin: 3%;
   text-align: center;
   color: #fff;
   text-transform: uppercase;
-  padding-bottom: 3.5rem;
   font-size: 4rem;
 }
 .heading span {
@@ -88,6 +88,20 @@ h1 {
 }
 .contain .comp1 .btn {
   margin-left: 8px;
+}
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.9rem 3rem;
+  font-size: 1.7rem;
+  color: #fff;
+  background: var(--main-color);
+  cursor: pointer;
+}
+
+.btn:hover {
+  letter-spacing: 0.2rem;
 }
 
 /*# sourceMappingURL=carrito.css.map */

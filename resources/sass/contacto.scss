@@ -10,82 +10,97 @@
     padding: 0 1em;
     padding-bottom: 3em;
     min-height: 80vh;
-}
-.contact-wrapper > * {
-    box-shadow: 0 0 20px 0 rgb(99, 224, 31);
-    padding: 1em;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -5%);
-}
-.contact-form {
-    background: #13131a;
-}
-.contact-form form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.contact-form form label {
-    display: block;
-    font-size: 15px;
-}
-.contact-form form p {
-    margin: 0;
-    padding: 1em;
-}
-.contact-form form .block {
-    grid-column: 1 / 3;
-}
-.contact-form form button,
-.contact-form form input,
-.contact-form form textarea {
-    width: 100%;
-    padding: .7em;
-    border: none;
-    background: none;
-    outline: 0;
-    color: #fff;
-    border-bottom: 1px solid rgb(63, 212, 55);
-}
-.contact-form form button {
-    background: rgb(127, 187, 15);
-    border: 0;
-    text-transform: uppercase;
-    padding: 1em;
-}
-.contact-form form button:hover,
-.contact-form form button:focus {
-    background: rgb(43, 172, 31);
-    color: #fff;
-    transition: background-color 1s ease-out;
-    outline: 0;
-    cursor: pointer;
-}
-/* INFORMACIÓN DE CONTACTO */
-.contact-info {
-    background:url(../img/popa.jpg) no-repeat;
-}
-.contact-info h4, .contact-info ul, .contact-info p {
-    text-align: center;
-    margin: 0 0 1rem 0;
-}
-/* TAMAÑO GRANDE */
-@media(min-width: 700px) {
-    body {
-        padding: 0;
-    }
-    .contact-wrapper {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        padding: 0 4em;
-    }
+
     .contact-wrapper > * {
-        padding: 2em;
+        box-shadow: 0 0 20px 0 rgb(99, 224, 31);
+        padding: 1em;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -5%);
     }
-    .contact-info h4,
-    .contact-info ul,
-    .contact-info p {
-        text-align: left;
+
+    .contact-form {
+        background: #13131a;
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            label {
+                display: block;
+                font-size: 15px;
+            }
+
+            p {
+                margin: 0;
+                padding: 1em;
+            }
+
+            .block {
+                grid-column: 1 / 3;
+            }
+
+            button,
+            input,
+            textarea {
+                width: 100%;
+                padding: .7em;
+                border: none;
+                background: none;
+                outline: 0;
+                color: #fff;
+                border-bottom: 1px solid rgb(63, 212, 55);
+            }
+
+            button {
+                background: rgb(127, 187, 15);
+                border: 0;
+                text-transform: uppercase;
+                padding: 1em;
+
+                &:hover,
+                &:focus {
+                    background: rgb(43, 172, 31);
+                    color: #fff;
+                    transition: background-color 1s ease-out;
+                    outline: 0;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .contact-info {
+        background: url(../img/popa.jpg) no-repeat;
+
+        h4,
+        ul,
+        p {
+            text-align: center;
+            margin: 0 0 1rem 0;
+        }
+    }
+
+    @media (min-width: 700px) {
+        body {
+            padding: 0;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            padding: 0 4em;
+        }
+
+        .contact-wrapper > * {
+            padding: 2em;
+        }
+
+        .contact-info h4,
+        .contact-info ul,
+        .contact-info p {
+            text-align: left;
+        }
     }
 }
