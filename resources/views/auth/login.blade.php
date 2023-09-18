@@ -45,6 +45,7 @@
                             {{ __('continuar') }}
                     </x-button>
                     <a href="" class="login-button">Continuar con Google</a>
+                    <a href="{{route('authfacebook.redirect')}}" class="login-button">Continuar con Facebook</a>
                     @if (Route::has('password.request'))
                         <a class="a" href="{{ route('password.request') }}">
                             {{ __('olvidaste tu contraseña?') }}

@@ -67,6 +67,7 @@
                     <x-button class="ml-4">
                         {{ __('Registrar') }}
                     </x-button>
+                    
                     <a class="a" href="{{ route('login') }}">
                         {{ __('ya tienes una cuenta?') }}
                     </a>
