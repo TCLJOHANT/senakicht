@@ -21,3 +21,8 @@ Para actualizar cada cambio que se haga en sass debes ejecutar:
 sass --watch resources/sass:public/css
 ```
 esto lo que hace es compilar  todo lo de sass a css dentro public/css 
+
+jetstream necesita carpeta storage (alli se guardan las fotos de los usuarios)
+```
+php artisan storage:link
+```
