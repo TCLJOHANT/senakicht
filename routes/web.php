@@ -10,13 +10,20 @@ use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 
 
+//Login Con Facebook
+Route::get('authfacebook/redirect',[AuthController::class,'redirectFacebook'])->name('authfacebook.redirect');
+Route::get('authfacebook/callback',[AuthController::class,'callbackFacebook'])->name('authfacebook.callback');
+//Login Con Google
+Route::get('authgoogle/redirect',[AuthController::class,'redirectGoogle'])->name('authgoogle.redirect');
+Route::get('authgoogle/callback',[AuthController::class,'callbackGoogle']);
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
-    
     //Opiniones
     Route::resource('comentarios',ComentariosController::class)->names('comentarios');
 
@@ -50,7 +57,3 @@ Route::middleware([
 });
 
 
-
-//facebook
-Route::get('/authfacebook/redirect',[AuthController::class,'redirectFacebook'])->name('authfacebook.redirect');
-Route::get('authfacebook/callback',[AuthController::class,'callbackFacebook'])->name('authfacebook.callback');
