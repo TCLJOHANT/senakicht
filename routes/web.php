@@ -15,7 +15,7 @@ Route::get('authfacebook/redirect',[AuthController::class,'redirectFacebook'])->
 Route::get('authfacebook/callback',[AuthController::class,'callbackFacebook'])->name('authfacebook.callback');
 //Login Con Google
 Route::get('authgoogle/redirect',[AuthController::class,'redirectGoogle'])->name('authgoogle.redirect');
-Route::get('authgoogle/callback',[AuthController::class,'callbackGoogle']);
+Route::get('/google-callback',[AuthController::class,'callbackGoogle']);
 
 
 Route::middleware([
