@@ -15,6 +15,12 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> 
+        Swal.fire(
+          'Bienvenido Al aministrador',
+          'de Senakicht',
+          'question'
+        )</script>
+
 @stop 
 
