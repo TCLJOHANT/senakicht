@@ -51,6 +51,23 @@ $border: var(--border);
         color: $main-color;
       }
   }
+  .cont-submenu-perfil{
+    button{
+      background-color: $header-bg;
+      .imagen-avatar{
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+    .submenu-perfil{
+      position: absolute;
+      border-radius: 5%;
+      display: flex;
+      flex-direction: column;
+      right: 0;
+      background-color: #fff;
+    }
+  }
   #menu-btn {
     display: none;
   }
@@ -89,9 +106,7 @@ $border: var(--border);
         color: $main-color;
       }
     }
-    .cont-submenu-perfil{
-      background-color: red;
-    }
+   
   }
 }
 
@@ -188,4 +203,7 @@ $border: var(--border);
     }
   }
 }
+
+
+
 

@@ -1,4 +1,5 @@
 <header class="header">
+    <link rel="stylesheet" href="{{ asset ('css/c.css') }}"> 
     <a href="#" class="logo">
         <img src="favicons/LogoSenakicht.png" alt="">
     </a>
@@ -31,11 +32,12 @@
         <label for="search-box" class="fas fa-search"></label>
     </div>
                 <!-- Settings Dropdown -->
-                    <x-dropdown align="right" width="48">
-                        <x-slot name="trigger" >
+                <div class="cont-submenu-perfil">
+                    {{-- <x-dropdown align="right" width="48">
+                        <x-slot name="trigger" > --}}
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition ">
-                                    <img class="h-8 w-8 rounded-full object-cover " src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" width="40px" />
+                                    <img class="h-8 w-8 rounded-full object-cover imagen-avatar" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" width="40px" />
                                 </button >
                             @else
                                 <span class="inline-flex rounded-md" >
@@ -48,9 +50,13 @@
                                     </button>
                                 </span>
                             @endif
-                        </x-slot>
+                        {{-- </x-slot> --}}
+                        <div class="submenu-perfil">
+                               
+                                    
+                             
                         <!--administracion de cuentas-->
-                        <x-slot name="content" >
+                        {{-- <x-slot name="content" > --}}
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Administrar cuenta') }}
                             </div>
@@ -77,7 +83,9 @@
                                     {{ __('Cerrar sesión') }}
                                 </x-dropdown-link>
                             </form>
-                        </x-slot>
-                    </x-dropdown>
+                        {{-- </x-slot>
+                    </x-dropdown> --}}
+                </div>
+                </div>
         
 </header>
