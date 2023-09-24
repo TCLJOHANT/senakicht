@@ -72,4 +72,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'idUser', 'id');
     }
+
+    //Para Adminlte
+    public function adminlte_image(){
+        return 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2020/06/dragon-ball-super-nueva-sh-figuarts-jiren-full-power-1956939.jpg?tf=3840x';
+    }
+    public function adminlte_desc(){
+        return "Administrador";
+    }
+    public function adminlte_profile_url(){
+        return 'profile/username';
+    }
 }

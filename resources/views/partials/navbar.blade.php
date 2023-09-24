@@ -1,6 +1,6 @@
 <header class="header">
     <a href="#" class="logo">
-        <img src="img/logosena.png" alt="">
+        <img src="favicons/LogoSenakicht.png" alt="">
     </a>
     <nav class="navbar">
         <a href="{{ route ('home') }}">inicio</a> 

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
-
+@section('title', 'Home')
 @section('content_header')
     <h1>Senakitcht</h1>
+    
 @stop
 
 @section('content')
@@ -16,4 +16,5 @@
 
 @section('js')
     <script> console.log('Hi!'); </script>
-@stop
+@stop 
+
