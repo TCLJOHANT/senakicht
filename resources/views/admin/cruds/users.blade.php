@@ -60,7 +60,7 @@
                                 <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-primary btn-sm">Editar</button>
                             </td>
                             <td width="10px">
-                                <form action="{{route('admin.users.destroy',$user)}}" method="post">
+                                <form action="{{route('user.destroy',$user)}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" id="btn_Eliminar" class="btn btn-danger btn-sm">Eliminar</button>

@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 
 
 //Login Con Facebook
@@ -54,6 +55,11 @@ Route::middleware([
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+    //Crud Usuario
+    Route::get('crud/{crud}/editar', [CrudController::class, 'edit'])->name('crud.editar');
+    Route::put('crud/{crud}', [CrudController::class, 'update'])->name('crud.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
 

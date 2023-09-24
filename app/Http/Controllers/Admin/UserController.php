@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        
     }
 
     /**
@@ -63,6 +63,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('admin.users.index');
+        return redirect('admin/users');
     }
 }
