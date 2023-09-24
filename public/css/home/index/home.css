@@ -416,6 +416,10 @@ section {
 }
 
 /* para card recetas  home*/
+section {
+  padding: 2rem 7%;
+}
+
 .blogs .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));

@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 .heading {
   margin: 3%;
   text-align: center;
@@ -11,170 +10,76 @@
   text-transform: uppercase;
 }
 
-.card-container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  flex-grow: 1;
-  overflow: auto;
-}
-
-.seperate {
-  width: 3px;
-  height: 3px;
+.btn {
+  margin-top: 1rem;
   display: inline-block;
-  vertical-align: middle;
-  border-radius: 50%;
-  background-color: #fff;
-  margin: 0 6px;
-}
-.seperate.video-seperate {
-  background-color: var(--body-color);
-}
-
-.recetas-mas-visto {
-  font-size: 24px;
-  font-weight: 500;
-  color: #000;
-  margin: 30px 0 20px;
-}
-
-.recetas {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(5, 1fr);
-  grid-auto-rows: 250px;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  perspective: 200px;
-}
-@media screen and (max-width: 980px) {
-  .recetas {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.receta {
-  position: relative;
-  background-color: #ff7551;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: 0.4s;
-}
-.receta:hover {
-  transform: rotateY(3deg);
-  transition: 0.5s;
-}
-.receta-top {
-  position: relative;
-  height: 50%;
-}
-.receta-top video, .receta-top .imagen-receta {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px 20px 0 0;
-  display: block;
+  padding: 0.9rem 3rem;
+  font-size: 2rem;
+  color: #fff;
+  background: var(--main-color);
   cursor: pointer;
-  transition: 0.4s;
 }
-.receta-tiempo {
-  position: absolute;
-  background: rgba(21, 13, 13, 0.44);
-  color: rgba(255, 255, 255, 0.85);
-  padding: 3px 8px;
-  font-size: 12px;
-  border-radius: 6px;
-  top: 10px;
-  z-index: 1;
-  right: 8px;
+.btn:hover {
+  letter-spacing: 0.2rem;
 }
-.receta:hover .receta-tiempo {
-  display: none;
+
+/* para card recetas  home*/
+section {
+  padding: 2rem 7%;
 }
-.receta-autor-img {
-  position: absolute;
-  right: 10px;
-  transition: 0.4s;
-  bottom: -25px;
+
+.blogs .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
 }
-.receta-autor-img svg {
-  background-color: #0aa0f7;
-  color: #fff;
-  border-color: var(--video-bg);
+
+.blogs .box-container .box {
+  border: var(--border);
 }
-.receta-buttom {
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  padding: 10px 30px;
-  justify-content: space-evenly;
-}
-.receta-buttom .receta-autor {
-  transition: 0.3s;
-  display: inline-flex;
-  position: relative;
-}
-.receta-buttom .receta-autor:before {
-  content: "";
-  background-color: #22b07d;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  position: absolute;
-  top: 26px;
-  right: 5px;
-}
-.receta-buttom .receta-autor.offline:before {
-  background-color: #ff7551;
-}
-.receta-buttom .receta-nombre {
-  color: #fff;
-  font-size: 16px;
-  line-height: 1.4em;
+
+.blogs .box-container .box .image {
+  height: 25rem;
   overflow: hidden;
-  background-color: #ff7551;
-  z-index: 9;
-  position: relative;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-.receta-buttom .receta-vista {
-  font-size: 12px;
-  background-color: #ff7551;
-  position: relative;
+  width: 100%;
 }
 
-.author-img {
-  width: 52px;
-  height: 52px;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  padding: 4px;
-  border-radius: 50%;
+.blogs .box-container .box .image img {
+  height: 100%;
   object-fit: cover;
-}
-.author-img__envoltura {
-  flex-shrink: 0;
-}
-.author-img__envoltura svg {
-  width: 16px;
-  padding: 2px;
-  background-color: #fff;
-  color: #0daabc;
-  border-radius: 50%;
-  border: 2px solid #0daabc;
-  position: absolute;
-  bottom: 5px;
-  right: 0;
+  width: 100%;
 }
 
-.show .stream-area {
-  display: flex;
+.blogs .box-container .box:hover .image img {
+  transform: scale(1.2);
 }
-.show .descubrir, .show .descubrir-cartas, .show .recetas-mas-visto, .show .recetas {
-  display: none;
+
+.blogs .box-container .box .content {
+  padding: 2rem;
+}
+
+.blogs .box-container .box .content .title {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.blogs .box-container .box .content .title:hover {
+  color: var(--main-color);
+}
+
+.blogs .box-container .box .content span {
+  color: var(--main-color);
+  display: block;
+  padding-top: 1rem;
+  font-size: 2rem;
+}
+
+.blogs .box-container .box .content p {
+  font-size: 1.6rem;
+  line-height: 1.8;
+  color: #ccc;
+  padding: 1rem 0;
 }
 
 /*# sourceMappingURL=recetas.css.map */

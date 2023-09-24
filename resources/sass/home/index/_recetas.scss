@@ -1,6 +1,7 @@
-
 /* para card recetas  home*/
-
+section {
+    padding: 2rem 7%;
+  }
 .blogs .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -54,5 +55,7 @@
     color:#ccc;
     padding:1rem 0;
 } 
+
+
 
 
