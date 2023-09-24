@@ -52,6 +52,11 @@ $border: var(--border);
       }
   }
   .cont-submenu-perfil{
+    &:hover{
+      .submenu-perfil{
+        display: flex;
+      }
+    }
     button{
       background-color: $header-bg;
       .imagen-avatar{
@@ -60,12 +65,22 @@ $border: var(--border);
       }
     }
     .submenu-perfil{
+      padding: 8px;
       position: absolute;
       border-radius: 5%;
-      display: flex;
+      display: none;
       flex-direction: column;
       right: 0;
       background-color: #fff;
+      a{
+        font-weight: 400;
+        color: rgb(44, 70, 86);
+        margin: 0px 0px 0.25em;
+        &:hover{
+          color:rgba(44, 70, 86,.4) ;
+        }
+      }
+      
     }
   }
   #menu-btn {

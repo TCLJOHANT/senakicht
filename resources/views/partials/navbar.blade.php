@@ -52,19 +52,16 @@
                             @endif
                         {{-- </x-slot> --}}
                         <div class="submenu-perfil">
-                               
-                                    
                              
                         <!--administracion de cuentas-->
                         {{-- <x-slot name="content" > --}}
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Administrar cuenta') }}
-                            </div>
                             <x-dropdown-link href="{{ route('profile.show') }}">
+                                <i class="fas fa-user"></i> 
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
                             {{-- url admin --}}
                             <x-dropdown-link href="{{ route('admin.home') }}">
+                                <i class="fas fa-cogs"></i> 
                                 {{ __('Admin') }}
                             </x-dropdown-link>
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -80,6 +77,7 @@
 
                                 <x-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
+                                         <i class="fas fa-sign-out-alt"></i> 
                                     {{ __('Cerrar sesión') }}
                                 </x-dropdown-link>
                             </form>
