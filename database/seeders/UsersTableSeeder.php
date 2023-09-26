@@ -48,6 +48,6 @@ class UsersTableSeeder extends Seeder
             'name' => 'johan',
             'email' => 'soytcljohant@gmail.com',
             'password' => 1234,
-        ]);
+        ])->assignRole('Admin');
     }
 }
