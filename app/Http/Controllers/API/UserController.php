@@ -45,10 +45,11 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        return response()->json([
-            "respuesta" => True,
-            "mensaje" => "Usuario Actualizado Correctamente"
-        ],200);
+        return response()->json($user);
+        // return response()->json([
+        //     "respuesta" => True,
+        //     "mensaje" => "Usuario Actualizado Correctamente"
+        // ],200);
     }
 
     /**

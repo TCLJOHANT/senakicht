@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Productos;
 use Illuminate\Http\Request;
 
-class ProductosController extends Controller
+class ProductController extends Controller
 {
     
     public function index(){
-        $productos= Productos::all();
-        return view('Cruds.CrudProductos',compact('productos'));
 
     }
 
@@ -24,7 +21,6 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'name'=> 'required',
             'image'=> 'required|image|mimes:png,jpg',
@@ -41,7 +37,7 @@ class ProductosController extends Controller
         $rutaImagen = $files->storeAs('products',$name, ['disk' => 'public']);
         $data = $request->only('name','price');
         $data['image']=$rutaImagen;
-        Productos::create($data);
+        Product::create($data);
 
         
 
@@ -50,11 +46,9 @@ class ProductosController extends Controller
        
     }
 
-    public function destroy(Productos $productos)
+    public function destroy(Product $productos)
     {
-        $productos->delete();
-    
-        return redirect('crudProductos');
+
     }
 
 }

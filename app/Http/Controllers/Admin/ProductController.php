@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Productos;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Productos::all();
+        $products = Product::all();
         return view('admin.cruds.products',compact('products'));
     }
 
@@ -30,7 +30,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'image'=> 'required|image|mimes:png,jpg',
+            'price'=> 'required',
+            
+
+        ]);
+     
+        $files = $request->file('image');
+        $name = $files->getClientOriginalName();
+        $estencion = $files->getClientOriginalExtension();
+
+        // $files->store('images', ['disk' => 'public']);
+        $rutaImagen = $files->storeAs('products',$name, ['disk' => 'public']);
+        $data = $request->only('name','price');
+        $data['image']=$rutaImagen;
+        Product::create($data);
+        return redirect("admin.products.index");
+
     }
 
     /**
@@ -60,8 +78,9 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('admin.products.index');
     }
 }

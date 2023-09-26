@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Recetas;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class RecetasController extends Controller
+class RecipeController extends Controller
 {
     
     public function index()
     {
-        $recetas = Recetas::all();
+        $recetas = Recipe::all();
         return view('Cruds.crudRecetas',compact('recetas'));
     }
 
@@ -36,7 +36,7 @@ class RecetasController extends Controller
         $rutaImagen = $files->storeAs('images',$name, ['disk' => 'public']);
         $data = $request->only('name','ingredients','description');
         $data['images']=$rutaImagen;
-        Recetas::create($data);
+        Recipe::create($data);
 
         
 
@@ -45,7 +45,7 @@ class RecetasController extends Controller
 
     
  
-    // public function update(Request $request, Recetas $recetas)
+    // public function update(Request $request, Recipe $recetas)
     // {
     //     $this->validate($request, [
     //         'name'=> 'required',
@@ -81,7 +81,7 @@ class RecetasController extends Controller
     // }
 
  
-    public function destroy(Recetas $recetas)
+    public function destroy(Recipe $recetas)
 {
     $recetas->delete();
 

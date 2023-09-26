@@ -1,15 +1,32 @@
 <?php
-
-namespace App\Models;
+ 
+ 
+namespace App\Models ;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
     use HasFactory;
-    public function aprendiz()
+    protected $fillable = [
+        'name',
+        'image',
+        'price',
+
+    ];
+
+
+    
+    public function pagos()
     {
-        return $this->belongsTo(aprendiz::class, 'idAprendiz', 'id');
+        return $this->belongsTo(pagos::class, 'idPagos', 'id');
     }
+
+     public function Productos(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'idProductos', 'id');
+    }
+
 }

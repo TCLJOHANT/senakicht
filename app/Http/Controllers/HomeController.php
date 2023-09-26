@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Productos;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Models\Recetas;
+use App\Models\Recipe;
 
 class HomeController extends Controller
 {
@@ -23,17 +23,17 @@ class HomeController extends Controller
 
     public function productos(){
 
-     $productos =Productos::all();
+     $productos =Product::all();
      return view('home.product',compact('productos'));
 
     }
 
    //Recestas
      public function recetas(){
-         $recetas = Recetas::all();
+         $recetas = Recipe::all();
          return view('home.recetas',compact('recetas'));
      }
-     public function ver(Recetas $recetas)
+     public function ver(Recipe $recetas)
      {
          // $recetas = Recetas::findOrfail($id);
         

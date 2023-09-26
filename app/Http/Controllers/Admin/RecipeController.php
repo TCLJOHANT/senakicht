@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Recetas;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -13,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recetas::all();
+        $recipes = Recipe::all();
         return view('admin.cruds.recipes',compact('recipes'));
     }
 
@@ -60,8 +61,10 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+     
+     public function destroy(Recipe $receta)
+     {
+         $receta->delete();
+         return redirect('admin.recipes.index');
+     }
 }

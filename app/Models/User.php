@@ -67,6 +67,9 @@ class User extends Authenticatable
     public function comentarios(){
         return $this->hasMany('App\Models\Comentarios');
     }
+    public function recipes(){
+        return $this->hasMany('App\Models\Recipe');
+    }
 
     public function Users(): BelongsToMany
     {

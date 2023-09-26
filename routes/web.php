@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CommentController;
 use App\Models\Cart;
-use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\ContactanosController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\UserController;
 
 
 //Login Con Facebook
@@ -26,20 +25,14 @@ Route::middleware([
 ])->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('home');
     //Opiniones
-    Route::resource('comentarios',ComentariosController::class)->names('comentarios');
+    Route::resource('comentarios',CommentController::class)->names('comentarios');
 
     //Productos
     Route::get('/productos',[HomeController::class,'productos'])->name('productos');
-    Route::get('/crudProductos', [ProductosController::class,'index']);
-    Route::post('/crudProductos', [ProductosController::class,'store'])->name('productos.store');
-    Route::get('/crudProductos/{productos}/editar',[ProductosController::class,'edit'])->name('productos.editar');
-    Route::put('/crudProductos/{productos}/actualizar',[ProductosController::class,'update'])->name('productos.update');
-    Route::delete('crudProductos/{productos}', [ProductosController::class,'destroy'])->name('productos.destroy');
-
+    Route::post('/crudProductos', [ProductController::class,'store'])->name('productos.store');
     //Recetas
     Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
-
 
     //Nostros
     Route::get('/nosotros',[HomeController::class,'nosotros'])->name('nosotros');
@@ -55,11 +48,6 @@ Route::middleware([
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
-
-    //Crud Usuario
-    Route::get('crud/{crud}/editar', [CrudController::class, 'edit'])->name('crud.editar');
-    Route::put('crud/{crud}', [CrudController::class, 'update'])->name('crud.update');
-    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 });
 
 

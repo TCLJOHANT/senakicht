@@ -16,8 +16,8 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Ingrediente</th>
-                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
                     <th colspan="2">acciones</th>
                 </tr>
             </thead>
@@ -26,7 +26,7 @@
                     <tr>
                         <td>{{$recipe->name}}</td>
                        
-                        <td>{{$recipe->price}}</td>
+                        <td>$ {{$recipe->price}}</td>
                         <td>{{$recipe->image}}</td>
                         <td width="10px">
                             <a href="{{route('admin.recipes.edit',$recipe)}}" class="btn btn-primary btn-sm">Editar</a>

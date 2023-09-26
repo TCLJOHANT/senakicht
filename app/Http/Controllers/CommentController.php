@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comentarios;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 
-class ComentariosController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ComentariosController extends Controller
      */
     public function index()
     {
-        $comentarios = Comentarios::all();
+        $comentarios = Comment::all();
         return view('home.opiniones',compact('comentarios'));
     }
     /**
@@ -37,7 +37,7 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        Comentarios::create($request->all());
+        Comment::create($request->all());
         return to_route('comentarios.index');
     }
 
