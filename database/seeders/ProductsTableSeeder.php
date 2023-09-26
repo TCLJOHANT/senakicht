@@ -20,28 +20,22 @@ class ProductsTableSeeder extends Seeder
             'name' => 'Cafe Agila Roja',
             'price' => 7.000,
             'image' => 'cafe.png',
-           
+            'user_id' => 1,
         ]);
 
-        // Productos::create([
-        //     'name' => 'Ajiaco',
-        //     'price' => 12.000,
-        //     'image' => 'Ajiaco',
-           
-        // ]);
+        Product::create([
+             'name' => 'Ajiaco',
+             'price' => 12.000,
+             'image' => 'Ajiaco',
+             'user_id' => 2,
+        ]);
 
-        // Productos::create([
-        //     'name' => 'Ajiaco',
-        //     'price' => 12.000,
-        //     'image' => 'Ajiaco',
-           
-        // ]);
+        Product::create([
+             'name' => 'Harina',
+             'price' => 123.000,
+             'image' => 'harina.jpg',
+             'user_id' =>3,
+         ]);
 
-        // Productos::create([
-        //     'name' => 'Ajiaco',
-        //     'price' => 12.000,
-        //     'image' => 'Ajiaco',
-           
-        // ]);
     }
 }

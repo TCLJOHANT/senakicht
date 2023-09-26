@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Cart;
-
+use App\Models\Menu;
 
 class CartController extends Controller
 {
     public function shop()
     {
-        $products = Product::all();
+        $products = Menu::all();
        //dd($products);
         return view('home.menu')->with(['products' => $products]);
     }

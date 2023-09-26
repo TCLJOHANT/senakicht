@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             CommentsTableSeeder::class,
+            MenusTableSeeder::class,
             ProductsTableSeeder::class ,
             RecipesTableSeeder::class,
-            
         ]);
     }
 }

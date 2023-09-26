@@ -11,6 +11,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use PHPUnit\Framework\MockObject\Stub\ReturnSelf;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -19,6 +21,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -70,10 +73,8 @@ class User extends Authenticatable
     public function recipes(){
         return $this->hasMany('App\Models\Recipe');
     }
-
-    public function Users(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class, 'idUser', 'id');
+    public function products(){
+        return $this->hasMany('App\Models\Product');
     }
 
     //Para Adminlte

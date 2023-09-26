@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->double('price');
             $table->string('image');
-            // $table->foreignId('idPagos')->references('id')->on('pagos');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //$table->foreignId('idPagos')->references('id')->on('pagos');
             $table->timestamps();
         });
     }

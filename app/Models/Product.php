@@ -10,14 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'image',
-        'price',
-
-    ];
-
-
+    protected $guarded = [];
     
     public function pagos()
     {
@@ -27,6 +20,10 @@ class Product extends Model
      public function Productos(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'idProductos', 'id');
+    }
+      //relaciion uno amuchos inversa
+      public function user(){
+        return $this->belongsTo('App\Models\User');
     }
 
 }
