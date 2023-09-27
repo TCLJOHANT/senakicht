@@ -17,6 +17,7 @@
     <h1 class="title">{{ $recetas->name }}</h1><br>
     <p>{{ $recetas->ingredients }}</p><br>
     <p>{{ $recetas->description }}</p>
+    <p>{{ $recetas->category_id }}</p>
 </div>
 
    

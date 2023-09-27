@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Recipe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +17,7 @@ class RecipesTableSeeder extends Seeder
      */
     public function run()
     {
-
+        $category = Category::where('type', 'recipeAndmenu')->first();
         DB::table('recipes')->insert([
             [
                 'name' => 'Receta 1',
@@ -25,6 +26,7 @@ class RecipesTableSeeder extends Seeder
                 'ingredients' => 'Ingredientes de la receta 1',
                 'description' => 'Descripción de la receta 1',
                 'user_id' => 1,
+                'category_id' => $category->id,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -35,6 +37,7 @@ class RecipesTableSeeder extends Seeder
                 'ingredients' => 'Ingredientes de la receta 2',
                 'description' => 'Descripción de la receta 2',
                 'user_id' => 2,
+                'category_id' => $category->id,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -45,6 +48,7 @@ class RecipesTableSeeder extends Seeder
                 'ingredients' => 'Ingredientes de la receta 3',
                 'description' => 'Descripción de la receta 3',
                 'user_id' => 2,
+                'category_id' => $category->id,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
