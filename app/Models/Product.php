@@ -28,5 +28,8 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('App\Models\Category');
     }
-
+    //RELACION UNO A MUCHOS PLIMORFICA
+    public function comments(){
+        return $this->morphMany('App\Models\Comment','commentable');
+    }
 }

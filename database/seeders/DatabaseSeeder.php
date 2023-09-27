@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UsersTableSeeder::class,
             CategoriesSeeder::class,
-            CommentsTableSeeder::class,
             MenusTableSeeder::class,
             ProductsTableSeeder::class ,
             RecipesTableSeeder::class,
+            CommentsTableSeeder::class,
         ]);
     }
 }

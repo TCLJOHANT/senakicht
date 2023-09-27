@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\Product;
+use App\Models\Recipe;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -40,10 +42,25 @@ class CommentsTableSeeder extends Seeder
             'user_id' => 5,
         ]);
 
+        // Comentario para una receta
+        $receta = Recipe::find(1); // Reemplaza el 1 con el ID de la receta deseada
+        if ($receta) {
+            $receta->comments()->create([
+                'description' => 'Este es un comentario para la receta',
+                'user_id' => 4,
+            ]);
+        }
 
-
-
-
-        
+        // Comentario para un producto
+        $producto = Product::find(1); // Reemplaza el 1 con el ID del producto deseado
+        if ($producto) {
+            $producto->comments()->create([
+                'description' => 'Este es un comentario para el producto',
+                'user_id' => 3,
+            ]);
+        }
     }
 }
+
+
+

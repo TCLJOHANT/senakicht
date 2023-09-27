@@ -67,14 +67,17 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value); 
     } 
     //RELACION  UNO A MUCHOS
-    public function comentarios(){
-        return $this->hasMany('App\Models\Comentarios');
+    public function comments(){
+        return $this->hasMany('App\Models\Comment');
     }
     public function recipes(){
         return $this->hasMany('App\Models\Recipe');
     }
     public function products(){
         return $this->hasMany('App\Models\Product');
+    }
+    public function menus(){
+        return $this->hasMany('App\Models\Menu');
     }
 
     //Para Adminlte

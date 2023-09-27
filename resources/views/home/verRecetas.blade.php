@@ -18,6 +18,10 @@
     <p>{{ $recetas->ingredients }}</p><br>
     <p>{{ $recetas->description }}</p>
     <p>{{ $recetas->category_id }}</p>
+    <h2>Comentarios:</h2>
+    @foreach($recetas->comments as $comment)
+        <p>{{ $comment->description }}</p>
+    @endforeach
 </div>
 
    
