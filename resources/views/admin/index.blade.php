@@ -1,26 +1,3 @@
-@extends('adminlte::page')
-
-@section('title', 'Home')
-@section('content_header')
-    <h1>Senakitcht</h1>
-    
-@stop
-
-@section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> 
-        Swal.fire(
-          'Bienvenido Al aministrador',
-          'de Senakicht',
-          'question'
-        )</script>
-
-@stop 
-
+<x-layouts.admin>
+ 
+</x-layouts.admin>

@@ -320,7 +320,7 @@ return [
         [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Productos',
@@ -331,6 +331,11 @@ return [
             'text' => 'Recetas',
             'route'  => 'admin.recipes.index',
             'icon' => 'fas fa-utensils fa-fw',
+        ],
+        [
+            'text' => 'Menu',
+            'url'  => '#',
+            'icon' => 'fas fa-clipboard-list fa-fw',
         ],
         [
             'text' => 'Comentarios',
