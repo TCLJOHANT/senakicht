@@ -161,14 +161,14 @@
                                         <label for="">
                                             preparacion
                                         </label>
-                                        <input name="ingredients" class="form-control" ></input>
+                                        <input name="ingredients" class="form-control" />
                                         </div>
                                         
                                         <div class="form-group">
                                         <label for="">
                                             ingredientes
                                         </label>
-                                        <input name="description" class="form-control" ></input>
+                                        <input name="description" class="form-control" />
                                         </div>
                                         
                 

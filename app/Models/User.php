@@ -63,9 +63,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function setPasswordAttribute($value){ 
-        $this->attributes['password'] = bcrypt($value); 
-    } 
+    // public function setPasswordAttribute($value){ 
+    //     $this->attributes['password'] = bcrypt($value); 
+    // } 
     //RELACION  UNO A MUCHOS
     public function comments(){
         return $this->hasMany('App\Models\Comment');
