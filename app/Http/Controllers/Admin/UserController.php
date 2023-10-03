@@ -30,7 +30,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //     $registro = $request->all();
+
+    // if ($request->hasFile('imagen')) {
+    //     $path = $request->file('imagen')->store('public/imagenes');
+    //     // Guardar la ruta o el nombre del archivo en la base de datos
+    //     $registro->profile_photo_url = $path;
+    // }
+
+    // $registro->save();
+        return to_route('admin.users.index');
     }
 
     /**

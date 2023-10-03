@@ -5,18 +5,36 @@
                 <h5 class="modal-title" id="{{ $id }}Label">{{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            
             <div class="modal-body">
-                {{ $slot }}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                @if(Auth::check())
+                <form action="{{route('admin.' . $modelName . '.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @foreach($nameInputs as $Input)
+                    <label for="">{{$Input}}</label>
+                    <div class="form-group">
+                        {{-- valida que input pintar
+                            si hay . es textarea y si hay , es file --}}
+                        @if (str_contains($Input, '.'))
+                            <?php $Input = str_replace('.', '', $Input); ?>
+                            <textarea  class="form-control"  placeholder="{{$Input}}" name="{{$Input}}"></textarea>
+                        @elseif (str_contains($Input, ','))
+                            <?php $Input = str_replace(',', '', $Input); ?>
+                            <input  class="form-control" name="{{$Input}}"  type="file">
+                        @elseif ($Input === 'password' || $Input === 'contraseña')
+                            <input class="form-control" name="{{$Input}}" type="password" placeholder="{{$Input}}">
+                        @else
+                            <input  class="form-control" name="{{$Input}}" type="text" placeholder="{{$Input}}">
+                        @endif
+                    </div>
+                    @endforeach
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+                @endif
             </div>
         </div>
     </div>
 </div>
-
-
-<style>
-   
-</style>
