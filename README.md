@@ -4,7 +4,7 @@
 ### Instalation (dependencias)
 
 ```
-git clone https://github.com/TCLJOHANT/senakicht_remake
+git clone https://github.com/TCLJOHANT/senakicht.git
 ```
 ```
 composer install
