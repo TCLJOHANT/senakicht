@@ -16,6 +16,10 @@ npm install
 ```
 npm run build
 ```
+sass globalmente
+```
+npm install -g sass
+```
 Para actualizar cada cambio que se haga en sass debes ejecutar:
 ```
 sass --watch resources/sass:public/css
