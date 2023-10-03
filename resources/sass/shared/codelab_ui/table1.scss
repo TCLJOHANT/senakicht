@@ -1,74 +1,33 @@
- @import 'bootstrap/bootstrap';
- @import 'bootstrap/variables';
- @import 'bootstrap/mixins';
 
-$font-primary: 'Poppins',Arial, sans-serif;
-$primary: #99b19c;
-body{
-	font-family: $font-primary;
-	font-size: 16px;
-	line-height: 1.8;
-	font-weight: normal;
-	background: #f8f9fd;
-	color: lighten($black,50%);
-}
-a {
-	transition: .3s all ease;
-	color: $primary;
-	&:hover, &:focus {
-		text-decoration: none !important;
-		outline: none !important;
-		box-shadow: none;
-	}
-}
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
-	line-height: 1.5;
-	font-weight: 400;
-	font-family: $font-primary;
-	color: $black;
-}
+ $font-primary: 'Poppins',Arial, sans-serif;
+ $primary: #99b19c;
+ .bg-primary{
+ 	background: $primary !important;
+ }
 
-.bg-primary{
-	background: $primary !important;
-}
+ .ftco-section{
+ 	padding: 7em 0;
+ }
 
-.ftco-section{
-	padding: 7em 0;
-}
-
-.ftco-no-pt{
-	padding-top: 0;
-}
-.ftco-no-pb{
-	padding-bottom: 0;
-}
-//HEADING SECTION
-.heading-section{
-	font-size: 28px;
-	color: $black;
-}
-
-//COVER BG
-.img{
+.imagen{
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
 }
-.table-wrap{
-	@include media-breakpoint-down(xl){
-		overflow-x: scroll;
+.table-wrap {
+	@media (max-width: 1200px) {
+	  overflow-x: scroll;
 	}
-}
-.table{
+  }
+.tabla{
 	min-width: 1000px !important;
 	width: 100%;
-	background: $white;
+	background: #fff;
 	-webkit-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
 	-moz-box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
 	box-shadow: 0px 5px 12px -12px rgba(0,0,0,0.29);
-	// border-collapse:separate;
- //  border-spacing: 0 10px;
+	 border-collapse:separate;
+   border-spacing: 0 10px;
 	thead{
 		&.thead-primary{
 			background: $primary;
@@ -91,7 +50,7 @@ h1, h2, h3, h4, h5,
 			border: none;
 			padding:30px;
 			font-size: 14px;
-			background: $white;
+			background: #fff;
 			border-bottom: 4px solid #f8f9fd;
 			vertical-align: middle;
 		}
@@ -106,16 +65,15 @@ h1, h2, h3, h4, h5,
 			.email{
 				span{
 					display: block;
+					
 					&:last-child(){
 						font-size: 12px;
 						color: rgba(0,0,0,.3);
 					}
-				}
-			}
-			.close{
-				span{
-					font-size: 12px;
-					color: $danger;
+					&:nth-child(2) {
+						font-size: 12px;
+						color: rgba(26, 24, 24, 0.3);
+					  }
 				}
 			}
 		}
@@ -160,7 +118,7 @@ h1, h2, h3, h4, h5,
   color:rgba(0,0,0,.1);
   font-size: 20px;
   margin-top: -14px;
-  @include transition(.3s);
+//   @include transition(.3s);
 }
 
 /* Show the checkmark when checked */

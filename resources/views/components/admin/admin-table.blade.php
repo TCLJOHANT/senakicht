@@ -1,5 +1,3 @@
-
-
 <x-admin.admin-modal id="myModal" title="Título del Modal">
     <!-- Contenido del modal para CRUD -->
     <h2>Título del Modal</h2>
@@ -7,14 +5,15 @@
 
     <!-- Puedes agregar botones, formularios u otros elementos aquí -->
 </x-admin.admin-modal>
+<link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}"> 
 <div class="card">
     <div class="card-header">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+            <table class="tabla table-hover text-center">
+                <thead class="thead-primary">
                     <tr>
                         @foreach ($columns as $column)
                             <th>{{ $column }}</th>
@@ -22,11 +21,11 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @foreach ($items as $item)
-                        <tr>
+                        <tr >
                             @foreach ($columns as $column)
-                                <td>
+                                <td class="p-0">
                                     {{-- Verificar si es una URL válida para mostrar una imagen --}}
                                     @if (filter_var($item->$column, FILTER_VALIDATE_URL))
                                         <img src="{{ $item->$column }}" alt="{{ $item->$column }}" class="img-thumbnail" width="50">
@@ -35,14 +34,22 @@
                                     @endif
                                 </td>
                             @endforeach
-                            <td>
+                            <td class="p-0">
+                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                                <form action="" method="post" style="display: inline;">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                            {{-- <td>
                                 <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-warning btn-sm">Editar</button>
                                 <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" id="btn_Eliminar" class="btn btn-danger btn-sm">Eliminar</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

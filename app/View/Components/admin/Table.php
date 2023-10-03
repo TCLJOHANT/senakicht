@@ -8,25 +8,24 @@ use Illuminate\View\Component;
 
 class Table extends Component
 {
-    // public $columns;
-    // public $items;
+     public $columns;
+     public $items;
     // public $modelName;
 
     // /**
     //  * Create a new component instance.
     //  */
-    // public function __construct($columns, $items, $modelName)
+    // public function __construct($modelName)
     // {
-    //     $this->columns = $columns;
-    //     $this->items = $items;
+    //     
+    //    ;
     //     $this->modelName = $modelName;
     // }
-    public function __construct()
+    public function __construct($columns,$items)
     {
-       
+        $this->columns = $columns;
+        $this->items = $items;
     }
-  
-  
     /**
      * Get the view / contents that represent the component.
      */

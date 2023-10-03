@@ -1,23 +1,25 @@
-<link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1') }}"> 
+<link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}"> 
 <section class="ftco-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="table-wrap"> 
-                    <table class="table">
+                    <table class="tabla">
                       <thead class="thead-primary">
                         <tr>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th>Product</th>
-                          <th>Price</th>
-                          <th>Quantity</th>
-                          <th>total</th>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
+                          @foreach ($columns as $column)
+                            <th>{{ $column }}</th>
+                          @endforeach
+                          <th>&nbsp;</th>
                           <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($items as $item)
                         <tr class="alert" role="alert">
+                        
                             <td>
                                 <label class="checkbox-wrap checkbox-primary">
                                       <input type="checkbox" checked>
@@ -25,27 +27,31 @@
                                     </label>
                             </td>
                             <td>
-                                <div class="img" style="background-image: url(images/product-1.png);"></div>
+                                <div class="imagen"><img src="" alt="" width="60px"></div>
                             </td>
-                          <td>
-                              <div class="email">
-                                  <span>Sneakers Shoes 2020 For Men </span>
-                                  <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>
-                              </div>
-                          </td>
-                          <td>$44.99</td>
-                          <td class="quantity">
-                            <div class="input-group">
-                             <input type="text" name="quantity" class="quantity form-control input-number" value="2" min="1" max="100">
-                          </div>
-                      </td>
-                      <td>$89.98</td>
-                          <td>
-                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                          </button>
-                        </td>
+                            <td>
+                                <div class="email">
+                                    <span>Sneakers Shoes 2020 For Men </span>
+                                    <span>Fugiat voluptates quasi nemo, ipsa perferendis...</span>
+                                </div>
+                            </td>
+                            <td>$44.99</td>
+                            <td class="quantity  text-center">
+
+                               2
+                            </td>
+                            <td>$89.98</td>
+                            
+                            <td>
+                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button>
+                                <form action="" method="post" style="display: inline;">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                 </div>
