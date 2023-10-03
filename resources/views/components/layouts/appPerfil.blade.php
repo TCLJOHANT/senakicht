@@ -22,6 +22,6 @@
 
 {{ $slot }}
 
-
+<script src="{{ asset('js/mod.js')}}"></script>
 </body>
 </html>

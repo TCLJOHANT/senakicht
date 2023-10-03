@@ -266,6 +266,33 @@
                             </div>
                             <hr>
                             </div>
+
+                            <div class="row">
+                             <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                                   Actualizar Perfil
+                                </button>
+  
+                            <!-- Modal -->
+                             <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                     <div class="modal-dialog">
+                                       <div class="modal-content">
+                                       <div class="modal-header">
+                                     <h1 class="modal-title fs-5" id="exampleModalLabel">informacion de perfil</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                             </div>
+                                <div class="modal-body">
+                                         @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                                             @livewire('profile.update-profile-information-form')
+
+                                             <x-section-border />
+                                         @endif
+                                         </div>
+        
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
                         </div>
                         </div>
 
@@ -278,11 +305,11 @@
 {{-- JESTRAEAM --}}
      <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+            {{-- @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
                 <x-section-border />
-            @endif
+            @endif --}}
 {{--
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
