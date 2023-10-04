@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -22,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-    
+
     }
 
     /**
@@ -30,16 +32,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-    //     $registro = $request->all();
-
-    // if ($request->hasFile('imagen')) {
-    //     $path = $request->file('imagen')->store('public/imagenes');
-    //     // Guardar la ruta o el nombre del archivo en la base de datos
-    //     $registro->profile_photo_url = $path;
-    // }
-
-    // $registro->save();
-        return to_route('admin.users.index');
+        $request->validate([
+            'file'=>'image|max:2048'
+        ]);
+        $imagen = $request->file('profile_photo_path')->storePublicly('public/profile-photos');
+        $urlImg=Storage::url($imagen);
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'profile_photo_path' => $urlImg,
+        ]);
+        return redirect()->route('admin.users.index');
+        // if ($request->hasFile('imagen')) {
+        //     $path = $request->file('imagen')->store('public/imagenes');
+        //     // Guardar la ruta o el nombre del archivo en la base de datos
+        //     $registro->profile_photo_url = $path;
+        // }
     }
 
     /**
@@ -63,7 +72,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+
     }
 
     /**

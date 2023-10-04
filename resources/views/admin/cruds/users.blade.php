@@ -1,6 +1,6 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Usuario" 
- :nameInputs="['name', 'Avatar,', 'email','password']"
+ :nameInputs="['name', 'profile_photo_path,', 'email','password']"
  modelName="users">
 
 </x-admin.admin-modal>

@@ -18,13 +18,25 @@
                         @if (str_contains($Input, '.'))
                             <?php $Input = str_replace('.', '', $Input); ?>
                             <textarea  class="form-control"  placeholder="{{$Input}}" name="{{$Input}}"></textarea>
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         @elseif (str_contains($Input, ','))
                             <?php $Input = str_replace(',', '', $Input); ?>
-                            <input  class="form-control" name="{{$Input}}"  type="file">
+                            <input  class="form-control" name="{{$Input}}"  type="file" accept="image/*">
+                            @error('file')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         @elseif ($Input === 'password' || $Input === 'contraseña')
                             <input class="form-control" name="{{$Input}}" type="password" placeholder="{{$Input}}">
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         @else
                             <input  class="form-control" name="{{$Input}}" type="text" placeholder="{{$Input}}">
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         @endif
                     </div>
                     @endforeach
