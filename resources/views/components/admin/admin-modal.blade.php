@@ -10,60 +10,48 @@
                 @if(Auth::check())
                 <form action="{{route('admin.' . $modelName . '.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @foreach($nameInputs as $Input)
-                    <label for="">{{$Input}}</label>
+                    @foreach($fields as $field)
+                    <label for="{{$field['name']}}">{{$field['name']}}</label>
                     <div class="form-group">
-                        {{-- validando que tipo de input pintar--}}
-                        @if (str_contains($Input, '.'))
-                            <?php $Input = str_replace('.', '', $Input); ?>
-                            <textarea rows="5" cols="50" class="form-control"  placeholder="{{$Input}}" name="{{$Input}}"></textarea>
-                            @error($Input)
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @elseif (str_contains($Input, ','))
-                            <?php $Input = str_replace(',', '', $Input); ?>
-                            <input  class="form-control" name="{{$Input}}"  type="file" accept="image/*">
-                            @error('file')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @elseif ($Input === 'password' || $Input === 'contraseña')
-                            <input class="form-control" name="{{$Input}}" type="password" placeholder="{{$Input}}">
-                            @error($Input)
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @elseif ($Input === 'email' || $Input === 'correo')
-                            <input class="form-control" name="{{$Input}}" type="email" placeholder="{{$Input}}" value="{{ old('email') }}">
-                            @error($Input)
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @elseif ($Input === 'category')
-                          
-                            <select class="form-control" name="{{$Input}}">
-                                <option value="opcion1">Opción 1</option>
-                                <option value="opcion2">Opción 2</option>
-                           
-                            </select>
-                            @error($Input)
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @elseif ($Input === 'price')
-                              <div class="input-group">
-                                  <div class="input-group-append">
-                                      <span class="input-group-text">$</span>
-                                      <input class="form-control" name="{{$Input}}" type="number" placeholder="0" min="0">
+                        @switch($field['type'])
+                            @case('textarea')
+                                <textarea rows="5" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name']) }}</textarea>
+                                @break
+                            @case('file')
+                                <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ old($field['name']) }}">
+                                @break
+                            @case('password')
+                                <input class="form-control" name="{{$field['name']}}" type="password" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                                @break
+                            @case('email')
+                                <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                                @break
+                            @case('select')
+                                {{-- @foreach ($categories as $category)
+                                    <option value="{{$category->value}}">{{$category->label}}</option>
+                                @endforeach --}}
+                                <select class="form-control" name="{{$field['name']}}">
+                                    <option value="opcion1">Opción 1</option>
+                                    <option value="opcion2">Opción 2</option>
+                                </select>
+                                @break
+                            @case('number')
+                                <div class="input-group">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">$</span>
+                                        <input class="form-control" name="{{$field['name']}}" type="number" placeholder="0" min="0" value="{{ old($field['name']) }}">
+                                    </div>
                                 </div>
-                              </div>
-                            @error($Input)
+                                @break
+                            @default
+                                <input class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                        @endswitch
+                        @error($field['name'])
                             <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @else
-                            <input  class="form-control" name="{{$Input}}" type="text" placeholder="{{$Input}}">
-                            @error($Input)
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        @endif
+                        @enderror
                     </div>
                     @endforeach
+                
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -74,12 +62,5 @@
         </div>
     </div>
 </div>
- @if(session('show_modal'))
-     <script>
-        alert('caca')
-        // $(document).ready(function() {
-        //     $('#myModal').modal('show');
-        // });
-        
-    </script>
- @endif 
+{{-- para data old y dta update --}}
+{{--  <input class="form-control" name="{{$field['name']}}" type="text" value="{{ old($field['name'], $userData[$field['name']]) }}"> --}}

@@ -1,7 +1,9 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Comentarios" 
- :nameInputs="['Comentario.']"
- modelName="recipes">
+ :fields='[
+  ["name" => "description", "type" => "textarea"],
+]'
+ modelName="comments">
 
 </x-admin.admin-modal>
 

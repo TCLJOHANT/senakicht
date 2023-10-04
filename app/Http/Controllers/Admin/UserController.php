@@ -43,7 +43,7 @@ class UserController extends Controller
         $fileName = $image->getClientOriginalName();//obtener name original de archivo de imagen
         $filePath = $image->store('profile-photos', 'public');
         
-        $data = $request->only('name', 'email', 'password');
+        $data = $request->only('name', 'email',Hash::make('password'));
         $data['profile_photo_path'] = $filePath;
         
         User::create($data);

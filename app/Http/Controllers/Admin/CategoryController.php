@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $comments = Comment::all();
-        return view('admin.cruds.comments',compact('comments'));
+        $categories = Category::all();
+        return view('admin.cruds.categories',compact('categories'));
     }
 
     /**
@@ -31,10 +30,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
-        Comment::create($data);
-        return redirect()->route('admin.comments.index');
+        //
     }
 
     /**
@@ -64,10 +60,8 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comment $comment)
+    public function destroy(string $id)
     {
-        $comment->delete();
-        return redirect()->route('admin.comments.index');
+        //
     }
-    
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -37,7 +37,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        Comment::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
+        Comment::create($data);
         return to_route('comentarios.index');
     }
 

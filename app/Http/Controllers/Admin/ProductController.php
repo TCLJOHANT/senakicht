@@ -34,8 +34,7 @@ class ProductController extends Controller
             'name'=> 'required',
             'image'=> 'required|image|mimes:png,jpg',
             'price'=> 'required',
-            
-
+            // 'category' => 'required',
         ]);
      
         $files = $request->file('image');

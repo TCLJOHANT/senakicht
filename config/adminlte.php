@@ -343,6 +343,11 @@ return [
             'icon' => 'fas fa-comments fa-fw',
         ],
         [
+            'text' => 'Categorias',
+            'route'  => 'admin.categories.index',
+            'icon' => 'fas fa-tags fa-fw',
+        ],
+        [
             'text' => 'Calendario',
             'url'  => '#',
             'icon' => 'far fa-calendar-alt fa-fw',

@@ -31,7 +31,22 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'=> 'required',
+            'images' => 'image|max:2048',
+            'ingredients'=> 'required',
+            'preparation'=> 'required',
+        ]);
+
+        $image = $request->file('images');
+        $fileName = $image->getClientOriginalName();//obtener name original de archivo de imagen
+        $filePath = $image->store('recipes', 'public');
+        
+        $data = $request->only('name', 'email', 'password');
+        $data['images'] = $filePath;
+        
+        Recipe::create($data);
+        return redirect()->route('admin.users.index');
     }
 
     /**

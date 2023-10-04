@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name',40);
             $table->json('images');
             $table->string('video')->nullable();
+            $table->string('description',255);
             $table->text('ingredients');
-            $table->text('description');
+            $table->text('preparation');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->unsignedBigInteger('category_id')->nullable();

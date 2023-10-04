@@ -21,29 +21,27 @@
                             @foreach ($columns as $column)
                                 <td class="p-0">
                                     {{-- Verificar si es una URL válida para mostrar una imagen --}}
-                                    @if (filter_var($item->$column, FILTER_VALIDATE_URL))
+                                    @if (filter_var($item->$column, FILTER_VALIDATE_URL) || file_exists(public_path($item->$column)))
                                         <img src="{{ $item->$column }}" alt="{{ $item->$column }}" class="img-thumbnail rounded-circle" width="50">
                                     @else
-                                        {{ $item->$column }}
+                                        {{ $item->$column }} 
                                     @endif
                                 </td>
                             @endforeach
                             <td class="p-0">
-                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button>
+
+                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"
+                                    data-item="{{ json_encode($item) }}">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+
+                      {{-- <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button> --}}
                                 <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>
-                            {{-- <td>
-                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-warning btn-sm">Editar</button>
-                                <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" id="btn_Eliminar" class="btn btn-danger btn-sm">Eliminar</button>
-                                </form>
-                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>

@@ -1,6 +1,13 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Receta" 
- :nameInputs="['Nombre', 'Imagen,','category','preparacion.','ingredientes.']"
+ :fields='[
+  ["name" => "name", "type" => "text"],
+  ["name" => "images", "type" => "file"],
+  ["name" => "category", "type" => "select"],
+  ["name" => "description", "type" => "textarea"],
+  ["name" => "ingredients", "type" => "textarea"],
+  ["name" => "preparation", "type" => "textarea"],
+]'
  modelName="recipes">
 
 </x-admin.admin-modal>
