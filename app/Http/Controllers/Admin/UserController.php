@@ -32,23 +32,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'file'=>'image|max:2048'
+        $this->validate($request, [
+            'name'=> 'required',
+            'email'=> 'required|email|unique:users,email',
+            'password'=> 'required',
+            'profile_photo_path' => 'image|max:2048',
         ]);
-        $imagen = $request->file('profile_photo_path')->storePublicly('public/profile-photos');
-        $urlImg=Storage::url($imagen);
-        User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'profile_photo_path' => $urlImg,
-        ]);
+
+        $image = $request->file('profile_photo_path');
+        $fileName = $image->getClientOriginalName();//obtener name original de archivo de imagen
+        $filePath = $image->store('profile-photos', 'public');
+        
+        $data = $request->only('name', 'email', 'password');
+        $data['profile_photo_path'] = $filePath;
+        
+        User::create($data);
         return redirect()->route('admin.users.index');
-        // if ($request->hasFile('imagen')) {
-        //     $path = $request->file('imagen')->store('public/imagenes');
-        //     // Guardar la ruta o el nombre del archivo en la base de datos
-        //     $registro->profile_photo_url = $path;
-        // }
     }
 
     /**

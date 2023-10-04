@@ -1,8 +1,8 @@
-<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}Label" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModal Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="{{ $id }}Label">{{ $title }}</h5>
+                <h5 class="modal-title" id="myModal Label">{{ $title }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             
@@ -13,11 +13,10 @@
                     @foreach($nameInputs as $Input)
                     <label for="">{{$Input}}</label>
                     <div class="form-group">
-                        {{-- valida que input pintar
-                            si hay . es textarea y si hay , es file --}}
+                        {{-- validando que tipo de input pintar--}}
                         @if (str_contains($Input, '.'))
                             <?php $Input = str_replace('.', '', $Input); ?>
-                            <textarea  class="form-control"  placeholder="{{$Input}}" name="{{$Input}}"></textarea>
+                            <textarea rows="5" cols="50" class="form-control"  placeholder="{{$Input}}" name="{{$Input}}"></textarea>
                             @error($Input)
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -29,6 +28,31 @@
                             @enderror
                         @elseif ($Input === 'password' || $Input === 'contraseña')
                             <input class="form-control" name="{{$Input}}" type="password" placeholder="{{$Input}}">
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        @elseif ($Input === 'email' || $Input === 'correo')
+                            <input class="form-control" name="{{$Input}}" type="email" placeholder="{{$Input}}" value="{{ old('email') }}">
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        @elseif ($Input === 'category')
+                          
+                            <select class="form-control" name="{{$Input}}">
+                                <option value="opcion1">Opción 1</option>
+                                <option value="opcion2">Opción 2</option>
+                           
+                            </select>
+                            @error($Input)
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        @elseif ($Input === 'price')
+                              <div class="input-group">
+                                  <div class="input-group-append">
+                                      <span class="input-group-text">$</span>
+                                      <input class="form-control" name="{{$Input}}" type="number" placeholder="0" min="0">
+                                </div>
+                              </div>
                             @error($Input)
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -50,3 +74,12 @@
         </div>
     </div>
 </div>
+ @if(session('show_modal'))
+     <script>
+        alert('caca')
+        // $(document).ready(function() {
+        //     $('#myModal').modal('show');
+        // });
+        
+    </script>
+ @endif 

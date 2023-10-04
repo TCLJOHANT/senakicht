@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -28,11 +29,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -63,9 +60,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    // public function setPasswordAttribute($value){ 
-    //     $this->attributes['password'] = bcrypt($value); 
-    // } 
+     public function setPasswordAttribute($value){ 
+         $this->attributes['password'] =  Hash::make($value); 
+     } 
     //RELACION  UNO A MUCHOS
     public function comments(){
         return $this->hasMany('App\Models\Comment');

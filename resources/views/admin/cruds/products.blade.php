@@ -1,6 +1,6 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Producto" 
- :nameInputs="['Nombre', 'Imagen,', 'descripcion.',]"
+ :nameInputs="['name','description.','category', 'image,','price']"
  modelName="recipes">
 
 </x-admin.admin-modal>

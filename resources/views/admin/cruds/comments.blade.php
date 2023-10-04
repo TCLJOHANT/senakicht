@@ -1,6 +1,6 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Comentarios" 
- :nameInputs="['Comentario']"
+ :nameInputs="['Comentario.']"
  modelName="recipes">
 
 </x-admin.admin-modal>

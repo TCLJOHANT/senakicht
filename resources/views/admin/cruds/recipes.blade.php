@@ -1,6 +1,6 @@
 <x-admin.admin-modal
  id="myModal" title="Gestion de Receta" 
- :nameInputs="['Nombre', 'Imagen,', 'preparacion.','ingredientes.']"
+ :nameInputs="['Nombre', 'Imagen,','category','preparacion.','ingredientes.']"
  modelName="recipes">
 
 </x-admin.admin-modal>
