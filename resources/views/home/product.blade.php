@@ -28,6 +28,17 @@
                     <div class="price">{{ $row->price }} <span>{{ $row->price }}</span></div>
                 </div>
             </div>
+            {{-- detalle --}}
+            <div class="modal-frame">
+                <div class="modal-body">
+                    <div class="modal-inner">
+                        <button id="close" class="close"><i class="fas fa-times"></i></button>
+                        <img src="/img/206182124-plato-colombiano-de-colores-brillantes-con-mezcla-de-ingredientes-y-especias-creado-con-ai.jpg" alt="Image">
+                        <p>Preparacion con ingredientes mistos</p>
+                    </div>
+                </div>
+                <div class="modal-overlay"></div>
+            </div>
         @endforeach
         </div>
 
@@ -35,4 +46,5 @@
     </section>
 
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/modalDetalle.js') }}"></script>
 </x-app-layout>

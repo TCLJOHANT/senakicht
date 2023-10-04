@@ -89,24 +89,13 @@
     <section class="products" id="products">
     
         <h1 class="heading"> nuestros  <span>productos</span> </h1>
-        {{-- detalles --}}
-        <div class="modal-frame">
-            <div class="modal-body">
-                <div class="modal-inner">
-                    <button id="close" class="close"><i class="fas fa-times"></i></button>
-                    <img src="/img/206182124-plato-colombiano-de-colores-brillantes-con-mezcla-de-ingredientes-y-especias-creado-con-ai.jpg" alt="Image">
-                    <p>Preparacion con ingredientes mistos</p>
-                </div>
-            </div>
-            <div class="modal-overlay"></div>
-        </div>
         <div class="box-container">
     
             <div class="box">
                 <div class="icons">
                     <a href="#" class="fas fa-shopping-cart"></a>
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="#" class="fas fa-eye modal-popup" id="modal-popup"></a>
+                    <a href="#" class="fas fa-eye" ></a>
                 </div>
                 <div class="image">
                     <img src="images/cafe.png" alt="">
@@ -305,5 +294,4 @@
         </div>
     
     </section>
-    <script src="{{ asset('js/modalDetalle.js') }}"></script>
 </x-app-layout>
