@@ -22,7 +22,11 @@
                                 <td class="p-0">
                                     {{-- Verificar si es una URL válida para mostrar una imagen --}}
                                     @if (filter_var($item->$column, FILTER_VALIDATE_URL) || file_exists(public_path($item->$column)))
-                                        <img src="{{ $item->$column }}" alt="{{ $item->$column }}" class="img-thumbnail rounded-circle" width="50">
+                                        <img src="{{ $item->$column }}" alt="{{ $item->$column }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                    @elseif(filter_var($item->$column, FILTER_VALIDATE_URL) && preg_match('/\.(jpeg|jpg|png|gif)$/i', $item->$column))
+                                        <img src="{{ $item->$column }}" alt="{{ $item->$column }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                    @elseif (file_exists(public_path('storage/' . $item->$column )))
+                                        <img src="{{ asset('storage/' . $item->$column ) }}" alt="{{ $item->$column }}" class="img-thumbnail rounded-circle imagen" width="60">
                                     @else
                                         {{ $item->$column }} 
                                     @endif

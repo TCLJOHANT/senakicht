@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Recetas;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -33,20 +34,23 @@ class RecipeController extends Controller
     {
         $this->validate($request, [
             'name'=> 'required',
-            'images' => 'image|max:2048',
-            'ingredients'=> 'required',
-            'preparation'=> 'required',
+            'images'=> 'required|image|mimes:png,jpg',
+            'description'=> 'required',
+            'ingredients' =>'required',
+            'preparation' =>'required',
+            // 'category' => 'required',
         ]);
-
-        $image = $request->file('images');
-        $fileName = $image->getClientOriginalName();//obtener name original de archivo de imagen
-        $filePath = $image->store('recipes', 'public');
+     
+        $files = $request->file('images');
+        $name = $files->getClientOriginalName();
+        $estencion = $files->getClientOriginalExtension();
         
-        $data = $request->only('name', 'email', 'password');
-        $data['images'] = $filePath;
-        
-        Recipe::create($data);
-        return redirect()->route('admin.users.index');
+        $rutaImagen = $files->storeAs('recipes',$name, ['disk' => 'public']);
+        $data = $request->only('name','description','ingredients','preparation');
+        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
+        $data['images']=$rutaImagen;
+         Recipe::create($data);
+         return redirect()->route('admin.recipes.index');
     }
 
     /**
@@ -77,9 +81,9 @@ class RecipeController extends Controller
      * Remove the specified resource from storage.
      */
      
-     public function destroy(Recipe $receta)
+     public function destroy(Recipe $recipe)
      {
-         $receta->delete();
-         return redirect('admin.recipes.index');
+        $recipe->delete();
+        return redirect()->route('admin.recipes.index');
      }
 }

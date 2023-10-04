@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -34,19 +35,21 @@ class ProductController extends Controller
             'name'=> 'required',
             'image'=> 'required|image|mimes:png,jpg',
             'price'=> 'required',
+            'description' =>'required',
             // 'category' => 'required',
         ]);
      
         $files = $request->file('image');
         $name = $files->getClientOriginalName();
         $estencion = $files->getClientOriginalExtension();
-
-        // $files->store('images', ['disk' => 'public']);
+        
         $rutaImagen = $files->storeAs('products',$name, ['disk' => 'public']);
-        $data = $request->only('name','price');
+        $data = $request->only('name','price','description');
+        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         $data['image']=$rutaImagen;
-        Product::create($data);
-        return redirect("admin.products.index");
+         Product::create($data);
+         return redirect()->route('admin.products.index');
+        // dd($data);
 
     }
 
@@ -80,6 +83,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect('admin.products.index');
+        return redirect()->route('admin.products.index');
     }
 }

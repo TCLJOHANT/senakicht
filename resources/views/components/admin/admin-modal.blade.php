@@ -15,7 +15,7 @@
                     <div class="form-group">
                         @switch($field['type'])
                             @case('textarea')
-                                <textarea rows="5" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name']) }}</textarea>
+                                <textarea rows="2" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name']) }}</textarea>
                                 @break
                             @case('file')
                                 <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ old($field['name']) }}">

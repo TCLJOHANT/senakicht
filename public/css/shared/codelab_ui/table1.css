@@ -52,8 +52,9 @@
 .tabla tbody td.quantity {
   width: 10%;
 }
-.tabla tbody td .img {
-  width: 100px;
+.tabla tbody td .imagen {
+  object-fit: cover;
+  width: 80px;
   height: 80px;
 }
 .tabla tbody td .email span {

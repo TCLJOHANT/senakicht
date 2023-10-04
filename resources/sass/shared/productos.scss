@@ -1,6 +1,7 @@
 
 /* Productos home */
 @import 'heading';
+@import 'modalDetalle';
 .products .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -32,6 +33,8 @@
 }
 
 .products .box-container .box .image img{
+    object-fit: cover;
+    width: 100%;
     height: 25rem;
 }
 
@@ -59,4 +62,3 @@
     font-weight: lighter;
     font-size: 1.5rem;
 }
-@import 'modalDetalle';

@@ -58,8 +58,9 @@
 			&.quantity{
 				width: 10%;
 			}
-			.img{
-				width: 100px;
+			.imagen{
+				object-fit: cover;
+				width: 80px;
 				height: 80px;
 			}
 			.email{
