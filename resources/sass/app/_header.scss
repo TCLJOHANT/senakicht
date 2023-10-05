@@ -65,17 +65,21 @@ $border: var(--border);
       }
     }
     .submenu-perfil{
-      padding: 8px;
+      padding: 10px;
       position: absolute;
       border-radius: 5%;
       display: none;
       flex-direction: column;
       right: 0;
       background-color: #fff;
+      margin-right: 2.5%;
       a{
-        font-weight: 400;
+        font-weight: 300;
         color: rgb(44, 70, 86);
         margin: 0px 0px 0.25em;
+        i{
+          font-size: 80%;
+        }
         &:hover{
           color:rgba(44, 70, 86,.4) ;
         }

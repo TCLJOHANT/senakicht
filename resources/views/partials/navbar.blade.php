@@ -56,11 +56,15 @@
                                 <i class="fas fa-user"></i> 
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
+
+                            @can('admin.home')
                             {{-- url admin --}}
                             <x-dropdown-link href="{{ route('admin.home') }}">
                                 <i class="fas fa-cogs"></i> 
                                 {{ __('Admin') }}
                             </x-dropdown-link>
+                            
+                            @endcan
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}

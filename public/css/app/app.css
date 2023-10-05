@@ -97,18 +97,22 @@ section {
   border-radius: 50%;
 }
 .header .cont-header-iconos .cont-submenu-perfil .submenu-perfil {
-  padding: 8px;
+  padding: 10px;
   position: absolute;
   border-radius: 5%;
   display: none;
   flex-direction: column;
   right: 0;
   background-color: #fff;
+  margin-right: 2.5%;
 }
 .header .cont-header-iconos .cont-submenu-perfil .submenu-perfil a {
-  font-weight: 400;
+  font-weight: 300;
   color: rgb(44, 70, 86);
   margin: 0px 0px 0.25em;
+}
+.header .cont-header-iconos .cont-submenu-perfil .submenu-perfil a i {
+  font-size: 80%;
 }
 .header .cont-header-iconos .cont-submenu-perfil .submenu-perfil a:hover {
   color: rgba(44, 70, 86, 0.4);
