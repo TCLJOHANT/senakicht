@@ -1,3 +1,5 @@
+@props(['item' => null,'title','modelName','fields'])
+
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModal Label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -8,23 +10,26 @@
             
             <div class="modal-body">
                 @if(Auth::check())
-                <form action="{{route('admin.' . $modelName . '.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ $item ? route('admin.' . $modelName . '.update', $item) : route('admin.' . $modelName . '.store') }}"  method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if ($item)
+                        @method('PUT')
+                    @endif
                     @foreach($fields as $field)
                     <label for="{{$field['name']}}">{{$field['name']}}</label>
                     <div class="form-group">
                         @switch($field['type'])
                             @case('textarea')
-                                <textarea rows="2" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name']) }}</textarea>
+                                <textarea rows="2" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name'], $item[$field['name']] ?? '')}}</textarea>
                                 @break
                             @case('file')
-                                <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ old($field['name']) }}">
+                                <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                                 @break
                             @case('password')
-                                <input class="form-control" name="{{$field['name']}}" type="password" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                                <input class="form-control" name="{{$field['name']}}" type="password" placeholder="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                                 @break
                             @case('email')
-                                <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                                <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                                 @break
                             @case('select')
                                 {{-- @foreach ($categories as $category)
@@ -39,12 +44,12 @@
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text">$</span>
-                                        <input class="form-control" name="{{$field['name']}}" type="number" placeholder="0" min="0" value="{{ old($field['name']) }}">
+                                        <input class="form-control" name="{{$field['name']}}" type="number" placeholder="0" min="0" value="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                                     </div>
                                 </div>
                                 @break
                             @default
-                                <input class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name']}}" value="{{ old($field['name']) }}">
+                                <input class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name']}}" value="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                         @endswitch
                         @error($field['name'])
                             <span class="text-danger">{{$message}}</span>
@@ -62,5 +67,25 @@
         </div>
     </div>
 </div>
-{{-- para data old y dta update --}}
-{{--  <input class="form-control" name="{{$field['name']}}" type="text" value="{{ old($field['name'], $userData[$field['name']]) }}"> --}}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <script>
+    document.addEventListener('selectedItem', function(event) {
+        const item = JSON.parse(event.detail);
+
+        // Obtener todos los campos del formulario
+        const formCampos = document.querySelectorAll('#myModal input, #myModal select, #myModal textarea');
+
+        // Recorrer los campos y asignar los valores del item correspondientes
+        formCampos.forEach(campo => {
+            const campoName = campo.getAttribute('name');
+            if (campoName in item) {
+                campo.value = item[campoName];
+            }
+        });
+
+        // Abrir el modal
+        $('#myModal').modal('show');
+    });
+</script> 
+
+{{--  <input class="form-control" name="{{$field['name']}}" type="text" value="{{ old($field['name'], $itemData[$field['name']] ?? '') }}"> --}}

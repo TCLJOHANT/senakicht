@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}"> 
 <div class="card">
     <div class="card-header">
@@ -33,13 +32,13 @@
                                 </td>
                             @endforeach
                             <td class="p-0">
-
-                                <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"
-                                    data-item="{{ json_encode($item) }}">
+                                <button  class="btn btn-success btn-sm edit-button" onclick="emit('{{ json_encode($item) }}')">
                                     <i class="fas fa-pencil-alt"></i>
-                                </button>
-
-                      {{-- <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"></i></button> --}}
+                                </button> 
+                              
+                                {{-- <button   data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm">  
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>  --}}
                                 <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
                                     @csrf
                                     @method('delete')
@@ -53,5 +52,65 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--  envia evento personalizado con un valor de item específico. Otros componentes o partes de tu aplicación 
+    pueden escuchar este evento y realizar acciones en respuesta a él.  --}}
+<script>
+    function emit(item) {
+        const event = new CustomEvent('selectedItem', { detail: item });
+        document.dispatchEvent(event);
+    }
+</script> 
+
 
 
