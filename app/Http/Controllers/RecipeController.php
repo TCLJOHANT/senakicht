@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class RecipeController extends Controller
 {
@@ -14,6 +16,12 @@ class RecipeController extends Controller
     {
         $recetas = Recipe::all();
         return view('Cruds.crudRecetas',compact('recetas'));
+    }
+
+    public function pdf(){
+        $recetas = Recipe::all();
+        $pdf = Pdf::loadView('home.pdf', compact('recetas'));
+        return $pdf->stream();
     }
 
   

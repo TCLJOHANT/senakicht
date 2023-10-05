@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,6 +38,8 @@ Route::middleware([
     //Recetas
     Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
+    Route::get('/descarga_pdf',[RecipeController::class,'pdf'])->name('recetas.pdf');
+
 
 
     //Nostros
