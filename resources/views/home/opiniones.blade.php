@@ -18,7 +18,11 @@
                 <form action="{{route('comentarios.store')}}" method="POST">
                     @csrf
                     <div>
+                        @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
+                        <img src="{{Auth::user()->profile_photo_path }}" class="imagh" alt="avatar">
+                    @else
                         <img src="{{Auth::user()->profile_photo_url }}" class="imagh" alt="avatar">
+                    @endif
                         <input  value="{{ Auth::user()->name }}" readonly class="plain-input">
                     </div>
                     <div class="line"></div>     

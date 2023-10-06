@@ -27,7 +27,11 @@
     
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
+                    @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
+                    <img src="{{ $this->user->profile_photo_path }}" alt="{{ $this->user->name }}" class="rounded-full img-fluid">
+                @else
                     <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full img-fluid">
+                @endif
                 </div>
     
                 <!-- New Profile Photo Preview -->

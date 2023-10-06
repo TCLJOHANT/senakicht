@@ -37,7 +37,7 @@ class AuthController extends Controller
           'email'=> $user->getEmail(),
           ],[
           'name'=> $user->getName(),
-          'profile_photo_path' => str_replace('http://localhost:8000/storage/', '/storage/profile-photos/', $user->getAvatar()),
+          'profile_photo_path' => $user->getAvatar(),
 
 
           ]);
