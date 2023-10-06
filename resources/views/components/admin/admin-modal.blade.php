@@ -32,9 +32,6 @@
                                 <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ old($field['name'], $item[$field['name']] ?? '')}}">
                                 @break
                             @case('select')
-                                {{-- @foreach ($categories as $category)
-                                    <option value="{{$category->value}}">{{$category->label}}</option>
-                                @endforeach --}}
                                 <select class="form-control" name="{{$field['name']}}">
                                     <option value="opcion1">Opción 1</option>
                                     <option value="opcion2">Opción 2</option>
@@ -82,10 +79,6 @@
                 campo.value = item[campoName];
             }
         });
-
-        // Abrir el modal
         $('#myModal').modal('show');
     });
 </script> 
-
-{{--  <input class="form-control" name="{{$field['name']}}" type="text" value="{{ old($field['name'], $itemData[$field['name']] ?? '') }}"> --}}
