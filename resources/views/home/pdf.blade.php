@@ -9,13 +9,13 @@
 </head>
 <body>
 <div class="container-title">
-            <i class="fas fa-utensils"></i> Arroz
+            <i class="fas fa-utensils"></i>{{ $receta->name }}
         </div>
         
 
 		<main>
 			<div class="container-img">
-				<img src="/img/206182124-plato-colombiano-de-colores-brillantes-con-mezcla-de-ingredientes-y-especias-creado-con-ai.jpg" />
+            <img src="{{ public_path('storage/' . $receta->images) }}" >
 			</div>
 			<div class="container-info-product">
 				<div class="container-description">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="text-description">
                         <ol>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consectetur neque velit blanditiis cum odio et perspiciatis maxime fugit nostrum. Earum modi facilis quas doloremque libero doloribus dolores, ipsum a.</h4>
+                            <h4>{{ $receta->description }}</h4>
                         </ol>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="text-description">
                         <ul>
-                            <li>Ingrediente 1</li>
+                            <li>{{ $receta->ingredients }}</li>
                             <li>Ingrediente 2</li>
                             <li>Ingrediente 3</li>
                             <li>Ingrediente 4</li>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="text-description">
                         <ol>
-                            <li><i class="fas fa-hand-sparkles"></i> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, dolorem. Hic amet eum reprehenderit repellat in incidunt. Hic natus porro corporis quo quibusdam obcaecati fugit. Necessitatibus quos illum voluptatem ut!</li>
+                            <li><i class="fas fa-hand-sparkles"></i>{{ $receta->preparation }} </li>
                             <li><i class="fas fa-cut"></i> Cortar los ingredientes en trozos pequeños.</li>
                             <li><i class="fas fa-utensil-spoon"></i> Cocinar a fuego medio durante 20 minutos.</li>
                             <li><i class="fas fa-leaf"></i> Agregar hierbas frescas y mezclar bien.</li>

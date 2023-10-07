@@ -92,5 +92,7 @@
                 </div>
 			</div>
 		</main>
+        <a href="{{ route('recetas.pdf', ['id' => $recetas->id]) }}" class="btn">Generar PDF</a>
+        
 </body>
 </html>

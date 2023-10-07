@@ -18,9 +18,9 @@ class RecipeController extends Controller
         return view('Cruds.crudRecetas',compact('recetas'));
     }
 
-    public function pdf(){
-        $recetas = Recipe::all();
-        $pdf = Pdf::loadView('home.pdf', compact('recetas'));
+    public function pdf($id){
+        $receta = Recipe::find($id);
+        $pdf = Pdf::loadView('home.pdf', compact('receta'));
         return $pdf->stream();
     }
 

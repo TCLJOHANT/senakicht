@@ -38,7 +38,7 @@ Route::middleware([
     //Recetas
     Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
-    Route::get('/descarga_pdf',[RecipeController::class,'pdf'])->name('recetas.pdf');
+    Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
 
 
 
