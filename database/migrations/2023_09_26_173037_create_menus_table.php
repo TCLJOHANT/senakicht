@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->string('details')->nullable();
             // $table->text('description');
             $table->double('price');
-            $table->double('shipping_cost');
+            // $table->double('shipping_cost');
             $table->string('image_path');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

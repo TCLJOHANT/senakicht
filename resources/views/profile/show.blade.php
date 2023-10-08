@@ -191,8 +191,57 @@
                                     @endif
                                 </div>
                                 </div>
+
+                                 <!-- Button para subir recetas  -->
+                                 <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
+                                publicar menu
+                                </button>
+
+                                 <!-- Modal -->
+                                 <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('menus.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                 
-                                <button type="button" class="btn btn-primary ms-1">Seguir</button>
+                
+                                        <div class="form-group">
+                                            <label for="name">
+                                            Nombre
+                                            </label>
+                                            <input type="text" name="name" id="name" class="form-control" required>
+                                        </div>
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> 
+                
+                                        <div class="form-group">
+                                            <label for="price">
+                                            Precio
+                                            </label>
+                                            <input type="number" name="price" id="price" class="form-control" required>
+                                        </div>
+                
+                                        <div class="form-group">
+                                            <label for="image">
+                                            Imagen
+                                            </label>
+                                            <input type="file" name="image_path" id="image" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">enviar</button>
+                                    </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                </div>
+                
+                
                             </div>
                             </div>
                         </div>
