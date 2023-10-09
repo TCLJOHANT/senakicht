@@ -9,9 +9,12 @@
                     @foreach($products as $pro)
                         <div class="box">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
-                                <img src="/images/{{ $pro->image_path }}"
-                                     alt="{{ $pro->image_path }}"
-                                >
+                            {{-- si no tien / usa images si no storage --}}
+                            @if (strpos($pro->image_path, '/') === false)
+                                <img src="/images/{{ $pro->image_path }}" alt="{{ $pro->image_path }}">
+                            @else
+                                <img src="{{ asset('storage/' . $pro->image_path) }}" alt="{{ $pro->name }}">
+                            @endif
                                 <div class="card-body">
                                     <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
                                     <p class="price">${{ $pro->price }}</p>

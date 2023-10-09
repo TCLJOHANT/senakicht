@@ -44,7 +44,12 @@
                 @foreach($cartCollection as $item)
                     <div class="row">
                         <div class="ros">
-                            <img src="/images/{{ $item->attributes->image }}" >
+                                  {{-- si no tien / usa images si no storage --}}
+                                @if (strpos($item->attributes->image , '/') === false)
+                                  <img src="/images/{{ $item->attributes->image  }}" alt="">
+                              @else
+                                  <img src="{{ asset('storage/' . $item->attributes->image ) }}" >
+                              @endif
                         </div>
                         <div class="des">
                             <p>

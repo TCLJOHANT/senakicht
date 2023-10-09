@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -79,7 +80,12 @@ class User extends Authenticatable
 
     //Para Adminlte
     public function adminlte_image(){
-        return 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2020/06/dragon-ball-super-nueva-sh-figuarts-jiren-full-power-1956939.jpg?tf=3840x';
+        if (strpos(Auth::user()->profile_photo_path, 'http') === 0) {
+            return Auth::user()->profile_photo_path;
+        }
+        else {
+            return Auth::user()->profile_photo_url;
+        }
     }
     public function adminlte_desc(){
         return "Administrador";

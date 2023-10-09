@@ -334,7 +334,7 @@ return [
         ],
         [
             'text' => 'Menu',
-            'url'  => '#',
+            'route'  => 'admin.menus.index',
             'icon' => 'fas fa-clipboard-list fa-fw',
         ],
         [
