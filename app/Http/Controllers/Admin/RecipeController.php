@@ -7,6 +7,7 @@ use App\Models\Recetas;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
@@ -72,10 +73,35 @@ class RecipeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+    public function update(Request $request, Recipe $recipe)
+{
+    $this->validate($request, [
+        'name' => 'required',
+        'images' => 'image|mimes:png,jpg',
+        'description' => 'required',
+        'ingredients' => 'required',
+        'preparation' => 'required',
+        // 'category' => 'required',
+    ]);
+
+    $data = $request->only('name', 'description', 'ingredients', 'preparation');
+    $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
+
+    if ($request->hasFile('images')) {
+        // Eliminar la imagen antigua
+        Storage::disk('public')->delete($recipe->images);
+
+        $file = $request->file('images');
+        $name = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        $rutaImagen = $file->storeAs('recipes', $name, ['disk' => 'public']);
+        $data['images'] = $rutaImagen;
     }
+
+    $recipe->update($data);
+
+    return redirect()->route('admin.recipes.index');
+}
 
     /**
      * Remove the specified resource from storage.

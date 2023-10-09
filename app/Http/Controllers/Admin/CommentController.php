@@ -56,9 +56,11 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->update($request->all());
+           return redirect()->route('admin.comments.index');
+        //  return $request->all();
     }
 
     /**

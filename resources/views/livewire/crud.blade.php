@@ -1,10 +1,9 @@
-@props(['items','titleModal','modelName','fields','editItem'=>null])
-
+<div>
 {{-- table --}}
 <link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}"> 
 <div class="card">
     <div class="card-header">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
+        <button  wire:click="editItemData('vaciar')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -18,28 +17,25 @@
                     </tr>
                 </thead>
                 <tbody >
-                    @foreach ($items as $item)
+                    @foreach ($items as $loopItem)
                         <tr >
                             @foreach ($fields as $field)
                             <td class="p-0">
                                 @if ($field['type'] === "file")
-                                    @if (file_exists(public_path('storage/' . $item[$field['name']])))
-                                        <img src="{{ asset('storage/' . $item[$field['name']]) }}" alt="{{ $item[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                    @if (file_exists(public_path('storage/' . $loopItem[$field['name']])))
+                                        <img src="{{ asset('storage/' . $loopItem[$field['name']]) }}" alt="{{ $loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
                                     @endif 
                                     
                                 @else
-                                    {{ $item[$field['name']] }}
+                                    {{ $loopItem[$field['name']] }}
                                 @endif
                             </td>
                             @endforeach
                             <td class="p-0">
-                                <button  data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm">  
+                                <button wire:click="editItemData({{$loopItem}})"  data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm">  
                                     <i class="fas fa-pencil-alt"></i>
-                                    {{-- @php
-                                        $editItem = $item;
-                                    @endphp --}}
                                 </button> 
-                                <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
+                                <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
@@ -62,30 +58,35 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @if(Auth::check())
-                <form action="{{ $editItem ? route('admin.' . $modelName . '.update', $item) : route('admin.' . $modelName . '.store') }}"  method="POST" enctype="multipart/form-data">
+                @if(Auth::check()) 
+                <form action="{{ $editItem !='vaciar' ? route('admin.' . $modelName . '.update', $loopItem) : route('admin.' . $modelName . '.store') }}"  method="POST" enctype="multipart/form-data">
+                    {{-- {{ json_encode( $item) }}  --}}
                     @csrf
-                    @if ($editItem)
-                        <p>{{$editItem}}</p>
+                    @if ($editItem != 'vaciar')
+                        {{-- {{print_r($editItem)}} --}}
                         @method('PUT')
-                    @else
-                    <p>caca NO HAY ITEM</p>
                     @endif
                     @foreach($fields as $field)
                     <label for="{{$field['name']}}">{{$field['name']}}</label>
                     <div class="form-group">
                         @switch($field['type'])
+                           
                             @case('textarea')
-                                <textarea rows="2" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ old($field['name'])}}</textarea>
+                                <textarea rows="2" cols="50" class="form-control" placeholder="{{$field['name']}}" name="{{$field['name']}}">{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}</textarea>
                                 @break
                             @case('file')
-                                <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ old($field['name'])}}">
+                                @if ($editItem !='vaciar')
+                                <div class="text-center">    
+                                    <img src="{{ asset('storage/' . $editItem[$field['name']]) }}" alt="img" class="img-thumbnail imagen mx-auto" width="100">
+                                </div>
+                                @endif
+                                <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">
                                 @break
                             @case('password')
-                                <input class="form-control" name="{{$field['name']}}" type="password" placeholder="{{ old($field['name'], $item[$field['name']] ?? '')}}">
+                                <input class="form-control" >
                                 @break
                             @case('email')
-                                <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ old($field['name'])}}">
+                                <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">
                                 @break
                             @case('select')
                                 <select class="form-control" name="{{$field['name']}}">
@@ -97,12 +98,15 @@
                                 <div class="input-group">
                                     <div class="input-group-append">
                                         <span class="input-group-text">$</span>
-                                        <input class="form-control" name="{{$field['name']}}" type="number" placeholder="0" min="0" value="{{ old($field['name'])}}">
+                                        <input class="form-control" name="{{$field['name']}}" type="number" placeholder="0" min="0" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">
                                     </div>
                                 </div>
                                 @break
                             @default
-                                <input value="{{ old($field['name'], $item[$field['name']] ?? '')}}"class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name'],}}" >
+                            {{-- @if ($editItem !='vaciar')
+                                <input type="text" name="id" value="{{$editItem['id']}}">
+                            @endif  --}}
+                                <input  class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name']}}" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}" >
                         @endswitch
                         @error($field['name'])
                             <span class="text-danger">{{$message}}</span>
@@ -112,7 +116,7 @@
                 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">{{ $editItem != 'vaciar' ? 'Actualizar' : 'Crear' }}</button>
                     </div>
                 </form>
                 @endif
@@ -120,10 +124,4 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-{{-- <script>
-    function editItem(item) {
-        window.editItem = item;
-        $('#myModal').modal('show');
-    }
-</script> --}}
+</div>

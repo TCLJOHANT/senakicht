@@ -31,10 +31,12 @@
                             </td>
                             @endforeach
                             <td class="p-0">
-                                <form action="{{ route('crudcomponent.editItemData',$item) }}" method="POST"  style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success btn-sm"> <i class="fas fa-pencil-alt"></i></button>
-                                </form>
+                                    <button type="submit" data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-success btn-sm"> <i class="fas fa-pencil-alt"></i>
+                                       
+                                        @php
+                                            $editItem = $item;
+                                        @endphp   
+                                    </button>
                                 <form action="{{route('admin.' . $modelName . '.destroy',$item)}}" method="post" style="display: inline;">
                                     @csrf
                                     @method('delete')
@@ -61,12 +63,12 @@
                 @if(Auth::check())
                 <form action="{{route('admin.' . $modelName . '.store') }}"  method="POST" enctype="multipart/form-data">
                     @csrf
-                    {{-- @if ($editItem)
-                        <p>hay</p>
+                    @if ($editItem === array)
+                        <p>no es null</p>
                         @method('PUT')
                     @else
                     <p>caca NO HAY ITEM</p>
-                    @endif --}}
+                    @endif 
                     @foreach($fields as $field)
                     <label for="{{$field['name']}}">{{$field['name']}}</label>
                     <div class="form-group">

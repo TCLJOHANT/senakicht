@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -72,10 +73,34 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
-    }
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'image|mimes:png,jpg',
+            'description' => 'required',
+            'price' => 'required',
+            // 'category' => 'required',
+        ]);
+    
+        $data = $request->only('name', 'description', 'price');
+        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
+    
+        if ($request->hasFile('images')) {
+            // Eliminar la imagen antigua
+            Storage::disk('public')->delete($product->image);
+    
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $rutaImagen = $file->storeAs('products', $name, ['disk' => 'public']);
+            $data['image'] = $rutaImagen;
+        }
+    
+        $product->update($data);
+    
+        return redirect()->route('admin.products.index');
+    }    
 
     /**
      * Remove the specified resource from storage.

@@ -13,7 +13,7 @@
   :items="$users">
   </x-admin.crud> --}}
 
- {{-- <x-admin.admin-crud
+  {{-- <x-admin.admin-crud
   titleModal="Gestion de Usuario" 
   :fields='[
    ["name" => "name", "type" => "text"],
@@ -24,7 +24,14 @@
   modelName="users"
   :items="$users">
   </x-admin.admin-crud>  --}}
-   <x-admin.admin-modal
+
+  @livewire('crud', ['fields' => [
+    ["name" => "name", "type" => "text"],
+    ["name" => "profile_photo_path", "type" => "file"],
+    ["name" => "email", "type" => "email"],
+    ["name" => "password", "type" => "password"],
+], 'items' => $users, 'titleModal' => "Gestión de Usuario", 'modelName' => "users"])
+   {{-- <x-admin.admin-modal
    title="Gestion de Usuario" 
    :fields='[
     ["name" => "name", "type" => "text"],
@@ -40,5 +47,5 @@
      :columns="['name', 'profile_photo_url', 'email']"
       modelName="users"
      >
-    </x-admin.admin-table> 
+    </x-admin.admin-table>  --}}
 </x-layouts.admin>

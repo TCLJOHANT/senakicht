@@ -3,7 +3,6 @@
 namespace App\View\Components\admin;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
@@ -13,7 +12,7 @@ class crud extends Component
     public $titleModal;
     public $modelName;
     public $fields;
-    public $editItem ;
+    public $editItem  = "item";
 
     public function __construct($items,$titleModal,$modelName,$fields)
     {
@@ -21,7 +20,7 @@ class crud extends Component
         $this->titleModal = $titleModal;
         $this->modelName = $modelName;
         $this->fields = $fields;
-        $this->editItem = null; // Inicializar $editItem como null
+        $this->editItem; // Inicializar $editItem como null
     }
 
     /**
@@ -31,8 +30,8 @@ class crud extends Component
     {
         return view('components.admin.crud');
     }
-    public function editItemData(Request $request){
-        $this->editItem = $request->all();
-    }
+    public function editItemData($item){
+         $this->editItem = $item;
+     }
 
 }
