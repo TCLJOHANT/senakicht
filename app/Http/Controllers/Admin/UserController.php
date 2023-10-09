@@ -33,20 +33,22 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=> 'required',
-            'email'=> 'required|email|unique:users,email',
-            'password'=> 'required',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
             'profile_photo_path' => 'image|max:2048',
         ]);
-
+        
         $image = $request->file('profile_photo_path');
-        $fileName = $image->getClientOriginalName();//obtener name original de archivo de imagen
+        $fileName = $image->getClientOriginalName();
         $filePath = $image->store('profile-photos', 'public');
         
-        $data = $request->only('name', 'email',Hash::make('password'));
+        $data = $request->only('name', 'email');
+        $data['password'] = Hash::make($request->password);
         $data['profile_photo_path'] = $filePath;
         
         User::create($data);
+        
         return redirect()->route('admin.users.index');
     }
 

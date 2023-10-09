@@ -22,9 +22,11 @@
                             @foreach ($fields as $field)
                             <td class="p-0">
                                 @if ($field['type'] === "file")
-                                    @if (file_exists(public_path('storage/' . $loopItem[$field['name']])))
+                                @if(strpos($loopItem[$field['name']], 'http') === 0)
+                                    <img src="{{$loopItem[$field['name']]}}" alt="{{$loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                @elseif (file_exists(public_path('storage/' . $loopItem[$field['name']])))
                                         <img src="{{ asset('storage/' . $loopItem[$field['name']]) }}" alt="{{ $loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
-                                    @endif 
+                                @endif 
                                     
                                 @else
                                     {{ $loopItem[$field['name']] }}
@@ -83,7 +85,7 @@
                                 <input class="form-control" name="{{$field['name']}}" type="file" accept="image/*" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">
                                 @break
                             @case('password')
-                                <input class="form-control" >
+                                <input class="form-control"type="password" >
                                 @break
                             @case('email')
                                 <input class="form-control" name="{{$field['name']}}" type="email" placeholder="{{$field['name']}}" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">

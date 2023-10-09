@@ -4,7 +4,6 @@
     <h1>{{ $title ?? 'Senakitcht' }}</h1>
 @stop
 @section('content')
-    @livewire('show-item')
     {{ $slot }}
 @stop
 @section('css')
