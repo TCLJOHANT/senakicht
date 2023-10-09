@@ -63,6 +63,17 @@ body {
   color: rgb(51, 137, 51);
   font-size: 16px;
 }
+.Login-box .password-input {
+  position: relative;
+}
+.Login-box .password-input .visibilidad-password {
+  position: absolute;
+  right: 6%;
+  top: 20%;
+}
+.Login-box .password-input .visibilidad-password i {
+  color: #202220;
+}
 .Login-box button {
   width: 100%;
   margin-bottom: 20px;

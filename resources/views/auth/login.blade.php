@@ -24,14 +24,25 @@
                     <x-input id="email" placeholder="correo electronico" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
                 </div>
 
-                <div class="mt-4 input-control">
+                {{-- <div class="mt-4 input-control">
                     @error('password')
                     <small class="small">{{ $message }}</small>
                     @enderror
             
                     <x-label for="password" value="{{ __('Contraseña') }}" />
                     <x-input id="password" placeholder="Contraseña" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                </div> --}}
+                <div class="mt-4 input-control">
+                    @error('password')
+                    <small class="small">{{ $message }}</small>
+                    @enderror
+                    <x-label for="password" value="{{ __('Contraseña') }}" />
+                    <div class="password-input">
+                        <x-input id="password" placeholder="Contraseña" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                        <span class="visibilidad-password" onclick="ContraseñaVisibilidad()"><i class="far fa-eye"></i></span>
+                    </div>
                 </div>
+                
 
                 <div class="block mt-4">
                     {{-- recordar loghin --}}
@@ -58,3 +69,4 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+

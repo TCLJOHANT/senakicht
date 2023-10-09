@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('/img/senakitch.ico') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -19,3 +20,18 @@
         @livewireScripts
     </body>
 </html>
+
+<script>
+    function ContraseñaVisibilidad() {
+        let passwordInput = document.getElementById("password");
+        let toggleButton = document.querySelector(".visibilidad-password");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            toggleButton.innerHTML = '<i class="far fa-eye-slash"></i>';
+        } else {
+            passwordInput.type = "password";
+            toggleButton.innerHTML = '<i class="far fa-eye"></i>';
+        }
+    }
+</script>

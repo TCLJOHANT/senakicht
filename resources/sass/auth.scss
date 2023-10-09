@@ -67,7 +67,19 @@ body {
         height: 40px; 
         color: rgb(51, 137, 51); 
         font-size: 16px; 
+        
     } 
+    .password-input{
+        position: relative;
+        .visibilidad-password{
+            position: absolute;
+            right: 6%;
+            top: 20%;
+            i{
+                color: #202220;
+            }
+        }
+    }
  
     button { 
         width: 100%; 
