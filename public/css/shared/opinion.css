@@ -12,6 +12,14 @@
   text-transform: uppercase;
 }
 
+/* Estilos generales */
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* Estilos para el modal */
 .modal {
   display: none;
@@ -117,6 +125,92 @@
   transition: 1s;
   transform: scale(1.1);
   color: white;
+}
+
+/* ... Otros estilos ... */
+/* Estilos para las estrellas en la sección de comentarios */
+#review .rating__stars {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección a columna */
+  align-items: center;
+  margin-top: 20px;
+}
+
+#review .custom-rating__input {
+  display: none;
+}
+
+#review .rating__label {
+  cursor: pointer;
+  padding: 0.1875em;
+}
+
+#review .rating__star {
+  width: 32px;
+  height: 32px;
+}
+
+#review .rating__star-body {
+  fill: var(--star-dim);
+  transition: fill var(--trans-dur) var(--bezier);
+}
+
+#review .rating__input:checked ~ .rating__label .rating__star-body {
+  animation-name: starSpin;
+  fill: var(--star);
+}
+
+#review .rating__input:checked ~ .rating__label .rating__star-body-g {
+  animation-name: starJump;
+}
+
+#review .rating__label:hover .rating__star-body {
+  fill: var(--star);
+}
+
+#review .rating__label {
+  display: inline-block;
+  position: relative;
+  margin-right: 10px; /* Agrega margen entre las estrellas */
+}
+
+#review .rating__sr {
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+/* ... Otros estilos ... */
+/* Estilos para el sistema de clasificación con estrellas */
+.star-rating {
+  display: flex; /* Cambiado a flex para que las estrellas estén en línea */
+  align-items: center; /* Alinea las estrellas verticalmente en el contenedor flex */
+  margin-top: 20px;
+  flex-direction: row-reverse; /* Cambiado a row-reverse para que las estrellas vayan de derecha a izquierda */
+  position: relative;
+  left: -68%;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2.5em; /* Aumenta el tamaño de las estrellas */
+  padding: 0.2em;
+  cursor: pointer;
+  color: #ccc;
+  margin-left: 5px; /* Ajusta el espacio entre las estrellas según tus necesidades */
+}
+
+.star-rating label:before {
+  content: "★"; /* Unicode character for a star */
+}
+
+.star-rating input:checked ~ label {
+  color: #ffdd00; /* Color de la estrella cuando está seleccionada */
 }
 
 section {

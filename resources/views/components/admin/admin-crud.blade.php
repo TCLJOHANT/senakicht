@@ -102,7 +102,7 @@
                                 </div>
                                 @break
                             @default
-                                <input value="{{ old($field['name'], $item[$field['name']] ?? '')}}"class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name'],}}" >
+                                <input value="{{ old($field['name'], $item[$field['name']] ?? '')}}"class="form-control" name="{{$field['name']}}" type="text" placeholder="{{$field['name']}}" >
                         @endswitch
                         @error($field['name'])
                             <span class="text-danger">{{$message}}</span>
