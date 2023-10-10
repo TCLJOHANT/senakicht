@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
             <div  class="Login-box">
-                <img class="avatar" src="img/elsena.png" alt="Logo de Fazt">
+                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
                 <h1>cambiar Contraseña</h1>
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
