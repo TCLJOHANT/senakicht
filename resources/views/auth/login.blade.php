@@ -1,4 +1,8 @@
+
+
 <x-guest-layout>
+
+    
     <x-authentication-card>
         <x-slot name="logo">
             
@@ -14,7 +18,7 @@
             @csrf
             <div  class="Login-box">
                 {{-- <x-validation-errors class="mb-4" /> --}}
-                <img class="avatar" src="img/elsena.png" alt="Logo de Fazt">
+                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
                 <h1>SENAKITCH</h1>
                 <div class="input-control">
                     @error('email')
@@ -55,8 +59,30 @@
                     <x-button class="ml-4">
                             {{ __('continuar') }}
                     </x-button>
-                    <a href="{{route('authgoogle.redirect')}}" class="login-button">Continuar con Google</a>
-                    <a href="{{route('authfacebook.redirect')}}" class="login-button btn btn-info">Continuar con Facebook</a>
+
+                    {{-- iconos de facebook y google --}}
+
+
+                    <div class="contenedor-redes-sociales">
+                        <a class="facebook"  href="{{route('authfacebook.redirect')}}" target="_blank">
+                            <span class="circulo"><i class="fa fa-facebook"></i></span>
+                            <span class="titulo">Facebook</span>
+                            <span class="titulo-hover">Seguir</span>
+                        </a>
+               
+               
+                       <a class="gplus" href="{{route('authgoogle.redirect')}}" target="_blank">
+                           <span class="circulo"><i class="fa fa-google-plus"></i></span>
+                           <span class="titulo">Google+</span>
+                           <span class="titulo-hover">Seguir</span>
+                       </a>
+                   </div>
+
+
+                  {{-- finnnnnnnnn --}}
+
+
+
                     @if (Route::has('password.request'))
                         <a class="a" href="{{ route('password.request') }}">
                             {{ __('olvidaste tu contraseña?') }}

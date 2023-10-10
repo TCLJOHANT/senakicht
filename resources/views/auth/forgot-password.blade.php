@@ -15,7 +15,7 @@
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
             <div  class="Login-box">
-                <img class="avatar" src="img/elsena.png" alt="Logo de Fazt">
+                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
                 <h1>SENAKITCH</h1>
                 <small class="text-olvide-password"><div class="mb-4 text-sm text-gray-600">
                     {{ __('¿Olvidaste tu contraseña? No hay problema. Simplemente indícanos tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña que te permitirá elegir una nueva') }}

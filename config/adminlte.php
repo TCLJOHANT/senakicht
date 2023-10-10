@@ -349,7 +349,7 @@ return [
         ],
         [
             'text' => 'Calendario',
-            'url'  => '#',
+            'route'  => 'admin.calendario.index',
             'icon' => 'far fa-calendar-alt fa-fw',
         ],
         [

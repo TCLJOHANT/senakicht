@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
             <div  class="Login-box">
-                <img class="avatar" src="img/elsena.png" alt="Logo de Fazt">
+                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
                 <h1>Crear Cuenta</h1>
                 {{-- <x-validation-errors class="mb-4" /> --}}
                 <div class="input-control">
