@@ -1,143 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500;700&display=swap');
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	font-family: 'Ubuntu';
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
-.step-container {
-    max-width: 600px;
-    margin: 50px auto;
-}
 
 
 
-.step h3 {
-    margin-bottom: 5px;
-    font-size: 18px;
-    color: #333;
-}
 
-.step-content {
-    display: none;
-    margin-left: 20px;
-}
 img {
-	max-width: 100%;
+    max-width: 100%;
     border-radius: 10px;
+	max-height: 80%;
 }
 
-header {
-	display: flex;
-	align-items: center;
-	padding: 30px;
-	justify-content: center;
+.repice-re{
+display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
 }
 
-.container-title {
-	padding: 30px;
-	background-color: #eee;
-	margin-bottom: 50px;
-	color: #222;
+.contan-title {
+    order: -1; /* Coloca el contenedor-title al inicio del flex container */
+    background-color: #e7e7e7;
+    margin-bottom: 50px;
+    color: #222;
+	margin: 8% 10% 0% 10%;
+	height: 80px;
 }
 
-main {
-	display: flex;
-	gap: 30px;
-	margin-bottom: 80px;
+
+.contan-img {
+    background-color: #ffffff;
+   
+  
+   /* left: -50%;
+   top: 20%; */
+   
+   
+
 }
-.container-img {
-    background-color: #f7f7f9;
+
+.contan-product {
     flex: 1;
-    overflow: hidden;
-}
-
-.container-info-product {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-}
-
-
-
-.container-price span {
-	font-size: 24px;
-	font-weight: 300;
-}
-
-
-
-.container-add-cart {
-	display: flex;
-	gap: 20px;
-	padding-bottom: 30px;
-	border-bottom: 1px solid #e4e4e4;
-}
-
-.container-quantity {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+	/* max-width: 50%;
 	position: relative;
+	left: 50%; */
 }
 
-.input-quantity {
-	background-color: #f7f7f7;
-	border: none;
-	padding: 10px;
-	width: 60px;
-	height: 100%;
-	color: #666;
-	font-weight: 500;
-	line-height: 0;
-}
-
-.input-quantity:focus {
-	outline: none;
-}
-
-.input-quantity::-webkit-inner-spin-button,
-.input-quantity::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-.btn-increment-decrement {
-	display: flex;
-	flex-direction: column;
-	position: absolute;
-	top: 7px;
-	right: 7px;
-}
-
-.btn-increment-decrement i {
-	font-size: 11px;
-	color: #666;
-	cursor: pointer;
-}
-
-
-
-.btn-add-to-cart {
-	border: none;
-	background-color: #252525;
-	padding: 10px;
-	color: #f7f7f7;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 5px;
-	font-weight: 700;
-	cursor: pointer;
-}
-
-.btn-add-to-cart:hover {
-	color: #1bbeb4;
-}
 
 .hidden {
 	display: none;
@@ -176,12 +85,6 @@ main {
     flex-direction: column;
     border-bottom: 2px solid #3f9e3f; /* Cambia el color de la línea a verde (#3f9e3f) */
     padding: 20px 0; /* Incrementé el padding para dar más espacio */
-}
-.container-img img {
-    max-width: none; /* Permite que la imagen alcance su tamaño máximo */
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Hace que la imagen cubra todo el contenedor */
 }
 
 .text-description,
@@ -224,17 +127,17 @@ main {
     word-wrap: break-word;
     max-width: 95%; /* Por ejemplo, se saltará de línea después de aproximadamente la mitad del ancho */
 }
- 
+
 .btn {
 	display: inline-block;
-	padding: 5px 12px; /* Tamaño más pequeño del botón */
+	padding: 5px 12px; 
 	background-color: #118e2e;
 	color: white;
 	text-decoration: none;
 	border-radius: 5px;
 	transition: background-color 0.3s ease-in-out;
-	top: -61px; /* Ajusta la distancia desde la parte superior */
-position: relative;  
+	margin: 0% 10% 4% 10%;
+    position: relative;  
 }
   
   .btn:hover {
@@ -246,6 +149,5 @@ position: relative;
   }
   
   .btn-download {
-	background-color: #007bff; /* Cambia el color del botón de descarga si lo deseas */
+	background-color: #007bff;
   }
-  
