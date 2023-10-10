@@ -224,3 +224,28 @@ main {
     word-wrap: break-word;
     max-width: 95%; /* Por ejemplo, se saltará de línea después de aproximadamente la mitad del ancho */
 }
+ 
+.btn {
+	display: inline-block;
+	padding: 5px 12px; /* Tamaño más pequeño del botón */
+	background-color: #118e2e;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.3s ease-in-out;
+	top: -61px; /* Ajusta la distancia desde la parte superior */
+position: relative;  
+}
+  
+  .btn:hover {
+	background-color: #3ce516;
+  }
+  
+  .btn i {
+	margin-right: 8px;
+  }
+  
+  .btn-download {
+	background-color: #007bff; /* Cambia el color del botón de descarga si lo deseas */
+  }
+  

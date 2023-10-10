@@ -1,33 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/gg.css')}}">
-    <title>Document</title>
-</head>
-<body>
-
-
-<div>
-    <div class="image">
-        <img src="{{ asset('storage/' . $recetas->images) }}" alt="{{ $recetas->images }}">
-    </div>
-    <h1 class="title">{{ $recetas->name }}</h1><br>
-    <p>{{ $recetas->ingredients }}</p><br>
-    <p>{{ $recetas->description }}</p>
-    <p>{{ $recetas->category_id }}</p>
-    <h2>Comentarios:</h2>
-    @foreach($recetas->comments as $comment)
-        <p>{{ $comment->description }}</p>
-    @endforeach
-</div>
-
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,7 +62,9 @@
                 </div>
 			</div>
 		</main>
-        <a href="{{ route('recetas.pdf', ['id' => $recetas->id]) }}" class="btn">Generar PDF</a>
-        
+        <a href="{{ route('recetas.pdf', ['id' => $recetas->id]) }}" class="btn btn-download">
+            <i class="fas fa-download"></i> Descargar PDF
+          </a>
+          
 </body>
 </html>
