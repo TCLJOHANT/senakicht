@@ -87,9 +87,18 @@ class User extends Authenticatable
             return Auth::user()->profile_photo_url;
         }
     }
-    public function adminlte_desc(){
-        return "Administrador";
-    }
+    public function adminlte_desc()
+    {
+        if ( Auth::user()->hasRole('Admin')) {
+            return 'Admin';
+        }
+        elseif(Auth::user()->hasRole('Aprendiz')){
+            return 'Aprendiz';
+        }
+        else{
+            return 'no rol';
+        }
+}
     public function adminlte_profile_url(){
         return 'profile/username';
     }

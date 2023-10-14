@@ -90,9 +90,11 @@
                             <div class="d-flex justify-content-center mb-2">
                 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Subir productos
-                                </button>
+                                @can('admin.products.store')
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Subir productos
+                                    </button>
+                                @endcan
                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -144,9 +146,11 @@
                                 </div>
                 
                                 <!-- Button para subir recetas  -->
-                                <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                publicar recetas
-                                </button>
+                                @can('admin.recipes.store')
+                                    <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    publicar recetas
+                                    </button>
+                                @endcan
                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -206,9 +210,11 @@
                                 </div>
 
                                  <!-- Button para subir menu -->
-                                 <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
-                                    publicar menu
-                                </button>
+                                 @can('admin.menus.store')
+                                    <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
+                                        publicar menu
+                                    </button>
+                                 @endcan
 
                                  <!-- Modal -->
                                  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
