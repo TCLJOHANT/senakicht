@@ -28,7 +28,7 @@ class MenuController extends Controller
             'name'=> 'required',
             'image_path'=> 'required|image|mimes:png,jpg',
             'price'=> 'required',
-            'shipping_cost' =>'required',
+            // 'shipping_cost' =>'required',
             // 'category' => 'required',
         ]);
      
@@ -37,7 +37,7 @@ class MenuController extends Controller
         $estencion = $files->getClientOriginalExtension();
         
         $rutaImagen = $files->storeAs('Menus',$name, ['disk' => 'public']);
-        $data = $request->only('name','price','shipping_cost');
+        $data = $request->only('name','price');
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         $data['image_path']=$rutaImagen;
          Menu::create($data);
@@ -61,11 +61,11 @@ class MenuController extends Controller
             'name' => 'required',
             'image_path' => 'image|mimes:png,jpg',
             'price' => 'required',
-            'shipping_cost' => 'required',
+            // 'shipping_cost' => 'required',
             // 'category' => 'required',
         ]);
     
-        $data = $request->only('name', 'price', 'shipping_cost');
+        $data = $request->only('name', 'price');
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
     
         if ($request->hasFile('image_path')) {

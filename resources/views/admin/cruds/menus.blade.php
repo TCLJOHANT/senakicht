@@ -4,8 +4,8 @@
       ["name" => "name", "type" => "text"],
       ["name" => "image_path", "type" => "file"],
       ["name" => "price", "type" => "number"],
-      ["name" => "shipping_cost", "type" => "number"],
+    //   ["name" => "shipping_cost", "type" => "number"],
   ], 'items' => $menus, 'titleModal' => "Gestión de Menu", 'modelName' => "menus"])
     
-      {{-- <x-admin.admin-table :items="$comments"  :columns="['description', 'user_id']" modelName="comments"/> --}}
+    
 </x-layouts.admin>

@@ -127,6 +127,12 @@
                                             </label>
                                             <input type="file" name="image" id="image" class="form-control" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="description">
+                                            Descripcion
+                                            </label>
+                                            <input type="text" name="description" id="description" class="form-control" required>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -153,11 +159,11 @@
                                     <div class="modal-body">
                 
                                         @if(Auth::check())
-                                        <form   action="" method="POST" enctype="multipart/form-data">
+                                        <form   action="{{route('recetas.store')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                 
                                         <div class="form-group">
-                                        <label for="">nombre de receta</label>
+                                        <label for="">Nombre de receta</label>
                                         <input type="text" class="form-control" name="name">
                                         </div>
                 
@@ -167,19 +173,26 @@
                                         </div>
                 
                                         <div class="form-group">
-                                        <label for="">
-                                            preparacion
+                                        <label for="ingredients">
+                                            ingredientes
                                         </label>
                                         <input name="ingredients" class="form-control" />
                                         </div>
                                         
                                         <div class="form-group">
-                                        <label for="">
-                                            ingredientes
+                                            <label for="preparation">
+                                                Preparacion
+                                            </label>
+                                            <input name="preparation" class="form-control" />
+                                            </div>
+                                        
+                                        <div class="form-group">
+                                        <label for="description">
+                                            Descripcion
                                         </label>
                                         <input name="description" class="form-control" />
                                         </div>
-                                        
+
                 
                                     </div>
                                     <div class="modal-footer">
@@ -192,9 +205,9 @@
                                 </div>
                                 </div>
 
-                                 <!-- Button para subir recetas  -->
+                                 <!-- Button para subir menu -->
                                  <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
-                                publicar menu
+                                    publicar menu
                                 </button>
 
                                  <!-- Modal -->

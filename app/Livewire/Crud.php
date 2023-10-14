@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use Mockery\Undefined;
 
+
 class Crud extends Component
 {
     public $items;
@@ -17,6 +18,7 @@ class Crud extends Component
     {
         return view('livewire.crud');
     }
+
     public function editItemData($data){
         $this->editItem =$data;
     }

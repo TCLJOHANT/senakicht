@@ -17,9 +17,6 @@ Route::resource('recipes',RecipeController::class)->names('admin.recipes');
 Route::resource('comments',CommentController::class)->names('admin.comments');
 Route::resource('categories',CategoryController::class)->names('admin.categories');
 Route::resource('menus',MenuController::class)->names('admin.menus');
-
-Route::get('item',ShowItem::class)->name('item');
-
 Route::get('calendario', function () {
     return view('admin.cruds.calendario');
 })->name('admin.calendario.index');

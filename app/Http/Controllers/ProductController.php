@@ -25,6 +25,7 @@ class ProductController extends Controller
             'name'=> 'required',
             'image'=> 'required|image|mimes:png,jpg',
             'price'=> 'required',
+            'description' =>'required',
             
 
         ]);
@@ -35,7 +36,7 @@ class ProductController extends Controller
 
         // $files->store('images', ['disk' => 'public']);
         $rutaImagen = $files->storeAs('products',$name, ['disk' => 'public']);
-        $data = $request->only('name','price');
+        $data = $request->only('name','price','description');
         $data['image']=$rutaImagen;
         Product::create($data);
 
