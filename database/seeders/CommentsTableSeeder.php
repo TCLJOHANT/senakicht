@@ -20,31 +20,31 @@ class CommentsTableSeeder extends Seeder
         Comment::create([
             'description' => 'Que Meloooo, Ojala Pudieran Haber Mas Paginas Asi Tan Buenas, Ojala Las Demas Paginas Puedan Tomar Ejemplo De Paginas Asi Como Estas.',
             'user_id' => 1,
-            'ranting' => 4,
+            'rating' => 4,
         ]);
 
         Comment::create([
             'description' => 'Que Buena Web, Puedo Encontrar Todo Lo Que Busco Tanto En Recetas Como En Productos Pero Creo Que Le Falta Algo, Aun Pueden Mejorar Sigan Asi Que Bendicion.',
             'user_id' => 2,
-            'ranting' => 4,
+            'rating' => 4,
         ]);
 
         Comment::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
             'user_id' => 3,
-            'ranting' => 4,
+            'rating' => 4,
         ]);
 
         Comment::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
             'user_id' => 4,
-            'ranting' => 4,
+            'rating' => 4,
         ]);
 
         Comment::create([
             'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
             'user_id' => 5,
-            'ranting' => 4,
+            'rating' => 4,
         ]);
 
         // Comentario para una receta
@@ -53,7 +53,7 @@ class CommentsTableSeeder extends Seeder
             $receta->comments()->create([
                 'description' => 'Este es un comentario para la receta',
                 'user_id' => 4,
-                'ranting' => 4,
+                'rating' => 4,
             ]);
         }
 
@@ -63,7 +63,7 @@ class CommentsTableSeeder extends Seeder
             $producto->comments()->create([
                 'description' => 'Este es un comentario para el producto',
                 'user_id' => 3,
-                'ranting' => 4,
+                'rating' => 4,
             ]);
         }
     }

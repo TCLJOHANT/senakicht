@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->integer('ranting');
+            $table->integer('rating');
             $table->unsignedBigInteger('commentable_id')->nullable();
             $table->string('commentable_type')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

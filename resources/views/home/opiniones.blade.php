@@ -64,18 +64,16 @@
                 <img src="{{ $row->user->profile_photo_url}}" class="user" alt="">
                 <h3>{{ $row->user->name }}</h3>
                 <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                @for($i=1; $i<=$row->rating; $i++)
+                <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
+                @endfor 
                 </div>
             </div>
             @empty
             no hay comentarios
             @endforelse
         </div>
-   
+</div>
    
         <br>
 </section>
