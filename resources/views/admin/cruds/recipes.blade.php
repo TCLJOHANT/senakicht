@@ -21,7 +21,12 @@
       ["name" => "ingredients", "type" => "textarea"],
       ["name" => "description", "type" => "textarea"],
       ["name" => "preparation", "type" => "textarea"],
-  ], 'items' => $recipes, 'titleModal' => "Gestión de Receta", 'modelName' => "recipes"])
-    
-      {{-- <x-admin.admin-table :items="$recipes"  :columns="['name', 'images','ingredients', 'description', 'preparation']" modelName="recipes"/> --}}
+      ["name" => "category", "type" => "select"],
+    ], 
+    'items' => $recipes, 
+    'titleModal' => "Receta",
+    'modelName' => "recipes",
+    // 'subItems'=> $categories,
+    ])
+   
 </x-layouts.admin>

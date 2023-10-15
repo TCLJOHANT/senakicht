@@ -5,7 +5,7 @@
       ["name" => "image_path", "type" => "file"],
       ["name" => "price", "type" => "number"],
     //   ["name" => "shipping_cost", "type" => "number"],
-  ], 'items' => $menus, 'titleModal' => "Gestión de Menu", 'modelName' => "menus"])
+  ], 'items' => $menus, 'titleModal' => "Menu", 'modelName' => "menus"])
     
     
 </x-layouts.admin>

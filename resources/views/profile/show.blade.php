@@ -46,11 +46,10 @@
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
-                                <img src="{{ Auth::user()->profile_photo_path}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            @else
+                            @if(Auth::user()->profile_photo_path === null)
                                 <img src="{{ Auth::user()->profile_photo_url}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                                
+                            @else
+                                <img src="{{asset('storage/' . Auth::user()->profile_photo_path) }}" alt="hugenerd" width="30" height="30" class="rounded-circle">
                             @endif
                             <span class="d-none d-sm-inline mx-1">{{ Auth::user()->name }}</span>
                         </a>
@@ -76,13 +75,11 @@
                         <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center ">
-                            @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
-                                <img src="{{ Auth::user()->profile_photo_path}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
-                            @else
-                                <img src="{{ Auth::user()->profile_photo_url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
-                                
-                            @endif
-                            
+                                @if(Auth::user()->profile_photo_path === null)
+                                    <img src="{{ Auth::user()->profile_photo_url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
+                                @else
+                                    <img src="{{asset('storage/' . Auth::user()->profile_photo_path) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
+                                @endif
                             <h5 class="my-3">{{ Auth::user()->name }}</h5>
                             <p class="text-muted mb-1">{{ Auth::user()->email }}</p>
                 

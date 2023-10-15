@@ -80,11 +80,11 @@ class User extends Authenticatable
 
     //Para Adminlte
     public function adminlte_image(){
-        if (strpos(Auth::user()->profile_photo_path, 'http') === 0) {
-            return Auth::user()->profile_photo_path;
+        if (Auth::user()->profile_photo_path === null) {
+            return Auth::user()->profile_photo_url;
         }
         else {
-            return Auth::user()->profile_photo_url;
+            return asset('storage/' . Auth::user()->profile_photo_path);
         }
     }
     public function adminlte_desc()

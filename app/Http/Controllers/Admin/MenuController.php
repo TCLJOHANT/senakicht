@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.menus.index')->only('index');
+        $this->middleware('can:admin.menus.store')->only('store');
+        $this->middleware('can:admin.menus.update')->only('update');
+        $this->middleware('can:admin.menus.destroy')->only('destroy');
+    }
     public function index()
     {
         $menus = Menu::all();
@@ -43,15 +47,6 @@ class MenuController extends Controller
          Menu::create($data);
          return redirect()->route('admin.menus.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */

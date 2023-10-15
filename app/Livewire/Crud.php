@@ -9,6 +9,7 @@ use Mockery\Undefined;
 class Crud extends Component
 {
     public $items;
+    public $subItems = "";
     public $titleModal;
     public $modelName;
     public $fields;
