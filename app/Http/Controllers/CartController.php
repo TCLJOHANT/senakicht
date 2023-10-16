@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Menu;
+use MercadoPago\Client\Preference\PreferenceClient;
+use MercadoPago\MercadoPagoConfig;
 
 class CartController extends Controller
 {
@@ -16,10 +18,24 @@ class CartController extends Controller
     }
 
     public function cart()  {
+        MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
+
+        $client = new PreferenceClient();
+        $preference = $client->create([
+            "items" => array(
+                array(
+                    "title" => "Meu produto",
+                    "quantity" => 1,
+                    "currency_id" => "BRL",
+                    "unit_price" => 100
+                )
+            )
+        ]);
         $cartCollection = \Cart::getContent();
-        //dd($cartCollection);
-        return view('cart')->with(['cartCollection' => $cartCollection]);;
+      
+        return view('cart',compact('cartCollection', 'preference'));
     }
+    
     public function remove(Request $request){
         \Cart::remove($request->id);
         return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
@@ -53,6 +69,13 @@ class CartController extends Controller
     public function clear(){
         \Cart::clear();
         return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
+    }
+
+    public function mercadoPago(){
+       
+     
+        return view('cart', compact('preference'));
+        
     }
 
  

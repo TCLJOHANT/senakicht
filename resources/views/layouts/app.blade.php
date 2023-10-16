@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ $title ?? 'Senakicht' }}</title>
         <link rel="icon" href="{{ asset('favicons/LogoSenakicht.ico') }}">
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
         <!-- Fonts -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -34,5 +35,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="{{ asset('js/prue.js')}}"></script>
         <script src="{{ asset('js/script.js') }}"></script>
+        <script src="{{ asset('js/pago.js') }}"></script>
     </body>
 </html>

@@ -1,4 +1,7 @@
 <x-app-layout title="Senakicth">
+@if(isset($cartCollection))
+
+
     <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}"> 
     {{-- <link rel="stylesheet" href="{{ asset ('js/c.css') }}"> --}}
 <section >
@@ -21,17 +24,8 @@
                 </button>
             </div>
         @endif
-        @if(count($errors) > 0)
-            @foreach($errors0>all() as $error)
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ $error }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            @endforeach
-        @endif
-        
+     
+      
         <div class="comp">
             <div class="comp1">
                 @if(\Cart::getTotalQuantity()>0)
@@ -80,6 +74,8 @@
                     </div>
                     <hr>
                 @endforeach
+      
+        @endif
                 @if(count($cartCollection)>0)
                     <form action="{{ route('cart.clear') }}" method="POST">
                         {{ csrf_field() }}
@@ -95,11 +91,22 @@
                         </ul>
                     </div>
                     <br><a href="{{ route('menu') }}" class="btn btn-dark">Continue en la tienda</a>
-                    <a href="/checkout" class="btn btn-success">Proceder al Checkout</a>
+                   <div id="wallet_container"></div>
                 </div>
             @endif
+
+       
         </div>
         <br><br>
+    
     </div>
 </section>
+
+@if(isset($preference))
+
+<!-- Asegúrate de tener un elemento con el ID 'miElemento' y un atributo 'data' para tu clave de Mercado Pago -->
+<div id="miElemento" data-mercado-pago-key="{{ config('services.mercadopago.key') }}" data-mi-variable="{{ $preference->id }}"></div>
+
+@endif
+<script src="{{ asset('js/pago.js') }}"></script>
 </x-app-layout>
