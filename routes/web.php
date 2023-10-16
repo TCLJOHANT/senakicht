@@ -32,15 +32,12 @@ Route::middleware([
     //Productos
     Route::get('/productos',[HomeController::class,'productos'])->name('productos');
     Route::post('/crudProductos', [ProductController::class,'store'])->name('productos.store');
-    // Route::get('/crudProductos/{productos}/editar',[ProductosController::class,'edit'])->name('productos.editar');
-    // Route::put('/crudProductos/{productos}/actualizar',[ProductosController::class,'update'])->name('productos.update');
-    // Route::delete('crudProductos/{productos}', [ProductosController::class,'destroy'])->name('productos.destroy');
 
     //Recetas
     Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
     Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
-
+    Route::post('recetas',[RecipeController::class,'store'])->name('recetas.store');
 
 
     //Nostros

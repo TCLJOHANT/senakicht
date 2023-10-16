@@ -7,15 +7,14 @@ use App\Models\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
     
     public function index()
     {
-        $recetas = Recipe::all();
-        return view('Cruds.crudRecetas',compact('recetas'));
+        //
     }
 
     public function pdf($id){
@@ -27,72 +26,37 @@ class RecipeController extends Controller
   
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'name'=> 'required',
-            'images'=> 'required|image|mimes:png,jpg,jpeg|max:5000',
-            'ingredients'=> 'required',
+            'images'=> 'required|image|mimes:png,jpg',
             'description'=> 'required',
-
+            'ingredients' =>'required',
+            'preparation' =>'required',
+            // 'category' => 'required',
         ]);
      
         $files = $request->file('images');
         $name = $files->getClientOriginalName();
         $estencion = $files->getClientOriginalExtension();
-
-        // $files->store('images', ['disk' => 'public']);
-        $rutaImagen = $files->storeAs('images',$name, ['disk' => 'public']);
-        $data = $request->only('name','ingredients','description');
+        
+        $rutaImagen = $files->storeAs('recipes',$name, ['disk' => 'public']);
+        $data = $request->only('name','description','ingredients','preparation');
+        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         $data['images']=$rutaImagen;
-        Recipe::create($data);
-
+         Recipe::create($data);
         
 
-        return redirect()->route('crudRecetas.store');
+        return redirect('recetas');
     }
 
-    
- 
-    // public function update(Request $request, Recipe $recetas)
-    // {
-    //     $this->validate($request, [
-    //         'name'=> 'required',
-    //         'images'=> 'image|mimes:png,jpg|max:5000',
-    //         'ingredients'=> 'required',
-    //         'description'=> 'required',
-
-    //     ]);
-    //     $recetas->name = $request->name;
-    //     $recetas->ingredients = $request->ingredients;
-    //     $recetas->description = $request->description;
-
-
-    //  if ($request->hasFile('images')) {
-    //     $files = $request->file('images');
-    //     $name = $files->getClientOriginalName();
-    //     $rutaImagen = $files->storeAs('images',$name, ['disk' => 'public']);
-        
-        
-    //     $recetas->images = $rutaImagen;
-    //     Storage::disk('public')->delete($recetas->images);
-
-        
-
-    //  }
-    
-     
-    //  $recetas->save();
-     
-    //  return redirect('crudRecetas');
- 
-
-    // }
+    public function update(Request $request, Recipe $recetas)
+    {
+        //
+    }
 
  
     public function destroy(Recipe $recetas)
-{
-    $recetas->delete();
-
-    return redirect('crudRecetas');
-}
+    {
+       //
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Recetas;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
@@ -11,21 +12,18 @@ use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.recipes.index')->only('index');
+        $this->middleware('can:admin.recipes.store')->only('store');
+        $this->middleware('can:admin.recipes.update')->only('update');
+        $this->middleware('can:admin.recipes.destroy')->only('destroy');
+    }
     public function index()
     {
         $recipes = Recipe::all();
-        return view('admin.cruds.recipes',compact('recipes'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $categories = Category::where('type', 'recipeAndmenu');
+        return view('admin.cruds.recipes',compact('recipes','categories'));
     }
 
     /**
@@ -52,22 +50,6 @@ class RecipeController extends Controller
         $data['images']=$rutaImagen;
          Recipe::create($data);
          return redirect()->route('admin.recipes.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

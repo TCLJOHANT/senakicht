@@ -210,7 +210,7 @@ return [
     |
     */
 
-    'sidebar_mini' => 'lg',
+    'sidebar_mini' => true,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
@@ -232,11 +232,11 @@ return [
     |
     */
 
-    'right_sidebar' => false,
+    'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
-    'right_sidebar_push' => true,
+    'right_sidebar_push' => false,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
@@ -315,97 +315,112 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
+            'can'         => 'admin.home',
         ],
         ['header' => 'Administrador'],
         [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
             'icon' => 'fas fa-fw fa-users',
+            'can'  => 'admin.users.index',
         ],
         [
-            'text' => 'Productos',
-            'route'  => 'admin.products.index',
-            'icon' => 'fas fa-shopping-bag fa-fw',
+            'text' => 'Roles',
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-fw fa-users-cog',
+            // 'can'  => 'admin.users.index',
         ],
-        [
-            'text' => 'Recetas',
-            'route'  => 'admin.recipes.index',
-            'icon' => 'fas fa-utensils fa-fw',
-        ],
-        [
-            'text' => 'Menu',
-            'route'  => 'admin.menus.index',
-            'icon' => 'fas fa-clipboard-list fa-fw',
-        ],
+     
         [
             'text' => 'Comentarios',
             'route'  => 'admin.comments.index',
             'icon' => 'fas fa-comments fa-fw',
+            'can'  => 'admin.comments.index',
         ],
         [
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
             'icon' => 'fas fa-tags fa-fw',
+            'can'  => 'admin.categories.index',
         ],
         [
             'text' => 'Calendario',
             'route'  => 'admin.calendario.index',
             'icon' => 'far fa-calendar-alt fa-fw',
         ],
+        ['header' => 'Aprendiz'],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share ',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Productos',
+            'route'  => 'admin.products.index',
+            'icon' => 'fas fa-shopping-bag fa-fw',
+            'can'  => 'admin.products.index',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text' => 'Recetas',
+            'route'  => 'admin.recipes.index',
+            'icon' => 'fas fa-utensils fa-fw',
+            'can'  => 'admin.recipes.index',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Menu',
+            'route'  => 'admin.menus.index',
+            'icon' => 'fas fa-clipboard-list fa-fw',
+            'can'  => 'admin.menus.index',
         ],
+        // [
+        //     'text'    => 'multilevel',
+        //     'icon'    => 'fas fa-fw fa-share ',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //         [
+        //             'text'    => 'level_one',
+        //             'url'     => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url'  => '#',
+        //                 ],
+        //                 [
+        //                     'text'    => 'level_two',
+        //                     'url'     => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
+        // ['header' => 'labels'],
+        // [
+        //     'text'       => 'important',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*

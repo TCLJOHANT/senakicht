@@ -10,23 +10,18 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.products.index')->only('index');
+        $this->middleware('can:admin.products.store')->only('store');
+        $this->middleware('can:admin.products.update')->only('update');
+        $this->middleware('can:admin.products.destroy')->only('destroy');
+    }
     public function index()
     {
         $products = Product::all();
         return view('admin.cruds.products',compact('products'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -53,23 +48,7 @@ class ProductController extends Controller
         // dd($data);
 
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */

@@ -9,49 +9,32 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.comments.index')->only('index');
+        $this->middleware('can:admin.comments.store')->only('store');
+        $this->middleware('can:admin.comments.update')->only('update');
+        $this->middleware('can:admin.comments.destroy')->only('destroy');
+    }
     public function index()
     {
         $comments = Comment::all();
         return view('admin.cruds.comments',compact('comments'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'description'=> 'required',
+        ]);
         $data = $request->all();
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         Comment::create($data);
         return redirect()->route('admin.comments.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

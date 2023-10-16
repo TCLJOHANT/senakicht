@@ -46,11 +46,10 @@
                     <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
-                                <img src="{{ Auth::user()->profile_photo_path}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            @else
+                            @if(Auth::user()->profile_photo_path === null)
                                 <img src="{{ Auth::user()->profile_photo_url}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                                
+                            @else
+                                <img src="{{asset('storage/' . Auth::user()->profile_photo_path) }}" alt="hugenerd" width="30" height="30" class="rounded-circle">
                             @endif
                             <span class="d-none d-sm-inline mx-1">{{ Auth::user()->name }}</span>
                         </a>
@@ -76,13 +75,11 @@
                         <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center ">
-                            @if(strpos(Auth::user()->profile_photo_path, 'http') === 0)
-                                <img src="{{ Auth::user()->profile_photo_path}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
-                            @else
-                                <img src="{{ Auth::user()->profile_photo_url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
-                                
-                            @endif
-                            
+                                @if(Auth::user()->profile_photo_path === null)
+                                    <img src="{{ Auth::user()->profile_photo_url}}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
+                                @else
+                                    <img src="{{asset('storage/' . Auth::user()->profile_photo_path) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 100px;">
+                                @endif
                             <h5 class="my-3">{{ Auth::user()->name }}</h5>
                             <p class="text-muted mb-1">{{ Auth::user()->email }}</p>
                 
@@ -90,9 +87,11 @@
                             <div class="d-flex justify-content-center mb-2">
                 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Subir productos
-                                </button>
+                                @can('admin.products.store')
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Subir productos
+                                    </button>
+                                @endcan
                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -127,6 +126,12 @@
                                             </label>
                                             <input type="file" name="image" id="image" class="form-control" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="description">
+                                            Descripcion
+                                            </label>
+                                            <input type="text" name="description" id="description" class="form-control" required>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -138,9 +143,11 @@
                                 </div>
                 
                                 <!-- Button para subir recetas  -->
-                                <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                publicar recetas
-                                </button>
+                                @can('admin.recipes.store')
+                                    <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    publicar recetas
+                                    </button>
+                                @endcan
                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -153,11 +160,11 @@
                                     <div class="modal-body">
                 
                                         @if(Auth::check())
-                                        <form   action="" method="POST" enctype="multipart/form-data">
+                                        <form   action="{{route('recetas.store')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                 
                                         <div class="form-group">
-                                        <label for="">nombre de receta</label>
+                                        <label for="">Nombre de receta</label>
                                         <input type="text" class="form-control" name="name">
                                         </div>
                 
@@ -167,19 +174,26 @@
                                         </div>
                 
                                         <div class="form-group">
-                                        <label for="">
-                                            preparacion
+                                        <label for="ingredients">
+                                            ingredientes
                                         </label>
                                         <input name="ingredients" class="form-control" />
                                         </div>
                                         
                                         <div class="form-group">
-                                        <label for="">
-                                            ingredientes
+                                            <label for="preparation">
+                                                Preparacion
+                                            </label>
+                                            <input name="preparation" class="form-control" />
+                                            </div>
+                                        
+                                        <div class="form-group">
+                                        <label for="description">
+                                            Descripcion
                                         </label>
                                         <input name="description" class="form-control" />
                                         </div>
-                                        
+
                 
                                     </div>
                                     <div class="modal-footer">
@@ -192,10 +206,12 @@
                                 </div>
                                 </div>
 
-                                 <!-- Button para subir recetas  -->
-                                 <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
-                                publicar menu
-                                </button>
+                                 <!-- Button para subir menu -->
+                                 @can('admin.menus.store')
+                                    <button type="button" class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modal">
+                                        publicar menu
+                                    </button>
+                                 @endcan
 
                                  <!-- Modal -->
                                  <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

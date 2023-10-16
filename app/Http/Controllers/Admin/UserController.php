@@ -7,24 +7,23 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.store')->only('store');
+        $this->middleware('can:admin.users.update')->only('update');
+        $this->middleware('can:admin.users.destroy')->only('destroy');
+    }
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles:name')->get();
+     
+        // return json_encode($users);
         return view('admin.cruds.users',compact('users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-
     }
 
     /**
@@ -52,21 +51,6 @@ class UserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {   
-        return view('admin.cruds.users',compact('user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        return view('admin.users.edit',compact('user'));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -84,6 +68,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('admin/users');
+        return redirect()->route('admin.users.index');
     }
 }

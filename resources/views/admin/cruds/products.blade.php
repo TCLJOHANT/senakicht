@@ -17,7 +17,7 @@
       ["name" => "image", "type" => "file"],
       ["name" => "description", "type" => "textarea"],
       ["name" => "price", "type" => "number"],
-  ], 'items' => $products, 'titleModal' => "Gestión de Producto", 'modelName' => "products"])
+  ], 'items' => $products, 'titleModal' => "Producto", 'modelName' => "products"])
  
       {{-- <x-admin.admin-table :items="$products"  :columns="['name', 'price', 'image','description']" modelName="products"/> --}}
 </x-layouts.admin>

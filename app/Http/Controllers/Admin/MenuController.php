@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('can:admin.menus.index')->only('index');
+        $this->middleware('can:admin.menus.store')->only('store');
+        $this->middleware('can:admin.menus.update')->only('update');
+        $this->middleware('can:admin.menus.destroy')->only('destroy');
+    }
     public function index()
     {
         $menus = Menu::all();
@@ -28,7 +32,7 @@ class MenuController extends Controller
             'name'=> 'required',
             'image_path'=> 'required|image|mimes:png,jpg',
             'price'=> 'required',
-            'shipping_cost' =>'required',
+            // 'shipping_cost' =>'required',
             // 'category' => 'required',
         ]);
      
@@ -37,21 +41,12 @@ class MenuController extends Controller
         $estencion = $files->getClientOriginalExtension();
         
         $rutaImagen = $files->storeAs('Menus',$name, ['disk' => 'public']);
-        $data = $request->only('name','price','shipping_cost');
+        $data = $request->only('name','price');
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         $data['image_path']=$rutaImagen;
          Menu::create($data);
          return redirect()->route('admin.menus.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
@@ -61,11 +56,11 @@ class MenuController extends Controller
             'name' => 'required',
             'image_path' => 'image|mimes:png,jpg',
             'price' => 'required',
-            'shipping_cost' => 'required',
+            // 'shipping_cost' => 'required',
             // 'category' => 'required',
         ]);
     
-        $data = $request->only('name', 'price', 'shipping_cost');
+        $data = $request->only('name', 'price');
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
     
         if ($request->hasFile('image_path')) {
