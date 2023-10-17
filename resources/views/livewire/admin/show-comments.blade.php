@@ -47,7 +47,7 @@
                 </table>
             @else
             <div class="px-6 py-4">
-                No Existe el  Usuario
+                No Existe el  Comentario
             </div>
             @endif
         </div>
@@ -58,3 +58,14 @@
     </div>
  </div>
 </div>
+<script>
+    livewire.on('alert',function(){
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'gh',
+        showConfirmButton: false,
+        timer: 1500
+        })
+    })
+</script>

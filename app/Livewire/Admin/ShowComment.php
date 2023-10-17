@@ -12,10 +12,16 @@ class ShowComment extends Component
     public $ordenar = "description";
     public $direction = "desc";
     protected $paginationTheme = "bootstrap";
+
+    // public function delete(Comment $comment){
+    //     $comment->delete();
+    //     $this->dispatch('render')->to(ShowComment::class);
+    // }
+    protected $listeners = ['render'=>'render'];
     public function render()
     {
-      
-        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->orderBy($this->ordenar,$this->direction)->get();
+      //->orderBy($this->ordenar,$this->direction)
+        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->get();
         return view('livewire.admin.show-comments',compact('comments'));
     }
     public function order($ordenar){
