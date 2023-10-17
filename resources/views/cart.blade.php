@@ -102,11 +102,11 @@
     </div>
 </section>
 
-@if(isset($preference))
+
 
 <!-- Asegúrate de tener un elemento con el ID 'miElemento' y un atributo 'data' para tu clave de Mercado Pago -->
 <div id="miElemento" data-mercado-pago-key="{{ config('services.mercadopago.key') }}" data-mi-variable="{{ $preference->id }}"></div>
 
-@endif
+
 <script src="{{ asset('js/pago.js') }}"></script>
 </x-app-layout>

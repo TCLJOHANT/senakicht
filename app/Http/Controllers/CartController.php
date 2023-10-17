@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Menu;
+use App\Services\MercadoPagoService;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\MercadoPagoConfig;
 
 class CartController extends Controller
 {
+
+    public function __construct(
+
+        private MercadoPagoService $mercadoPagoService,
+    ){}
+
+
+
     public function shop()
     {
         $products = Menu::all();
@@ -18,19 +27,9 @@ class CartController extends Controller
     }
 
     public function cart()  {
-        MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
-
-        $client = new PreferenceClient();
-        $preference = $client->create([
-            "items" => array(
-                array(
-                    "title" => "Meu produto",
-                    "quantity" => 1,
-                    "currency_id" => "BRL",
-                    "unit_price" => 100
-                )
-            )
-        ]);
+    
+       $preference = $this->mercadoPagoService->crearPreferece();
+       
         $cartCollection = \Cart::getContent();
       
         return view('cart',compact('cartCollection', 'preference'));
