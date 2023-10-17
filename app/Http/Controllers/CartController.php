@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Menu;
@@ -15,6 +16,7 @@ class CartController extends Controller
     public function __construct(
 
         private MercadoPagoService $mercadoPagoService,
+        private CartService $cartService,
     ){}
 
 
@@ -29,10 +31,11 @@ class CartController extends Controller
     public function cart()  {
     
        $preference = $this->mercadoPagoService->crearPreferece();
+       $cart =$this->cartService->DatosCart();
        
         $cartCollection = \Cart::getContent();
       
-        return view('cart',compact('cartCollection', 'preference'));
+        return view('cart',compact('cartCollection', 'preference', 'cart'));
     }
     
     public function remove(Request $request){
