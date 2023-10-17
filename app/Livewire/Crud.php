@@ -14,6 +14,7 @@ class Crud extends Component
     public $modelName;
     public $fields;
     public $editItem = 'vaciar';
+    public $open = false;
 
     public function render()
     {
@@ -21,10 +22,12 @@ class Crud extends Component
     }
 
     public function editItemData($data){
+
         $this->editItem =$data;
+        $this->open = true;
     }
-    public function editItemVaciar(){
+    public function limpiarModal(){
         $this->editItem = 'vaciar';
+        $this->open = true;
     }
-       
 }
