@@ -19,7 +19,7 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         
-        $image = $this->faker->image('public/storage/recipes', 640, 480, 'food', false);
+        $image = $this->faker->image('public/storage/recipes', 640, 480, 'receta', false);
 
         return [
             'name' => $this->faker->sentence(3),

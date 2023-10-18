@@ -34,19 +34,6 @@ class CommentsTableSeeder extends Seeder
             'user_id' => 3,
             'rating' => 4,
         ]);
-
-        Comment::create([
-            'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
-            'user_id' => 4,
-            'rating' => 4,
-        ]);
-
-        Comment::create([
-            'description' => 'Esta Muy Buena La Pagina Trae Muy Buenas Cosas Pero Le Faltan Algunos Cambios Y Optimizarla Pero De Resto Todo Bello Todo Bonito.',
-            'user_id' => 5,
-            'rating' => 4,
-        ]);
-
         // Comentario para una receta
         $receta = Recipe::find(1); // Reemplaza el 1 con el ID de la receta deseada
         if ($receta) {

@@ -16,33 +16,15 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $category = Category::where('type', 'product')->first();
-        Product::create([
-            'name' => 'Cafe Agila Roja',
-            'price' => 7.000,
-            'image' => 'cafe.png',
-            'description' => 'descripcion del producto',
-            'user_id' => 1,
-            'category_id' => $category->id
-        ]);
-
-        Product::create([
-             'name' => 'Ajiaco',
-             'price' => 12.000,
-             'image' => 'Ajiaco',
-             'description' => 'descripcion del producto',
-             'user_id' => 2,
-             'category_id' => $category->id
-        ]);
-
-        Product::create([
-             'name' => 'Harina',
-             'price' => 123.000,
-             'image' => 'harina.jpg',
-             'description' => 'descripcion del producto',
-             'user_id' =>3,
-             'category_id' => $category->id
-         ]);
+        // $category = Category::where('type', 'product')->first();
+        // Product::create([
+        //     'name' => 'Cafe Agila Roja',
+        //     'price' => 7.000,
+        //     'image' => 'cafe.png',
+        //     'description' => 'descripcion del producto',
+        //     'user_id' => 1,
+        //     'category_id' => $category->id
+        // ]);
 
     }
 }
