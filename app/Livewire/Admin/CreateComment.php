@@ -13,7 +13,7 @@ class CreateComment extends Component
     public $rules = ['description'=>'required|max:100','ranting'=>'required'];
     public function save(){
         $this->validate();
-        Comment::create(['description'=>$this->description,'ranting'=>$this->ranting,'user_id'=>Auth::user()->id]);
+        Comment::create(['description'=>$this->description,'rating'=>$this->ranting,'user_id'=>Auth::user()->id]);
         $this->reset(['open','description','ranting']);
         // emitir
         $this->dispatch('render')->to(ShowComment::class);

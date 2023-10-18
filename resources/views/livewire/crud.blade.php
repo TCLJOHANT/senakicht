@@ -61,7 +61,7 @@
                                 </td>
                                 @endforeach
                                 <td class="p-0">
-                                    <button  wire:click="editItemData({{$loopItem}})" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-green-600 hover:bg-green-500">
+                                    <button  wire:click="editItemData({{$loopItem}})" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
                                     <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">

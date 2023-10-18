@@ -12,12 +12,21 @@
   
   </x-admin.admin-modal> --}}
     <x-slot name="title">Lista de Productos</x-slot>
-    @livewire('crud', ['fields' => [
+    {{-- @livewire('crud', ['fields' => [
       ["name" => "name", "type" => "text"],
       ["name" => "image", "type" => "file"],
       ["name" => "description", "type" => "textarea"],
       ["name" => "price", "type" => "number"],
-  ], 'items' => $products, 'titleModal' => "Producto", 'modelName' => "products"])
+  ], 'items' => $products, 'titleModal' => "Producto", 'modelName' => "products"]) --}}
+
+{{-- component reactivo --}}
+@livewire('admin.show-items', ['fields' => [
+  ["name" => "name", "type" => "text"],
+  ["name" => "image", "type" => "file"],
+  ["name" => "description", "type" => "textarea"],
+  ["name" => "price", "type" => "number"],
+],  'titleModal' => "Producto",'model'=>'Product','modelName' => "products"])
+
  
       {{-- <x-admin.admin-table :items="$products"  :columns="['name', 'price', 'image','description']" modelName="products"/> --}}
 </x-layouts.admin>
