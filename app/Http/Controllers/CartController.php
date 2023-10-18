@@ -23,7 +23,7 @@ class CartController extends Controller
     {
         $products = Menu::all();
        //dd($products);
-        return view('home.menu')->with(['products' => $products]);
+        return view('home.menu', compact('products'));
     }
 
     public function cart()  {
@@ -70,13 +70,6 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
     }
 
-    public function mercadoPago(){
-       
-     
-        return view('cart', compact('preference'));
-        
-    }
 
- 
 
 }
