@@ -2,32 +2,38 @@
     {{-- TABLA--}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-    <link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset ('css/shared/codelab_ui/table1.css') }}"> --}}
     <div class="card">
         <div class="card-header">
          
-            <x-danger-button wire:click="limpiarModal()">Agregar</x-danger-button>
+          
             {{-- <button  wire:click="editItemData('vaciar')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Agregar</button> --}}
             <x-button class="btn btn-success">Exportar</x-button>
             <x-button class="btn btn-info">Importar</x-button>
+            {{-- BUSCAR --}}
+            <div class="px-6 py-4 flex items-center">
+                <x-input type="text" class="flex-1 mr-4"  placeholder="Buscar"/>
+                <x-danger-button wire:click="limpiarModal()">Agregar</x-danger-button>
+                {{-- @livewire('admin.recipe.create-recipe') --}}
+            </div>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="tabla table-hover text-center">
-                    <thead class="thead-primary">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
                             @foreach ($fields as $field)
-                                <th>{{$field['name']}}</th>
+                                <th class=" cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">{{$field['name']}}</th>
                             @endforeach
-                            <th>Acciones</th>
+                            <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
                         </tr>
                     </thead>
                     <tbody >
                         @foreach ($items as $loopItem)
                             <tr >
                                 @foreach ($fields as $field)
-                                <td class="p-0">
+                                <td class="px-6 py-6">
                              
                                     @switch($field['type'])
                                         {{-- @case('textarea')
@@ -55,13 +61,13 @@
                                 </td>
                                 @endforeach
                                 <td class="p-0">
-                                    <button  wire:click="editItemData({{$loopItem}})" class="btn btn-success btn-sm">
+                                    <button  wire:click="editItemData({{$loopItem}})" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-green-600 hover:bg-green-500">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
                                     <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
                             </tr>

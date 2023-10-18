@@ -15,7 +15,7 @@
 
 <x-layouts.admin >
     <x-slot name="title">Lista de Recetas</x-slot>
-    @livewire('crud', ['fields' => [
+    {{-- @livewire('crud', ['fields' => [
       ["name" => "name", "type" => "text"],
       ["name" => "images", "type" => "file"],
       ["name" => "ingredients", "type" => "textarea"],
@@ -27,6 +27,6 @@
     'titleModal' => "Receta",
     'modelName' => "recipes",
     // 'subItems'=> $categories,
-    ])
-   
+    ]) --}}
+    @livewire('admin.recipe.show-recipes')
 </x-layouts.admin>

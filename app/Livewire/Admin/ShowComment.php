@@ -36,8 +36,4 @@ class ShowComment extends Component
             $this->direction == 'asc';
         }
     }
-    // $users = $data->toArray();
-    // $users['links'] = $data->links()->toHtml();
-    // $users = $usersData->items();
-    // $users =User::all();
 }
