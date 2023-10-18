@@ -10,7 +10,7 @@
         <div class="px-6 py-4 flex items-center">
             <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
             <x-danger-button wire:click="limpiarModal()">Agregar</x-danger-button>
-            @livewire('admin.form-item')
+            @livewire('admin.form-item',['fields' => $fields])
         </div>
         <div class="card-body">
             <div class="table-responsive">

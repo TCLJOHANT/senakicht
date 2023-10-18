@@ -36,4 +36,6 @@ class ShowComment extends Component
             $this->direction == 'asc';
         }
     }
+
+  
 }

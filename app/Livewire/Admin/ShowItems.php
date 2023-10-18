@@ -15,7 +15,7 @@ class ShowItems extends Component
     public $fields;
     public $editItem = 'vaciar';
     public $open = false;
-
+    protected $listeners = ['render'=>'render'];
     public function render()
     {
         if($this->model == "Role"){
@@ -29,7 +29,7 @@ class ShowItems extends Component
         return view('livewire.admin.show-items', compact('items'));
     }
 
-    
+    //functions modal no relativo
     public function editItemData($data){
 
         $this->editItem =$data;
@@ -40,4 +40,8 @@ class ShowItems extends Component
         $this->open = true;
     }
 
+     //functions modal si RELATIVO
+     public function OpenModal(){
+        
+     }
 }
