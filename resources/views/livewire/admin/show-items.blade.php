@@ -8,13 +8,22 @@
 
         </div>
         <div class="px-6 py-4 flex items-center">
-            <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
+            
+            <div class="flex items-center">
+                <span>mostrar</span>
+                <select wire:model.live="cantidadRegistros"   class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
+                    <option value="10">5</option>
+                    <option value="10">10</option>
+                </select>
+                <span>entradas</span>
+            </div>
+            <x-input type="text" class="flex-1 mx-4" wire:model.live="search" placeholder="Buscar"/>
             <x-danger-button wire:click="limpiarModal()">Agregar</x-danger-button>
             @livewire('admin.form-item',['fields' => $fields])
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @if ($items->count())
+                @if (count($items))
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
@@ -36,11 +45,11 @@
                                         @case('file')
                                                 {{--el primer if esta para todos los items aunque deberia ser limitado solo para los usuarios que no tengan imagen--}}
                                                 @if ($loopItem[$field['name']] == null)
-                                                    <img src="{{$loopItem->profile_photo_url}}" alt="{{$loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                                    <img src="{{$loopItem->profile_photo_url}}" alt="{{$loopItem[$field['name']] }}" class=" h-13 w-16 object-cover imagen" width="60">
                                                 @elseif(strpos($loopItem[$field['name']], 'http') === 0)
-                                                        <img src="{{$loopItem[$field['name']]}}" alt="{{$loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                                        <img src="{{$loopItem[$field['name']]}}" alt="{{$loopItem[$field['name']] }}" class="h-13 w-16 object-cover imagen" width="60">
                                                 @elseif (file_exists(public_path('storage/' . $loopItem[$field['name']])))
-                                                        <img src="{{ asset('storage/' . $loopItem[$field['name']]) }}" alt="{{ $loopItem[$field['name']] }}" class="img-thumbnail rounded-circle imagen" width="60">
+                                                        <img src="{{ asset('storage/' . $loopItem[$field['name']]) }}" alt="{{ $loopItem[$field['name']] }}" class=" h-13 w-16 object-cover imagen" width="60">
                                                 @endif
                                             @break
                                         @case('number')
@@ -51,24 +60,33 @@
                                     @endswitch
                                 </td>
                                 @endforeach
-                                <td class="px-6 py-6">
+                                <td class="px-6 py-6 ext-sm font-medium flex">
                                     <button  wire:click="editItemData({{$loopItem}})" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
+                                    <button wire:click="destroyItem({{$loopItem}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    {{-- <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500"><i class="fas fa-trash"></i></button>
-                                    </form>
+                                        <button type="submit" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500"><i class="fas fa-trash"></i></button>
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    {{-- si tiene al menos dos paginas se mostrata si no se oculta --}}
+                    @if ($items->hasPages())
+                        <div class="px-6 py-3">
+                            {{$items->links()}}
+                        </div>
+                    @endif
                 @else
-                <div class="px-6 py-4">
-                    No Existe ese item  en nuestros registros
-                </div>
+                    <div class="px-6 py-4">
+                        No Existe ese item  en nuestros registros
+                    </div>
                 @endif
             </div>
 
@@ -83,7 +101,7 @@
 
 
    {{-- MODAL --}}
-   <x-dialog-modal wire:model="open">
+   <x-dialog-modal wire:model="openModal">
         <div class="modal-content">
             <x-slot name="title">     
                     <div class="modal-header">
@@ -158,7 +176,7 @@
                         @endforeach
 
                         <div class="modal-footer">
-                            <x-secondary-button  wire:click="$set('open', false)">Cancelar</x-secondary-button>
+                            <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
                             <x-danger-button type="submit">{{ $editItem != 'vaciar' ? 'Actualizar' : 'Crear' }}</x-danger-button>
                         </div>
                         <x-slot name="footer"></x-slot>
@@ -168,4 +186,9 @@
             </x-slot>
         </div>
     </x-dialog-modal>
+    <script>
+        window.addEventListener('name-updated', event => {
+            alert('Name updated to: ' + event.detail.newName);
+        })
+        </script>
 </div>

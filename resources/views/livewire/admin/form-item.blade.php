@@ -1,6 +1,6 @@
 <div>
-    <x-danger-button wire:click="$set('open', true)">Modal Reactivo</x-danger-button>
-    <x-dialog-modal wire:model="open">
+    <x-danger-button wire:click="$set('openModal', true)">Modal Reactivo</x-danger-button>
+    <x-dialog-modal wire:model="openModal">
         <x-slot name="title">
             <h5 class="modal-title" id="myModal Label">{{ $editItem != 'vaciar' ? 'Actualizar ' . $titleModal : 'Crear' . $titleModal }}</h5>
         </x-slot>
@@ -18,7 +18,7 @@
                     <div class="mb-4">
                         @switch($field['type'])
                             @case('textarea')
-                                <textarea  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" id="" rows="6" ></textarea> 
+                                <textarea  class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" id="" rows="3" ></textarea> 
                                 @break
                             @case('file')
                                 {{-- @if ($images)
@@ -37,10 +37,10 @@
                                 <input   type="file" accept="image/*" value="{{ $editItem !='vaciar' ? $editItem[$field['name']] : old($field['name'])}}">
                                 @break
                             @case('password')
-                                <x-input  type="password" ></x-input>
+                                <x-input  type="password"  class="w-full" ></x-input>
                                 @break
                             @case('email')
-                                <x-input type="email" ></x-input>
+                                <x-input type="email" class="w-full"></x-input>
                                 @break
                             @case('select')
                                 @if($subItems != "")
@@ -54,10 +54,10 @@
                                 @break
                             @case('number')
                                     <span class="">$</span>
-                                    <x-input type="number" ></x-input>
+                                    <x-input  class="w-full" type="number" ></x-input>
                                 @break
                             @default
-                                <x-input type="text"></x-input>    
+                                <x-input   class="w-full" type="text"></x-input>    
                             @endswitch
                             {{-- <x-input-error for='{{$field['name']}}'></x-input-error> --}}
                             @error($field['name'])
@@ -103,8 +103,8 @@
 
         </x-slot>
         <x-slot name="footer">
-            <x-secondary-button  wire:click="$set('open', false)">Cancelar</x-secondary-button>
-            <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="save"  wire:target="save,images">{{ $editItem != 'vaciar' ? 'Actualizar' : 'Crear' }}</x-danger-button>
+            <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
+            <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="store()"  wire:target="save,images">{{ $editItem != 'vaciar' ? 'Actualizar' : 'Crear' }}</x-danger-button>
 
 
         </x-slot>

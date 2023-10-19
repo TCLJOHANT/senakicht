@@ -21,6 +21,7 @@
 
 {{-- component reactivo --}}
 @livewire('admin.show-items', ['fields' => [
+   ["name" => "id", "type" => "text"],
   ["name" => "name", "type" => "text"],
   ["name" => "image", "type" => "file"],
   ["name" => "description", "type" => "textarea"],
