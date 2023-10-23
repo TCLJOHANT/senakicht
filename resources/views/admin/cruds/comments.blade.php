@@ -12,7 +12,9 @@
       ["name" => "description", "type" => "textarea"],
   ], 'items' => $comments, 'titleModal' => "Comentario", 'modelName' => "comments"])
      --}}
-
-    @livewire('admin.show-comment')
-      {{-- <x-admin.admin-table :items="$comments"  :columns="['description', 'user_id']" modelName="comments"/> --}}
+     @livewire('admin.show-items', ['fields' => [
+       ["name" => "description", "type" => "textarea"],
+  ], 'model' => 'Comment', 'titleModal' => "Comentario", 'modelName' => "comments"])
+    
+    {{-- @livewire('admin.show-comment') --}}
 </x-layouts.admin>
