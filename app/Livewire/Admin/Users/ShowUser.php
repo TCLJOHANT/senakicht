@@ -49,8 +49,6 @@ class ShowUser extends Component
          foreach ($user["roles"] as $rol) {
             $this->rol=$rol->name;
         }
-
-
          $this->titleModal = "Editar a" . " " . $user->name;
         $this->btnModal = "Actualizar";
          $this->openModal= true;

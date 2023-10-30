@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Menu;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
@@ -10,7 +12,11 @@ class HomeController extends Controller
 {
 
     public function index(){
-        return view('home.index');
+        $recipes = Recipe::take(3)->get();
+        $products = Product::take(5)->get();
+        $menus = Menu::take(10)->get();
+        $comments =Comment::take(3)->get();
+        return view('home.index',compact('recipes','products','menus','comments'));
     }
 
     public function menu(){

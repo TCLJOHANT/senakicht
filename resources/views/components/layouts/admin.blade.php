@@ -2,6 +2,8 @@
 @section('title', 'admin')
 @section('content_header')
     <h1>{{ $title ?? 'Senakitcht' }}</h1>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 @stop
 @section('content')
     {{ $slot }}

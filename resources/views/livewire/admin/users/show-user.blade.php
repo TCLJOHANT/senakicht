@@ -48,13 +48,12 @@
                                 </td>
                                 
                                 <td class="p-0">
-                                    <button wire:click="modalEdit({{$user}})" >  
+                                    <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500" style="background-color: #15803d;" wire:click="modalEdit({{$user}})" >  
                                         <i class="fas fa-pencil-alt"></i>
                                     </button> 
                                     <button wire:click="destroyUser({{$user}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
                                         <i class="fas fa-trash"></i>
                                     </button>
-                                
                                 </td>
                             </tr>
                         @endforeach
@@ -92,7 +91,7 @@
                         @endif
                     </div>
                 @endif
-                <x-input class="w-full" type="file" wire:model="avatar"></x-input>
+                <x-input class="w-full" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " type="file" wire:model="avatar"></x-input>
        
 
                 <x-label value="Nombre"></x-label>
@@ -101,6 +100,7 @@
                 
                 <x-label value="Email"></x-label>
                 <x-input class="w-full" type="email" wire:model="email"></x-input>
+                
                 <x-input-error for='email'></x-input-error>
 
                 {{-- <x-label value="Contraseña"></x-label>
@@ -108,11 +108,13 @@
                 <x-input-error for='password'></x-input-error> --}}
 
                 <x-label value="Rol"></x-label>
-                <select class="form-control" name="" >
+                <p href=""  wire:model="rol">{{$rol}}</p>
+                {{-- <select class="form-control" name="" >
                     @foreach ($roles as $rol)
                         <option  wire:model="rol" value="{{$rol->id}}">{{$rol->name}}</option>
                     @endforeach
-                </select>
+                </select> --}}
+              
                 <x-input-error for='rol'></x-input-error>
             </div>
 
