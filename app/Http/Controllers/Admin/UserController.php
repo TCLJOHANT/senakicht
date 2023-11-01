@@ -21,8 +21,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles:name')->get();
-     
-        // return json_encode($users);
         return view('admin.cruds.users',compact('users'));
     }
 

@@ -190,7 +190,7 @@
   margin-top: 20px;
   flex-direction: row-reverse; /* Cambiado a row-reverse para que las estrellas vayan de derecha a izquierda */
   position: relative;
-  left: -68%;
+  left: -64%;
 }
 
 .star-rating input {

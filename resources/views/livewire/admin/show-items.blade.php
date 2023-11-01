@@ -19,7 +19,7 @@
             </div>
             <x-input type="text" class="flex-1 mx-4" wire:model.live="search" placeholder="Buscar"/>
             <x-danger-button wire:click="limpiarModal()">Agregar</x-danger-button>
-            @livewire('admin.form-item',['fields' => $fields])
+            {{-- @livewire('admin.form-item',['fields' => $fields]) --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">

@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Livewire\ShowItem;
 use Illuminate\Support\Facades\Route;
 
 $routesNotGenerate = ['create', 'edit','show'];
