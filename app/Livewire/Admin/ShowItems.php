@@ -27,7 +27,7 @@ class ShowItems extends Component
         return view('livewire.admin.show-items', compact('items'));
     }
     public function CargarItems(){
-        $this->readyToLoad = true;
+        // $this->readyToLoad = true;
     }
     //reiniciar paginacion si se cambia la variable search
     public function updatingSearch(){

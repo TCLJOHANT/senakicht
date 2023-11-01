@@ -23,7 +23,6 @@
                             <th scope="col" wire:click="order('description')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avatar</th>
                             <th scope="col" wire:click="order('name')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
                             <th scope="col" wire:click="order('email')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Gmail</th>
-                            <th scope="col" wire:click="order('email')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contraseña</th>
                             <th scope="col" wire:click="order('description')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rol</th>
                             <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
                         </tr>
@@ -42,7 +41,6 @@
                                 </td>
                                 <td class="px-6 py-6">{{$user->name}}</td>
                                 <td class="px-6 py-6">{{$user->email}}</td>
-                                <td class="px-6 py-6">{{$user->password}}</td>
                                 <td class="px-6 py-6">
                                     @foreach ($user["roles"] as $rol) 
                                        {{$rol->name}}
@@ -83,14 +81,15 @@
         </x-slot>
         <x-slot name="content">
             <div class="mb-4">
+                @if ( $btnModal === "Crear")
                 <x-label value="Avatar"></x-label>
-                @if ($btnModal==="Actualizar")
+                {{-- @if ($btnModal==="Actualizar")
                     <div class="text-center">
-                        <img src="{{$avatar}}" alt="img" class="img-thumbnail imagen mx-auto" width="100">
+                        <img src="{{$profile_photo_path}}" alt="img" class="img-thumbnail imagen mx-auto" width="100">
                     </div>
-                @endif
-                <x-input class="w-full" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " type="file" wire:model="avatar"></x-input>
-       
+                @endif --}}
+                <x-input class="w-full" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm " type="file" wire:model="profile_photo_path"></x-input>
+                <x-input-error for='profile_photo_path'></x-input-error>
 
                 <x-label value="Nombre"></x-label>
                 <x-input class="w-full" type="text" wire:model="name"></x-input>
@@ -100,14 +99,13 @@
                 <x-input class="w-full" type="email" wire:model="email"></x-input>
                 
                 <x-input-error for='email'></x-input-error>
-
-                <x-label value="Contraseña"></x-label>
-                <x-input class="w-full" type="password" wire:model="password"></x-input>
-                <x-input-error for='password'></x-input-error> 
+                    <x-label value="Contraseña"></x-label>
+                    <x-input class="w-full" type="password" wire:model="password"></x-input>
+                    <x-input-error for='password'></x-input-error>  
+                @endif
 
                 <x-label value="Rol"></x-label>
                 <select class="form-control" name="rol" wire:model="rol">
-                    <option value="">Seleccionar Rol</option>
                     @foreach ($roles as $rolOption)
                         <option value="{{ $rolOption->name }}" {{ $rolOption->name == $rol ? 'selected' : '' }}>
                             {{ $rolOption->name }}
@@ -120,8 +118,8 @@
         </x-slot>
         <x-slot name="footer">
             <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-            <x-danger-button wire:loading.remove wire:click="save()">{{$btnModal}}</x-danger-button>
-            <span wire:loading wire:target="save()">cargando ...</span>
+            <x-danger-button wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
+            <span wire:loading wire:target="createOrUpdate()">cargando ...</span>
         </x-slot>
     </x-dialog-modal>
 </div>
