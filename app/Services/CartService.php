@@ -12,6 +12,8 @@ class CartService{
         $cartCollection = \Cart::getContent();
 
 
-         dd($cartCollection);
+         //dd($cartCollection);
+
+         return $cartCollection;
     }
 }

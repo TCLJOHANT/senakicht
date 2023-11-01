@@ -16,7 +16,7 @@ class CartController extends Controller
     public function __construct(
 
         private MercadoPagoService $mercadoPagoService,
-        private CartService $cartService,
+       
     ){}
 
 
@@ -31,11 +31,11 @@ class CartController extends Controller
     public function cart()  {
     
        $preference = $this->mercadoPagoService->crearPreferece();
-       $cart =$this->cartService->DatosCart();
+      
        
         $cartCollection = \Cart::getContent();
       
-        return view('cart',compact('cartCollection', 'preference', 'cart'));
+        return view('cart',compact('cartCollection', 'preference'));
     }
     
     public function remove(Request $request){

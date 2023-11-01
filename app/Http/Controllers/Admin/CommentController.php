@@ -33,6 +33,8 @@ class CommentController extends Controller
         $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
         Comment::create($data);
         return redirect()->route('admin.comments.index');
+
+        
     }
 
 
