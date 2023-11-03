@@ -1,5 +1,9 @@
 <div>
  <div class="card">
+    <div class="card-header">
+        <x-button wire:click="exportar()" class="btn btn-success">Exportar</x-button>
+        {{-- <x-button class="btn btn-info">Importar</x-button> --}}
+    </div>
     <div class="px-6 py-4 flex items-center">
         <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
         <x-danger-button wire:click="abrirModal()">Crear Receta</x-danger-button>

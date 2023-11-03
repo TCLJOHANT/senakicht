@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Livewire\Admin\Recipe;
+
+use App\Exports\RecipeExport;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
@@ -74,5 +76,10 @@ class ShowRecipes extends Component
     //reiniciar paginacion si se cambia la variable search
     public function updatingSearch(){
         $this->resetPage();
+    }
+
+    public function exportar(){
+        $recipesExport = new RecipeExport;
+        return $recipesExport->download('recipes.xlsx');
     }
 }
