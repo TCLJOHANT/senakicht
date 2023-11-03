@@ -16,35 +16,40 @@ class RecipeController extends Controller
         return Recipe::all();
     }
 
+    public function store(Request $request)
+    {
+        Recipe::create($request->all());
+        return response()->json([
+            'respuesta'=> true,
+            'mensaje' => 'Receta guardada con exito'
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function show(Recipe $recipe)
     {
-        //
+        return response()->json([
+            'respuesta'=> true,
+            'recipe' => $recipe
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, Recipe $recipe)
     {
-        
+        $recipe->update($request->all());
+        return response()->json([
+             "respuesta" => True,
+             "mensaje" => "Receta Actualizada Correctamente"
+         ],200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Recipe $recipe)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $recipe->delete();
+        return response()->json([
+            "respuesta" => True,
+            "mensaje" => "Receta Eliminada Exitosamente"
+        ],200);
     }
 }

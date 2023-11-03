@@ -60,6 +60,7 @@ class ShowUser extends Component
             Storage::disk('public')->delete($user->profile_photo_path);
         }
         $user->delete();
+            $this->resetPage();
     }
 
     public function modalEdit(User $user){
