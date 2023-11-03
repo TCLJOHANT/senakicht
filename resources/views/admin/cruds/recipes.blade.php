@@ -28,14 +28,14 @@
     'modelName' => "recipes",
     // 'subItems'=> $categories,
     ]) --}}
-    @livewire('admin.show-items', ['fields' => [
+    {{-- @livewire('admin.show-items', ['fields' => [
      ["name" => "name", "type" => "text"],
       ["name" => "images", "type" => "file"],
       ["name" => "ingredients", "type" => "textarea"],
       ["name" => "description", "type" => "textarea"],
       ["name" => "preparation", "type" => "textarea"],
       // ["name" => "category", "type" => "select"],
-],  'titleModal' => "Receta",'model'=>'Recipe','modelName' => "recipes"])
+],  'titleModal' => "Receta",'model'=>'Recipe','modelName' => "recipes"])  --}}
 
-    {{-- @livewire('admin.recipe.show-recipes') --}}
+    @livewire('admin.recipe.show-recipes')  
 </x-layouts.admin>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductExport;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+
+use function PHPUnit\Framework\returnSelf;
 
 class ProductController extends Controller
 {
@@ -88,5 +92,9 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('admin.products.index');
+    }
+    public function export(){
+        $productsExport = new ProductExport;
+        return $productsExport->download('products.xlsx');
     }
 }

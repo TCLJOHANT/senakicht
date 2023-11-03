@@ -5,6 +5,7 @@
         <div class="card-header">
             <x-button class="btn btn-success">Exportar</x-button>
             <x-button class="btn btn-info">Importar</x-button>
+            <a href="{{route('exportProduct')}}">exportar</a>
 
         </div>
         <div class="px-6 py-4 flex items-center">
