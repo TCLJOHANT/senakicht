@@ -10,9 +10,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            @if ($
-            
-            .s->count())
+            @if ($recipes->count())
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -116,7 +114,7 @@
     </x-slot>
     <x-slot name="footer">
         <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate  "  wire:target="save,images">{{$btnModal}}</x-danger-button>
+        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate  "  wire:target="createOrUpdate,images">{{$btnModal}}</x-danger-button>
 
 
     </x-slot>

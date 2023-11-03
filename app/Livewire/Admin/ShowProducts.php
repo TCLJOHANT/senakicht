@@ -17,7 +17,13 @@ class ShowProducts extends Component
     public $openModal = false;
     public $name, $price,$description,$image,$identificador,$productId;
     public $titleModal = "Crear Producto", $btnModal = "Crear";
-
+    public $rules = [
+        'name'=> 'required',
+        'image'=> 'required|image|mimes:png,jpg|max:2048',
+        'description'=> 'required',
+        'price' =>'required',
+        // 'category' => 'required',
+    ];
     private $resetVariables = ['openModal','name','image','price','description','btnModal','titleModal'];
     public function mount(){
         $this->identificador = rand(); //le asigna un numero al azar o random

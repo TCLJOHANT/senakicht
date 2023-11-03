@@ -102,7 +102,7 @@
     </x-slot>
     <x-slot name="footer">
         <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="save"  wire:target="save,images">{{$btnModal}}</x-danger-button>
+        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image">{{$btnModal}}</x-danger-button>
     </x-slot>
 </x-dialog-modal>
     

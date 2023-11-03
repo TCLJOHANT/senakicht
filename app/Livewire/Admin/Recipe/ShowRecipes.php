@@ -44,7 +44,7 @@ class ShowRecipes extends Component
         $this->openModal = true;
     }
 
-    public function save(){
+    public function createOrUpdate(){
         $images = $this->images->store('recipes');
         $userAuth = Auth::user()->id;
         $recipe = [
