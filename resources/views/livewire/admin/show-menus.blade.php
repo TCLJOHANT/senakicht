@@ -6,16 +6,16 @@
         </div>
         <div class="px-6 py-4 flex items-center">
             <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
-            <x-danger-button wire:click="abrirModal()">Crear Receta</x-danger-button>
+            <x-danger-button wire:click="abrirModal()">Crear Menu</x-danger-button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @if ($products->isEmpty())
+                @if ($menus->isEmpty())
                     <div class="px-6 py-4">
                         @if ($this->search)
-                            No Existe el Producto
+                            No Existe el Menu
                         @else
-                            Usted no tiene Productos creados actualmente <b> pero puedes crear uno ahora.</b>
+                            Usted no tiene menús creados actualmente <b> pero puedes crear uno ahora.</b>
                         @endif
                     </div>
                 @else
@@ -24,28 +24,32 @@
                             <tr>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Imagen</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Descripción</th>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Precio</th>
                                 <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
                             </tr>
                         </thead>
                         <tbody >
-                            @foreach ($products as $product)
+                            @foreach ($menus as $menu)
                                 <tr >
-                                    <td class="px-6 py-6">{{$product->name}}</td>
+                                    <td class="px-6 py-6">{{$menu->name}}</td>
                                     <td class="px-6 py-6" >
-                                        @if ($product['image'] )
-                                          <img src="{{ asset('storage/' . $product->image) }}"  class="h-13 w-16 object-cover  imagen" width="60">
+                                        @if ($menu['image_path'] )
+                                             {{-- si no tien / usa images si no storage --}}
+                                                @if (strpos($menu->image_path, '/') === false)
+                                                    <img src="/images/{{ $menu->image_path }}" alt="" class="h-13 w-16 object-cover  imagen" width="60">
+                                                @else
+                                                    <img src="{{ asset('storage/' . $menu->image_path) }}" alt="" class="h-13 w-16 object-cover  imagen" width="60">
+                                                @endif
+                                           
                                         @endif
                                     </td>
-                                    <td class="px-6 py-6">{{$product->description}}</td>
-                                    <td class="px-6 py-6">{{"$ " . $product->price . " COP"}}</td>
+                                    <td class="px-6 py-6">{{"$ " . $menu->price . " COP"}}</td>
                     
                                     <td class="px-6 py-6 flex items-center">
-                                        <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$product}})" >  
+                                        <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$menu}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
-                                        <button wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                        <button wire:click="destroyMenu({{$menu}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -53,12 +57,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                        {{-- si tiene al menos dos paginas se mostrata si no se oculta --}}
-                        @if ($products->hasPages())
-                           <div class="px-6 py-3">
-                               {{$products->links()}}
-                           </div>
-                       @endif
+                    {{-- si tiene al menos dos paginas se mostrata si no se oculta --}}
+                    @if ($menus->hasPages())
+                        <div class="px-6 py-3">
+                            {{$menus->links()}}
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
@@ -71,32 +75,33 @@
     </x-slot>
     <x-slot name="content">
         <div class="mb-4">
-            @if ($image)
+            @if ($image_path)
                 @if ($btnModal === "Actualizar" )
-                    <img class="mb-4 img-thumbnail imagen mx-auto" src="{{asset('storage/' . $image)}}" alt="img" width="100px">
+                     {{-- si no tien / usa images si no storage --}}
+                    @if (strpos($menu->image_path, '/') === false)
+                        <img class="mb-4 img-thumbnail imagen mx-auto" src="/images/{{ $menu->image_path }}" alt="img" width="100px">
+                    @else
+                        <img class="mb-4 img-thumbnail imagen mx-auto" src="{{asset('storage/' . $image_path)}}" alt="img" width="100px">
+                    @endif
                 @endif
-                @if ($image && is_object($image))
-                    <img class="mb-4 img-thumbnail imagen mx-auto" src="{{$image->temporaryUrl()}}" alt="" width="100px"> 
+                @if ($image_path && is_object($image_path))
+                    <img class="mb-4 img-thumbnail imagen mx-auto" src="{{$image_path->temporaryUrl()}}" alt="" width="100px"> 
                 @endif
             @endif
-            <x-label value="Imagen del Producto"></x-label>
-            <input type="file" wire:model="image" id="{{$identificador}}">
-            <x-input-error for='image'></x-input-error>
+            <x-label value="Imagen del Menu"></x-label>
+            <input type="file" wire:model="image_path" id="{{$identificador}}">
+            <x-input-error for='image_path'></x-input-error>
         </div>
         <div class="mb-4">
-            <x-label value="Nombre del Producto"></x-label>
+            <x-label value="Nombre del  Menu"></x-label>
             <x-input class="w-full" type="text"
             wire:model="name"></x-input>
             <x-input-error for='name'></x-input-error>
         </div>
        
+     
         <div class="mb-4">
-            <x-label value="Descripción del Producto"></x-label>
-            <textarea name="" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" id="" rows="2" wire:model="description"></textarea>
-            <x-input-error for='description'></x-input-error>
-        </div>
-        <div class="mb-4">
-            <x-label value="Precio del Producto"></x-label>
+            <x-label value="Precio del Menu"></x-label>
             <x-input class="w-full" type="number" 
             wire:model="price"></x-input>
             <x-input-error for='price'></x-input-error>
@@ -106,35 +111,10 @@
     </x-slot>
     <x-slot name="footer">
         <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image">{{$btnModal}}</x-danger-button>
+        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image_path">{{$btnModal}}</x-danger-button>
     </x-slot>
 </x-dialog-modal>
     
     
     
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>

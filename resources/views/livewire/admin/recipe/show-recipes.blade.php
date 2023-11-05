@@ -10,7 +10,15 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            @if ($recipes->count())
+            @if ($recipes->isEmpty())
+                <div class="px-6 py-4">
+                    @if ($this->search)
+                        No Existe el Producto
+                    @else
+                        Usted no tiene Recetas creadas actualmente <b> pero puedes crear una ahora.</b>
+                    @endif
+                </div>
+            @else
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -52,11 +60,7 @@
                            {{$recipes->links()}}
                        </div>
                    @endif
-                  @else
-                  <div class="px-6 py-4">
-                      No Existe la receta
-                  </div>
-                  @endif
+            @endif
         </div>
     </div>
  </div>

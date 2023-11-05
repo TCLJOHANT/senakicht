@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Svg\Tag\Rect;
+
 class ShowRecipes extends Component
 {
     use WithPagination;
@@ -33,7 +35,16 @@ class ShowRecipes extends Component
     }
     public function render()
     {   
-        $recipes = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        if (auth()->user()->hasRole('Admin')) {
+            $recipes = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        }
+        elseif (auth()->user()->hasRole('Aprendiz')) {
+            $recipes = Recipe::where('user_id', auth()->user()->id)
+                          ->where(function ($query) {
+                              $query->where('name', 'LIKE', '%' . $this->search . '%');
+                          })
+                          ->paginate(5);
+        }
         return view('livewire.admin.recipe.show-recipes',compact('recipes'));
     }
 
@@ -45,26 +56,33 @@ class ShowRecipes extends Component
     }
 
     public function createOrUpdate(){
-        $images = $this->images->store('recipes');
-        $userAuth = Auth::user()->id;
         $recipe = [
             'name'=>$this->name,
-            'images'=>$images,
+            'images'=>"",
             'description'=>$this->description,
             'ingredients'=>$this->ingredients,
             'preparation'=>$this->preparation,
-            'user_id'=> $userAuth
+            'user_id'=> Auth::user()->id
         ];
         if($this->btnModal=="Crear"){ 
             $this->validate();
+            $images = $this->images->store('recipes'); // Cargar la imagen al crear
+            $recipe['images'] = $images;
             Recipe::create($recipe);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
         }
-        elseif($this->btnModal=="Actualizar") { 
+        elseif ($this->btnModal == "Actualizar") { 
             $recipeEdit = Recipe::find($this->recipeId); 
-            Storage::disk('public')->delete($recipeEdit->images); // Eliminar la imagen antigua
-            if($recipeEdit) {
+            if ($recipeEdit) {
+                // Verificar si se proporcionó una nueva imagen
+                if (is_string($this->images)) {
+                    $images = $recipeEdit->images; // Mantener la imagen existente
+                } else {
+                    Storage::disk('public')->delete($recipeEdit->images); // Eliminar la imagen antigua
+                    $images = $this->images->store('recipes'); // Almacenar la nueva imagen
+                }
+                $recipe['images'] = $images; // Actualizar el valor de la imagen en el arreglo $recipe
                 $recipeEdit->update($recipe);
                 $this->reset($this->resetVariables);
                 $this->identificador = rand(); 
@@ -80,6 +98,7 @@ class ShowRecipes extends Component
         if($recipe->images){Storage::disk('public')->delete($recipe->images);}
         $recipe->delete();
         $this->resetPage();
+      
     }
     public function modalEdit(Recipe $recipe){
         $this->recipeId = $recipe->id;

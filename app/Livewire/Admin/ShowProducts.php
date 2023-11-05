@@ -21,7 +21,7 @@ class ShowProducts extends Component
         'name'=> 'required',
         'image'=> 'required|image|mimes:png,jpg|max:2048',
         'description'=> 'required',
-        'price' =>'required',
+        'price' =>'numeric|required',
         // 'category' => 'required',
     ];
     private $resetVariables = ['openModal','name','image','price','description','btnModal','titleModal'];
@@ -30,7 +30,16 @@ class ShowProducts extends Component
     }
     public function render()
     {
-        $products = Product::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        if (auth()->user()->hasRole('Admin')) {
+            $products = Product::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        }
+        elseif (auth()->user()->hasRole('Aprendiz')) {
+            $products = Product::where('user_id', auth()->user()->id)
+                          ->where(function ($query) {
+                              $query->where('name', 'LIKE', '%' . $this->search . '%');
+                          })
+                          ->paginate(5);
+        }
         return view('livewire.admin.show-products', compact('products'));
     }
     public function abrirModal(){
@@ -40,25 +49,32 @@ class ShowProducts extends Component
     }
 
     public function createOrUpdate(){
-        $image = $this->image->store('products');
-        $userAuth = Auth::user()->id;
         $product = [
             'name'=>$this->name,
-            'image'=>$image,
+            'image'=>"",
             'description'=>$this->description,
             'price'=>$this->price,
-            'user_id'=> $userAuth
+            'user_id'=> Auth::user()->id
         ];
         if($this->btnModal=="Crear"){ 
             $this->validate();
+            $image = $this->image->store('products'); // Cargar la imagen al crear
+            $product['image'] = $image;
             Product::create($product);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
         }
         elseif($this->btnModal=="Actualizar") { 
-            $productEdit = Product::find($this->productId); 
-            Storage::disk('public')->delete($productEdit->image); // Eliminar la imagen antigua
+            $productEdit = Product::find($this->productId);
             if($productEdit) {
+             // Verificar si se proporcionó una nueva imagen
+                if (is_string($this->image)) {
+                    $image = $productEdit->image; // Mantener la imagen existente
+                } else {
+                    Storage::disk('public')->delete($productEdit->image); // Eliminar la imagen antigua
+                    $image = $this->image->store('products'); // Almacenar la nueva imagen
+                }
+                $product['image'] = $image; // Actualizar el valor de la imagen en el arreglo $recipe
                 $productEdit->update($product);
                 $this->reset($this->resetVariables);
                 $this->identificador = rand(); 
