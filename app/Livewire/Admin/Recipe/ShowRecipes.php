@@ -62,12 +62,13 @@ class ShowRecipes extends Component
             'description'=>$this->description,
             'ingredients'=>$this->ingredients,
             'preparation'=>$this->preparation,
-            'user_id'=> Auth::user()->id
+            'user_id'=> ""
         ];
         if($this->btnModal=="Crear"){ 
             $this->validate();
             $images = $this->images->store('recipes'); // Cargar la imagen al crear
             $recipe['images'] = $images;
+            $product['user_id'] =Auth::user()->id;
             Recipe::create($recipe);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
@@ -82,6 +83,7 @@ class ShowRecipes extends Component
                     Storage::disk('public')->delete($recipeEdit->images); // Eliminar la imagen antigua
                     $images = $this->images->store('recipes'); // Almacenar la nueva imagen
                 }
+                $recipe['user_id'] = $recipeEdit->user_id;
                 $recipe['images'] = $images; // Actualizar el valor de la imagen en el arreglo $recipe
                 $recipeEdit->update($recipe);
                 $this->reset($this->resetVariables);

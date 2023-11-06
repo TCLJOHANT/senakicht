@@ -54,12 +54,13 @@ class ShowProducts extends Component
             'image'=>"",
             'description'=>$this->description,
             'price'=>$this->price,
-            'user_id'=> Auth::user()->id
+            'user_id'=>""
         ];
         if($this->btnModal=="Crear"){ 
             $this->validate();
             $image = $this->image->store('products'); // Cargar la imagen al crear
             $product['image'] = $image;
+            $product['user_id'] =Auth::user()->id;
             Product::create($product);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
@@ -74,6 +75,7 @@ class ShowProducts extends Component
                     Storage::disk('public')->delete($productEdit->image); // Eliminar la imagen antigua
                     $image = $this->image->store('products'); // Almacenar la nueva imagen
                 }
+                $product['user_id'] = $productEdit->user_id;
                 $product['image'] = $image; // Actualizar el valor de la imagen en el arreglo $recipe
                 $productEdit->update($product);
                 $this->reset($this->resetVariables);
