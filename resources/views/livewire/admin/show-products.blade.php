@@ -1,4 +1,12 @@
 <div>
+    @if ($alert != null)
+    <script>
+        (function() {
+            toastr.error('mensaje');
+        })();
+    </script>
+    @endif 
+   
     <div class="card">
         <div class="card-header">
             <x-button wire:click="exportar()" class="btn btn-success">Exportar</x-button>
@@ -11,10 +19,10 @@
         <div class="card-body">
             <div class="table-responsive">
                 @if ($products->isEmpty())
-                    <div class="px-6 py-4">
-                        @if ($this->search)
-                            No Existe el Producto
-                        @else
+                <div class="px-6 py-4">
+                    @if ($this->search)
+                    No Existe el Producto
+                    @else
                             Usted no tiene Productos creados actualmente <b> pero puedes crear uno ahora.</b>
                         @endif
                     </div>
@@ -45,7 +53,7 @@
                                         <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$product}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
-                                        <button wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                        <button onclick="alert('error')" wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -106,12 +114,24 @@
     </x-slot>
     <x-slot name="footer">
         <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image">{{$btnModal}}</x-danger-button>
+        <x-danger-button onclick="alert('success')" class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image">{{$btnModal}}</x-danger-button>
     </x-slot>
 </x-dialog-modal>
-    
-    
-    
+
+<script>
+  function alert(type) {
+    switch (type) {
+        case 'success':
+            toastr.success('El producto fue Guardado con éxito');
+            break;
+        case 'error':
+            toastr.error('El producto fue eliminado con éxito');
+            break;
+        default:
+            break;
+    }
+}
+</script>
    
 
 

@@ -46,7 +46,7 @@
                                     <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$recipe}})" >  
                                         <i class="fas fa-pencil-alt"></i>
                                     </button> 
-                                    <button wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                    <button onclick="alert('error')" wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
@@ -118,9 +118,25 @@
     </x-slot>
     <x-slot name="footer">
         <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate  "  wire:target="createOrUpdate,images">{{$btnModal}}</x-danger-button>
+        <x-danger-button onclick="alert('success')" class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate  "  wire:target="createOrUpdate,images">{{$btnModal}}</x-danger-button>
 
 
     </x-slot>
 </x-dialog-modal>
+<script>
+    function alert(type) {
+      switch (type) {
+          case 'success':
+              toastr.success('La Receta fue Guardada con éxito');
+              break;
+          case 'error':
+              toastr.error('La Receta fue eliminada con éxito');
+              break;
+          default:
+              break;
+      }
+  }
+  </script>
+    
+</div>
 </div>

@@ -17,6 +17,7 @@ class ShowProducts extends Component
     public $openModal = false;
     public $name, $price,$description,$image,$identificador,$productId;
     public $titleModal = "Crear Producto", $btnModal = "Crear";
+    public $alert;
     public $rules = [
         'name'=> 'required',
         'image'=> 'required|image|mimes:png,jpg|max:2048',
@@ -64,6 +65,7 @@ class ShowProducts extends Component
             Product::create($product);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
+            $this->alert = ['type'=>'success','message'=>'no se q poner'];
         }
         elseif($this->btnModal=="Actualizar") { 
             $productEdit = Product::find($this->productId);
@@ -89,6 +91,7 @@ class ShowProducts extends Component
         if($product->image){Storage::disk('public')->delete($product->image);}
         $product->delete();
         $this->resetPage();
+        $this->alert = ['type'=>'info','message'=>'no se delete'];
     }
     public function modalEdit(Product $product){
         $this->productId = $product->id;

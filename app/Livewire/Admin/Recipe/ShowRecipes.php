@@ -68,7 +68,7 @@ class ShowRecipes extends Component
             $this->validate();
             $images = $this->images->store('recipes'); // Cargar la imagen al crear
             $recipe['images'] = $images;
-            $product['user_id'] =Auth::user()->id;
+            $recipe['user_id'] =Auth::user()->id;
             Recipe::create($recipe);
             $this->reset($this->resetVariables);
             $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
