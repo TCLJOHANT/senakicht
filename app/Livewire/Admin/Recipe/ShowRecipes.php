@@ -36,7 +36,7 @@ class ShowRecipes extends Component
     public function render()
     {   
         if (auth()->user()->hasRole('Admin')) {
-            $recipes = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+            $recipes = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
         }
         elseif (auth()->user()->hasRole('Aprendiz')) {
             $recipes = Recipe::where('user_id', auth()->user()->id)

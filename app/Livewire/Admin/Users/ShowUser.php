@@ -30,7 +30,7 @@ class ShowUser extends Component
         ];
     public function render()
     {
-        $users =  User::where('name', 'LIKE', '%' . $this->search . '%')->orWhere('email', 'LIKE', '%' . $this->search . '%')->with('roles:name')->paginate(5);
+        $users =  User::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->orWhere('email', 'LIKE', '%' . $this->search . '%')->with('roles:name')->paginate(5);
         $roles = Role::all();
         return view('livewire.admin.users.show-user',compact('users','roles'));
     }

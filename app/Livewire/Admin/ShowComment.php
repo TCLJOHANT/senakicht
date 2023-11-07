@@ -22,7 +22,7 @@ class ShowComment extends Component
     public function render()
     {
       //->orderBy($this->ordenar,$this->direction)
-        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
         return view('livewire.admin.show-comments',compact('comments'));
     }
     public function destroyComment(Comment $comment){

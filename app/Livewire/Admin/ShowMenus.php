@@ -32,9 +32,9 @@ class ShowMenus extends Component
     public function render()
     {
         if (auth()->user()->hasRole('Admin')) {
-            $menus = Menu::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+            $menus = Menu::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
         } elseif (auth()->user()->hasRole('Aprendiz')) {
-            $menus = Menu::where('user_id', auth()->user()->id)
+            $menus = Menu::where('user_id', auth()->user()->id)->orderBy('id', 'desc')
                           ->where(function ($query) {
                               $query->where('name', 'LIKE', '%' . $this->search . '%');
                           })

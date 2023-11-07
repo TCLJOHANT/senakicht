@@ -32,13 +32,14 @@ class ShowProducts extends Component
     public function render()
     {
         if (auth()->user()->hasRole('Admin')) {
-            $products = Product::where('name', 'LIKE', '%' . $this->search . '%')->paginate(5);
+            $products = Product::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
         }
         elseif (auth()->user()->hasRole('Aprendiz')) {
             $products = Product::where('user_id', auth()->user()->id)
                           ->where(function ($query) {
                               $query->where('name', 'LIKE', '%' . $this->search . '%');
                           })
+                          ->orderBy('id', 'desc')
                           ->paginate(5);
         }
         return view('livewire.admin.show-products', compact('products'));
