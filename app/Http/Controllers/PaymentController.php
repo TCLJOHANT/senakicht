@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sale;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -98,11 +99,31 @@ class PaymentController extends Controller
 
         if ($result->getState() === 'approved') {
           $status = 'Gracias! El pago a través de PayPal se ha ralizado correctamente.';
+          
+          $cart = $this->cartService->Cart();
+          
+          // $venta = new Sale;
+          // $venta = $cart->quantity['quantity'];
+          // $venta = $cart->price_total['price'];
+          // $venta = $cart->product_id['id'];
+          // $venta->user_id = auth()->user()->id; 
+
+          // $venta->save();
+
+          dd($cart);
+
+      
+        
+
           return redirect('cart')->with(compact('status'));
-        }
+       
+      }
 
       $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
       return redirect('/results')->with(compact('status'));
+
+      
+
 
       }
 

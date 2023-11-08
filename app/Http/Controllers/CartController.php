@@ -34,6 +34,8 @@ class CartController extends Controller
       
        
         $cartCollection = \Cart::getContent();
+
+     
       
         return view('cart',compact('cartCollection', 'client'));
     }

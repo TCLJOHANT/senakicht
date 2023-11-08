@@ -16,4 +16,9 @@ class CartService{
 
          return $total;
     }
+
+    public function Cart(){
+        $cart = \Cart::getContent();
+        return $cart;
+    }
 }
