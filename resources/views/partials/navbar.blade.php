@@ -14,6 +14,7 @@
         <a href="{{ route('recetas') }}">Recetas</a>
     </nav>
 
+     @livewire('search-nav') 
     <div class="ml-3 relative cont-header-iconos" >
         <div class="icons px-3">
             <div class="fas fa-search mx-4" id="search-btn"></div>
@@ -27,7 +28,10 @@
             </a>
             <div class="fas fa-bars mx-4" id="menu-btn"></div>
         </div>
-        @livewire('search-nav')
+        <div class="search-form">
+            <input type="search" id="search-box" placeholder="Que estas buscando...">
+            <label for="search-box" class="fas fa-search"></label>
+        </div>
     <!-- Settings Dropdown -->
     {{-- <div class="cont-submenu-perfil">
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
