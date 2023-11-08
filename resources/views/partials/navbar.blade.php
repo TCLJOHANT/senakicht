@@ -27,11 +27,7 @@
             </a>
             <div class="fas fa-bars mx-4" id="menu-btn"></div>
         </div>
-
-        <div class="search-form">
-            <input type="search" id="search-box" placeholder="que estas buscando...">
-            <label for="search-box" class="fas fa-search"></label>
-        </div>
+        @livewire('search-nav')
     <!-- Settings Dropdown -->
     {{-- <div class="cont-submenu-perfil">
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
