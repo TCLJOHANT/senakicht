@@ -26,44 +26,28 @@ class MercadoPagoService{
 
       MercadoPagoConfig::setAccessToken(config('services.mercadopago.token'));
 
-      $cart = $this->cartService->DatosCart();
+    $cart = $this->cartService->DatosCart();
 
-    $preference = new Preference();
+    $client = new PreferenceClient();
+    $preference = $client->create([
+        "items" => array(
+            array(
+                "title" => "Meu produto",
+                "quantity" => 1,
+                "currency_id" => "BRL",  
+                "unit_price" => 100
+            )
+        )
+    ]);
 
-    $items = [];
-    foreach ($cart as $product) {
-      // Crea un nuevo item
-      $item = new Item();
-      $item->title = "MEU";
-      $item->quantity = $product->quantity;
-      $item->currency_id = "BRL";
-      $item->unit_price = $product->price;
-
-      // Agrega el item al array
-      $items[] = $item;
-    }
-   
-    $preference->items = $items;
-    $preference->external_reference = $product->id;
-   
-
-
-  
-   
+    return $preference;
 
 
 
-
-
-
-    dd( $preference);
+    // dd( $preference);
      
    
-   
-    
-
-
-
+ 
   }
 
 }

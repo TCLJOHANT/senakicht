@@ -9,11 +9,11 @@ class CartService{
     public function DatosCart(){
         
 
-        $cartCollection = \Cart::getContent();
+        $total = \Cart::getTotal();
 
 
          //dd($cartCollection);
 
-         return $cartCollection;
+         return $total;
     }
 }

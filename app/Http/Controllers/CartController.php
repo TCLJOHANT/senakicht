@@ -30,12 +30,12 @@ class CartController extends Controller
 
     public function cart()  {
     
-       $preference = $this->mercadoPagoService->crearPreferece();
+       $client = $this->mercadoPagoService->crearPreferece();
       
        
         $cartCollection = \Cart::getContent();
       
-        return view('cart',compact('cartCollection', 'preference'));
+        return view('cart',compact('cartCollection', 'client'));
     }
     
     public function remove(Request $request){
