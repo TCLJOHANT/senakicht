@@ -30,3 +30,9 @@ jetstream necesita carpeta storage (alli se guardan las fotos de los usuarios)
 ```
 php artisan storage:link
 ```
+cambiar error de la api paypal
+File: vendor\paypal\rest-api-sdk-php\lib\PayPal\Common\PayPalModel.php
+en la linea 176
+```
+elseif (is_array($v) && sizeof($v) <= 0)
+```
