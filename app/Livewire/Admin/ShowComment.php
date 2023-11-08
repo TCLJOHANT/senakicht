@@ -10,7 +10,6 @@ class ShowComment extends Component
 {
     use WithPagination;
     public $search;
-    public $ordenar = "description";
     public $direction = "desc";
     // protected $paginationTheme = "bootstrap";
 
@@ -23,20 +22,8 @@ class ShowComment extends Component
     public function render()
     {
       //->orderBy($this->ordenar,$this->direction)
-        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->paginate(5);
+        $comments = Comment::where('description', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
         return view('livewire.admin.show-comments',compact('comments'));
-    }
-    public function order($ordenar){
-        if($this->ordenar == $ordenar){
-            if($this->direction == 'desc'){
-                $this->direction == 'asc';
-            }else{
-                $this->direction == 'desc';
-            }
-        }else{
-            $this->ordenar = $ordenar;
-            $this->direction == 'asc';
-        }
     }
     public function destroyComment(Comment $comment){
         $comment->delete();

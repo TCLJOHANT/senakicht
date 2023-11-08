@@ -3,8 +3,9 @@
     @livewireStyles
     <div class="card">
         <div class="card-header">
-            <x-button class="btn btn-success">Exportar</x-button>
+            <x-button class="btn btn-success"><a href="{{route('exportProduct')}}">Exportar</a></x-button>
             <x-button class="btn btn-info">Importar</x-button>
+            
 
         </div>
         <div class="px-6 py-4 flex items-center">
@@ -64,14 +65,12 @@
                                     <button  wire:click="editItemData({{$loopItem}})" class="font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <button wire:click="destroyItem({{$loopItem}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    {{-- <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
+                                 
+                                    <form action="{{route('admin.' . $modelName . '.destroy',$loopItem)}}" method="post" style="display: inline;">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer bg-red-600 hover:bg-red-500"><i class="fas fa-trash"></i></button>
-                                    </form> --}}
+                                    </form> 
                                 </td>
                             </tr>
                         @endforeach
@@ -186,9 +185,31 @@
             </x-slot>
         </div>
     </x-dialog-modal>
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        window.addEventListener('name-updated', event => {
-            alert('Name updated to: ' + event.detail.newName);
+        Livewire.on('deleteItem',ItemId =>{
+
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            })
         })
-        </script>
+    </script>
 </div>

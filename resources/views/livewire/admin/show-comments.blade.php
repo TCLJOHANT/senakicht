@@ -20,8 +20,8 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" wire:click="order('description')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Mensaje</th>
-                            <th scope="col" wire:click="order('rating')" class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Calificación</th>
+                            <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Mensaje</th>
+                            <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Calificación</th>
                             <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -39,7 +39,7 @@
                                 <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$comment}})" >  
                                     <i class="fas fa-pencil-alt"></i>
                                 </button> 
-                                <button wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                <button onclick="alert('error')" wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
@@ -92,11 +92,25 @@
         </x-slot>
         <x-slot name="footer">
             <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-            <x-danger-button wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
+            <x-danger-button onclick="alert('success')" wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
             <span wire:loading wire:target="createOrUpdate()">cargando ...</span>
         </x-slot>
     </x-dialog-modal>
 
+    <script>
+        function alert(type) {
+          switch (type) {
+              case 'success':
+                  toastr.success('El COmentario fue Guardada con éxito');
+                  break;
+              case 'error':
+                  toastr.error('El Comentario fue eliminada con éxito');
+                  break;
+              default:
+                  break;
+          }
+      }
+      </script>
 </div> 
 
 

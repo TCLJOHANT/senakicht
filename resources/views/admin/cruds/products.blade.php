@@ -20,14 +20,13 @@
   ], 'items' => $products, 'titleModal' => "Producto", 'modelName' => "products"]) --}}
 
 {{-- component reactivo --}}
-@livewire('admin.show-items', ['fields' => [
-   ["name" => "id", "type" => "text"],
+{{-- @livewire('admin.show-items', ['fields' => [
   ["name" => "name", "type" => "text"],
   ["name" => "image", "type" => "file"],
   ["name" => "description", "type" => "textarea"],
   ["name" => "price", "type" => "number"],
-],  'titleModal' => "Producto",'model'=>'Product','modelName' => "products"])
-
+],  'titleModal' => "Producto",'model'=>'Product','modelName' => "products"]) --}}
+    @livewire('admin.show-products')  
  
-      {{-- <x-admin.admin-table :items="$products"  :columns="['name', 'price', 'image','description']" modelName="products"/> --}}
+   
 </x-layouts.admin>

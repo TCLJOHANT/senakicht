@@ -45,10 +45,14 @@ class RoleSeeder extends Seeder
        Permission::create(['name'=>'admin.menus.store'])->syncRoles([$AdminRol,$AprendizRol]);
        Permission::create(['name'=>'admin.menus.update'])->syncRoles([$AdminRol,$AprendizRol]);
        Permission::create(['name'=>'admin.menus.destroy'])->syncRoles([$AdminRol,$AprendizRol]);
-
+        //categories
        Permission::create(['name'=>'admin.categories.index'])->syncRoles($AdminRol);
        Permission::create(['name'=>'admin.categories.store'])->syncRoles([$AdminRol]);
        Permission::create(['name'=>'admin.categories.update'])->syncRoles([$AdminRol]);
        Permission::create(['name'=>'admin.categories.destroy'])->syncRoles([$AdminRol]);
-    }
+
+       Permission::create(['name'=>'admin.roles.index'])->syncRoles([$AdminRol]);
+       Permission::create(['name'=>'admin.dashboard.index'])->syncRoles([$AdminRol]);
+    } 
 }
+
