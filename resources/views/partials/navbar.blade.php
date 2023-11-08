@@ -14,7 +14,7 @@
         <a href="{{ route('recetas') }}">Recetas</a>
     </nav>
 
-     @livewire('search-nav') 
+      @livewire('search-nav') 
     <div class="ml-3 relative cont-header-iconos" >
         <div class="icons px-3">
             <div class="fas fa-search mx-4" id="search-btn"></div>

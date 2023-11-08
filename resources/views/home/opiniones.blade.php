@@ -5,21 +5,21 @@
         <h1 class="heading"> su <span>opinion</span> </h1>
         <button id="modal-btn" class="styled-button">Comentar</button>
         {{-- cartas para comentarios --}}
-        <div class="box-container">
-            @forelse($comentarios as $row )
-                <div class="box">
-                    <img src="images/quote-img.png" alt="" class="quote">
-                    <p>{{ $row->description }}</p>
-                    <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
-                    <h3>{{ $row->user->name }}</h3>
-                    <div class="stars">
-                    @for($i=1; $i<=$row->rating; $i++)
-                    <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
-                    @endfor 
+            <div class="box-container">
+                @forelse($comentarios as $row )
+                    <div class="box">
+                        <img src="images/quote-img.png" alt="" class="quote">
+                        <p>{{ $row->description }}</p>
+                        <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
+                        <h3>{{ $row->user->name }}</h3>
+                        <div class="stars">
+                        @for($i=1; $i<=$row->rating; $i++)
+                        <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
+                        @endfor 
+                        </div>
                     </div>
-                </div>
-                @empty
-                no hay comentarios
+                    @empty
+                    no hay comentarios
                 @endforelse
             </div>
         </div>

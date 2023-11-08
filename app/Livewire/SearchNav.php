@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Comment;
 use Livewire\Component;
 use App\Models\Recipe;
 use App\Models\Product;
