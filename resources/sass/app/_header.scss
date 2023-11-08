@@ -37,56 +37,60 @@ $border: var(--border);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
+    .account-manage{
+      font-size: 200px;
+    }
     .icons a{
       margin-right:.1rem;
     }
-    div {
+    .icons {
       color: #fff;
       cursor: pointer;
       font-size: 2.5rem;
-      margin: 0 1rem;
 
-      &:hover {
+      #search-btn:hover {
+        color: $main-color;
+      }
+      #cart-btn:hover {
         color: $main-color;
       }
   }
-  .cont-submenu-perfil{
-    &:hover{
-      .submenu-perfil{
-        display: flex;
-      }
-    }
-    button{
-      background-color: $header-bg;
-      .imagen-avatar{
-        object-fit: cover;
-        border-radius: 50%;
-      }
-    }
-    .submenu-perfil{
-      padding: 10px;
-      position: absolute;
-      border-radius: 5%;
-      display: none;
-      flex-direction: column;
-      right: 0;
-      background-color: #fff;
-      margin-right: 2.5%;
-      a{
-        font-weight: 300;
-        color: rgb(44, 70, 86);
-        margin: 0px 0px 0.25em;
-        i{
-          font-size: 80%;
-        }
-        &:hover{
-          color:rgba(44, 70, 86,.4) ;
-        }
-      }
-      
-    }
-  }
+  // .cont-submenu-perfil{
+  //   &:hover{
+  //     .submenu-perfil{
+  //       display: flex;
+  //     }
+  //   }
+  //   button{
+  //     background-color: $header-bg;
+  //     .imagen-avatar{
+  //       object-fit: cover;
+  //       border-radius: 50%;
+  //     }
+  //   }
+  //   .submenu-perfil{
+  //     padding: 10px;
+  //     position: absolute;
+  //     border-radius: 5%;
+  //     display: none;
+  //     flex-direction: column;
+  //     right: 0;
+  //     background-color: #fff;
+  //     margin-right: 2.5%;
+  //     a{
+  //       font-weight: 300;
+  //       color: rgb(44, 70, 86);
+  //       margin: 0px 0px 0.25em;
+  //       i{
+  //         font-size: 80%;
+  //       }
+  //       &:hover{
+  //         color:rgba(44, 70, 86,.4) ;
+  //       }
+  //     }
+
+  //   }
+  // }
   #menu-btn {
     display: none;
   }
@@ -125,7 +129,7 @@ $border: var(--border);
         color: $main-color;
       }
     }
-   
+
   }
 }
 
@@ -193,7 +197,7 @@ $border: var(--border);
           display: inline-block;
         }
       }
-    
+
 
     .navbar {
       position: absolute;

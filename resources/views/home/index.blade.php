@@ -1,7 +1,7 @@
 <x-app-layout title="Senakicth">
+    <link rel="stylesheet" href="{{ asset ('css/home/index/home.css') }}">
+    {{-- seccion portada de home --}}
     <section class="home" id="home">
-        <link rel="stylesheet" href="{{ asset ('css/home/index/home.css') }}">
-    
         <div class="content">
             <h3>conoce acerca  </h3>
             <h3>de nosotros</h3>
@@ -9,15 +9,11 @@
             <p>que el sena tiene para ofrecerte.</p>
             <a href="#" class="btn">adquierelo ya!</a>
         </div>
-    
     </section>
-    
+    {{-- seccion acerca de home --}}
     <section class="about" id="about">
-    
         <h1 class="heading"> <span>acerca</span> de </h1>
-    
         <div class="row">
-    
             <div class="image">
                 <img src="images/academia.jpg" alt="">
             </div>
@@ -32,32 +28,53 @@
         </div>
     
     </section>
-    
+{{-- seccion de menu home --}}
     <section class="menu" id="menu">
-    
         <h1 class="heading"> nuestro <span>menu</span> </h1>
-    
-        <div class="box-container">
-            @foreach ($menus as $menu)
-                <div class="box">
-                     {{-- si no tien / usa images si no storage --}}
-                     @if (strpos($menu->image_path, '/') === false)
-                        <img src="/images/{{ $menu->image_path }}" alt="{{ $menu->image_path }}">
-                    @else
-                        <img src="{{ asset('storage/' . $menu->image_path) }}" alt="{{ $menu->name }}">
-                    @endif
-                    <h3>{{$menu->name}}</h3>
-                    <div class="price">{{$menu->price}}<span>{{$menu->price}}</span></div>
-                    <a href="#" class="btn">añadir al carrito</a>
+        <div class="container" style="margin-top: 80px">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="box-container">
+                        @foreach($menus as $pro)
+                            <div class="box">
+                                <div class="card">
+                                    
+                                {{-- si no tien / usa images si no storage --}}
+                                @if (strpos($pro->image_path, '/') === false)
+                                    <img src="/images/{{ $pro->image_path }}" alt="{{ $pro->image_path }}">
+                                @else
+                                    <img src="{{ asset('storage/' . $pro->image_path) }}" alt="{{ $pro->name }}">
+                                @endif
+                                    <div class="card-body">
+                                        <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
+                                        <p class="price">$ {{ $pro->price }} COP</p>
+                                        <form action="{{ route('cart.store') }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
+                                            <input type="hidden" value="{{ $pro->name }}" id="name" name="name">
+                                            <input type="hidden" value="{{ $pro->price }}" id="price" name="price">
+                                            <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
+                                            <!-- <input type="hidden" value="{{ $pro->slug }}" id="slug" name="slug"> -->
+                                            <input type="hidden" value="1" id="quantity" name="quantity">
+                                            <div class="card-footer">
+                                                  <div class="row">
+                                                    <button >
+                                                        agregar al carrito
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            @endforeach
+            </div>
         </div>
-    
     </section>
-    
-    
+    {{-- seccion de productos home --}}
     <section class="products" id="products">
-    
         <h1 class="heading"> nuestros  <span>productos</span> </h1>
         <div class="box-container">
             @foreach ($products as $product)
@@ -86,37 +103,32 @@
         </div>
     
     </section>
-    
-    
-    {{-- seccion de comentarios --}}
+    {{-- seccion de comentarios home --}}
     <section class="review" id="review">
         <h1 class="heading"> su <span>opinion</span> </h1>
-        <div class="box-container">
-    
-            @foreach ($comments as $comment)
-                <div class="box">
-                    <img src="images/quote-img.png" alt="" class="quote">
-                    <p>{{ $comment->description }}</p>
-                    <img src="{{ $comment->user->profile_photo_url}}" class="user" alt="">
-                    <h3>{{ $comment->user->name }}</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+             {{-- cartas para comentarios --}}
+             <div class="box-container">
+                @forelse($comments as $row )
+                    <div class="box">
+                        <img src="images/quote-img.png" alt="" class="quote">
+                        <p>{{ $row->description }}</p>
+                        <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
+                        <h3>{{ $row->user->name }}</h3>
+                        <div class="stars">
+                        @for($i=1; $i<=$row->rating; $i++)
+                        <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
+                        @endfor 
+                        </div>
                     </div>
+                    @empty
+                        no hay comentarios
+                    @endforelse
                 </div>
-            @endforeach
-        </div>
+            </div>
     </section>
     
-    
-    
     <section class="contact" id="contact">
-    
         <h1 class="heading"> <span>tu</span> contacto </h1>
-    
         <div class="row">
     
             <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63778.38370428024!2d-76.6349534824848!3d2.4574702446796857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e300311c028d47d%3A0x880bd67f0987a54e!2zUG9wYXnDoW4sIENhdWNh!5e0!3m2!1ses-419!2sco!4v1668640132821!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -141,9 +153,8 @@
         </div>
     
     </section>
-    
-    
-        {{-- seccion de recetas --}}
+
+    {{-- seccion de recetas home--}}
     <section class="blogs" id="blogs">
         <h1 class="heading"> nuestras <span>recetas </span> </h1>
         <div class="box-container">
