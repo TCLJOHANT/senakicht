@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "mercadopago/dx-php": "^3.0",
+        "paypal/rest-api-sdk-php": "^1.6",
         "spatie/laravel-permission": "^5.11"
     },
     "require-dev": {

@@ -1,4 +1,7 @@
 <x-app-layout title="Senakicth">
+@if(session('status'))
+ <h3>{{ session('status') }}</h3>
+@endif
 @if(isset($cartCollection))
 
 
@@ -34,6 +37,8 @@
                     <h4>No hay productos en su carrito</h4><br>
                     <a href="{{ route('menu') }}" class="btn btn-dark">Continuar en la tienda</a>
                 @endif
+
+                
 
                 @foreach($cartCollection as $item)
                     <div class="row">
@@ -91,6 +96,7 @@
                         </ul>
                     </div>
                     <br><a href="{{ route('menu') }}" class="btn btn-dark">Continue en la tienda</a>
+                    <a href="{{ route('paypal') }}" class="btn btn-success">Proceder al Checkout</a>
                    <div id="wallet_container"></div>
                 </div>
             @endif
@@ -105,7 +111,7 @@
 
 
 <!-- Asegúrate de tener un elemento con el ID 'miElemento' y un atributo 'data' para tu clave de Mercado Pago -->
-<div id="miElemento" data-mercado-pago-key="{{ config('services.mercadopago.key') }}" data-mi-variable="{{ $preference->id }}"></div>
+<!-- <div id="miElemento" data-mercado-pago-key="{{ config('services.mercadopago.key') }}" data-mi-variable="{{ $client->id }}"></div> -->
 
 
 <script src="{{ asset('js/pago.js') }}"></script>

@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,11 @@ Route::middleware([
 
     //menu
     Route::resource('/menus',MenuController::class)->names('menus');
+
+    //Payment
+    Route::get('/paypal/pay',[PaymentController::class, 'paypalPayment'])->name('paypal');
+    Route::get('/paypal/status',[PaymentController::class, 'paypalStatus']);
+
 
 });
 
