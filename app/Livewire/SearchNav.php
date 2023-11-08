@@ -13,15 +13,18 @@ class SearchNav extends Component
 
     public function render()
     {
-        $recipeResults = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
-        $productResults = Product::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
-        $menuResults = Menu::where('name', 'LIKE', '%' . $this->search . '%')->orderBy('id', 'desc')->paginate(5);
-
-        $items = [
-            'Recipes' => $recipeResults,
-            'Products' => $productResults,
-            'Menus' => $menuResults,
-        ];
+        if(!$this->search == null){
+            $recipeResults = Recipe::where('name', 'LIKE', '%' . $this->search . '%')->get();
+            $productResults = Product::where('name', 'LIKE', '%' . $this->search . '%')->get();
+            $menuResults = Menu::where('name', 'LIKE', '%' . $this->search . '%')->get();
+            $items = [
+                'Recipes' => $recipeResults,
+                'Products' => $productResults,
+                'Menus' => $menuResults,
+            ];
+        }else{
+            $items = [];
+        }
 
         return view('livewire.search-nav', compact('items'));
     }
