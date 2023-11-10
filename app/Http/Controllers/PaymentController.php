@@ -110,7 +110,9 @@ class PaymentController extends Controller
 
           // $venta->save();
 
-          dd($cart);
+          //dd($cart);
+
+          //car nu
 
       
         
