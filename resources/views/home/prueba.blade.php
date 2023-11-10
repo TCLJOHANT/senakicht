@@ -1,4 +1,4 @@
-<x-layauts.appPerfil>
+<x-layouts.appPerfil>
   
   <div class="container-fluid">
   @auth
@@ -293,4 +293,4 @@
     </div>
 </div>
 
-</x-layauts.appPerfil>
+</x-layouts.appPerfil>
