@@ -626,6 +626,16 @@ section {
   margin: 0.3rem;
 }
 
+.products .box-container .box .icons button {
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  border: var(--border);
+  color: #fff;
+  margin: 0.3rem;
+}
+
 .products .box-container .box .icons a:hover {
   background: var(--main-color);
 }
