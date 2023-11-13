@@ -1,11 +1,11 @@
 /*  opinion home */
 @import 'heading';
 @import 'modal';
-section {padding: 6rem 2%;}
+
     .review {
+        margin-top: 5rem;
         display: flex;
         flex-direction: column;
-        // align-items: center;
         // padding: 70px;
         // color: #fff;
         justify-content: center; /* Centrar horizontalmente */
@@ -19,8 +19,8 @@ section {padding: 6rem 2%;}
         }
         .box-container{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-            gap:1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            gap:1rem;
             .box{
                 border-radius: 2%;
                 .quote{
@@ -28,31 +28,30 @@ section {padding: 6rem 2%;}
                 }
                 border:var(--border);
                 text-align: center;
-                padding: 3rem 2rem;
+                padding: 1rem;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 p{
-                    font-size: 1.5rem;
-                    line-height: 1.8;
+                    font-size: 1.2rem;
                     color:#ccc;
-                    padding:2rem 0;
+                    padding:1.4rem 0;
                 }
                 .user-img{
-                    height: 7rem;
-                    width: 7rem;
+                    height: 4rem;
+                    width: 4rem;
                     border-radius: 50%;
                     object-fit: cover;
                 }
                 h3{
-                    padding:1rem 0;
-                    font-size: 2rem;
+                    padding:.5rem 0;
+                    font-size: 1.3rem;
                     color:#fff;
 
                 }
                 .stars{
                     i{
-                        font-size: 1.5rem;
+                        font-size: 1rem;
                         color:var(--main-color);
 
                     }

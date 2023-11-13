@@ -3,7 +3,7 @@
   text-align: center;
   color: #fff;
   text-transform: uppercase;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 .heading span {
   color: var(--main-color);
@@ -14,7 +14,7 @@
   margin-top: 1rem;
   display: inline-block;
   padding: 0.9rem 3rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #fff;
   background: var(--main-color);
   cursor: pointer;
@@ -24,59 +24,45 @@
 }
 
 /* para card recetas  home*/
-section {
-  padding: 2rem 7%;
-}
-
 .blogs .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 1.5rem;
 }
-
 .blogs .box-container .box {
   border: var(--border);
 }
-
 .blogs .box-container .box .image {
-  height: 25rem;
+  height: 15rem;
   overflow: hidden;
   width: 100%;
 }
-
 .blogs .box-container .box .image img {
   height: 100%;
   object-fit: cover;
   width: 100%;
 }
-
-.blogs .box-container .box:hover .image img {
+.blogs .box-container .box .image img:hover {
   transform: scale(1.2);
 }
-
 .blogs .box-container .box .content {
-  padding: 2rem;
+  padding: 1rem;
 }
-
 .blogs .box-container .box .content .title {
-  font-size: 2.5rem;
-  line-height: 1.5;
+  font-size: 2rem;
   color: #fff;
 }
-
 .blogs .box-container .box .content .title:hover {
   color: var(--main-color);
 }
-
 .blogs .box-container .box .content span {
   color: var(--main-color);
   display: block;
   padding-top: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
-
 .blogs .box-container .box .content p {
-  font-size: 1.6rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: #ccc;
   padding: 1rem 0;

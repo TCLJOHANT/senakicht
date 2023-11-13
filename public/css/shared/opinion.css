@@ -5,7 +5,7 @@
   text-align: center;
   color: #fff;
   text-transform: uppercase;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 .heading span {
   color: var(--main-color);
@@ -213,11 +213,8 @@
   color: #ffdd00; /* Color de la estrella cuando está seleccionada */
 }
 
-section {
-  padding: 6rem 2%;
-}
-
 .review {
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center; /* Centrar horizontalmente */
@@ -229,14 +226,14 @@ section {
 }
 .review .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
 }
 .review .box-container .box {
   border-radius: 2%;
   border: var(--border);
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -245,24 +242,23 @@ section {
   align-self: flex-start;
 }
 .review .box-container .box p {
-  font-size: 1.5rem;
-  line-height: 1.8;
+  font-size: 1.2rem;
   color: #ccc;
-  padding: 2rem 0;
+  padding: 1.4rem 0;
 }
 .review .box-container .box .user-img {
-  height: 7rem;
-  width: 7rem;
+  height: 4rem;
+  width: 4rem;
   border-radius: 50%;
   object-fit: cover;
 }
 .review .box-container .box h3 {
-  padding: 1rem 0;
-  font-size: 2rem;
+  padding: 0.5rem 0;
+  font-size: 1.3rem;
   color: #fff;
 }
 .review .box-container .box .stars i {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: var(--main-color);
 }
 

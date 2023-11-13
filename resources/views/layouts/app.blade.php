@@ -20,7 +20,7 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <div id="app">
             @include('partials.navbar')
-            <main class="py-4">
+            <main >
                  {{ $slot }}
             </main>
             @include('partials.footer')

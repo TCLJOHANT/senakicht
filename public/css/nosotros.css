@@ -5,6 +5,10 @@
   --border:.1rem solid rgba(255,255,255,.3);
 }
 
+main {
+  background-color: #fff;
+}
+
 .contenedor-nosotros {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -51,8 +55,7 @@ body {
 .header-nosotros {
   width: 100%;
   height: 650px;
-  background-image: url(../img/restaurante.png);
-  background-attachment: fixed;
+  background: linear-gradient(to bottom, rgba(0, 2, 0, 0.8), rgba(0, 0, 2, 0.8), rgba(0, 0, 0, 0.8)), url(../img/restaurante.png) no-repeat;
   background-position: center;
   background-size: cover;
   position: relative;
@@ -63,15 +66,15 @@ body {
 
 .header-nosotros .textos {
   margin-top: 152px;
-  color: rgb(51, 137, 51);
+  color: rgb(47, 157, 47);
 }
 
 .header-nosotros .titulo {
   font-size: 85px;
 }
 
-.header-nosotros.subtitulo {
-  font-size: 42px;
+.header-nosotros .subtitulo {
+  font-size: 32px;
   font-weight: 300;
   margin-bottom: 32px;
 }
@@ -295,20 +298,19 @@ body {
 }
 
 .team .team_box {
-  width: 95%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
   position: relative;
   top: 13%;
 }
 
 .team .team_box .profile {
-  width: 320px;
-  height: 320px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  margin: 0 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -369,60 +371,6 @@ body {
 
 .team .team_box .profile .info .team_icon i:hover {
   color: rgb(51, 137, 51);
-}
-
-.footer {
-  background: var(--black);
-  padding: 1em 0;
-  text-align: center;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
-
-.footer .share a {
-  height: 5rem;
-  width: 5rem;
-  line-height: 5rem;
-  font-size: 2rem;
-  color: #fff;
-  border: var(--border);
-  margin: 0.3rem;
-  border-radius: 50%;
-}
-
-.footer .share a:hover {
-  background-color: var(--main-color);
-}
-
-.footer .links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 2rem 0;
-  gap: 1rem;
-}
-
-.footer .links a {
-  padding: 0.7rem 2rem;
-  color: #fff;
-  border: var(--border);
-  font-size: 2rem;
-}
-
-.footer .links a:hover {
-  background: var(--main-color);
-}
-
-.footer .credit {
-  font-size: 2rem;
-  color: #fff;
-  font-weight: lighter;
-  padding: 1.5rem;
-}
-
-.footer .credit span {
-  color: var(--main-color);
 }
 
 /* Responsive */

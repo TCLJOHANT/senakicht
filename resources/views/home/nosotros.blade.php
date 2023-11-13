@@ -1,6 +1,5 @@
- {{-- <x-app-layout title="Senakicth"> --}}
+<x-app-layout title="Senakicth"> 
     <link rel="stylesheet" href="{{ asset('css/nosotros.css') }}">
-
 <div class="contenedor-nosotros">
 <div class="contenedor-body">
     <div class="header-nosotros">
@@ -131,12 +130,29 @@
 
                     </div>
 
+                    <div class="profile">
+                        <img src="image/chef2.png">
+
+                        <div class="info">
+                            <h2 class="name">Johan Chate</h2>
+                            <p class="bio">Desarrollador</p>
+
+                            <div class="team_icon">
+                                <i class="fa-brands fa-facebook-f"></i>
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
         </section>
 
     </div>
 </div>
 
 </div>
- {{-- </x-app-layout> --}}
+</x-app-layout>
 
 

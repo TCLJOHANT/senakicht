@@ -8,7 +8,7 @@
 
             <div class="contact-wrapper animated bounceInUp">
                 <div class="contact-form">
-                    <h3>Contact us</h3>
+                    <h3>Contacto</h3>
                     <form action="{{ route ('contactanos.store') }}" method="POST">
 
                         @csrf
@@ -64,5 +64,6 @@
                 </div>
             </div>
         </div>
+        
 </div>
 </x-app-layout>

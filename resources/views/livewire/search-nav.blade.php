@@ -2,24 +2,33 @@
     <link rel="stylesheet" href="{{ asset('css/shared/productos.css')}}">
     <link rel="stylesheet" href="{{ asset('css/home/recetas/recetas.css')}}">
     <link rel="stylesheet" href="{{ asset ('css/menu.css') }}">
-    {{-- <div class="search-form">
-        <input type="search" wire:model.live="search" id="search-box" placeholder="Que estas buscando...">
-        <label for="search-box" class="fas fa-search"></label>
-    </div> --}}
     <style>
         .cont-results-search{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    
+
             position: absolute;
+            /* display: flex;
+            align-items: center;
+            justify-content: center; */
             right: 0;
             top: 100%;
             color: aqua;
             width:100vw;
-            /* height: 100vh; */
-            overflow-x: hidden;
+            max-height: 100vh;
+            margin-right: .5%;
+            overflow-y: scroll;
             background-color:#000
         }
     </style>
-    
-    <input type="text" class="inline-flex rounded-md" wire:model.live="search" placeholder="buscar"> 
+    {{-- <div  class="fas fa-search mx-4 inline" id="search-btn"></div> --}}
+    <div class="search-form">
+        <input type="search"  wire:keydown.enter="renderizar()" wire:model="search" id="search-box" placeholder="Que estas buscando...">
+        <div wire:click="renderizar()" class="cont-icon-search">
+            <i class="fas fa-search"></i>
+        </div>
+    </div> 
     <div class="cont-results-search">
         @if ($items)
             <section class="products" id="products">   
@@ -43,7 +52,7 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star-half-alt"></i>
                                 </div>
-                                {{-- detalle --}}
+                               
                                 <div class="modal-frame">
                                     <div class="modal-body">
                                         <div class="modal-inner">
@@ -78,10 +87,10 @@
                     </div>
                     @endforeach
                     </div>
-            </section>
+            </section> 
 
             <section class="menu" id="menu">
-                <div class="container" style="margin-top: 80px">
+                <div class="container" >
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="box-container">

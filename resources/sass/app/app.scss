@@ -18,40 +18,39 @@
     text-transform: capitalize;
     transition: 0.2s linear;
 }
-html {
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
+ section {padding:  2%;}
+ section,div,img{border-radius: 10px;}
+ html {
+     overflow-x: hidden;
+     scroll-padding-top: 9rem;
+     scroll-behavior: smooth;
 
-    &::-webkit-scrollbar {
-        width: 0.8rem;
+     &::-webkit-scrollbar {
+         width: 0.8rem;
 
-        &-track {
-            background: transparent;
-        }
+         &-track {
+             background: transparent;
+         }
 
-        &-thumb {
-            background: #fff;
-            border-radius: 5rem;
-        }
-    }
-}
+         &-thumb {
+             background: #fff;
+             border-radius: 5rem;
+         }
+     }
+ }
 
 body {
     background: var(--bg);
 }
-
-section {
-    padding: 6rem 2%;
+main{
+    margin: 7% 0 0 0;
 }
-
 
 @import 'header'; // Llamando al archivo header
 @import 'footer';
 
 @media (max-width: 450px) {
-    html {
-        font-size: 50%;
-    }
+    // html {
+    //     font-size: 50%;
+    // }
 }

@@ -90,13 +90,13 @@ class User extends Authenticatable
     public function adminlte_desc()
     {
         if ( Auth::user()->hasRole('Admin')) {
-            return 'Admin';
+            return 'Administrador';
         }
         elseif(Auth::user()->hasRole('Aprendiz')){
             return 'Aprendiz';
         }
-        else{
-            return 'no rol';
+        elseif(Auth::user()->hasRole('Usuario')){
+            return 'Usuario';
         }
 }
     public function adminlte_profile_url(){

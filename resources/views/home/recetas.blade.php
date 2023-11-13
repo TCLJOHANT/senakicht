@@ -1,7 +1,5 @@
 <x-app-layout >
     <x-slot name="title">Recetas</x-slot>
-
-   {{-- <link rel="stylesheet" href="{{ asset('css/style.css')}}">  --}}
    <link rel="stylesheet" href="{{ asset('css/home/recetas/recetas.css')}}">
    <section class="blogs" id="blogs">
     <h1 class="heading"> nuestras <span>recetas </span> </h1>
