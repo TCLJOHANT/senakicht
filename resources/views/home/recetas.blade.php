@@ -11,7 +11,7 @@
         </div>
         <div class="content">
           <a href="#" class="title">{{ $row->name}}</a>
-          <span>by Daniel García / 21 mayo, 2022</span>
+          <span>{{ $row->user->name }} / {{ $row->created_at->format('M d, Y') }} </span>
           <p class="overflow-ellipsis">{{$row->ingredients }}</p>
           <a href="{{route ('verRecetas',$row) }}" class="btn">leer mas</a>
         </div>
