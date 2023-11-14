@@ -167,7 +167,7 @@
                 </div>
                 <div class="content">
                     <a href="#" class="title">{{$recipe->name}}</a>
-                    <span>by  Daniel García / 21 mayo, 2022</span>
+                    <span>{{ $recipe->user->name }} / {{ $recipe->created_at->format('M d, Y') }}</span>
                     <p>{{$recipe->description }}</p>
                     <a href="{{route ('verRecetas',$recipe) }}" class="btn">leer mas</a>
                 </div>

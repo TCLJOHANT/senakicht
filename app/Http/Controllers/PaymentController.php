@@ -120,10 +120,9 @@ class PaymentController extends Controller
       }
 
       $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
-      return redirect('/results')->with(compact('status'));
+      return redirect('cart')->with(compact('status'));
 
-      
-
+  
 
       }
 
