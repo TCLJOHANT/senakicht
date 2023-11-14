@@ -32,7 +32,7 @@
                     <img src="{{ asset('storage/' . $row->image) }}" alt="">
                 </div>
                 <div class="content">
-                    <h3>{{ $row->name}}</h3>
+                    <h3>{{substr($row->name, 0, 20)}}</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="modal-overlay"></div>
-                    </div>
+                    </div> 
                     <div class="price">{{ $row->price }} <span>{{ $row->price }}</span></div>
                 </div>
             </div>

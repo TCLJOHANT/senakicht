@@ -5,11 +5,11 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
         gap:1.5rem;
-    
+
     .box{
         border:var(--border);
         .image{
-            height: 14rem;
+            height: 11rem;
             overflow:hidden;
             width: 100%;
             img{
@@ -42,7 +42,12 @@
               line-height: 1.8;
               color:#ccc;
               padding:1rem 0;
-          } 
+
+            //   white-space: normal;
+            //   overflow: hidden;
+            //   text-overflow: ellipsis;
+            //   max-height: 7rem;
+          }
        }
     }
 

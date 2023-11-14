@@ -317,10 +317,11 @@
 }
 .review .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 30px;
 }
 .review .box-container .box {
+  max-width: 90%;
   border-radius: 2%;
   border: var(--border);
   text-align: center;
@@ -613,7 +614,7 @@
 }
 
 .products {
-  margin: 3rem;
+  margin: auto 3rem;
 }
 .products .box-container {
   display: grid;
@@ -625,11 +626,17 @@
   border: var(--border);
   padding: 0.5rem 0;
 }
+.products .box-container .box .icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .products .box-container .box .icons a {
+  border-radius: 30%;
   height: 3.5rem;
   width: 3.5rem;
-  line-height: 4rem;
   font-size: 1.3rem;
+  line-height: 3.4rem;
   border: var(--border);
   color: #fff;
   margin: 0.3rem;
@@ -638,12 +645,12 @@
   background: var(--main-color);
 }
 .products .box-container .box .image {
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 .products .box-container .box .image img {
   object-fit: cover;
   width: 100%;
-  height: 100%;
+  height: 150px;
 }
 .products .box-container .box .content h3 {
   color: #fff;
@@ -790,7 +797,7 @@
   border: var(--border);
 }
 .blogs .box-container .box .image {
-  height: 14rem;
+  height: 11rem;
   overflow: hidden;
   width: 100%;
 }

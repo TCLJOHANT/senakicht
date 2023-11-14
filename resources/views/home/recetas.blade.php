@@ -10,9 +10,10 @@
           <img src="{{ asset('storage/' . $row->images) }}" alt="">
         </div>
         <div class="content">
-          <a href="#" class="title">{{ $row->name}}</a>
+          <a href="#" class="title">{{substr($row->name, 0, 20)}}</a>
           <span>by Daniel García / 21 mayo, 2022</span>
-          <p class="overflow-ellipsis">{{$row->ingredients }}</p>
+           <p >{{substr($row->description, 0, 100)}}...</p> 
+          {{-- <p >{{$row->description}}</p> --}}
           <a href="{{route ('verRecetas',$row) }}" class="btn">leer mas</a>
         </div>
       </div>

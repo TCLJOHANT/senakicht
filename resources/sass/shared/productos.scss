@@ -3,7 +3,7 @@
 @import 'heading';
 @import 'modalDetalle';
 .products {
-    margin: 3rem;
+    margin: auto 3rem;
     .box-container{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -13,11 +13,15 @@
         border:var(--border);
         padding: .5rem 0;
         .icons {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
                 a{
+                border-radius: 30%;
                 height: 3.5rem;
                 width: 3.5rem;
-                line-height: 4rem;
                 font-size: 1.3rem;
+                line-height: 3.4rem;
                 border:var(--border);
                 color:#fff;
                 margin:.3rem;
@@ -26,15 +30,15 @@
                     }
                 }
             }
-            .image{
-                padding: 1rem;
-                img{
-                    object-fit: cover;
-                    width: 100%;
-                    height: 100%;
-                }
+        .image{
+            padding: 1rem 2rem;
+            img{
+                object-fit: cover;
+                width: 100%;
+                height: 150px;
             }
-            .content{
+        }
+        .content{
                 h3{
                     color:#fff;
                     font-size: 1.4rem;

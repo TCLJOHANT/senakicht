@@ -24,8 +24,9 @@
                     @endif
                 </div>
             </a>
-            <div class="fas fa-bars mx-4" id="menu-btn"></div>
-        
+            <div class="fas fa-bars mx-4 px-4" id="menu-btn"></div>
+            
+        @auth
           <!-- Settings Dropdown -->
         <div class="ms-3 mx-4 relative" style="transform: scale(1.1);">
             <x-dropdown align="right" width="48">
@@ -55,14 +56,14 @@
                     </div>
 
                     <x-dropdown-link href="{{ route('profile.show') }}">
-                        {{ __('Profile') }}
+                        {{ __('Perfil') }}
                     </x-dropdown-link>
 
                     <!-- url admin -->
                     @can('admin.home')
                         <x-dropdown-link href="{{ route('admin.home') }}">
                             {{-- <i class="fas fa-cogs"></i>  --}}
-                            {{ __('Admin') }}
+                            {{ __('Dashboard') }}
                         </x-dropdown-link>                
                     @endcan
 
@@ -80,11 +81,19 @@
 
                         <x-dropdown-link href="{{ route('logout') }}"
                                  @click.prevent="$root.submit();">
-                            {{ __('Log Out') }}
+                            {{ __('Cerrar Sesión') }}
                         </x-dropdown-link>
                     </form>
                 </x-slot>
             </x-dropdown>
+        </div>
+        @endauth
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <div class="flex items-center lg:order-2">
+           <i class="fas fa-fw fa-user"></i>
+           <x-button>Inisiar Sesión</x-button>
+    
+
         </div>
     </div>
 </header>

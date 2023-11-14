@@ -226,10 +226,11 @@
 }
 .review .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 30px;
 }
 .review .box-container .box {
+  max-width: 90%;
   border-radius: 2%;
   border: var(--border);
   text-align: center;
