@@ -27,16 +27,16 @@
 }
 
 .btn {
-  margin-top: 1rem;
+  margin-top: 0.6rem;
   display: inline-block;
-  padding: 0.9rem 3rem;
+  padding: 0.3rem 1.3rem;
   font-size: 1.5rem;
   color: #fff;
   background: var(--main-color);
   cursor: pointer;
 }
 .btn:hover {
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
 }
 
 .about .row {
@@ -612,21 +612,24 @@
   transition: 0.15s ease-in-out;
 }
 
+.products {
+  margin: 3rem;
+}
 .products .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1.5rem;
 }
 .products .box-container .box {
   text-align: center;
   border: var(--border);
-  padding: 1rem;
+  padding: 0.5rem 0;
 }
 .products .box-container .box .icons a {
-  height: 4rem;
-  width: 4rem;
-  line-height: 4.5rem;
-  font-size: 1.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  line-height: 4rem;
+  font-size: 1.3rem;
   border: var(--border);
   color: #fff;
   margin: 0.3rem;
@@ -635,7 +638,7 @@
   background: var(--main-color);
 }
 .products .box-container .box .image {
-  padding: 1rem 0;
+  padding: 1rem;
 }
 .products .box-container .box .image img {
   object-fit: cover;
@@ -644,18 +647,18 @@
 }
 .products .box-container .box .content h3 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 .products .box-container .box .content .stars {
   padding: 1.5rem;
 }
 .products .box-container .box .content .stars i {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   color: var(--main-color);
 }
 .products .box-container .box .content .price {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 .products .box-container .box .content .price span {
   text-decoration: line-through;
@@ -670,37 +673,36 @@
   gap: 1rem;
 }
 .contact .row .map {
-  flex: 1 1 45rem;
+  flex: 1 1 35rem;
   width: 100%;
   object-fit: cover;
 }
 .contact .row form {
-  flex: 1 1 45rem;
-  padding: 5rem 2rem;
+  flex: 1 1 35rem;
+  padding: 3rem 5rem;
   text-align: center;
 }
 .contact .row form h3 {
   text-transform: uppercase;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   color: #fff;
 }
 .contact .row form .inputBox {
   display: flex;
   align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: 1rem;
   background: var(--bg);
   border: var(--border);
 }
 .contact .row form .inputBox span {
   color: #fff;
-  font-size: 2rem;
-  padding-left: 2rem;
+  font-size: 1rem;
+  padding-left: 1rem;
 }
 .contact .row form .inputBox input {
   width: 100%;
-  padding: 2rem;
-  font-size: 1.7rem;
+  padding: 1.3rem;
+  font-size: 1.3rem;
   color: #fff;
   text-transform: none;
   background: none;
@@ -718,7 +720,7 @@
 }
 .menu .box-container .box {
   margin: 1% 0;
-  width: 15rem;
+  width: 20rem;
   border: var(--border);
   color: #fff;
 }
@@ -761,17 +763,16 @@
   font-size: 10px;
 }
 .menu .box-container .box .card .card-footer .row button {
-  width: 100%;
-  background: rgb(127, 187, 15);
-  text-transform: uppercase;
-  padding: 1em;
+  margin-top: 0.6rem;
+  display: inline-block;
+  padding: 0.3rem 1.3rem;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--main-color);
+  cursor: pointer;
 }
 .menu .box-container .box .card .card-footer .row button:hover {
-  background: rgb(43, 172, 31);
-  color: #fff;
-  transition: background-color 1s ease-out;
-  outline: 0;
-  cursor: pointer;
+  letter-spacing: 0.1rem;
 }
 
 @media (max-width: 768px) {
@@ -782,14 +783,14 @@
 /* para card recetas  home*/
 .blogs .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: 1.5rem;
 }
 .blogs .box-container .box {
   border: var(--border);
 }
 .blogs .box-container .box .image {
-  height: 15rem;
+  height: 14rem;
   overflow: hidden;
   width: 100%;
 }
@@ -803,9 +804,10 @@
 }
 .blogs .box-container .box .content {
   padding: 1rem;
+  text-align: center;
 }
 .blogs .box-container .box .content .title {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #fff;
 }
 .blogs .box-container .box .content .title:hover {
@@ -815,7 +817,7 @@
   color: var(--main-color);
   display: block;
   padding-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 .blogs .box-container .box .content p {
   font-size: 1rem;

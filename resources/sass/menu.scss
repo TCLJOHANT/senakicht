@@ -1,4 +1,5 @@
 /* menú */
+@import 'shared/variables';
 .menu {  
   margin-top: 6%;
   .box-container {
@@ -11,7 +12,7 @@
 
     .box {
       margin: 1% 0;
-      width: 15rem;
+      width: 20rem;
       border: var(--border);
       color: #fff;
       &:hover {
@@ -60,20 +61,35 @@
           .row {
             font-size: 10px;
 
-            button {
-              width: 100%;
-              background: rgb(127, 187, 15);
-              text-transform: uppercase;
-              padding: 1em;
+            button{
+              margin-top: .6rem;
+              display: inline-block;
+              padding: .3rem 1.3rem;
+              font-size: 1rem;
+              color: $white;
+              background: $main-color;
+              cursor: pointer;
+              
+              &:hover {
+                
+                letter-spacing: .1rem;
+              }
             }
 
-            button:hover {
-              background: rgb(43, 172, 31);
-              color: #fff;
-              transition: background-color 1s ease-out;
-              outline: 0;
-              cursor: pointer;
-            }
+            // button {
+            //   width: 100%;
+            //   background: rgb(127, 187, 15);
+            //   text-transform: uppercase;
+            //   padding: 1em;
+            // }
+
+            // button:hover {
+            //   background: rgb(43, 172, 31);
+            //   color: #fff;
+            //   transition: background-color 1s ease-out;
+            //   outline: 0;
+            //   cursor: pointer;
+            // }
           }
         }
       }

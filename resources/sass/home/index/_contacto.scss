@@ -5,36 +5,36 @@
         flex-wrap: wrap;
         gap:1rem;
         .map{
-            flex:1 1 45rem;
+            flex:1 1 35rem;
             width: 100%;
             object-fit: cover;
         }
         form{
-            flex:1 1 45rem;
-            padding:5rem 2rem;
+            flex:1 1 35rem;
+            padding:3rem 5rem;
             text-align: center;
+            
             h3{
                 text-transform: uppercase;
-                font-size: 3.5rem;
+                font-size: 2.5rem;
                 color:#fff;
             }
             .inputBox{
                 display: flex;
                 align-items: center;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
+                margin: 1rem;
                 background:var(--bg);
                 border:var(--border);
                 span{
                     color:#fff;
-                    font-size: 2rem;
-                    padding-left: 2rem;
+                    font-size:1rem;
+                    padding-left: 1rem;
                 }
                 
                  input{
                     width: 100%;
-                    padding:2rem;
-                    font-size: 1.7rem;
+                    padding:1.3rem;
+                    font-size: 1.3rem;
                     color:#fff;
                     text-transform: none;
                     background:none;

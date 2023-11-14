@@ -2,7 +2,7 @@
     <x-slot name="title">Menu</x-slot>
     <link rel="stylesheet" href="{{ asset ('css/menu.css') }}">
     <section class="menu" id="menu">
-    <h1 class="heading " > nuestro <span>menu</span> </h1> 
+    <h1 class="heading " > nuestros <span>Platos</span> </h1> 
     <div class="container" >
         <div class="row justify-content-center">
             <div class="col-lg-12">

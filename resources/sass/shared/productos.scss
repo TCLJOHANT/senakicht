@@ -3,21 +3,21 @@
 @import 'heading';
 @import 'modalDetalle';
 .products {
-
+    margin: 3rem;
     .box-container{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
         gap:1.5rem;
         .box{
         text-align: center;
         border:var(--border);
-        padding: 1rem;
+        padding: .5rem 0;
         .icons {
                 a{
-                height: 4rem;
-                width: 4rem;
-                line-height: 4.5rem;
-                font-size: 1.5rem;
+                height: 3.5rem;
+                width: 3.5rem;
+                line-height: 4rem;
+                font-size: 1.3rem;
                 border:var(--border);
                 color:#fff;
                 margin:.3rem;
@@ -27,7 +27,7 @@
                 }
             }
             .image{
-                padding: 1rem 0;
+                padding: 1rem;
                 img{
                     object-fit: cover;
                     width: 100%;
@@ -37,19 +37,18 @@
             .content{
                 h3{
                     color:#fff;
-                    font-size: 2rem;
+                    font-size: 1.4rem;
                 }
                 .stars{
                     padding: 1.5rem;
                     i{
-                    font-size: 1.7rem;
+                    font-size: 1.4rem;
                     color: var(--main-color);
                     }
                 }
-
                 .price{
                     color:#fff;
-                    font-size: 1.8rem;
+                    font-size: 1.5rem;
                     span{
                         text-decoration: line-through;
                         font-weight: lighter;

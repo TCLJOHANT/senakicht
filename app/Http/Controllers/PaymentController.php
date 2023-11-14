@@ -83,7 +83,7 @@ class PaymentController extends Controller
 
         if (!$paymentId || !$payerId || !$token) {
           $status = 'Lo sentimos! No se pudo realizar el pago con paypal.';
-          return redirect('/paypal/failed')->with(compact('status'));
+          return redirect('cart')->with(compact('status'));
         }
 
         

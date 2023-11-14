@@ -3,13 +3,13 @@
 .blogs {
     .box-container{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
         gap:1.5rem;
     
     .box{
         border:var(--border);
         .image{
-            height: 15rem;
+            height: 14rem;
             overflow:hidden;
             width: 100%;
             img{
@@ -23,8 +23,9 @@
         }
         .content{
            padding:1rem;
+           text-align: center;
            .title{
-               font-size: 2rem;
+               font-size: 1.4rem;
                color:#fff;
                &:hover{
                    color:var(--main-color);
@@ -34,7 +35,7 @@
                color:var(--main-color);
                display: block;
                padding-top: 1rem;
-               font-size: 1.5rem;
+               font-size: 1.3rem;
            }
            p{
               font-size: 1rem;

@@ -18,7 +18,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="icons">
-                                <button class="fas fa-shopping-cart"></button>
+                                <a href="#" class="fas fa-shopping-cart"></a>
                                 <a href="#" class="fas fa-heart"></a>
                                 <a href="#" class="fas fa-eye modal-popup"></a>
                             </div>

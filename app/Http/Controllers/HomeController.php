@@ -12,9 +12,9 @@ class HomeController extends Controller
 {
 
     public function index(){
-        $recipes = Recipe::take(3)->get();
-        $products = Product::take(5)->get();
-        $menus = Menu::take(6)->get();
+        $recipes = Recipe::take(4)->get();
+        $products = Product::take(4)->get();
+        $menus = Menu::take(4)->get();
         $comments =Comment::take(3)->get();
         return view('home.index',compact('recipes','products','menus','comments'));
     }

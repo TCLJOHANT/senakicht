@@ -31,7 +31,7 @@
 {{-- seccion de menu home --}}
     <section class="menu" id="menu">
         <div class="">
-            <h1 class="heading"> nuestro <span>menu</span> </h1>
+            <h1 class="heading"> nuestros <span>platos</span> </h1>
         </div>
         <div class="container" >
             <div class="row justify-content-center">
