@@ -18,9 +18,13 @@ class Recipe extends Model
         return $this->belongsTo('App\Models\Category');
     }
       //RELACION UNO A MUCHOS PLIMORFICA
-      public function comments(){
+    public function comments(){
         return $this->morphMany('App\Models\Comment','commentable');
     }
 
+    public function multimedia()
+    {
+        return $this->morphMany(Multimedia::class, 'multimediaable');
+    }
 
 }

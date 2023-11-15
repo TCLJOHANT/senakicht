@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 RecipesTableSeeder::class,
                 CommentsTableSeeder::class,
             ]);
-            \App\Models\User::factory(15)->create();
+            // \App\Models\User::factory(15)->create();
             \App\Models\Recipe::factory(20)->create();
             \App\Models\Product::factory(10)->create();
             \App\Models\Menu::factory(10)->create();
