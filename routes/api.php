@@ -42,3 +42,9 @@ Route::apiResource('recipe',RecipeController::class);
 
 
 
+Route::controller(UserController::class)->group(function () {
+    Route::post('/login', 'login');
+});
+Route::controller(UserController::class)->group(function () {
+    Route::post('/register', 'register');
+});
