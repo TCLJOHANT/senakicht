@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             // $table->string('slug')->unique();
             // $table->string('details')->nullable();
             // $table->text('description');
             $table->double('price');
             // $table->double('shipping_cost');
-            $table->string('image_path');
             $table->unsignedBigInteger('user_id');
+            $table->double('quantity')->nullable();
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');

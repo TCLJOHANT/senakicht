@@ -18,7 +18,7 @@ class UserFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     
      */
     private function generarImagen()
     {
@@ -26,7 +26,7 @@ class UserFactory extends Factory
         $response = $client->get('https://pixabay.com/api/', [
             'query' => [
                 'q' => 'photo profile',
-                'key' => env('PIXABAY_API_KEY'),
+                'key' => '32197405-8812e983959c5a943e2916bd1',
             ],
         ]);
         $imageData = json_decode($response->getBody(), true);

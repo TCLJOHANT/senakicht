@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('multimedia', function (Blueprint $table) {
+        Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->string('ruta');
-            $table->string('type');
-            $table->unsignedBigInteger('multimediaable_id');
-            $table->string('multimediaable_type');
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('multimedia');
+        Schema::dropIfExists('ingredients');
     }
 };

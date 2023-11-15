@@ -113,8 +113,5 @@
                     </x-dropdown>
                 </div>
             @endif
-        
-        
-       
     </div>
 </header>

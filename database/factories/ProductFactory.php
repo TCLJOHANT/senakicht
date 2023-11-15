@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Product;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -11,18 +12,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     private function generarImagen()
     {
         $client = new Client();
         $response = $client->get('https://pixabay.com/api/', [
             'query' => [
                 'q' => 'product',
-                'key' => env('PIXABAY_API_KEY'),
+                'key' => '32197405-8812e983959c5a943e2916bd1',
             ],
         ]);
         $imageData = json_decode($response->getBody(), true);
@@ -38,18 +34,40 @@ class ProductFactory extends Factory
 
         return 'products/' . $imageName;
     }
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
 
     public function definition(): array
     {
-        $image = $this->generarImagen();
+        // Generar el registro
         $category = Category::where('type', 'product')->first();
-        return [
-            'name' => implode(' ', $this->faker->words(3)),// generará una lista de 3 palabras aleatorias, y luego utilizamos  implode()  para unir las palabras con un espacio y obtener una cadena de texto. 
-            'price' =>  $this->faker->randomNumber(4),
-            'image' => $image,
+        $product = Product::create([
+            'name' => implode(' ', $this->faker->words(3)),
+            'price' => $this->faker->randomNumber(4),
             'description' => $this->faker->paragraph(3),
             'user_id' => 8,
-            'category_id'=>$category->id,
+            'category_id' => $category->id,
+        ]);
+
+        // Agregar las 4 imágenes al registro
+        for ($i = 0; $i < 4; $i++) {
+            $image = $this->generarImagen();
+            $product->multimedia()->create([
+                'ruta' => $image,
+                'type' => 'imagen',
+            ]);
+        }
+
+        return [
+            'name' => $product->name,
+            'price' => $product->price,
+            'description' => $product->description,
+            'user_id' => $product->user_id,
+            'category_id' => $product->category_id,
         ];
     }
 }
+

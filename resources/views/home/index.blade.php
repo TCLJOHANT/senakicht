@@ -41,12 +41,9 @@
                             <div class="box">
                                 <div class="card">
                                     
-                                {{-- si no tien / usa images si no storage --}}
-                                @if (strpos($pro->image_path, '/') === false)
-                                    <img src="/images/{{ $pro->image_path }}" alt="{{ $pro->image_path }}">
-                                @else
-                                    <img src="{{ asset('storage/' . $pro->image_path) }}" alt="{{ $pro->name }}">
-                                @endif
+                                    @foreach($pro->multimedia as $imagenes)
+                                        <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                                    @endforeach
                                     <div class="card-body">
                                         <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
                                         <p class="price">$ {{ $pro->price }} COP</p>
@@ -87,7 +84,9 @@
                         <a href="#" class="fas fa-eye" ></a>
                     </div>
                     <div class="image">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="">
+                        @foreach($product->multimedia as $imagenes)
+                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                        @endforeach
                     </div>
                     <div class="content">
                         <h3>{{$product->name}}</h3>
@@ -163,7 +162,9 @@
             @foreach ($recipes as $recipe)
             <div class="box">
                 <div class="image">
-                    <img src="{{ asset('storage/' . $recipe->images) }}" alt="">
+                    @foreach($recipe->multimedia as $imagenes)
+                        <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                    @endforeach
                 </div>
                 <div class="content">
                     <a href="#" class="title">{{$recipe->name}}</a>
