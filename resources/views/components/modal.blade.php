@@ -9,7 +9,9 @@ $maxWidth = [
     'lg' => 'sm:max-w-lg',
     'xl' => 'sm:max-w-xl',
     '2xl' => 'sm:max-w-2xl',
-][$maxWidth ?? '2xl'];
+    'auto' => 'sm:max-w-full', // Medida pant6alla full
+    'fit' => 'sm:max-w-xs', // Medida adaptativa al contenido
+][$maxWidth ?? '2xl']
 @endphp
 
 <div

@@ -20,7 +20,7 @@
     <body >
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <div id="app">
-            @include('partials.navbar')
+            @livewire('app.nav-bar')
             <main >
                  {{ $slot }}
             </main>

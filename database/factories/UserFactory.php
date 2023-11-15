@@ -4,7 +4,9 @@ namespace Database\Factories;
 
 use App\Models\Team;
 use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -18,17 +20,40 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    private function generarImagen()
+    {
+        $client = new Client();
+        $response = $client->get('https://pixabay.com/api/', [
+            'query' => [
+                'q' => 'photo profile',
+                'key' => env('PIXABAY_API_KEY'),
+            ],
+        ]);
+        $imageData = json_decode($response->getBody(), true);
+        $randomImageIndex = array_rand($imageData['hits']);
+        $imageUrl = $imageData['hits'][$randomImageIndex]['largeImageURL'];
+
+        // Generar un nombre único para la imagen
+        $imageName = 'profilePhoto_' . uniqid() . '.jpg';
+
+        // Descargar y guardar la imagen en tu directorio de imágenes de recetas
+        $imagePath = 'public/storage/profile-photos/' . $imageName;
+        file_put_contents($imagePath, file_get_contents($imageUrl));
+
+        return 'profile-photos/' . $imageName;
+    }
     public function definition(): array
     {
+        $image = $this->generarImagen();
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make('12345678'),
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'remember_token' => Str::random(10),
-            'profile_photo_path' => null,
+            'profile_photo_path' => $image,
             'current_team_id' => null,
         ];
     }
