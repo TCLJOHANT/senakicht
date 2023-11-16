@@ -52,5 +52,9 @@ return [
         'token' => env('MP_ACCESS_TOKEN'),
     ],
 
+    'pixabay'=>[
+       'key' => env('PIXABAY_API_KEY')
+    ],
+
    
 ];

@@ -30,8 +30,10 @@
     </section>
 {{-- seccion de menu home --}}
     <section class="menu" id="menu">
-        <h1 class="heading"> nuestro <span>menu</span> </h1>
-        <div class="container" style="margin-top: 80px">
+        <div class="">
+            <h1 class="heading"> nuestros <span>platos</span> </h1>
+        </div>
+        <div class="container" >
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="box-container">
@@ -165,7 +167,7 @@
                 </div>
                 <div class="content">
                     <a href="#" class="title">{{$recipe->name}}</a>
-                    <span>by  Daniel García / 21 mayo, 2022</span>
+                    <span>{{ $recipe->user->name }} / {{ $recipe->created_at->format('M d, Y') }}</span>
                     <p>{{$recipe->description }}</p>
                     <a href="{{route ('verRecetas',$recipe) }}" class="btn">leer mas</a>
                 </div>

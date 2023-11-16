@@ -29,4 +29,7 @@ class SearchNav extends Component
 
         return view('livewire.search-nav', compact('items'));
     }
+    public function renderizar(){
+        $this->render();
+    }
 }

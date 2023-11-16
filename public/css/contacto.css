@@ -1,21 +1,29 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css");
-.cont-contact {
-  padding: 0;
-  margin: 0;
-  background: #000000;
+.heading {
+  margin: 3%;
+  text-align: center;
   color: #fff;
-  line-height: 1;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+.heading span {
+  color: var(--main-color);
+  text-transform: uppercase;
+}
+
+.cont-contact {
+  margin: 7rem 0 4rem 0;
+  color: #fff;
   font-family: sans-serif;
-  padding: 0 1em;
-  padding-bottom: 3em;
-  min-height: 80vh;
+  padding: 0 1em 4rem 0;
+  height: 60%;
 }
 .cont-contact .contact-wrapper > * {
   box-shadow: 0 0 20px 0 rgb(99, 224, 31);
   padding: 1em;
   position: relative;
-  top: 50%;
+  top: 8%;
   left: 50%;
   transform: translate(-50%, -5%);
 }
@@ -71,9 +79,6 @@
   margin: 0 0 1rem 0;
 }
 @media (min-width: 700px) {
-  .cont-contact body {
-    padding: 0;
-  }
   .cont-contact .contact-wrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;

@@ -1,15 +1,17 @@
-//variables definidas en app.scss en :root
-$header-bg: var(--bg);
-$main-color: var(--main-color);
-$black: var(--black);
-$border: var(--border);
+// //variables definidas en app.scss en :root
+ $header-bg: var(--bg);
+ $main-color: var(--main-color);
+ $black: var(--black);
+ $border: var(--border);
+
 
 .header {
   background: $header-bg;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 7%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1rem 0;
   border-bottom: $border;
   position: fixed;
   top: 0;
@@ -18,18 +20,20 @@ $border: var(--border);
   z-index: 1000;
 
   .logo img {
-    height: 6rem;
+    height: 4rem;
   }
 
-  .navbar a {
-    margin: 0 1rem;
-    font-size: 1.6rem;
-    color: #fff;
-
-    &:hover {
-      color: $main-color;
-      border-bottom: 0.1rem solid $main-color;
-      padding-bottom: 0.5rem;
+  .navbar {
+    text-align: center;
+    
+    a {
+      font-size: large;
+      color: #fff;
+      &:hover {
+        color: $main-color;
+        border-bottom: 0.1rem solid $main-color;
+        padding-bottom: 0.5rem;
+      }
     }
   }
 
@@ -37,102 +41,65 @@ $border: var(--border);
     display: flex;
     justify-content: space-around;
     align-items: center;
-    .account-manage{
-      font-size: 200px;
-    }
-    .icons a{
-      margin-right:.1rem;
-    }
-    .icons {
-      color: #fff;
-      cursor: pointer;
-      font-size: 2.5rem;
-
-      #search-btn:hover {
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+  
+    #search-btn,#cart-btn{
+ 
+      &:hover {
         color: $main-color;
       }
-      #cart-btn:hover {
-        color: $main-color;
-      }
+    }
+    
   }
-  // .cont-submenu-perfil{
-  //   &:hover{
-  //     .submenu-perfil{
-  //       display: flex;
-  //     }
-  //   }
-  //   button{
-  //     background-color: $header-bg;
-  //     .imagen-avatar{
-  //       object-fit: cover;
-  //       border-radius: 50%;
-  //     }
-  //   }
-  //   .submenu-perfil{
-  //     padding: 10px;
-  //     position: absolute;
-  //     border-radius: 5%;
-  //     display: none;
-  //     flex-direction: column;
-  //     right: 0;
-  //     background-color: #fff;
-  //     margin-right: 2.5%;
-  //     a{
-  //       font-weight: 300;
-  //       color: rgb(44, 70, 86);
-  //       margin: 0px 0px 0.25em;
-  //       i{
-  //         font-size: 80%;
-  //       }
-  //       &:hover{
-  //         color:rgba(44, 70, 86,.4) ;
-  //       }
-  //     }
 
-  //   }
-  // }
   #menu-btn {
     display: none;
   }
 
   .search-form {
+    z-index: 1000;
     position: absolute;
-    top: 115%;
-    right: 7%;
+    top: 100%;
+    right: 1%;
     background: #fff;
-    width: 50rem;
-    height: 5rem;
+    width: 50%;
     display: flex;
-    align-items: center;
+    justify-content: center;
     transform: scaleY(0);
     transform-origin: top;
 
     &.active {
       transform: scaleY(1);
     }
-    input {
-      height: 100%;
-      width: 100%;
-      font-size: 1.6rem;
-      color: $black;
-      padding: 1rem;
-      text-transform: none;
-    }
 
-    label {
-      cursor: pointer;
-      font-size: 2.2rem;
-      margin-right: 1.5rem;
-      color: $black;
+     input {
+      border: none;
+      outline: none;
+      margin-left: 3%;
+       height: 100%;
+       width: 80%;
+       font-size: 1.2rem;
+       color: $black;
+       padding: 1rem;
+       text-transform: none;
+     }
 
-      &:hover {
-        color: $main-color;
-      }
-    }
-
+     .cont-icon-search{
+      border-left: 1px solid rgb(199, 189, 189);
+      border-radius: 0;
+       cursor: pointer;
+       font-size: 1.7rem;
+       color: $black;
+       width: 15%;
+       text-align: center;
+       &:hover {
+         color: $main-color;
+       }
+       
+     }
   }
-}
-
 
   .cart-items-container {
     position: absolute;
@@ -192,20 +159,21 @@ $border: var(--border);
   }
 
   @media (max-width: 768px) {
-      .cont-header-iconos{
-        #menu-btn {
-          display: inline-block;
-        }
+    .cont-header-iconos {
+      #menu-btn {
+        display: inline-block;
       }
-
+    }
 
     .navbar {
       position: absolute;
       top: 100%;
-      right: -100%;
+      display: block;
+      right: -120%;
       background: #fff;
-      width: 30rem;
-      height: calc(100vh - 9.5rem);
+      width: 100%;
+    
+      height: 100vh;
 
       &.active {
         right: 0;
@@ -215,8 +183,8 @@ $border: var(--border);
         color: $black;
         display: block;
         margin: 1.5rem;
-        padding: 0.5rem;
-        font-size: 2rem;
+        padding: 0.3rem;
+        font-size: 1.4rem;
       }
     }
 
@@ -226,7 +194,3 @@ $border: var(--border);
     }
   }
 }
-
-
-
-

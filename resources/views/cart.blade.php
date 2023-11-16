@@ -1,9 +1,11 @@
 <x-app-layout title="Senakicth">
-@if(session('status'))
- <h3>{{ session('status') }}</h3>
-@endif
 @if(isset($cartCollection))
 
+@if(session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 
     <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}"> 
     {{-- <link rel="stylesheet" href="{{ asset ('js/c.css') }}"> --}}
@@ -31,11 +33,23 @@
       
         <div class="comp">
             <div class="comp1">
-                @if(\Cart::getTotalQuantity()>0)
-                    <h4>{{ \Cart::getTotalQuantity()}} Producto en el carrito</h4><br>
+                @if(\Cart::getTotalQuantity() > 0)
+                    <h4>{{ \Cart::getTotalQuantity() }} Producto(s) en el carrito</h4><br>
                 @else
-                    <h4>No hay productos en su carrito</h4><br>
-                    <a href="{{ route('menu') }}" class="btn btn-dark">Continuar en la tienda</a>
+                     @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @else
+                        @if(session('status'))
+                           <div class="alert alert-danger">
+                            {{ session('status') }}
+                          </div>
+                        @endif
+
+                        <h4>No hay productos en su carrito</h4><br>
+                        <a href="{{ route('menu') }}" class="btn btn-dark">Continuar en la tienda</a>
+                     @endif
                 @endif
 
                 

@@ -1,15 +1,17 @@
 @charset "UTF-8";
 /* menú */
+.menu {
+  margin-top: 6%;
+}
 .menu .box-container {
-  display: grid;
-  margin: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  width: 96vw;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 .menu .box-container .box {
-  padding: 2rem 0;
-  border-radius: 2%;
-  text-align: center;
+  margin: 1% 0;
+  width: 20rem;
   border: var(--border);
   color: #fff;
 }
@@ -20,24 +22,27 @@
 .menu .box-container .box .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 10% 0;
 }
 .menu .box-container .box .card img {
+  align-self: center;
   border-radius: 50%;
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
 }
 .menu .box-container .box .card .card-body {
+  align-self: center;
+  text-align: center;
   width: 70%;
   height: 100%;
 }
 .menu .box-container .box .card .card-body .card-title {
-  font-size: 30px;
+  font-size: 20px;
   padding: 1rem 0;
 }
 .menu .box-container .box .card .card-body .price {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   padding: 0.5rem 0;
 }
 .menu .box-container .box .card .card-body .price span {
@@ -49,17 +54,22 @@
   font-size: 10px;
 }
 .menu .box-container .box .card .card-footer .row button {
-  width: 100%;
-  background: rgb(127, 187, 15);
-  text-transform: uppercase;
-  padding: 1em;
+  margin-top: 0.6rem;
+  display: inline-block;
+  padding: 0.3rem 1.3rem;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--main-color);
+  cursor: pointer;
 }
 .menu .box-container .box .card .card-footer .row button:hover {
-  background: rgb(43, 172, 31);
-  color: #fff;
-  transition: background-color 1s ease-out;
-  outline: 0;
-  cursor: pointer;
+  letter-spacing: 0.1rem;
+}
+
+@media (max-width: 768px) {
+  .menu .box-container {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
 }
 
 /*# sourceMappingURL=menu.css.map */

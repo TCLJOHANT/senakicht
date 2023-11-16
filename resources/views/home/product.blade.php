@@ -1,23 +1,38 @@
-<x-app-layout >
+<x-app-layout>
     <x-slot name="title">Productos</x-slot>
     <link rel="stylesheet" href="{{ asset('css/shared/productos.css')}}">
     <section class="products" id="products">
 
-        <h1 class="heading"> nuestros <span>productos</span> </h1>        
+        <h1 class="heading"> nuestros <span>productos</span> </h1>
         <div class="box-container">
-            
-          @foreach($productos as $row)
+
+            @foreach($productos as $row)
             <div class="box">
-                <div class="icons">
-                    <a href="#" class="fas fa-shopping-cart"></a>
-                    <a href="#" class="fas fa-heart"></a>
-                    <a href="#" class="fas fa-eye modal-popup" ></a>
-                </div>
+                <form action="{{ route('cart.store') }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" value="{{ $row->id }}" id="id" name="id">
+                    <input type="hidden" value="{{ $row->name }}" id="name" name="name">
+                    <input type="hidden" value="{{ $row->price }}" id="price" name="price">
+                    <input type="hidden" value="{{ $row->image }}" id="img" name="img">
+                    <input type="hidden" value="1" id="quantity" name="quantity">
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="icons">
+                                <a href="#" class="fas fa-shopping-cart"></a>
+                                <a href="#" class="fas fa-heart"></a>
+                                <a href="#" class="fas fa-eye modal-popup"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+           
                 <div class="image">
                     <img src="{{ asset('storage/' . $row->image) }}" alt="">
                 </div>
                 <div class="content">
-                    <h3>{{ $row->name}}</h3>
+                    <h3>{{substr($row->name, 0, 20)}}</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -35,18 +50,17 @@
                             </div>
                         </div>
                         <div class="modal-overlay"></div>
-                    </div>
-
+                    </div> 
                     <div class="price">{{ $row->price }} <span>{{ $row->price }}</span></div>
                 </div>
             </div>
-        @endforeach
+            @endforeach
         </div>
 
-        
+
     </section>
 
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="{{ asset('js/modalDetalle.js') }}"></script>
-    
+
 </x-app-layout>

@@ -41,7 +41,7 @@ class PaymentController extends Controller
       public function paypalPayment()
       {
        
-        $cartData = $this->cartService->DatosCart();
+        $cartData = $this->cartService->PreciCart();
         
 
         $payer = new Payer();
@@ -83,7 +83,7 @@ class PaymentController extends Controller
 
         if (!$paymentId || !$payerId || !$token) {
           $status = 'Lo sentimos! No se pudo realizar el pago con paypal.';
-          return redirect('/paypal/failed')->with(compact('status'));
+          return redirect('cart')->with(compact('status'));
         }
 
         
@@ -100,32 +100,29 @@ class PaymentController extends Controller
         if ($result->getState() === 'approved') {
           $status = 'Gracias! El pago a través de PayPal se ha ralizado correctamente.';
           
-          $cart = $this->cartService->Cart();
+           // Obtén los detalles del carrito
+           $cartData = $this->cartService->DatosCart();
+
+        // Itera sobre los elementos del carrito y guárdalos en la base de datos
+        foreach ($cartData as $item) {
+            Sale::create([
+                'price_total' => $item->price,
+                'quantity' => $item->quantity,
+                'menu_id' => $item->id,  // Ajusta esto según tu estructura de datos
+                'user_id' => auth()->user()->id,  // Ajusta esto según tu lógica de usuario
+            ]);
+        }
           
-          // $venta = new Sale;
-          // $venta = $cart->quantity['quantity'];
-          // $venta = $cart->price_total['price'];
-          // $venta = $cart->product_id['id'];
-          // $venta->user_id = auth()->user()->id; 
-
-          // $venta->save();
-
-          //dd($cart);
-
-          //car nu
-
-      
-        
-
+        $this->cartService->clearCart();
+    
           return redirect('cart')->with(compact('status'));
        
       }
 
       $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
-      return redirect('/results')->with(compact('status'));
+      return redirect('cart')->with(compact('status'));
 
-      
-
+  
 
       }
 

@@ -2,16 +2,18 @@
 
 
 .home {
-    min-height: 100vh;
+  margin-top: 5rem;
+  min-height: 100vh;
     display: flex;
     align-items: center;
     background: linear-gradient(to bottom, rgba(0, 2, 0, .6), rgba(0, 0, 2, .6), rgba(0, 0, 0, .45) ), url(../../../images/chef.png) no-repeat;
     background-size: cover;
     background-position: center;
     
+    
     .content {
-      max-width: 60rem;
-      margin: 0 5%;
+      padding: 0 4rem;
+      margin: 0;
       
       h3 {
         font-size: $font-size-large;
@@ -32,29 +34,34 @@
   
   @import '../../shared/btn';
 
-  .about .row {
+
+.about {  
+  .row {
+    border-radius: 10px;
     display: flex;
     align-items: center;
     background: $black;
     flex-wrap: wrap;
-    
+
     .image {
-      flex: 1 1 45rem;
-      
+      width: 100%;
+      padding: 1rem;
+
       img {
         width: 100%;
+        border-radius: 10px;
       }
     }
-    
+
     .content {
-      flex: 1 1 45rem;
+      width: 100%;
       padding: 2rem;
-      
+
       h3 {
         font-size: $font-size-medium;
         color: $white;
       }
-      
+
       p {
         font-size: $font-size-small;
         color: #ccc;
@@ -63,6 +70,19 @@
       }
     }
   }
+
+  @media (min-width: 768px) {
+    .row {
+      .image {
+        width: 50%;
+      }
+
+      .content {
+        width: 50%;
+      }
+    }
+  }
+}
   
   @media (max-width: 768px) {
     .home {

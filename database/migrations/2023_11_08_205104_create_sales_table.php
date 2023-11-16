@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('price_total')->nullable();
             $table->string('quantity')->nullable();
 
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->nullable();
+            //$table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->nullable();
 
             $table->foreignId('menu_id')->references('id')->on('menus')->onDelete('cascade')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();

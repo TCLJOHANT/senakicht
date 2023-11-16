@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="title">Menu</x-slot>
     <link rel="stylesheet" href="{{ asset ('css/menu.css') }}">
-<section class="menu" id="menu">
-    <div class="container" style="margin-top: 80px">
+    <section class="menu" id="menu">
+    <h1 class="heading " > nuestros <span>Platos</span> </h1> 
+    <div class="container" >
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="box-container">
@@ -10,7 +11,7 @@
                         <div class="box">
                             <div class="card">
                                 
-                            {{-- si no tien / usa images si no storage --}}
+                           
                             @if (strpos($pro->image_path, '/') === false)
                                 <img src="/images/{{ $pro->image_path }}" alt="{{ $pro->image_path }}">
                             @else
@@ -34,6 +35,7 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        
                                     </form>
                                 </div>
                             </div>

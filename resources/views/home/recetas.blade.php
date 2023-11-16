@@ -1,7 +1,5 @@
 <x-app-layout >
     <x-slot name="title">Recetas</x-slot>
-
-   {{-- <link rel="stylesheet" href="{{ asset('css/style.css')}}">  --}}
    <link rel="stylesheet" href="{{ asset('css/home/recetas/recetas.css')}}">
    <section class="blogs" id="blogs">
     <h1 class="heading"> nuestras <span>recetas </span> </h1>
@@ -12,9 +10,16 @@
           <img src="{{ asset('storage/' . $row->images) }}" alt="">
         </div>
         <div class="content">
-          <a href="#" class="title">{{ $row->name}}</a>
+<<<<<<< HEAD
+          <a href="#" class="title">{{substr($row->name, 0, 20)}}</a>
           <span>by Daniel García / 21 mayo, 2022</span>
+           <p >{{substr($row->description, 0, 100)}}...</p> 
+          {{-- <p >{{$row->description}}</p> --}}
+=======
+          <a href="#" class="title">{{ $row->name}}</a>
+          <span>{{ $row->user->name }} / {{ $row->created_at->format('M d, Y') }} </span>
           <p class="overflow-ellipsis">{{$row->ingredients }}</p>
+>>>>>>> b26cc9ff121c4ac30a475e4913b92eebf75ec25a
           <a href="{{route ('verRecetas',$row) }}" class="btn">leer mas</a>
         </div>
       </div>

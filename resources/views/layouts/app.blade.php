@@ -14,13 +14,14 @@
         <!-- Styles --> 
           @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('css/app/app.css')}}">
+      
         @livewireStyles 
     </head>
     <body >
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <div id="app">
             @include('partials.navbar')
-            <main class="py-4">
+            <main >
                  {{ $slot }}
             </main>
             @include('partials.footer')
