@@ -14,12 +14,11 @@ return new class extends Migration
         //table ventas
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('price_total')->nullable();
-            $table->string('quantity')->nullable();
+            $table->decimal('price_total')->nullable();
+          
 
             //$table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->nullable();
 
-            $table->foreignId('menu_id')->references('id')->on('menus')->onDelete('cascade')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
 
             // $table->foreign('menu_id')->references('id')->on('menu')->onDelete('cascade');
