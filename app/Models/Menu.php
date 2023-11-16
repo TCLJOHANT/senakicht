@@ -21,4 +21,9 @@ class Menu extends Model
       public function comments(){
         return $this->morphMany('App\Models\Comment','commentable');
     }
+
+    public function multimedia()
+    {
+        return $this->morphMany(Multimedia::class, 'multimediaable');
+    }
 }

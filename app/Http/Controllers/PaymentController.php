@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Sale;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -103,15 +104,48 @@ class PaymentController extends Controller
            // Obtén los detalles del carrito
            $cartData = $this->cartService->DatosCart();
 
-        // Itera sobre los elementos del carrito y guárdalos en la base de datos
-        foreach ($cartData as $item) {
-            Sale::create([
-                'price_total' => $item->price,
+
+           $totalPrice = 0;
+
+           // Iterar sobre los elementos del carrito para calcular el precio total y guardarlos
+           foreach ($cartData as $item) {
+               $totalPrice += $item->price * $item->quantity;
+           }
+           
+           // Crear un solo registro en la tabla Sale para toda la transacción del carrito
+           Sale::create([
+               'price_total' => $totalPrice,
+               'user_id' => auth()->user()->id,
+           ]);
+
+           foreach ($cartData as $item) {
+            Cart::create([
+                'price' => $item->price,
                 'quantity' => $item->quantity,
-                'menu_id' => $item->id,  // Ajusta esto según tu estructura de datos
-                'user_id' => auth()->user()->id,  // Ajusta esto según tu lógica de usuario
+                'menu_id' => $item->id,
+            
             ]);
         }
+
+
+
+
+
+
+
+
+
+
+
+        // // Itera sobre los elementos del carrito y guárdalos en la base de datos
+        // foreach ($cartData as $item) {
+        //     Sale::create([
+        //         'price_total' => $item->price,
+        //         'quantity' => $item->quantity,
+        //         'menu_id' => $item->id,  // Ajusta esto según tu estructura de datos
+        //         'user_id' => auth()->user()->id,  // Ajusta esto según tu lógica de usuario
+        //     ]);
+        // }
           
         $this->cartService->clearCart();
     

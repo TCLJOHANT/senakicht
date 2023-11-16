@@ -29,7 +29,9 @@
 
            
                 <div class="image">
-                    <img src="{{ asset('storage/' . $row->image) }}" alt="">
+                    @foreach($row->multimedia as $imagenes)
+                        <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                     @endforeach
                 </div>
                 <div class="content">
                     <h3>{{substr($row->name, 0, 20)}}</h3>

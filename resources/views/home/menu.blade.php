@@ -10,13 +10,9 @@
                     @foreach($products as $pro)
                         <div class="box">
                             <div class="card">
-                                
-                           
-                            @if (strpos($pro->image_path, '/') === false)
-                                <img src="/images/{{ $pro->image_path }}" alt="{{ $pro->image_path }}">
-                            @else
-                                <img src="{{ asset('storage/' . $pro->image_path) }}" alt="{{ $pro->name }}">
-                            @endif
+                                @foreach($pro->multimedia as $imagenes)
+                                    <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                                @endforeach
                                 <div class="card-body">
                                     <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
                                     <p class="price">$ {{ $pro->price }} COP</p>

@@ -12,8 +12,10 @@ class Sale extends Model
     protected $guarded =[];
     
     // Relación con el modelo Product
-    public function menu()
-    {
-        return $this->belongsTo(Menu::class);
-    }
+    // public function menu()
+    // {
+    //     return $this->belongsTo(Menu::class);
+    // }
+
+    
 }

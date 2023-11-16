@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Recipe;
 
 use App\Exports\RecipeExport;
+use App\Models\Multimedia;
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -55,39 +56,54 @@ class ShowRecipes extends Component
         $this->openModal = true;
     }
 
-    public function createOrUpdate(){
+    public function createOrUpdate()
+    {
         $recipe = [
-            'name'=>$this->name,
-            'images'=>"",
-            'description'=>$this->description,
-            'ingredients'=>$this->ingredients,
-            'preparation'=>$this->preparation,
-            'user_id'=> ""
+            'name' => $this->name,
+            'description' => $this->description,
+            'ingredients' => $this->ingredients,
+            'preparation' => $this->preparation,
+            'user_id' => ""
         ];
-        if($this->btnModal=="Crear"){ 
+        
+        if ($this->btnModal == "Crear") {
             $this->validate();
-            $images = $this->images->store('recipes'); // Cargar la imagen al crear
-            $recipe['images'] = $images;
-            $recipe['user_id'] =Auth::user()->id;
-            Recipe::create($recipe);
+            
+            $recipe['user_id'] = Auth::user()->id;
+            $recipeModel = Recipe::create($recipe);
+            
+            foreach ($this->images as $image) {
+                $path = $image->store('recipes');
+                
+                $multimedia = new Multimedia();
+                $multimedia->ruta = $path;
+                $multimedia->tipo = 'imagen';
+                $recipeModel->multimedia()->save($multimedia);
+            }
+            
             $this->reset($this->resetVariables);
-            $this->identificador = rand(); //le asigna un numero al azar o random (se hace para que input file cambie y no ponga el anterior)
-        }
-        elseif ($this->btnModal == "Actualizar") { 
-            $recipeEdit = Recipe::find($this->recipeId); 
+            $this->identificador = rand();
+        } elseif ($this->btnModal == "Actualizar") {
+            $recipeEdit = Recipe::find($this->recipeId);
+            
             if ($recipeEdit) {
-                // Verificar si se proporcionó una nueva imagen
-                if (is_string($this->images)) {
-                    $images = $recipeEdit->images; // Mantener la imagen existente
-                } else {
-                    Storage::disk('public')->delete($recipeEdit->images); // Eliminar la imagen antigua
-                    $images = $this->images->store('recipes'); // Almacenar la nueva imagen
-                }
                 $recipe['user_id'] = $recipeEdit->user_id;
-                $recipe['images'] = $images; // Actualizar el valor de la imagen en el arreglo $recipe
                 $recipeEdit->update($recipe);
+                
+                $recipeEdit->multimedia()->delete(); // Eliminar todas las imágenes existentes
+                
+                foreach ($this->images as $image) {
+                    $path = $image->store('recipes');
+                    
+                    $multimedia = new Multimedia();
+                    $multimedia->ruta = $path;
+                    $multimedia->tipo = 'imagen';
+                    
+                    $recipeEdit->multimedia()->save($multimedia);
+                }
+                
                 $this->reset($this->resetVariables);
-                $this->identificador = rand(); 
+                $this->identificador = rand();
             }
         }
     }
@@ -96,8 +112,12 @@ class ShowRecipes extends Component
         $this->validateOnly($propertyName);
     }
     public function destroyRecipe(Recipe $recipe) {
-        //eliminar imagen
-        if($recipe->images){Storage::disk('public')->delete($recipe->images);}
+         // Eliminar imagen
+        foreach ($recipe->multimedia as $multimedia) {
+            if ($multimedia->tipo === 'imagen') {
+                Storage::disk('public')->delete($multimedia->ruta);
+            }
+        }
         $recipe->delete();
         $this->resetPage();
       

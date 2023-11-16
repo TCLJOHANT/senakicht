@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->decimal('price')->nullable();
+            $table->integer('quantity')->nullable();
+            // $table->string('order_number'); 
+            // $table->foreignId('sale_id')->references('id')->on('sales')->onDelete('cascade')->nullable();
+            $table->foreignId('menu_id')->references('id')->on('menus')->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }

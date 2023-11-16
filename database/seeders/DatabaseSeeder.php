@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $directories = ['recipes', 'products','Menus'];
+        $directories = ['recipes', 'products','Menus','profile-photos'];
         foreach ($directories as $directory) {
             Storage::deleteDirectory($directory);  //eliminar carpeta cuado se hace mifrate fresh o refresh si existiese
             Storage::makeDirectory($directory); //crea carpeta  en public/storage
@@ -30,9 +30,10 @@ class DatabaseSeeder extends Seeder
                 RecipesTableSeeder::class,
                 CommentsTableSeeder::class,
             ]);
-            \App\Models\Recipe::factory(20)->create();
-            \App\Models\Product::factory(10)->create();
+            \App\Models\User::factory(1)->create();
+            \App\Models\Recipe::factory(2)->create();
+            \App\Models\Product::factory(2)->create();
             \App\Models\Menu::factory(10)->create();
-            \App\Models\Comment::factory(10)->create();
+            \App\Models\Comment::factory(1)->create();
     }
 }
