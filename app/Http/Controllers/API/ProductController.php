@@ -13,7 +13,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        $products = Product::with('multimedia','comments',)->get();
+        return response()->json($products);
     }
 
     /**
