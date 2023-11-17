@@ -21,25 +21,22 @@ Route::get('authgoogle/redirect',[AuthController::class,'redirectGoogle'])->name
 Route::get('/google-callback',[AuthController::class,'callbackGoogle']);
 
 
-Route::get('', [HomeController::class, 'index'])->name('home');
-Route::post('/crudProductos', [ProductController::class,'store'])->name('productos.store');
-
-//Recetas
-Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
-Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
-//Productos
-Route::get('/productos',[HomeController::class,'productos'])->name('productos');
-//Nostros
-Route::get('/nosotros',[HomeController::class,'nosotros'])->name('nosotros');
-//Contactanos
-Route::get('/contactanos',[ContactanosController::class,'contactos'])->name('contactos');
-//Menu
-Route::get('menu',[CartController::class,'shop'])->name('menu');
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+    
+    Route::get('', [HomeController::class, 'index'])->name('home');
+    Route::post('/crudProductos', [ProductController::class,'store'])->name('productos.store');
+    
+    //Recetas
+    Route::get('/recetas',[HomeController::class,'recetas'])->name('recetas');
+    Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
+    //Productos
+    Route::get('/productos',[HomeController::class,'productos'])->name('productos');
+    //Nostros
+    Route::get('/nosotros',[HomeController::class,'nosotros'])->name('nosotros');
+    //Contactanos
+    Route::get('/contactanos',[ContactanosController::class,'contactos'])->name('contactos');
+    //Menu
+    Route::get('menu',[CartController::class,'shop'])->name('menu');
     //Opiniones
     Route::resource('comentarios',CommentController::class)->names('comentarios');
     Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');

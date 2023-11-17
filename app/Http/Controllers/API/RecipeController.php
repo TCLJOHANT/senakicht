@@ -13,7 +13,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return Recipe::all();
+        $recipes = Recipe::with('multimedia','ingredients','preparationSteps','comments',)->get();
+        return response()->json($recipes);
     }
 
     public function store(Request $request)
@@ -29,11 +30,21 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return response()->json([
-            'respuesta'=> true,
-            'recipe' => $recipe
-        ]);
+        $recipe = $recipe->with('multimedia','ingredients','preparationSteps','comments')->find($recipe->id);
+        if ($recipe) {
+            return response()->json([
+                'respuesta' => true,
+                'recipe' => $recipe,
+            ],200);
+        }
+        else{
+            return response()->json([
+                'respuesta' => false,
+                'message' => 'Receta no encontrada',
+            ], 404);
+        }
     }
+    
 
     public function update(Request $request, Recipe $recipe)
     {

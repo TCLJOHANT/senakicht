@@ -29,104 +29,110 @@
     
     </section>
 {{-- seccion de menu home --}}
-    <section class="menu" id="menu">
-        <div class="">
-            <h1 class="heading"> nuestros <span>platos</span> </h1>
-        </div>
-        <div class="container" >
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="box-container">
-                        @foreach($menus as $pro)
-                            <div class="box">
-                                <div class="card">
-                                    
-                                    @foreach($pro->multimedia as $imagenes)
-                                        <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
-                                    @endforeach
-                                    <div class="card-body">
-                                        <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
-                                        <p class="price">$ {{ $pro->price }} COP</p>
-                                        <form action="{{ route('cart.store') }}" method="POST">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
-                                            <input type="hidden" value="{{ $pro->name }}" id="name" name="name">
-                                            <input type="hidden" value="{{ $pro->price }}" id="price" name="price">
-                                            <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
-                                            <!-- <input type="hidden" value="{{ $pro->slug }}" id="slug" name="slug"> -->
-                                            <input type="hidden" value="1" id="quantity" name="quantity">
-                                            <div class="card-footer">
-                                                  <div class="row">
-                                                    <button >
-                                                        agregar al carrito
-                                                    </button>
+    @if($menus)
+        <section class="menu" id="menu">
+            <div class="">
+                <h1 class="heading"> nuestros <span>platos</span> </h1>
+            </div>
+            <div class="container" >
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="box-container">
+                            @foreach($menus as $pro)
+                                <div class="box">
+                                    <div class="card">
+                                        
+                                        @foreach($pro->multimedia as $imagenes)
+                                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                                        @endforeach
+                                        <div class="card-body">
+                                            <a href=""><h6 class="card-title">{{ $pro->name }}</h6></a>
+                                            <p class="price">$ {{ $pro->price }} COP</p>
+                                            <form action="{{ route('cart.store') }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
+                                                <input type="hidden" value="{{ $pro->name }}" id="name" name="name">
+                                                <input type="hidden" value="{{ $pro->price }}" id="price" name="price">
+                                                <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
+                                                <!-- <input type="hidden" value="{{ $pro->slug }}" id="slug" name="slug"> -->
+                                                <input type="hidden" value="1" id="quantity" name="quantity">
+                                                <div class="card-footer">
+                                                    <div class="row">
+                                                        <button >
+                                                            agregar al carrito
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     {{-- seccion de productos home --}}
-    <section class="products" id="products">
-        <h1 class="heading"> nuestros  <span>productos</span> </h1>
-        <div class="box-container">
-            @foreach ($products as $product)
-                <div class="box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye" ></a>
-                    </div>
-                    <div class="image">
-                        @foreach($product->multimedia as $imagenes)
-                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
-                        @endforeach
-                    </div>
-                    <div class="content">
-                        <h3>{{$product->name}}</h3>
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <div class="price">{{ $product->price }}<span>{{ $product->price }}</span></div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    
-    </section>
-    {{-- seccion de comentarios home --}}
-    <section class="review" id="review">
-        <h1 class="heading"> su <span>opinion</span> </h1>
-             {{-- cartas para comentarios --}}
-             <div class="box-container">
-                @forelse($comments as $row )
+    @if ($products)
+        <section class="products" id="products">
+            <h1 class="heading"> nuestros  <span>productos</span> </h1>
+            <div class="box-container">
+                @foreach ($products as $product)
                     <div class="box">
-                        <img src="images/quote-img.png" alt="" class="quote">
-                        <p>{{ $row->description }}</p>
-                        <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
-                        <h3>{{ $row->user->name }}</h3>
-                        <div class="stars">
-                        @for($i=1; $i<=$row->rating; $i++)
-                        <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
-                        @endfor 
+                        <div class="icons">
+                            <a href="#" class="fas fa-shopping-cart"></a>
+                            <a href="#" class="fas fa-heart"></a>
+                            <a href="#" class="fas fa-eye" ></a>
+                        </div>
+                        <div class="image">
+                            @foreach($product->multimedia as $imagenes)
+                                <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                            @endforeach
+                        </div>
+                        <div class="content">
+                            <h3>{{$product->name}}</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="price">{{ $product->price }}<span>{{ $product->price }}</span></div>
                         </div>
                     </div>
-                    @empty
-                        no hay comentarios
-                    @endforelse
-                </div>
+                @endforeach
             </div>
-    </section>
+        
+        </section>
+    @endif
+    {{-- seccion de comentarios home --}}
+    @if($comments)
+        <section class="review" id="review">
+            <h1 class="heading"> su <span>opinion</span> </h1>
+                {{-- cartas para comentarios --}}
+                <div class="box-container">
+                    @forelse($comments as $row )
+                        <div class="box">
+                            <img src="images/quote-img.png" alt="" class="quote">
+                            <p>{{ $row->description }}</p>
+                            <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
+                            <h3>{{ $row->user->name }}</h3>
+                            <div class="stars">
+                            @for($i=1; $i<=$row->rating; $i++)
+                            <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
+                            @endfor 
+                            </div>
+                        </div>
+                        @empty
+                            no hay comentarios
+                        @endforelse
+                    </div>
+                </div>
+        </section>
+    @endif
     
     <section class="contact" id="contact">
         <h1 class="heading"> <span>tu</span> contacto </h1>
@@ -156,24 +162,26 @@
     </section>
 
     {{-- seccion de recetas home--}}
-    <section class="blogs" id="blogs">
-        <h1 class="heading"> nuestras <span>recetas </span> </h1>
-        <div class="box-container">
-            @foreach ($recipes as $recipe)
-            <div class="box">
-                <div class="image">
-                    @foreach($recipe->multimedia as $imagenes)
-                        <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
-                    @endforeach
+    @if ($recipes)
+        <section class="blogs" id="blogs">
+            <h1 class="heading"> nuestras <span>recetas </span> </h1>
+            <div class="box-container">
+                @foreach ($recipes as $recipe)
+                <div class="box">
+                    <div class="image">
+                        @foreach($recipe->multimedia as $imagenes)
+                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
+                        @endforeach
+                    </div>
+                    <div class="content">
+                        <a href="#" class="title">{{$recipe->name}}</a>
+                        <span> / {{ $recipe->created_at->format('M d, Y') }}</span>
+                        <p>{{$recipe->description }}</p>
+                        <a href="{{route ('verRecetas',$recipe) }}" class="btn">leer mas</a>
+                    </div>
                 </div>
-                <div class="content">
-                    <a href="#" class="title">{{$recipe->name}}</a>
-                    <span>{{ $recipe->user->name }} / {{ $recipe->created_at->format('M d, Y') }}</span>
-                    <p>{{$recipe->description }}</p>
-                    <a href="{{route ('verRecetas',$recipe) }}" class="btn">leer mas</a>
-                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-    </section>
+        </section>
+    @endif
 </x-app-layout>

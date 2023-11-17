@@ -43,6 +43,7 @@ class HomeController extends Controller
      public function ver(Recipe $recetas)
      {
          // $recetas = Recetas::findOrfail($id);
+         $recetas = $recetas->with('multimedia','ingredients','preparationSteps','comments')->find($recetas->id);
         
         return view('home.verRecetas',compact('recetas'));
      }

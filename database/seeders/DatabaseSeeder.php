@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
                 CategoriesSeeder::class,
                 MenusTableSeeder::class,
                 ProductsTableSeeder::class ,
-                RecipesTableSeeder::class,
+                // RecipesTableSeeder::class,
                 CommentsTableSeeder::class,
             ]);
-            \App\Models\User::factory(1)->create();
-            \App\Models\Recipe::factory(2)->create();
+             \App\Models\User::factory(1)->create();
+             \App\Models\Recipe::factory(2)->create();
             \App\Models\Product::factory(2)->create();
             \App\Models\Menu::factory(10)->create();
-            \App\Models\Comment::factory(1)->create();
+             \App\Models\Comment::factory(1)->create();
     }
 }

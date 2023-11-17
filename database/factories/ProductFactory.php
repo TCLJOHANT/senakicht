@@ -53,13 +53,13 @@ class ProductFactory extends Factory
         ]);
 
         // Agregar las 4 imágenes al registro
-        for ($i = 0; $i < 4; $i++) {
+        // for ($i = 0; $i < 4; $i++) {
             $image = $this->generarImagen();
             $product->multimedia()->create([
                 'ruta' => $image,
                 'type' => 'imagen',
             ]);
-        }
+        // }
 
         return [
             'name' => $product->name,

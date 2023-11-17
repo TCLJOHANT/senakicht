@@ -3,7 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use App\Models\Multimedia;
+use App\Models\Ingredient;
+use App\Models\PreparationStep;
 use App\Models\Recipe;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use GuzzleHttp\Client; //necesario para consumo api
@@ -44,33 +45,51 @@ class RecipeFactory extends Factory
      */
     public function definition(): array
     {
-        // Generar el registro
-        $category = Category::where('type', 'recipeAndMenu')->first();
-        $recipe = Recipe::create([
+        $category = Category::where('type','recipeAndMenu')->first();
+        $recipeAttributes = ([
             'name' => implode(' ', $this->faker->words(3)),
             'description' => $this->faker->paragraph(3),
-            'ingredients' => $this->faker->paragraph(5),
-            'preparation' => $this->faker->paragraph(5),
-            'user_id' => 2,
+            'difficulty' => $this->faker->randomElement(['Fácil', 'Medio', 'Difícil']), // Aleatorio
+            'preparation_time' => $this->faker->time(), // Aleatorio
+            'user_id' => 1,
             'category_id' => $category->id,
         ]);
+        $recipe = new Recipe($recipeAttributes);
+        $recipe->save();
+        
+        // Obtener el ID de la receta después de insertarla en la base de datos
+        $recipeId = $recipe->id;
 
-        // Agregar las 4 imágenes al registro
-        for ($i = 0; $i < 4; $i++) {
+        // Agregar las imágenes al registro asociadas a la receta
+        // for ($i = 0; $i < 2; $i++) {
             $image = $this->generarImagen();
             $recipe->multimedia()->create([
                 'ruta' => $image,
                 'type' => 'imagen',
+                'multimediaable_id' => $recipeId,
+            ]);
+        // }
+
+        // Agregar  4 ingredientes y al registro
+        for ($i = 0; $i < 4; $i++) {
+            $ingredient = Ingredient::firstOrCreate([
+                'name' => implode(' ', $this->faker->words(2)),
+                'categoria' =>  $this->faker->randomElement(['Cereal', 'Carne', 'Lacteo','Verdura']),
+            ]);
+            // Asociar ingredientes a la receta mediante la tabla pivot
+            $recipe->ingredients()->attach($ingredient->id, [
+                'quantity' => '1',
+                'unit' => $this->faker->randomElement(['Cucharada', 'Taza', 'libra','litro','kilogramo']),
+                'measurement' => '250 ml',
+            ]);
+            //pasos de la receta
+            PreparationStep::create([
+                'recipe_id' => $recipe->id,
+                'step_Number' => $i+1,
+                'description_step' =>$this->faker->paragraph(2),
             ]);
         }
-
-        return [
-            'name' => $recipe->name,
-            'description' => $recipe->description,
-            'ingredients' => $recipe->ingredients,
-            'preparation' => $recipe->preparation,
-            'user_id' => $recipe->user_id,
-            'category_id' => $recipe->category_id,
-        ];
+        // Ahora, después de haber definido todo, insertar la receta en la base de datos
+        return $recipeAttributes;
     }
 }

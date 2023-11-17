@@ -18,8 +18,10 @@ class RecipeController extends Controller
     }
 
     public function pdf($id){
+        
         $receta = Recipe::find($id);
-        $pdf = Pdf::loadView('home.pdf', compact('receta'));
+        $recipe = $receta->with('multimedia','ingredients','preparationSteps','comments')->find($receta->id);
+        $pdf = Pdf::loadView('home.pdf', compact('recipe'));
         return $pdf->stream();
     }
 

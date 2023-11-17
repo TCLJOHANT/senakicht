@@ -12,6 +12,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Svg\Tag\Rect;
 
+
 class ShowRecipes extends Component
 {
     use WithPagination;
