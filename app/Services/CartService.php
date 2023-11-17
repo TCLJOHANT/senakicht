@@ -29,6 +29,7 @@ class CartService{
         
 
         $total = \Cart::getTotal();
+        
 
          return $total;
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\PaypalTransaction;
 use App\Models\Sale;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -101,52 +102,9 @@ class PaymentController extends Controller
         if ($result->getState() === 'approved') {
           $status = 'Gracias! El pago a través de PayPal se ha ralizado correctamente.';
           
-           // Obtén los detalles del carrito
-           $cartData = $this->cartService->DatosCart();
+        $request = new Request();
+        $this->createSale($request);
 
-
-           $totalPrice = 0;
-
-           // Iterar sobre los elementos del carrito para calcular el precio total y guardarlos
-           foreach ($cartData as $item) {
-               $totalPrice += $item->price * $item->quantity;
-           }
-           
-           // Crear un solo registro en la tabla Sale para toda la transacción del carrito
-           Sale::create([
-               'price_total' => $totalPrice,
-               'user_id' => auth()->user()->id,
-           ]);
-
-           foreach ($cartData as $item) {
-            Cart::create([
-                'price' => $item->price,
-                'quantity' => $item->quantity,
-                'menu_id' => $item->id,
-            
-            ]);
-        }
-
-
-
-
-
-
-
-
-
-
-
-        // // Itera sobre los elementos del carrito y guárdalos en la base de datos
-        // foreach ($cartData as $item) {
-        //     Sale::create([
-        //         'price_total' => $item->price,
-        //         'quantity' => $item->quantity,
-        //         'menu_id' => $item->id,  // Ajusta esto según tu estructura de datos
-        //         'user_id' => auth()->user()->id,  // Ajusta esto según tu lógica de usuario
-        //     ]);
-        // }
-          
         $this->cartService->clearCart();
     
           return redirect('cart')->with(compact('status'));
@@ -156,9 +114,44 @@ class PaymentController extends Controller
       $status = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
       return redirect('cart')->with(compact('status'));
 
-  
 
       }
+
+      public function createSale(Request $request)
+      {
+          
+        $orderNumber = uniqid('order_', true);
+
+        // Obtén los detalles del carrito
+        $cartData = $this->cartService->DatosCart();
+
+
+
+        $totalPrice = 0;
+
+        // Iterar sobre los elementos del carrito para calcular el precio total y guardarlos
+        foreach ($cartData as $item) {
+            $totalPrice += $item->price * $item->quantity;
+        }
+        
+        // Crear un solo registro en la tabla Sale para toda la transacción del carrito
+        Sale::create([
+         'order_number' => $orderNumber,
+            'price_total' =>$totalPrice,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        foreach ($cartData as $item) {
+         Cart::create([
+           'order_number' => $orderNumber,
+             'price' => $item->price,
+             'quantity' => $item->quantity,
+             'menu_id' => $item->id,
+         
+         ]);
+     }
+    }
+  
 
       
 }

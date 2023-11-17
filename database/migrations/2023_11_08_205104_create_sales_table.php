@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->decimal('price_total')->nullable();
-          
+            $table->string('order_number');
 
             //$table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade')->nullable();
 
