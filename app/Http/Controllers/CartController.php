@@ -6,6 +6,7 @@ use App\Services\CartService;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Menu;
+use App\Models\Product;
 use App\Services\MercadoPagoService;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\MercadoPagoConfig;
@@ -45,15 +46,22 @@ class CartController extends Controller
         \Cart::remove($request->id);
         return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
     }
-
-    public function add(Request$request){
+    public function add(Request $request){
+        $item = null;
+        $menu = Menu::find($request->id);
+        $product = Product::find($request->id);
+        if($menu){
+            $item = $menu;
+        }elseif($product){
+            $item = $product;
+        }
         \Cart::add(array(
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'attributes' => array(
-                'image' => $request->img,
+                'image' =>  $item->multimedia->first()->ruta, // Obtener la imagen del modelo
                 'slug' => $request->slug
             )
         ));

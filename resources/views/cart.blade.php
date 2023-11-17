@@ -63,6 +63,7 @@
                               @else
                                   <img src="{{ asset('storage/' . $item->attributes->image ) }}" >
                               @endif
+                        {{-- 
                         </div>
                         <div class="des">
                             <p>

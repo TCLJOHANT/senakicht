@@ -37,7 +37,7 @@ class HomeController extends Controller
    //Recestas
      public function recetas(){
         
-         $recetas = Recipe::with('multimedia')->get();
+         $recetas = Recipe::with('multimedia','ingredients','preparationSteps','comments')->get();
          return view('home.recetas',compact('recetas'));
      }
      public function ver(Recipe $recetas)

@@ -18,16 +18,13 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="icons">
-                                <a href="#" class="fas fa-shopping-cart"></a>
+                                <button type="submit" class="fas fa-shopping-cart"></button>
                                 <a href="#" class="fas fa-heart"></a>
                                 <a href="#" class="fas fa-eye modal-popup"></a>
                             </div>
                         </div>
                     </div>
-
                 </form>
-
-           
                 <div class="image">
                     @foreach($row->multimedia as $imagenes)
                         <img src="{{ asset('storage/' . $imagenes->ruta) }}" alt="">
