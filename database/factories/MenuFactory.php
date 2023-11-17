@@ -50,13 +50,13 @@ class MenuFactory extends Factory
             'category_id' => $category->id,
         ]);
         // Agregar las 4 imágenes al registro
-        for ($i = 0; $i < 4; $i++) {
+        // for ($i = 0; $i < 4; $i++) {
             $image = $this->generarImagen();
             $menu->multimedia()->create([
                 'ruta' => $image,
                 'type' => 'imagen',
             ]);
-        }
+        // }
 
         return [
             'name' => $menu->name,

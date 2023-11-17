@@ -3,6 +3,7 @@
         <div href="#" class="logo">
             <img src="{{asset('favicons/LogoSenakicht.png')}}" alt="logo">
         </div>
+        <x-button wire:click="prueba">prueba</x-button>
         <nav class="navbar">
             <a class="px-2" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i> Inicio</a>
             <a class="px-2" href="{{ route('nosotros') }}"><i class="fas fa-info-circle fa-fw"></i> Acerca de</a>
@@ -55,6 +56,7 @@
             
                                 <x-dropdown-link href="{{ route('profile.show') }}">
                                     {{ __('Perfil') }}
+                                
                                 </x-dropdown-link>
             
                                 <!-- url admin -->
@@ -92,7 +94,7 @@
                             <x-slot name="trigger">
                                 <i class="fas fa-fw fa-user"></i>
                             </x-slot>
-            
+                           
                             <x-slot name="content">
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">

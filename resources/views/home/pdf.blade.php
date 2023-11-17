@@ -9,14 +9,15 @@
 </head>
 <body>
 <div class="container-title">
-            <i class="fas fa-utensils"></i>{{ $receta->name }}
+            <i class="fas fa-utensils"></i>{{ $recipe->name }}
         </div>
-        
-
 		<main>
 			<div class="container-img">
-            <img src="{{ public_path('storage/' . $receta->images) }}" >
+                @foreach($recipe->multimedia as $imagenes)
+                    <img alt="img" class="" src="{{ asset('storage/' . $imagenes->ruta) }}">
+                @endforeach
 			</div>
+            <b>tiempo de preparacion: {{$recipe->preparation_time}}</b>
 			<div class="container-info-product">
 				<div class="container-description">
                     <div class="title-description">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="text-description">
                         <ol>
-                            <h4>{{ $receta->description }}</h4>
+                            <h4>{{ $recipe->description }}</h4>
                         </ol>
                     </div>
                 </div>
@@ -34,12 +35,11 @@
                         <h4><i class="fas fa-utensils"></i> Lista de ingredientes</h4>
                     </div>
                     <div class="text-description">
+
                         <ul>
-                            <li>{{ $receta->ingredients }}</li>
-                            <li>Ingrediente 2</li>
-                            <li>Ingrediente 3</li>
-                            <li>Ingrediente 4</li>
-                            <!-- Añade más ingredientes según sea necesario -->
+                            @foreach($recipe->ingredients as $ingredients)
+                            <li class="leading-relaxed">{{$ingredients->name}}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -51,10 +51,7 @@
                     </div>
                     <div class="text-description">
                         <ol>
-                            <li><i class="fas fa-hand-sparkles"></i>{{ $receta->preparation }} </li>
-                            <li><i class="fas fa-cut"></i> Cortar los ingredientes en trozos pequeños.</li>
-                            <li><i class="fas fa-utensil-spoon"></i> Cocinar a fuego medio durante 20 minutos.</li>
-                            <li><i class="fas fa-leaf"></i> Agregar hierbas frescas y mezclar bien.</li>
+                            <li><i class="fas fa-hand-sparkles"></i>{{json_encode($recipe->preparation_steps) }} </li>
                         </ol>
                     </div>
                 </div>
