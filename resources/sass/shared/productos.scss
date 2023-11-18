@@ -4,6 +4,7 @@
 @import 'modalDetalle';
 .products {
     margin: auto 3rem;
+
     .box-container{
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
@@ -11,7 +12,7 @@
         .box{
         text-align: center;
         border:var(--border);
-        padding: .5rem 0;
+        padding: .5rem  2rem;
         .icons {
             display: flex;
             justify-content: center;
@@ -31,15 +32,11 @@
                 }
             }
         .image{
-            padding: 1rem 2rem;
-            img{
-                object-fit: cover;
-                width: 100%;
-                height: 150px;
-            }
+            
         }
         .content{
                 h3{
+                    padding-top: 5%;
                     color:#fff;
                     font-size: 1.4rem;
                 }

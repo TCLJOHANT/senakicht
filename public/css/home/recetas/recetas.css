@@ -36,14 +36,7 @@
   height: 11rem;
   overflow: hidden;
   width: 100%;
-}
-.blogs .box-container .box .image img {
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
-}
-.blogs .box-container .box .image img:hover {
-  transform: scale(1.2);
+  height: 15rem;
 }
 .blogs .box-container .box .content {
   padding: 1rem;

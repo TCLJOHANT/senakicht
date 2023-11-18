@@ -50,6 +50,7 @@
             <div class="box-container">
                 @foreach($products as $product)
                     @livewire('app.components.shared.card.card-product', ['product' => $product])
+                    @livewire('app.components.shared.card.card-product', ['product' => $product])
                 @endforeach
             </div>
         </section>

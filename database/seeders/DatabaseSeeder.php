@@ -31,9 +31,9 @@ class DatabaseSeeder extends Seeder
                 CommentsTableSeeder::class,
             ]);
             \App\Models\User::factory(2)->create();
-            \App\Models\Recipe::factory(2)->create();
-            \App\Models\Product::factory(2)->create();
-            \App\Models\Menu::factory(2)->create();
+            \App\Models\Recipe::factory(20)->create();
+            \App\Models\Product::factory(20)->create();
+            \App\Models\Menu::factory(20)->create();
             \App\Models\Comment::factory(2)->create();
     }
 }
