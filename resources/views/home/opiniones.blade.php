@@ -6,21 +6,9 @@
         <button id="modal-btn" class="styled-button">Comentar</button>
         {{-- cartas para comentarios --}}
             <div class="box-container">
-                @forelse($comentarios as $row )
-                    <div class="box">
-                        <img src="images/quote-img.png" alt="" class="quote">
-                        <p>{{ $row->description }}</p>
-                        <img src="{{ $row->user->profile_photo_url}}" class="user-img" alt="">
-                        <h3>{{ $row->user->name }}</h3>
-                        <div class="stars">
-                        @for($i=1; $i<=$row->rating; $i++)
-                        <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
-                        @endfor 
-                        </div>
-                    </div>
-                    @empty
-                    no hay comentarios
-                @endforelse
+                @foreach ($comentarios as $comment )
+                    @livewire('app.components.shared.card.card-comment', ['comment' => $comment])
+                @endforeach
             </div>
         </div>
         {{-- modal --}}
@@ -60,15 +48,9 @@
                     </div>
                     <br>
                     <button type="submit">Enviar</button>
-
-                    
-
                 </form>
-                
                 @endif
-
             </div>
         </div>   
     </section>
-    {{-- <script src="{{ asset('js/script.js') }}"></script> --}}
 </x-app-layout>

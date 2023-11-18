@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -41,28 +42,26 @@ class MenuFactory extends Factory
      */
     public function definition(): array
     {
-        // Generar el registro
-        $category = Category::where('type', 'recipeAndmenu')->first();
-        $menu = Menu::create([
+        $category = Category::where('type', 'product')->first();
+        $randomUserId = User::inRandomOrder()->first()->id;
+        return [
             'name' => implode(' ', $this->faker->words(3)),
             'price' => $this->faker->randomNumber(4),
-            'user_id' => 8,
+            'user_id' => $randomUserId,
             'category_id' => $category->id,
-        ]);
-        // Agregar las 4 imágenes al registro
-        // for ($i = 0; $i < 4; $i++) {
-            $image = $this->generarImagen();
-            $menu->multimedia()->create([
-                'ruta' => $image,
-                'type' => 'imagen',
-            ]);
-        // }
-
-        return [
-            'name' => $menu->name,
-            'price' => $menu->price,
-            'user_id' => $menu->user_id,
-            'category_id' => $menu->category_id,
         ];
+    }
+    public function configure()
+    {
+        return $this->afterCreating(function (Menu $menu) {
+            // Agregar 4 imágenes al plato o menu
+            for ($i = 0; $i < 4; $i++) {
+                $image = $this->generarImagen(); 
+                $menu->multimedia()->create([
+                    'ruta' => $image,
+                    'type' => 'imagen',
+                ]);
+            }
+        });
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
+ 
     private function generarImagen()
     {
         $client = new Client();
@@ -42,32 +44,33 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
-        // Generar el registro
         $category = Category::where('type', 'product')->first();
-        $product = Product::create([
-            'name' => implode(' ', $this->faker->words(3)),
-            'price' => $this->faker->randomNumber(4),
-            'description' => $this->faker->paragraph(3),
-            'user_id' => 8,
-            'category_id' => $category->id,
-        ]);
-
-        // Agregar las 4 imágenes al registro
-        // for ($i = 0; $i < 4; $i++) {
-            $image = $this->generarImagen();
-            $product->multimedia()->create([
-                'ruta' => $image,
-                'type' => 'imagen',
-            ]);
-        // }
-
+        $randomUserId = User::inRandomOrder()->first()->id;
         return [
-            'name' => $product->name,
-            'price' => $product->price,
-            'description' => $product->description,
-            'user_id' => $product->user_id,
-            'category_id' => $product->category_id,
+            'name' => implode(' ', $this->faker->words(3)),
+            'price' =>  $this->faker->randomNumber(4),
+            'description' => $this->faker->paragraph(3),
+            'user_id' => $randomUserId,
+            'category_id' => $category->id,
         ];
+    }
+      /**
+     * Indica que la factory debe agregar multimedia al producto.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (Product $product) {
+            // Agregar 4 imágenes al producto
+            for ($i = 0; $i < 4; $i++) {
+                $image = $this->generarImagen(); 
+                $product->multimedia()->create([
+                    'ruta' => $image,
+                    'type' => 'imagen',
+                ]);
+            }
+        });
     }
 }
 

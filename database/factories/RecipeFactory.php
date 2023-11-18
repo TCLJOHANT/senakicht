@@ -6,8 +6,10 @@ use App\Models\Category;
 use App\Models\Ingredient;
 use App\Models\PreparationStep;
 use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use GuzzleHttp\Client; //necesario para consumo api
+use Svg\Tag\UseTag;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recipe>
@@ -45,30 +47,29 @@ class RecipeFactory extends Factory
      */
     public function definition(): array
     {
-        $category = Category::where('type','recipeAndMenu')->first();
-        $recipeAttributes = ([
-            'name' => implode(' ', $this->faker->words(3)),
+        $category = Category::where('type', 'product')->first();
+        $randomUserId = User::inRandomOrder()->first()->id;
+        return  [
+            'name' => implode(' ', $this->faker->words(1)),
             'description' => $this->faker->paragraph(3),
             'difficulty' => $this->faker->randomElement(['Fácil', 'Medio', 'Difícil']), // Aleatorio
             'preparation_time' => $this->faker->time(), // Aleatorio
-            'user_id' => 1,
-            'category_id' => $category->id,
-        ]);
-        $recipe = new Recipe($recipeAttributes);
-        $recipe->save();
-        
-        // Obtener el ID de la receta después de insertarla en la base de datos
-        $recipeId = $recipe->id;
+            'user_id' => $randomUserId,
+            'category_id' => $category->id
+        ];
+    }
 
-        // Agregar las imágenes al registro asociadas a la receta
-        // for ($i = 0; $i < 2; $i++) {
-            $image = $this->generarImagen();
-            $recipe->multimedia()->create([
-                'ruta' => $image,
-                'type' => 'imagen',
-                'multimediaable_id' => $recipeId,
-            ]);
-        // }
+    public function configure()
+    {
+        return $this->afterCreating(function (Recipe $recipe) {
+            // Agregar 4 imágenes a la receta
+            for ($i = 0; $i < 4; $i++) {
+                $image = $this->generarImagen(); 
+                $recipe->multimedia()->create([
+                    'ruta' => $image,
+                    'type' => 'imagen',
+                ]);
+            }
 
         // Agregar  4 ingredientes y al registro
         for ($i = 0; $i < 4; $i++) {
@@ -89,7 +90,6 @@ class RecipeFactory extends Factory
                 'description_step' =>$this->faker->paragraph(2),
             ]);
         }
-        // Ahora, después de haber definido todo, insertar la receta en la base de datos
-        return $recipeAttributes;
+        });
     }
 }
