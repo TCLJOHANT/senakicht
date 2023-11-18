@@ -52,6 +52,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //Payment
     Route::get('/paypal/pay',[PaymentController::class, 'paypalPayment'])->name('paypal');
     Route::get('/paypal/status',[PaymentController::class, 'paypalStatus']);
+
+    Route::get('ver',[HomeController::class,'verr']);
 });
 
 

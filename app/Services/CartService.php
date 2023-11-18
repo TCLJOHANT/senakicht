@@ -28,10 +28,16 @@ class CartService{
     public function PreciCart(){
         
 
-        $total = \Cart::getTotal();
-        
+     
+    $apiKey = '424766632d6f447ea1ef3e4379a3cf1a'; 
+    $exchange = new CurrencyService($apiKey);
+    $tasaCOPaUSD = $exchange->getExchangeRate('USD', 'COP'); 
 
-         return $total;
+    $totalEnPesos = \Cart::getTotal();
+
+    $totalEnDolares = $totalEnPesos / $tasaCOPaUSD;
+
+    return $totalEnDolares;
     }
 
    

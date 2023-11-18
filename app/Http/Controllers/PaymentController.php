@@ -117,24 +117,21 @@ class PaymentController extends Controller
 
       }
 
-      public function createSale(Request $request)
+      public function createSale()
       {
           
         $orderNumber = uniqid('order_', true);
 
-        // Obtén los detalles del carrito
         $cartData = $this->cartService->DatosCart();
 
 
 
         $totalPrice = 0;
 
-        // Iterar sobre los elementos del carrito para calcular el precio total y guardarlos
         foreach ($cartData as $item) {
             $totalPrice += $item->price * $item->quantity;
         }
         
-        // Crear un solo registro en la tabla Sale para toda la transacción del carrito
         Sale::create([
          'order_number' => $orderNumber,
             'price_total' =>$totalPrice,

@@ -56,5 +56,11 @@ return [
        'key' => env('PIXABAY_API_KEY')
     ],
 
+    'changerates'=>[
+        'key' => env('CHANGERATES_API_KEY')
+     ],
+
+    
+
    
 ];

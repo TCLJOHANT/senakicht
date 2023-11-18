@@ -72,6 +72,10 @@ class HomeController extends Controller
     public function init(){
         return view('auth.login');
     }
+
+   public function verr(){
+    return view('home.ver');
+   }
 }
 
 
