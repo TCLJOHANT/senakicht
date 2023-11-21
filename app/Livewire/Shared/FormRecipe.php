@@ -15,6 +15,7 @@ class FormRecipe extends Component
     $openModal =true, 
     $recipe;
     public $name, $images,$description,$ingredients,$preparation,$identificador,$recipeId;
+    public $ingredientes = [],$pasos=[];
   
     private $resetVariables = ['openModal','name','images','description','ingredients','preparation','btnModal','titleModal'];
     
@@ -114,6 +115,29 @@ class FormRecipe extends Component
          $this->titleModal = "Editar Receta";
         $this->btnModal = "Actualizar";
          $this->openModal= true;
+    }
+
+
+    public function agregarIngrediente()
+    {
+        $this->ingredientes[] = ['nombre' => '', 'cantidad' => '', 'medida' => ''];
+    }
+
+    public function eliminarIngrediente($index)
+    {
+        unset($this->ingredientes[$index]);
+        $this->ingredientes = array_values($this->ingredientes);
+    }
+
+    public function agregarPaso()
+    {
+        $this->pasos[] = '';
+    }
+
+    public function eliminarPaso($index)
+    {
+        unset($this->pasos[$index]);
+        $this->pasos = array_values($this->pasos);
     }
 
 }
