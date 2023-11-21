@@ -3,8 +3,53 @@
     
     
     <x-modificados-jet.modal wire:model="openModal" maxWidth="full" >
-        
-        {{json_encode($cont)}}
+        <div class="px-6 py-4">
+            <div class="text-lg font-medium text-gray-900">
+                Gestion de Receta
+            </div>
+    
+            <div class="mt-4 text-sm text-gray-600">
+                <div class="m-4 ">
+                    <x-label >Titulo de la receta</x-label>
+                    <x-input class="w-full" placeholder="Nombre: Sopa de verduras"></x-input>
+                    
+                </textarea>
+            </div> 
+            
+            <div class="m-4 ">
+                <x-label >Descripción</x-label>
+                <textarea name="" id="" cols="30" rows="10" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                </div> 
+            </div>
+        </div>
+    
+        <div class="flex flex-row justify-end px-6 py-4 bg-gray-100 text-right">
+           <x-button>Cancelar</x-button>
+           <x-danger-button>Guardar</x-danger-button>
+        </div>
+        {{-- <section class=" overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+            <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
+                <div class="flex flex-wrap -mx-4 ">
+                  
+                   <div class="m-4 ">
+                    <x-label>Descripcion</x-label>
+                    <x-input></x-input>
+                </div> 
+                <div class="m-4 ">
+                    <x-label>Nombre de la receta</x-label>
+                    <x-input></x-input>
+                </div> 
+                <div class="m-4 ">
+                    <x-label>Nombre de la receta</x-label>
+                    <x-input></x-input>
+                </div> 
+                </div>
+            </div>
+        </section>
+         --}}
+     
+
+    
    </x-modificados-jet.modal>
     {{-- <x-dialog-modal wire:model="openModal">
         <x-slot name="title">

@@ -12,8 +12,8 @@ class FormRecipe extends Component
     public 
     $titleModal = "Crear Receta",
     $btnModal = "Crear" ,
-    $openModal =false, 
-    $cont;
+    $openModal =true, 
+    $recipe;
     public $name, $images,$description,$ingredients,$preparation,$identificador,$recipeId;
   
     private $resetVariables = ['openModal','name','images','description','ingredients','preparation','btnModal','titleModal'];
@@ -33,6 +33,7 @@ class FormRecipe extends Component
         $this->identificador = rand(); //le asigna un numero al azar o random
     }
     public function editarRecetaForm(Recipe $recipe){
+        $this->recipe = $recipe;
         $this->recipeId = $recipe->id;
         $this->description =$recipe->description;
         $this->name =$recipe->name;
