@@ -1,36 +1,24 @@
 <x-app-layout>
-    <br>
-    <br>
-    <br>
-    <br>
-  
+    <style>
+        .bg-main-color {
+            background-color:  #4a76a8;
+        }
 
-<!-- component -->
-<style>
-    .bg-main-color {
-        background-color:  #4a76a8;
-    }
+        .text-main-color {
+            color:  #4a76a8;
+        }
 
-    .text-main-color {
-        color:  #4a76a8;
-    }
-
-    .border-main-color {
-        border-color:  #4a76a8;
-    }
-    main{
-        background-color: #fff;
-    }
-
-</style>
-<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-{{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> --}}
-
-
+        .border-main-color {
+            border-color:  #4a76a8;
+        }
+        main{
+            background-color: #fff;
+            padding:  10% 0 
+        }
+    </style>
 
 <div class="cont-perfil" >
-
-    <div class="container mx-auto">
+    <div class="container mx-auto ">
         <div class="md:flex no-wrap md:-mx-2 ">
             <div class="w-full md:w-3/12 md:mx-2 ">
                 <div class="bg-white my-4 p-3 border-t-4 border-green-400">
@@ -149,24 +137,47 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="mt-4">
-                        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                            <!--Delete Cuenta-->
-                            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                                <x-section-border />
-                
-                                <div class="mt-10 sm:mt-0">
-                                    @livewire('profile.delete-user-form')
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-         
                 </div>
-          
             </div>
         </div>
+        <div class="mt-4">
+            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                <!--Delete Cuenta-->
+                @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
+                    <x-section-border />
+    
+                    <div class="mt-10 sm:mt-0">
+                        @livewire('profile.delete-user-form')
+                    </div>
+                @endif
+
+                @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                @livewire('profile.update-profile-information-form')
+
+                <x-section-border />
+            @endif
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.update-password-form')
+            </div>
+
+            <x-section-border />
+        @endif
+
+        @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.two-factor-authentication-form')
+            </div>
+
+            <x-section-border />
+        @endif
+
+        <div class="mt-10 sm:mt-0">
+            @livewire('profile.logout-other-browser-sessions-form')
+        </div>
+            </div>
+        </div>
+  
     </div>
 </div>
     
@@ -180,15 +191,15 @@
          <br>
            
   {{-- JESTRAEAM --}}
-     <div class="mt-4">
+     {{-- <div class="mt-4">
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-             {{-- @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+              @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
                 <x-section-border />
-            @endif   --}}
+            @endif   
 
-            {{-- @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
                 </div>
@@ -214,7 +225,7 @@
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
                 </div>
-            @endif --}}
+            @endif 
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>

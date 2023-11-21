@@ -10,7 +10,7 @@
             @csrf
             <div  class="Login-box">
                 <div class=""><x-validation-errors class="mb-4" /></div>
-                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
+                <img class="avatar" src="{{asset('favicons/kitch2.png')}}" alt="Logo de Fazt">
                 <h1>cambiar Contraseña</h1>
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
 

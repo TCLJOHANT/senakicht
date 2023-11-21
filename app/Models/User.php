@@ -64,19 +64,24 @@ class User extends Authenticatable
     //  public function setPasswordAttribute($value){ 
     //      $this->attributes['password'] =  Hash::make($value); 
     //  } 
-    //RELACION  UNO A MUCHOS
-    public function comments(){
-        return $this->hasMany('App\Models\Comment');
-    }
-    public function recipes(){
-        return $this->hasMany('App\Models\Recipe');
-    }
-    public function products(){
-        return $this->hasMany('App\Models\Product');
-    }
-    public function menus(){
-        return $this->hasMany('App\Models\Menu');
-    }
+    //RELACIONES 
+        //1:N
+        public function comments(){
+            return $this->hasMany('App\Models\Comment');
+        }
+        public function recipes(){
+            return $this->hasMany('App\Models\Recipe');
+        }
+        public function products(){
+            return $this->hasMany('App\Models\Product');
+        }
+        public function menus(){
+            return $this->hasMany('App\Models\Menu');
+        }
+        //1:1
+        public function profile(){
+            return $this->hasOne('App\Models\Profile');
+        }
 
     //Para Adminlte
     public function adminlte_image(){
@@ -102,4 +107,5 @@ class User extends Authenticatable
     public function adminlte_profile_url(){
         return 'profile/username';
     }
+  
 }

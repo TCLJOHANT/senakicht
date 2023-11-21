@@ -9,7 +9,7 @@
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
             <div  class="Login-box">
-                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
+                <img class="avatar" src="{{asset('favicons/kitch2.png')}}" alt="Logo de Fazt">
                 <h1>SENAKITCH</h1>
                 @if (session('status'))
                     <div class="mb-4 font-medium text-sm text-green-600" style="color: #22c55e">

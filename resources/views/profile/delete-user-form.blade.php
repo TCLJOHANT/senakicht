@@ -2,28 +2,23 @@
     <x-slot name="title">
         {{ __('Eliminar Cuenta') }}
     </x-slot>
-
     <x-slot name="description">
         {{ __('Elimina permanentemente tu cuenta.') }}
     </x-slot>
-
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
             {{ __('Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán permanentemente. Antes de eliminar su cuenta, descargue cualquier dato o información que desee conservar.') }}
         </div>
-
         <div class="mt-5">
             <x-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
                 {{ __('Eliminar Cuenta') }}
             </x-danger-button>
         </div>
-
         <!-- Delete User Confirmation Modal -->
         <x-dialog-modal wire:model.live="confirmingUserDeletion">
             <x-slot name="title">
                 {{ __('Eliminar Cuenta') }}
             </x-slot>
-
             <x-slot name="content">
                 {{ __('¿Estás seguro de que quieres eliminar tu cuenta? Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán permanentemente. Ingrese su contraseña para confirmar que desea eliminar permanentemente su cuenta.') }}
 
@@ -41,11 +36,11 @@
 
             <x-slot name="footer">
                 <x-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
-                    {{ __('Cancel') }}
+                    {{ __('Cancelar') }}
                 </x-secondary-button>
 
                 <x-danger-button class="ml-3" wire:click="deleteUser" wire:loading.attr="disabled">
-                    {{ __('Delete Account') }}
+                    {{ __('Eliminar') }}
                 </x-danger-button>
             </x-slot>
         </x-dialog-modal>

@@ -151,7 +151,7 @@ return [
     'layout_topnav' => null,
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true, //fijar nav
-    'layout_fixed_navbar' => true, //fijar header
+    'layout_fixed_navbar' => false, //fijar header
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 

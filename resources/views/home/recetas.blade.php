@@ -6,7 +6,7 @@
     <h1 class="heading"> nuestras <span>recetas </span> </h1>
     <div class="box-container">
         @foreach($recetas as $recipe)
-          @livewire('app.components.shared.card.card-recipe', ['recipe' => $recipe])
+        <livewire:app.components.shared.card.card-recipe :recipe="$recipe"  />
         @endforeach
     </div> 
   </section>

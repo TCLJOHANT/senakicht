@@ -3,7 +3,6 @@
 namespace App\Livewire\App\Components\Shared\Card;
 
 use Livewire\Component;
-
 class CardPlato extends Component
 {
     public $plato,$openModalDetailPlato=false;

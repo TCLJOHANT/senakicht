@@ -18,7 +18,7 @@
             @csrf
             <div  class="Login-box">
                 {{-- <x-validation-errors class="mb-4" /> --}}
-                <img class="avatar" src="favicons/Kitch2.png" alt="Logo de Fazt">
+                <img class="avatar" src="{{asset('favicons/kitch2.png')}}" alt="Logo de Fazt">
                 <h1>SENAKITCH</h1>
                 <div class="input-control">
                     @error('email')

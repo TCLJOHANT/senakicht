@@ -21,9 +21,9 @@ $maxWidth = [
     x-show="show"
     id="{{ $id }}"
     class="jetstream-modal fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
-    style="display: none; padding: 1% 10%">
+    style="display: none; padding: 1% 10%; z-index:2000 " >
 
-    <div x-show="show" class="fixed inset-0 transform transition-all" 
+    <div x-show="show" class="fixed inset-0 transform transition-all " 
                     x-on:click="show = false" 
                     x-transition:enter="ease-out duration-300"
                     x-transition:enter-start="opacity-0"
@@ -31,7 +31,7 @@ $maxWidth = [
                     x-transition:leave="ease-in duration-200"
                     x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0">
-        <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        <div class="absolute inset-0 bg-gray-800 opacity-75"></div>
     </div>
 
     <div x-show="show" class=" bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
