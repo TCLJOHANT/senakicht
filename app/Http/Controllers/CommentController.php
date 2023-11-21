@@ -74,7 +74,13 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+    // Verifica si el usuario autenticado es el propietario del comentario
+    if ($comment->user_id !== auth()->user()->id) {
+        return redirect()->back()->with('error', 'No tienes permiso para editar este comentario.');
+    }
+    
     }
 
     /**
