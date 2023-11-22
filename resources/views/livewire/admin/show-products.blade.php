@@ -28,7 +28,7 @@
                     </div>
                 @else
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-gray-50 text-center">
                             <tr>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Imagen</th>
@@ -42,18 +42,23 @@
                                 <tr >
                                     <td class="px-6 py-6">{{$product->name}}</td>
                                     <td class="px-6 py-6" >
-                                        @if ($product['image'] )
-                                          <img src="{{ asset('storage/' . $product->image) }}"  class="h-13 w-16 object-cover  imagen" width="60">
+                                        @foreach($product->multimedia as $index => $imagen)
+                                        @if($index === 0)
+                                            <img src="{{ asset('storage/' . $imagen->ruta) }}"  width="100px" alt="...">
                                         @endif
+                                    @endforeach
                                     </td>
                                     <td class="px-6 py-6">{{$product->description}}</td>
                                     <td class="px-6 py-6">{{"$ " . $product->price . " COP"}}</td>
                     
                                     <td class="px-6 py-6 flex items-center">
-                                        <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$product}})" >  
+                                        <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500">  
+                                            <i class="fas fa-eye"></i>
+                                        </button> 
+                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="modalEdit({{$product}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
-                                        <button onclick="alert('error')" wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                        <button onclick="alert('error')" wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>

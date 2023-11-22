@@ -5,7 +5,7 @@
     <div class="px-6 py-4 flex items-center">
         <div class="flex items-center">
             <span>mostrar</span>
-            <select wire:model.live="cantidadRegistros"   class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
+            <select class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
                 <option value="10">5</option>
                 <option value="10">10</option>
             </select>

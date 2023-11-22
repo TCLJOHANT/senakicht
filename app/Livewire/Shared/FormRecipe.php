@@ -6,16 +6,18 @@ use Livewire\Component;
 use App\Models\Recipe;
 use App\Models\Multimedia;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 
 class FormRecipe extends Component
 {
+    use WithFileUploads; 
     public 
     $titleModal = "Crear Receta",
     $btnModal = "Crear" ,
-    $openModal =true, 
+    $openModal =false, 
     $recipe;
-    public $name, $images,$description,$ingredients,$preparation,$identificador,$recipeId;
-    public $ingredientes = [],$pasos=[];
+    public $name,$description,$ingredients,$preparation,$identificador,$recipeId;
+    public $ingredientes = [],$pasos=[], $images = [];
   
     private $resetVariables = ['openModal','name','images','description','ingredients','preparation','btnModal','titleModal'];
     
@@ -140,4 +142,13 @@ class FormRecipe extends Component
         $this->pasos = array_values($this->pasos);
     }
 
+    public function updatedImages()
+    {
+        // Aquí puedes realizar acciones adicionales al actualizar las imágenes, si es necesario
+    }
+
+    public function removeImage($index)
+    {
+        unset($this->images[$index]);
+    }
 }
