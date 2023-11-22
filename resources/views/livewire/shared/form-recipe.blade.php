@@ -54,43 +54,50 @@
                         <div class="sm:col-span-full">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Titulo de la Receta</label>
                             <div class="mt-2">
-                              <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                              <input  wire:model="name" type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                              <x-input-error for="name"></x-input-error>
                             </div>
                         </div>
-                  
+
                         <div class="sm:col-span-2">
-                            <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Tiempo</label>
-                            <div class="mt-2">
-                              <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            </div>
+                            <label for="time" class="block text-sm font-medium leading-6 text-gray-900">Tiempo</label>
+                            <input wire:model="preparation_time" id="time" name="time" type="text" class="mt-1 p-2 border rounded-md w-full" placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" />
+                            <x-input-error for='preparation_time'></x-input-error>
                         </div>
+                        
+                        
                   
                         <div class="sm:col-span-2">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Dificultad</label>
                             <div class="mt-2">
-                              <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
+                              <select wire:model="difficulty" name="difficulty" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option>Selecciona Dificultad</option>
+                                <option value="fácil" {{ old('difficulty') == 'fácil' ? 'selected' : '' }}>Fácil</option>
+                                <option value="medio" {{ old('difficulty') == 'medio' ? 'selected' : '' }}>Medio</option>
+                                <option value="difícil" {{ old('difficulty') == 'difícil' ? 'selected' : '' }}>Difícil</option>
                               </select>
+                              <x-input-error for="difficulty"></x-input-error>
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Categoria</label>
                             <div class="mt-2">
-                              <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
+                              <select  wire:model="category_id" id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option>Selecciona Categoria</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
                               </select>
+                              <x-input-error for="category_id"></x-input-error>
                             </div>
                         </div>
 
                         <div class="col-span-full">
                             <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Descripción</label>
                             <div class="mt-2">
-                              <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+                                <x-input-error for="description"></x-input-error>
+                              <textarea wire:model="description" id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
                               <p class="mt-3 text-sm leading-6 text-gray-600">Describe un poco tu receta.</p>
                             </div>
                         </div>
@@ -127,7 +134,7 @@
         
                         <!--boton guardar-->
                         <div class="flex">
-                            <x-danger-button class="flex ml-auto ">Crear</x-danger-button>
+                            <x-danger-button class="flex ml-auto " wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
                         </div>
                     </div>
                 </div>

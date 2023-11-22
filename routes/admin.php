@@ -15,7 +15,7 @@ Route::get('',[HomeController::class,'index'])->middleware('can:admin.home')->na
 Route::resource('users',UserController::class)->names('admin.users')->except($routesNotGenerate); 
 Route::resource('products',ProductController::class)->names('admin.products')->except($routesNotGenerate);
 Route::get('exportProduct',[ProductController::class,'export'])->name('exportProduct');
-Route::resource('recipes',RecipeController::class)->names('admin.recipes')->except($routesNotGenerate);
+Route::get('recipes',[RecipeController::class,'index'])->name('admin.recipes.index');
 Route::resource('comments',CommentController::class)->names('admin.comments')->except($routesNotGenerate);
 Route::resource('categories',CategoryController::class)->names('admin.categories')->except($routesNotGenerate);
 Route::resource('menus',MenuController::class)->names('admin.menus')->except($routesNotGenerate);
