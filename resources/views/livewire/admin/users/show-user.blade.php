@@ -1,6 +1,4 @@
 <div>
- @vite(['resources/css/app.css', 'resources/js/app.js'])
- @livewireStyles
  <div class="card">
     <div class="px-6 py-4 flex items-center">
         <div class="flex items-center">
@@ -47,13 +45,18 @@
                                     @endforeach
                                 </td>
                                 
+                               
+
                                 <td class="px-6 py-6 flex items-center">
-                                    <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$user}})" >  
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button> 
-                                    <button onclick="alert('error')" wire:click="destroyUser({{$user}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer"  style="background-color:#ef4444">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                        <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500"   >  
+                                            <i class="fas fa-eye"></i>
+                                        </button> 
+                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="modalEdit({{$user}})" >  
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </button> 
+                                        <button onclick="alert('error')" wire:click="destroyUser({{$user}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-500">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                 </td>
                             </tr>
                         @endforeach

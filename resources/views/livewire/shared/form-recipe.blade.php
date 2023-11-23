@@ -103,7 +103,7 @@
                         </div>
                   
                           <!-- Ingredients -->
-                        <div class="col-span-full">
+                        {{-- <div class="col-span-full">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Ingredientes</label>
                                 <div>
                                     @foreach($ingredientes as $index => $ingrediente)
@@ -130,7 +130,7 @@
         
                                     <button type="button" wire:click="agregarPaso" class="bg-blue-500 text-white px-2 py-1 rounded">Agregar Paso</button>
                                 </div>
-                        </div>
+                        </div> --}}
         
                         <!--boton guardar-->
                         <div class="flex">

@@ -27,9 +27,9 @@ class FormRecipe extends Component
     public $rules = [
         'name'=> 'required',
         'difficulty'=>'required',
-        'preparation_time' => 'required|regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/',
+        'preparation_time' => 'required',
         'description'=> 'required',
-        'category' => 'required',
+        'category_id' => 'required',
     ];
 
 
@@ -68,7 +68,7 @@ class FormRecipe extends Component
         ];
     
         if ($this->btnModal == "Crear") {
-            // $this->validate();
+            $this->validate();
             Recipe::create($recipe);
             // foreach ($this->images as $image) {
             //     $path = $image->store('recipes');
@@ -106,14 +106,12 @@ class FormRecipe extends Component
         }
     }
 
-    public function modalEdit(Recipe $recipe){
+    public function editarRecetaForm(Recipe $recipe){
         $this->recipeId = $recipe->id;
-        $this->description =$recipe->description;
         $this->name =$recipe->name;
-        $this->ingredients =$recipe->ingredients;
-        $this->preparation =$recipe->preparation;
-        $this->images =$recipe->images;
-    
+        $this->description =$recipe->description;
+        $this->difficulty =$recipe->difficulty;
+        $this->preparation_time =$recipe->preparation_time;
          $this->titleModal = "Editar Receta";
         $this->btnModal = "Actualizar";
          $this->openModal= true;

@@ -63,7 +63,7 @@
                                         <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitirReceta({{$recipe}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
-                                        <button onclick="alert('error')" wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
+                                        <button onclick="alert('error')" wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-500">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
