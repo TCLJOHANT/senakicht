@@ -123,11 +123,12 @@
                         <div class="imgsPrevs">
                             <div class="sticky top-0 z-50 overflow-hidden">
                                 <div class="flex-wrap hidden md:flex">
+           
                                     @foreach ($previewImages as $image)
                                         <div class="w-1/2 p-2 sm:w-1/4">
                                             <a href="#" wire:click="changeMainImage('{{ $image }}')"
                                                 class="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                                <img src="{{asset('storage' . $image) }}" alt="" class="object-cover w-full lg:h-20">
+                                                <img src="{{asset('storage/' . $image) }}" alt="" class="object-cover w-full lg:h-20">
                                             </a>
                                         </div>
                                     @endforeach

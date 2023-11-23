@@ -1,7 +1,10 @@
+@charset "UTF-8";
 .contDetalle {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  height: 90vh;
+  width: 100%;
 }
 .contDetalle .imgs {
   width: 50%;
@@ -25,7 +28,19 @@
   width: 50%;
   padding: 3%;
   overflow-y: scroll;
-  height: 35rem;
+  height: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  .contDetalle {
+    flex-direction: column;
+  }
+  .contDetalle .imgs {
+    width: 100%;
+  }
+  .contDetalle .descriptionProduct {
+    width: 100%; /* Cambia el ancho a 100% en pantallas pequeñas */
+  }
 }
 
 /*# sourceMappingURL=detalleProduct.css.map */
