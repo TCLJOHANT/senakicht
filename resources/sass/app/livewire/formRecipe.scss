@@ -2,11 +2,12 @@
      display: flex;
      flex-wrap: wrap;
      width: 100%;
-     height: 90vh;
+     height: 94vh;
 
      .imgs {
         width: 50%; 
         max-height: 100%;
+        
         img {
             border-radius: 10px;
             width: 100%; // Ocupa el 100% del ancho de su contenedor
@@ -26,9 +27,14 @@
 
 @media only screen and (max-width: 700px) {
     .cont_form_recipe{
-        flex-direction: column;
+        overflow: scroll;
+        // flex-direction: column;
+        display: block;
+        max-width: 100%;
         .imgs, .form_recipe {
+            max-height: 100%;
             width: 100%; /* Cambia el ancho a 100% en pantallas pequeñas */
         }
+        
     }
 }

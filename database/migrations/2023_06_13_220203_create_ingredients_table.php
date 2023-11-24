@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('categoria'); //fruta,verdura etc
+            $table->double('quantity')->nullable(); //1
+            $table->string('unit')->nullable(); //cucharada
+            $table->string('name'); //sal
+            $table->string('measurement'); //250g o al gusto
+            // Relación uno a muchos con la tabla recetas
+            $table->unsignedBigInteger('recipe_id');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }

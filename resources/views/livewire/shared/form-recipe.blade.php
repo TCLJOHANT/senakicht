@@ -4,19 +4,22 @@
     <x-modificados-jet.modal wire:model="openModal" maxWidth="full" >
         <div class="cont_form_recipe">
             <!--Imagenes-->
-            <div class="grid grid-cols-2 gap-1 imgs">
-                    {{--  <!-- Input para seleccionar imágenes -->
-                    <input class="w-full" type="file" wire:model="images" multiple />
-    
-                    <div class="grid grid-cols-2 gap-2 imgs">
-                        @foreach($images as $index => $image)
-                            <div>
-                                <img class="h-auto max-w-full rounded-lg" src="{{ $image->temporaryUrl() }}" alt=""> 
-                                <button wire:click="removeImage({{ $index }})">Eliminar</button> 
-                            </div>
-                        @endforeach
-                    </div>  --}}
-                    {{-- <div class="">
+            {{--  <!-- Input para seleccionar imágenes -->
+            <input class="w-full" type="file" wire:model="images" multiple />
+
+            <div class="grid grid-cols-2 gap-2 imgs">
+                @foreach($images as $index => $image)
+                    <div>
+                        <img class="h-auto max-w-full rounded-lg" src="{{ $image->temporaryUrl() }}" alt=""> 
+                        <button wire:click="removeImage({{ $index }})">Eliminar</button> 
+                    </div>
+                @endforeach
+            </div>  --}}
+
+           
+            
+            <div class="grid grid-cols-2 imgs gap-1 p-4 bg-blue-500">
+                    
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div class="text-center">
                                 <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -24,31 +27,78 @@
                                 </svg>
                                 <div class="mt-4 flex text-sm leading-6 text-gray-600">
                                 <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>Upload a file</span>
+                                    <span>subir imagen</span>
                                     <input id="file-upload" name="file-upload" type="file" class="sr-only">
                                 </label>
-                                <p class="pl-1">or drag and drop</p>
+                                <p class="pl-1">o arrastrar y soltar</p>
                                 </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
                             </div>
                         </div>
+                   
+                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>subir imagen</span>
+                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
+                            </div>
+                        </div>
+                   
+                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>subir imagen</span>
+                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
+                            </div>
+                        </div>
+                    
+                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                            <div class="text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                                </svg>
+                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>subir imagen</span>
+                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                                </label>
+                                <p class="pl-1">o arrastrar y soltar</p>
+                                </div>
+                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
+                            </div>
+                        </div>
+            </div> 
+                    {{-- <div class="">
+                        <img class="max-w-full max-h-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
                     </div> --}}
-
-                    <div class="h-auto ">
-                        <img class="h-auto  max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
-                    </div>
-                    <div>
+                    {{-- <div>
                         <img class="h-auto  max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
                     </div>
                     <div>
                         <img class="h-auto  max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
-                    </div>
-            </div> 
+                    </div> --}}
             
             <form class="form_recipe">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Información de la Receta</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">Digite toda la informacion que se pide por favor.</p>
+                    <!-- <p class="mt-1 text-sm leading-6 text-gray-700">los campos con (<span class="text-color-red-500">*</span>) son obligatorios.</p> -->
                     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <!--titulo receta-->
                         <div class="sm:col-span-full">
@@ -103,34 +153,51 @@
                         </div>
                   
                           <!-- Ingredients -->
-                        {{-- <div class="col-span-full">
-                            <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Ingredientes</label>
+                        <div class="col-span-full">
+                            <label for="country" class="block text-sm font-medium leading-6 text-gray-900"><b>Ingredientes</b> </label>
                                 <div>
                                     @foreach($ingredientes as $index => $ingrediente)
-                                        <div class="flex flex-col md:flex-row md:items-center mb-2">
-                                            <input type="text" wire:model="ingredientes.{{ $index }}.nombre" placeholder="ingrediente" class="block w-sm rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" wire:model="ingredientes.{{ $index }}.cantidad" placeholder="Cantidad" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                                            <input type="text" wire:model="ingredientes.{{ $index }}.medida" placeholder="Medida" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                    <h3 class="w-full text-center m-3 text-gray-700">Ingrediente {{$index + 1}}</h3>
+                                        <div class="flex flex-col md:flex-row md:items-center mb-2 ml-3">
+                                            <div class="mb-2 mx-2">
+                                                <label for="">cantidad</label>
+                                                <input value="" type="text" wire:model="ingredientes.{{ $index }}.quantity" placeholder="Ej: 2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            </div>
+                                            <div class="mb-2 mx-2">
+                                                <label for="nombre">ingrediente</label>
+                                                <input value="" type="text" wire:model="ingredientes.{{ $index }}.name" placeholder="Ej: Queso rayado" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col md:flex-row md:items-center mb-2 ml-3">
+                                            <div class="mb-2 mx-2">
+                                                <label for="">unidad</label>
+                                                <input value="" type="text" wire:model="ingredientes.{{ $index }}.unit" placeholder="Ej: cucharadas" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                            </div>
+                                            <div class="mb-2 mx-2">
+                                                <label for="">medida</label>
+                                                <input value="" type="text" wire:model="ingredientes.{{ $index }}.measurement" placeholder="250g o al gusto" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                            </div>
                                             <button type="button" wire:click="eliminarIngrediente({{ $index }})" class="bg-red-500 text-white px-2 py-1 rounded mb-2 md:mb-0"> <i class="fas fa-trash"></i></button>
                                         </div>
                                     @endforeach
-                                    <button type="button" wire:click="agregarIngrediente()" class="bg-blue-500 text-white px-2 py-1 rounded">Agregar Ingrediente</button>
+                                    <button type="button"  wire:click="agregarIngrediente()"  class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2">Agregar Ingrediente</button>
                                 </div>
                         </div>
         
                         <div class="col-span-full">
                                 <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Preparación</label>
-                                <div>
+                                <div >
                                     @foreach($pasos as $index => $paso)
                                             <div class="mt-2">
-                                              <textarea  wire:model="pasos.{{ $index }}" placeholder="Paso {{ $index + 1 }}" id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
-                                              <button type="button" wire:click="eliminarPaso({{ $index }})" class=" bg-red-500 text-white px-2 py-1 rounded">Eliminar</button>
+                                                <h3>Paso {{$index + 1}}    <button type="button" wire:click="eliminarPaso({{ $index }})" class="bg-red-500 text-white px-2 py-1 rounded mb-2 md:mb-0"> <i class="fas fa-trash"></i></button></h3>
+                                              <textarea  wire:model="pasos.{{ $index }}" placeholder="escribe la descripcion del paso" id="about" name="about" rows="2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                          
+                                            </textarea>
                                             </div>
                                     @endforeach
-        
-                                    <button type="button" wire:click="agregarPaso" class="bg-blue-500 text-white px-2 py-1 rounded">Agregar Paso</button>
+                                    <button type="button"  wire:click="agregarPaso()"  class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2 text-center me-2 mb-2">Agregar Paso</button>
                                 </div>
-                        </div> --}}
+                        </div> 
         
                         <!--boton guardar-->
                         <div class="flex">

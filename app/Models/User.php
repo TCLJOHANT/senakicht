@@ -79,9 +79,7 @@ class User extends Authenticatable
             return $this->hasMany('App\Models\Menu');
         }
         //1:1
-        public function profile(){
-            return $this->hasOne('App\Models\Profile');
-        }
+
 
     //Para Adminlte
     public function adminlte_image(){

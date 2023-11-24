@@ -71,18 +71,17 @@ class RecipeFactory extends Factory
                 ]);
             }
 
-        // Agregar  4 ingredientes y al registro
+        // Agregar  4 ingredientes y pasos de preparacion y al registro
         for ($i = 0; $i < 4; $i++) {
-            $ingredient = Ingredient::firstOrCreate([
-                'name' => implode(' ', $this->faker->words(2)),
-                'categoria' =>  $this->faker->randomElement(['Cereal', 'Carne', 'Lacteo','Verdura']),
-            ]);
-            // Asociar ingredientes a la receta mediante la tabla pivot
-            $recipe->ingredients()->attach($ingredient->id, [
-                'quantity' => '1',
+            Ingredient::create([
+                'recipe_id' => $recipe->id,
+                'quantity' =>  $this->faker->randomElement([1,2,3,4,5,6]),
                 'unit' => $this->faker->randomElement(['Cucharada', 'Taza', 'libra','litro','kilogramo']),
-                'measurement' => '250 ml',
+                'name' => implode(' ', $this->faker->words(2)),
+                'measurement' => '20g'
+    
             ]);
+         
             //pasos de la receta
             PreparationStep::create([
                 'recipe_id' => $recipe->id,
