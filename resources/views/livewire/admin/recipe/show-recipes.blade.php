@@ -1,11 +1,21 @@
 <div>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <div class="">
+    
+    <div class="card">
         <div class="card-header">
-            <x-button wire:click="exportar()" class="btn btn-success">Exportar</x-button>
-            {{-- <x-button class="btn btn-info">Importar</x-button> --}}
+            <button wire:click="exportar()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fas fa-download  mr-2"></i>
+                <span>Exportar</span>
+              </button>
         </div>
         <div class="px-6 py-4 flex items-center">
+            <div class="flex items-center mr-2">
+                <span>mostrar</span>
+                <select wire:model.live="cantidadRegistros"   class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
+                    <option value="10">5</option>
+                    <option value="10">10</option>
+                </select>
+                <span>entradas</span>
+            </div>
             <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
            @livewire('shared.form-recipe')
         </div>
@@ -21,36 +31,39 @@
                     </div>
                 @else
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                        <thead class="bg-gray-50 text-center">
                             <tr>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Imagen</th>
                                 <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Descripción</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ingredientes</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Preparacion</th>
+                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Dificultad</th>
+                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tiempo de Preparacion</th>
                                 <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
                             </tr>
                         </thead>
                         <tbody >
                             @foreach ($recipes as $recipe)
+                          
                                 <tr >
                                     <td class="px-6 py-6">{{$recipe->name}}</td>
-                                    <td class="px-6 py-6" >
-                                        @foreach($recipe->multimedia as $imagenes)
-                                            {{stripslashes($imagenes->ruta)}}
-                                                {{-- <img src="{{ asset('storage/' . $imagenes->ruta) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."> --}}
-                                            
+                                    <td class="px-6 py-6 "  >
+                                        @foreach($recipe->multimedia as $index => $imagen)
+                                            @if($index === 0)
+                                                <img src="{{ asset('storage/' . $imagen->ruta) }}"  width="100px" alt="...">
+                                            @endif
                                         @endforeach
-                                      
                                     </td>
                                     <td class="px-6 py-6">{{$recipe->description}}</td>
-                                    <td class="px-6 py-6"></td>
-                                    <td class="px-6 py-6">{{$recipe->preparation}}</td>
+                                    <td class="px-6 py-6">{{$recipe->difficulty}}</td>
+                                    <td class="px-6 py-6">{{$recipe->preparation_time}}</td>
                                     <td class="px-6 py-6 flex items-center">
-                                        <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="emitirReceta({{$recipe}})" >  
+                                        <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500"   >  
+                                            <i class="fas fa-eye"></i>
+                                        </button> 
+                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitirReceta({{$recipe}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
-                                        <button onclick="alert('error')" wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                        <button onclick="alert('error')" wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-500">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -68,4 +81,7 @@
             </div>
         </div>
     </div>
+
+
+    
 </div>

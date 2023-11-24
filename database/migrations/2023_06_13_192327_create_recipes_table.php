@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->max(100);
-            $table->string('difficulty'); //dificultad de receta
+            $table->enum('difficulty', ['fácil', 'medio', 'difícil']);
             $table->time('preparation_time');//tiempo de preparacion
             //forgein key user
             $table->unsignedBigInteger('user_id')->nullable();

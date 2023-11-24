@@ -1,5 +1,4 @@
 <div>
-
     <link rel="stylesheet" href="{{ asset('css/shared/opinion.css')}}"> 
 <div class="card">
     <div class="px-6 py-4 flex items-center">
@@ -36,10 +35,13 @@
                                 @endfor 
                             </td> 
                             <td class="px-6 py-6 flex items-center">
-                                <button class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer " style="background-color: #16a34a;" wire:click="modalEdit({{$comment}})" >  
+                                <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500">  
+                                    <i class="fas fa-eye"></i>
+                                </button> 
+                                <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="modalEdit({{$comment}})" >  
                                     <i class="fas fa-pencil-alt"></i>
                                 </button> 
-                                <button onclick="alert('error')" wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white py-2 px-4 rounded cursor-pointer" style="background-color:#ef4444">
+                                <button onclick="alert('error')" wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>

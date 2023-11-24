@@ -1,5 +1,6 @@
 <div>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ asset('css/app/livewire/detalleProduct.css')}}">
     <div class="box">
         <form action="{{ route('cart.store') }}" method="POST">
             {{ csrf_field() }}
@@ -14,7 +15,7 @@
                         <a href="#" class="fas fa-shopping-cart"></a>
                         <a href="#" class="fas fa-heart"></a>
                         <!--evita el comportamiento predeterminado del clic en este caso en un link-->
-                        <a  wire:click.prevent="openModalDetalle()" href="#" class="fas fa-eye modal-popup"></a>
+                        <a  wire:click.prevent="openModalDetalle()" href="#" class="fas fa-eye"></a>
                     </div>
                 </div>
             </div>
@@ -25,7 +26,7 @@
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                     @foreach($product->multimedia as $imagenes)
                         <div class="hidden duration-500 ease-in-out" data-carousel-item>
-                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 " alt="..." >
+                            <img src="{{ asset('storage/' . $imagenes->ruta) }}" class="  h-full absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 " alt="..." >
                         </div>
                     @endforeach
                 </div>
@@ -79,49 +80,67 @@
     </div> 
     <!--detalles de producto-->
     <x-modificados-jet.modal wire:model="openModalDetailProduct" maxWidth="full" >
-         <section class=" overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
-            <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
-                <div class="flex flex-wrap -mx-4">
-                    <div class="w-full px-4 md:w-1/2 ">
-                        <div class="sticky top-0 z-50 overflow-hidden ">
-                            <div class="relative mb-6 lg:mb-10 lg:h-2/4 ">
-                                <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt="" 
-                                    class="object-cover w-full lg:h-full ">  
+            <div class="contDetalle">
+                    {{-- <div class="imgs">
+                        <div class="imgMain">
+                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt="" 
+                                class="object-cover">  
+                        </div>
+                        <div class="imgsPrevs">
+                            <div class="sticky top-0 z-50 overflow-hidden ">
+                                <div class="flex-wrap hidden md:flex ">
+                                    <div class="w-1/2 p-2 sm:w-1/4">
+                                        <a href="#"
+                                            class="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                                class="object-cover w-full lg:h-20">
+                                        </a>
+                                    </div>
+                                    <div class="w-1/2 p-2 sm:w-1/4">
+                                        <a href="#"
+                                            class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                                class="object-cover w-full lg:h-20">
+                                        </a>
+                                    </div>
+                                    <div class="w-1/2 p-2 sm:w-1/4">
+                                        <a href="#"
+                                            class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                            <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
+                                                class="object-cover w-full lg:h-20">
+                                        </a>
+                                    </div>
+                                  
+                                </div>
                             </div>
-                            <div class="flex-wrap hidden md:flex ">
-                                <div class="w-1/2 p-2 sm:w-1/4">
-                                    <a href="#"
-                                        class="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                            class="object-cover w-full lg:h-20">
-                                    </a>
-                                </div>
-                                <div class="w-1/2 p-2 sm:w-1/4">
-                                    <a href="#"
-                                        class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                            class="object-cover w-full lg:h-20">
-                                    </a>
-                                </div>
-                                <div class="w-1/2 p-2 sm:w-1/4">
-                                    <a href="#"
-                                        class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                            class="object-cover w-full lg:h-20">
-                                    </a>
-                                </div>
-                                <div class="w-1/2 p-2 sm:w-1/4">
-                                    <a href="#"
-                                        class="block border border-transparent dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
-                                        <img src="https://i.postimg.cc/PqYpFTfy/pexels-melvin-buezo-2529148.jpg" alt=""
-                                            class="object-cover w-full lg:h-20">
-                                    </a>
+
+                        </div>
+                    </div> --}}
+                    <div class="imgs">
+                        <div class="imgMain">
+                            <img src="{{ $mainImage }}" alt="" class="object-cover">
+                        </div>
+                        <div class="imgsPrevs">
+                            <div class="sticky top-0 z-50 overflow-hidden">
+                                <div class="flex-wrap hidden md:flex">
+           
+                                    @foreach ($previewImages as $image)
+                                        <div class="w-1/2 p-2 sm:w-1/4">
+                                            <a href="#" wire:click="changeMainImage('{{ $image }}')"
+                                                class="block border border-blue-300 dark:border-transparent dark:hover:border-blue-300 hover:border-blue-300">
+                                                <img src="{{asset('storage/' . $image) }}" alt="" class="object-cover w-full lg:h-20">
+                                            </a>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="w-full px-4 md:w-1/2 ">
-                        <x-danger-button   wire:click="$set('openModalDetailProduct', false)">X</x-danger-button>
+                    <!--seccion de -->
+                    <div class="descriptionProduct">
+                        <div class="flex">
+                            <x-danger-button class="flex ml-auto"  wire:click="$set('openModalDetailProduct', false)">X</x-danger-button>
+                        </div>
                         <div class="lg:pl-20">
                             <div class="mb-8 ">
                                 <h2 class="max-w-xl mt-2 mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
@@ -184,44 +203,15 @@
                                     <span
                                         class="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1500.99</span>
                                 </p>
-                                <p class="text-green-600 dark:text-green-300 ">7 in stock</p>
+                                <p class="text-green-600 dark:text-green-300 ">7 en existencia</p>
                             </div>
-                            <div class="flex items-center mb-8">
-                                <h2 class="w-16 mr-6 text-xl font-bold dark:text-gray-400">
-                                    Colors:</h2>
-                                <div class="flex flex-wrap -mx-2 -mb-2">
-                                    <button
-                                        class="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400 ">
-                                        <div class="w-6 h-6 bg-cyan-300"></div>
-                                    </button>
-                                    <button
-                                        class="p-1 mb-2 mr-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                        <div class="w-6 h-6 bg-green-300 "></div>
-                                    </button>
-                                    <button
-                                        class="p-1 mb-2 border border-transparent hover:border-blue-400 dark:border-gray-800 dark:hover:border-gray-400">
-                                        <div class="w-6 h-6 bg-red-200 "></div>
-                                    </button>
-                                </div>
+
+                            <div class="mb-4">
+                                <label for=""
+                                class="w-full text-xl font-sm mb-2 text-gray-700 dark:text-gray-400">Descripción</label>
+                                <p>{{$product->description}}</p>
                             </div>
-                            <div class="flex items-center mb-8">
-                                <h2 class="w-16 text-xl font-bold dark:text-gray-400">
-                                    Size:</h2>
-                                <div class="flex flex-wrap -mx-2 -mb-2">
-                                    <button
-                                        class="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 dark:border-gray-400 hover:text-blue-600 dark:hover:border-gray-300 dark:text-gray-400">XL
-                                    </button>
-                                    <button
-                                        class="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">S
-                                    </button>
-                                    <button
-                                        class="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">M
-                                    </button>
-                                    <button
-                                        class="py-1 mb-2 mr-1 border w-11 hover:border-blue-400 hover:text-blue-600 dark:border-gray-400 dark:hover:border-gray-300 dark:text-gray-400">XS
-                                    </button>
-                                </div>
-                            </div>
+
                             <div class="w-32 mb-8 ">
                                 <label for=""
                                     class="w-full text-xl font-semibold text-gray-700 dark:text-gray-400">Quantity</label>
@@ -239,24 +229,17 @@
                                     </button>
                                 </div>
                             </div>
+
                             <div class="flex flex-wrap items-center -mx-4 ">
                                 <div class="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                     <button
-                                        class="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
-                                        Add to Cart
-                                    </button>
-                                </div>
-                                <div class="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
-                                    <button
-                                        class="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">
-                                        Add to wishlist
+                                        class="flex items-center justify-center w-full p-4  rounded-md dark:text-gray-200  bg-green-600 border-blue-600 text-gray-100 ">
+                                        Agregar al Carrito
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
-        </section> 
     </x-modificados-jet.modal>
 </div>

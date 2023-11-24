@@ -13,29 +13,33 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ProductFactory extends Factory
 {
- 
-    private function generarImagen()
-    {
-        $client = new Client();
-        $response = $client->get('https://pixabay.com/api/', [
-            'query' => [
-                'q' => 'product',
-                'key' => '32197405-8812e983959c5a943e2916bd1',
-            ],
-        ]);
-        $imageData = json_decode($response->getBody(), true);
-        $randomImageIndex = array_rand($imageData['hits']);
-        $imageUrl = $imageData['hits'][$randomImageIndex]['largeImageURL'];
 
-        // Generar un nombre único para la imagen
-        $imageName = 'product_' . uniqid() . '.jpg';
+private function generarImagen()
+{
+    $client = new Client();
+    $apiKey = env('PEXELS_API_KEY'); // Obtén tu clave de API de Pexels desde tu archivo .env
 
-        // Descargar y guardar la imagen en tu directorio de imágenes de recetas
-        $imagePath = 'public/storage/products/' . $imageName;
-        file_put_contents($imagePath, file_get_contents($imageUrl));
+    $response = $client->get('https://api.pexels.com/v1/search', [
+        'headers' => [
+            'Authorization' => $apiKey,
+        ],
+        'query' => [
+            'query' => 'product',
+        ],
+    ]);
+    $imageData = json_decode($response->getBody(), true);
+    $randomImageIndex = array_rand($imageData['photos']);
+    $imageUrl = $imageData['photos'][$randomImageIndex]['src']['large'];
+    
+    // $imageUrl = $imageData['photos'][0]['src']['large'];
+    // Generar un nombre único para la imagen
+    $imageName = 'product_' . uniqid() . '.jpg';
+    // Descargar y guardar la imagen en tu directorio de imágenes de recetas
+    $imagePath = 'public/storage/products/' . $imageName;
+    file_put_contents($imagePath, file_get_contents($imageUrl));
 
-        return 'products/' . $imageName;
-    }
+    return 'products/' . $imageName;
+}
     /**
      * Define the model's default state.
      *
