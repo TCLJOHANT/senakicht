@@ -3,9 +3,11 @@
 namespace App\Livewire\Shared;
 
 use App\Models\Category;
+use App\Models\Ingredient;
 use Livewire\Component;
 use App\Models\Recipe;
 use App\Models\Multimedia;
+use App\Models\PreparationStep;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 
@@ -15,15 +17,12 @@ class FormRecipe extends Component
     //vars modal
     public  $titleModal = "Crear Receta", $btnModal = "Crear" , $openModal =false;
     //variables inputs
-    
-    public $name,$difficulty,$preparation_time,$description,$category_id,$identificador,$recipeId ;
+    public $name,$difficulty,$preparation_time,$description,$category_id,$identificador,$recipeId,
+    $ingredientes = [],$pasos=[], $images = [] ;
 
-    public $ingredientes = [],$pasos=[], $images = [] ;
-  
     private $resetVariables = ['openModal','category_id','name','preparation_time','difficulty','description','ingredientes','pasos','btnModal','titleModal'];
     //emit    
     protected $listeners = ['editarRecetaForm'];
-
     public $rules = [
         'name'=> 'required',
         'difficulty'=>'required',
@@ -32,32 +31,14 @@ class FormRecipe extends Component
         'category_id' => 'required',
     ];
 
-
-    public function mount(){
-      
+    public function mount(){ 
         $this->identificador = rand(); //le asigna un numero al azar o random
     }
-    public function render()
-    {
+    public function render(){
         $categories = Category::all();
         return view('livewire.shared.form-recipe',compact('categories'));
     }
-    // public function editarRecetaForm(Recipe $recipe){
-    //     $this->recipe = $recipe;
-    //     $this->recipeId = $recipe->id;
-    //     $this->description =$recipe->description;
-    //     $this->name =$recipe->name;
-    //     $this->ingredients =$recipe->ingredients;
-    //     $this->preparation =$recipe->preparation;
-    //     $this->images =$recipe->images;
-    //      $this->titleModal = "Editar Receta";
-    //     $this->btnModal = "Actualizar";
-    //      $this->openModal= true;
-    // }
-
-
-    public function createOrUpdate()
-    {    
+    public function createOrUpdate(){    
         $recipe = [
             'name' => $this->name,
             'difficulty' =>$this->difficulty,
@@ -66,20 +47,38 @@ class FormRecipe extends Component
             'category_id' =>$this->category_id,
             'user_id'=>Auth::user()->id,
         ];
-    
         if ($this->btnModal == "Crear") {
             $this->validate();
-            Recipe::create($recipe);
-            // foreach ($this->images as $image) {
-            //     $path = $image->store('recipes');
+            $recipe = Recipe::create($recipe);
+             foreach ($this->images as $image) {
+                //     $path = $image->store('recipes');
                 
-            //     $multimedia = new Multimedia();
-            //     $multimedia->ruta = $path;
-            //     $multimedia->tipo = 'imagen';
-            //     $recipeModel->multimedia()->save($multimedia);
-            // }
+                //     $multimedia = new Multimedia();
+                //     $multimedia->ruta = $path;
+                //     $multimedia->tipo = 'imagen';
+                  //   $recipe->multimedia()->save($multimedia);
+             }
+            // Iterar sobre los ingredientes y crear cada uno
+            foreach ($this->ingredientes as $ingrediente) {
+                 Ingredient::create([
+                     'recipe_id' => $recipe->id,
+                     'quantity' => $ingrediente['quantity'],
+                     'unit' => $ingrediente['unit'],
+                     'name' => $ingrediente['name'],
+                     'measurement' => $ingrediente['measurement']
+                 ]);
+             }
+               // Crear los pasos de preparación
+               
+            foreach ($this->pasos as $index => $paso) {
+                PreparationStep::create([
+                    'recipe_id' => $recipe->id,
+                     'step_number' => $index + 1,
+                     'description_step' => $paso
+                 ]);
+            }
             
-            $this->reset($this->resetVariables);
+             $this->reset($this->resetVariables);
             // $this->identificador = rand();
         } elseif ($this->btnModal == "Actualizar") {
             $recipeEdit = Recipe::find($this->recipeId);
@@ -87,16 +86,12 @@ class FormRecipe extends Component
             if ($recipeEdit) {
                 $recipe['user_id'] = $recipeEdit->user_id;
                 $recipeEdit->update($recipe);
-                
                 $recipeEdit->multimedia()->delete(); // Eliminar todas las imágenes existentes
-                
                 foreach ($this->images as $image) {
                     $path = $image->store('recipes');
-                    
                     $multimedia = new Multimedia();
                     $multimedia->ruta = $path;
                     $multimedia->tipo = 'imagen';
-                    
                     $recipeEdit->multimedia()->save($multimedia);
                 }
                 
@@ -112,7 +107,10 @@ class FormRecipe extends Component
         $this->description =$recipe->description;
         $this->difficulty =$recipe->difficulty;
         $this->preparation_time =$recipe->preparation_time;
-         $this->titleModal = "Editar Receta";
+        $this->ingredientes = $recipe->ingredients;
+        $this->pasos = $recipe->preparationSteps;
+        $this->category_id = $recipe->category_id;
+        $this->titleModal = "Editar Receta";
         $this->btnModal = "Actualizar";
          $this->openModal= true;
     }
@@ -120,7 +118,7 @@ class FormRecipe extends Component
 
     public function agregarIngrediente()
     {
-        $this->ingredientes[] = ['nombre' => '', 'cantidad' => '', 'medida' => ''];
+        $this->ingredientes[] = ['quantity' => '', 'unit' =>'','name' => '', 'measurement' => '',];
     }
 
     public function eliminarIngrediente($index)
@@ -129,13 +127,9 @@ class FormRecipe extends Component
         $this->ingredientes = array_values($this->ingredientes);
     }
 
-    public function agregarPaso()
-    {
-        $this->pasos[] = '';
-    }
+    public function agregarPaso(){ $this->pasos[] = '';}
 
-    public function eliminarPaso($index)
-    {
+    public function eliminarPaso($index){
         unset($this->pasos[$index]);
         $this->pasos = array_values($this->pasos);
     }
@@ -145,8 +139,7 @@ class FormRecipe extends Component
         // Aquí puedes realizar acciones adicionales al actualizar las imágenes, si es necesario
     }
 
-    public function removeImage($index)
-    {
+    public function removeImage($index){
         unset($this->images[$index]);
     }
 }

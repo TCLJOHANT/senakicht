@@ -6,7 +6,7 @@
     </div>
     <nav class="navbar">
         <a class="px-2" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i> Inicio</a>
-        <a class="px-2" href="{{ route('nosotros') }}"><i class="fas fa-info-circle fa-fw"></i> Acerca de</a>
+        <a class="px-2" wire:navigated href="{{ route('nosotros') }}"><i class="fas fa-info-circle fa-fw"></i> Acerca de</a>
         <a class="px-2" href="{{ route('menu') }}"><i class="fas fa-utensils fa-fw"></i> Platos</a>
         <a class="px-2" href="{{ route('productos') }}"><i class="fas fa-shopping-basket fa-fw"></i> Productos</a>
         <a class="px-2" href="{{ route('recetas') }}"><i class="fas fa-book-open fa-fw"></i> Recetas</a>

@@ -20,8 +20,9 @@ class Recipe extends Model
                 return $this->morphMany(Multimedia::class, 'multimediaable');
             }
         //1:N
-            public function ingredients(){
-                return $this->belongsToMany('App\Models\Ingredient');
+            public function ingredients()
+            {
+                return $this->hasMany(Ingredient::class);
             }
             public function preparationSteps()
             {

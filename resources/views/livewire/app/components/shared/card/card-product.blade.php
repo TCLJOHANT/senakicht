@@ -1,4 +1,4 @@
-<div>
+<div >
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> 
     <link rel="stylesheet" href="{{ asset('css/app/livewire/detalleProduct.css')}}">
     <div class="box">

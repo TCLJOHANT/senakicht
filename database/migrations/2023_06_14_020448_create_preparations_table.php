@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
              // Relación uno a muchos con la tabla recetas
             $table->unsignedBigInteger('recipe_id');
-            $table->foreign('recipe_id')->references('id')->on('recipes');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
 
             $table->integer('step_Number'); //numero de pasos
             $table->text('description_step');//descripcion del paso

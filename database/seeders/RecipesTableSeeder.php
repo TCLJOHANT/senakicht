@@ -36,28 +36,25 @@ class RecipesTableSeeder extends Seeder
             'type' => 'imagen',
         ]);
 
-        // Crear ingredientes solo si no existen
-        $ingredient1 = Ingredient::firstOrCreate([
-            'name' => 'Arroz',
-            'categoria' => 'Cereal',
+      // Crear pasos de INGREDIENTE
+        Ingredient::create([
+            'recipe_id' => $recipe->id,
+            'quantity' => 1,
+            'unit' =>'cucharada',
+            'name' => 'azucar',
+            'measurement' => '10g'
+
         ]);
 
-        $ingredient2 = Ingredient::firstOrCreate([
-            'name' => 'Leche',
-            'categoria' => 'Lácteo',
-        ]);
-        // Asociar ingredientes a la receta mediante la tabla pivot
-        $recipe->ingredients()->attach($ingredient1->id, [
-            'quantity' => '1 taza',
-            'unit' => 'taza',
-            'measurement' => '250 ml',
+        Ingredient::create([
+            'recipe_id' => $recipe->id,
+            'quantity' => 2,
+            'unit' =>'cucharadas',
+            'name' => 'canela',
+            'measurement' => '20g'
+
         ]);
 
-        $recipe->ingredients()->attach($ingredient2->id, [
-            'quantity' => '2 tazas',
-            'unit' => 'taza',
-            'measurement' => '500 ml',
-        ]);
 
         // Crear pasos de preparación
         PreparationStep::create([

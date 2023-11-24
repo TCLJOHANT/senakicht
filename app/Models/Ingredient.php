@@ -10,8 +10,9 @@ class Ingredient extends Model
     use HasFactory;
     protected  $guarded = [];
 
-    //RELACION MUCHOS A MUCHOS
-    Public function recipes(){
-        return $this->belongsToMany('App\Models\Recipe');
+    //RELACION UNO A MUCHOS
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class);
     }
 }
