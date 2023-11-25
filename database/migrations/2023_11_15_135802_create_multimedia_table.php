@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('multimedia', function (Blueprint $table) {
             $table->id();
             $table->string('ruta');
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->unsignedBigInteger('multimediaable_id');
             $table->string('multimediaable_type');
             $table->timestamps();

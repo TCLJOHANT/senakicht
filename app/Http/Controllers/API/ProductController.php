@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -20,23 +21,85 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        Product::create($request->all());
-        return response()->json([
-            'respuesta'=> true,
-            'mensaje' => 'product guardado con exito'
-        ]);
-    }
+     public function store(Request $request)
+     {
+         $request->validate([
+             'name' => 'required|string',
+             'price' => 'required|numeric',
+             'description' => 'required|string',
+             'quantity' => 'required|numeric',
+             'category_id' => 'required|exists:categories,id',
+             'user_id' => 'required|exists:users,id',
+             'multimedia' => 'required|array',
+             // 'multimedia.*.type' => 'required|string|in:imagen',
+             'multimedia.*.ruta' => 'required|string',
+         ]);
+    
+         // Crea un nuevo producto
+         $product = Product::create([
+             'name' => $request->input('name'),
+             'price' => $request->input('price'),
+             'description' => $request->input('description'),
+             'quantity' =>$request->input('quantity'),
+             'user_id' => $request->input('user_id'),  // O cualquier lógica que uses para obtener el ID del usuario actual
+             'category_id' => $request->input('category_id'),
+         ]);
+    
+         // Agrega multimedia al producto
+         foreach ($request->input('multimedia') as $media) {
+             $product->multimedia()->create($media);
+         }
+         // Retorna una respuesta de éxito o el objeto creado, según tus necesidades
+         return response()->json(['respuesta'=>true, 'message' => 'Producto creado exitosamente', 'data' => $product], 201);
+     }
+
+// public function store(Request $request)
+// {
+//     $request->validate([
+//         'name' => 'required|string',
+//         'price' => 'required|numeric',
+//         'description' => 'required|string',
+//         'quantity' => 'required|numeric',
+//         'category_id' => 'required|exists:categories,id',
+//         'user_id' => 'required|exists:users,id',
+//         'multimedia' => 'required|array',
+//         'multimedia.*.ruta' => 'required|string',
+//     ]);
+
+//     // Crea un nuevo producto
+//     $product = Product::create([
+//         'name' => $request->input('name'),
+//         'price' => $request->input('price'),
+//         'description' => $request->input('description'),
+//         'quantity' => $request->input('quantity'),
+//         'user_id' => $request->input('user_id'),
+//         'category_id' => $request->input('category_id'),
+//     ]);
+
+//     // Procesar y almacena las imágenes
+//     foreach ($request->input('multimedia') as $media) {
+//         $imageData = base64_decode($media['ruta']);
+//         $imageName = 'product_' . uniqid() . '.jpg';
+//         $imagePath = 'public/storage/products/' . $imageName;
+//         // Guarda la imagen en el sistema de archivos de Laravel
+//         Storage::put($imagePath, $imageData);
+//         $product->multimedia()->create([
+//             'ruta' => 'products/' . $imageName,
+//             'type' => 'imagen',
+//         ]);
+//     }
+//     return response()->json(['respuesta' => true, 'message' => 'Producto creado exitosamente',  'data' => $product], 201);
+// }
 
     /**
      * Display the specified resource.
      */
     public function show(Product $product)
     {
+        $product = $product->with('multimedia','comments')->get();
         return response()->json([
             'respuesta'=> true,
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
@@ -45,12 +108,40 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->update($request->all());
-        return response()->json([
-             "respuesta" => True,
-             "mensaje" => "Producto Actualizado Correctamente"
-         ],200);
+        $request->validate([
+            'name' => 'string',
+            'price' => 'numeric',
+            'description' => 'string',
+            'quantity' => 'numeric',
+            'category_id' => 'exists:categories,id',
+            'user_id' => 'exists:users,id',
+            'multimedia' => 'array',
+            // 'multimedia.*.type' => 'string|in:imagen',
+            'multimedia.*.ruta' => 'string',
+        ]);
+
+        // Actualiza los campos del producto según los datos proporcionados en la solicitud
+        $product->update([
+            'name' => $request->input('name', $product->name),
+            'price' => $request->input('price', $product->price),
+            'description' => $request->input('description', $product->description),
+            'quantity' => $request->input('quantity', $product->quantity),
+            'user_id' => $request->input('user_id', $product->user_id),
+            'category_id' => $request->input('category_id', $product->category_id),
+        ]);
+
+        // Actualiza la multimedia del producto
+        if ($request->has('multimedia')) {
+            $product->multimedia()->delete(); // Elimina todas las entradas multimedia existentes
+            foreach ($request->input('multimedia') as $media) {
+                $product->multimedia()->create($media);
+            }
+        }
+
+        // Retorna una respuesta de éxito o el objeto actualizado, según tus necesidades
+        return response()->json(['respuesta' => true, 'message' => 'Producto actualizado exitosamente', 'data' => $product], 200);
     }
+
 
     /**
      * Remove the specified resource from storage.
