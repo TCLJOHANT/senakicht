@@ -21,8 +21,7 @@ class FormProduct extends Component
     public $name,$price,$quantity,$description,$category_id,$identificador,$productId,
         $listaImages = [] ;
     
-    private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','productId'];
-        //emit    
+    private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','productId'];    
     public $rules = [
         'name'=> 'required',
         'price'=>'required',

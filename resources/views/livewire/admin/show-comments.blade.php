@@ -1,5 +1,4 @@
 <div>
-    <link rel="stylesheet" href="{{ asset('css/shared/opinion.css')}}"> 
 <div class="card">
     <div class="px-6 py-4 flex items-center">
         <div class="flex items-center">
@@ -11,7 +10,7 @@
             <span>entradas</span>
         </div>
         <x-input type="text" class="flex-1 mx-4" wire:model.live="search" placeholder="Buscar"/>
-        <x-danger-button wire:click="abrirModal()">Crear Comentario</x-danger-button>
+        @livewire('shared.form-comment')
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -38,7 +37,7 @@
                                 <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500">  
                                     <i class="fas fa-eye"></i>
                                 </button> 
-                                <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="modalEdit({{$comment}})" >  
+                                <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitComment({{$comment}})" >  
                                     <i class="fas fa-pencil-alt"></i>
                                 </button> 
                                 <button onclick="alert('error')" wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
@@ -64,55 +63,7 @@
     </div>
  </div>
 
-    {{-- MODAL --}}
-    <x-dialog-modal wire:model="openModal">
-        <x-slot name="title">
-            {{$titleModal}} 
-        </x-slot>
-        <x-slot name="content">
-            <div class="mb-4">
-                <x-label value="Comentario"></x-label>
-                <textarea name="" class="form-control w-full" id="" rows="6" wire:model.live="description"></textarea>
-                <x-input-error for='description'></x-input-error>
-                <x-label class="py-3" value="Calificación"></x-label>
-                
-                <div class=" star-rating">
-                    <input type="radio" wire:model="rating" id="star5" name="rating" value="5">
-                    <label for="star5"></label>
-                    <input type="radio" wire:model="rating" id="star4" name="rating" value="4">
-                    <label for="star4"></label>
-                    <input type="radio" wire:model="rating" id="star3" name="rating" value="3">
-                    <label for="star3"></label>
-                    <input type="radio" wire:model="rating" id="star2" name="rating" value="2">
-                    <label for="star2"></label>
-                    <input type="radio" wire:model="rating" id="star1" name="rating" value="1">
-                    <label for="star1"></label>
-                </div>
-                <x-input-error for='ranting'></x-input-error>
-
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-            <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-            <x-danger-button onclick="alert('success')" wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
-            <span wire:loading wire:target="createOrUpdate()">cargando ...</span>
-        </x-slot>
-    </x-dialog-modal>
-
-    <script>
-        function alert(type) {
-          switch (type) {
-              case 'success':
-                  toastr.success('El COmentario fue Guardada con éxito');
-                  break;
-              case 'error':
-                  toastr.error('El Comentario fue eliminada con éxito');
-                  break;
-              default:
-                  break;
-          }
-      }
-      </script>
+   
 </div> 
 
 
