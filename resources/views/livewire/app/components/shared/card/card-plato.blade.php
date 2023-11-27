@@ -36,7 +36,7 @@
             </div>
             <div class="card-body">
                 <a href=""><h6 class="card-title">{{ $plato->name }}</h6></a>
-                <p>este es una descripcion para el plato que decida subir el aptrendiz y darle informacion al comprador uo usuario</p>
+                <p>{{$plato->description}}</p>
                 <p class="price">$ {{ $plato->price }} COP</p>
                 <form action="{{ route('cart.store') }}" method="POST">
                     {{ csrf_field() }}

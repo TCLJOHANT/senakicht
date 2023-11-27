@@ -3,97 +3,41 @@
     <x-danger-button wire:click="$set('openModal', true)">Crear Receta</x-danger-button>
     <x-modificados-jet.modal wire:model="openModal" maxWidth="full" >
         <div class="cont_form_recipe">
-            <!--Imagenes-->
-            {{--  <!-- Input para seleccionar imágenes -->
-            <input class="w-full" type="file" wire:model="images" multiple />
-
             <div class="grid grid-cols-2 gap-2 imgs">
-                @foreach($images as $index => $image)
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="{{ $image->temporaryUrl() }}" alt=""> 
-                        <button wire:click="removeImage({{ $index }})">Eliminar</button> 
+               @if($lista)
+                    @foreach($lista as $index => $image)
+                        <div class="relative inline-block">
+                            @if ($btnModal==='Crear')
+                             <img class="max-h-full max-w-full rounded-lg" src="{{ $image->temporaryUrl() }}" alt="">   
+                            @else
+                                <img class="max-h-full max-w-full rounded-lg" src="{{asset('storage/' . $image)}}" alt="">   
+                            @endif
+                          
+                            <button class="absolute top-0 right-0 m-2 p-2 bg-green-500 text-white rounded-full" wire:click="removeImage({{ $index }})">
+                                <i class="fas fa-trash"></i> <!-- Ajusta el ícono según tu configuración de FontAwesome -->
+                            </button>  
+                        </div>
+                    @endforeach
+                @else
+                    <div class="flex items-center justify-center max-h-full max-w-full rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                        <div class="text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                            </svg>
+                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                            <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                <span>subir imagenes</span>
+                                <input wire:model="lista" id="file-upload" name="file-upload" type="file" class="sr-only" multiple>
+                            </label>
+                            <p class="pl-1">o arrastrar y soltar</p>
+                            </div>
+                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
+                            <p class="text-xs leading-5 text-gray-600">maximo 4 imagenes </p>
+                        </div>
                     </div>
-                @endforeach
-            </div>  --}}
-
-           
-            
-            <div class="grid grid-cols-2 imgs gap-1 p-4 bg-blue-500">
-                    
-                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>subir imagen</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">o arrastrar y soltar</p>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
-                            </div>
-                        </div>
-                   
-                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>subir imagen</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">o arrastrar y soltar</p>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
-                            </div>
-                        </div>
-                   
-                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>subir imagen</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">o arrastrar y soltar</p>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
-                            </div>
-                        </div>
-                    
-                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>subir imagen</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">o arrastrar y soltar</p>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 5MB</p>
-                            </div>
-                        </div>
-            </div> 
-                    {{-- <div class="">
-                        <img class="max-w-full max-h-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
-                    </div> --}}
-                    {{-- <div>
-                        <img class="h-auto  max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
-                    </div>
-                    <div>
-                        <img class="h-auto  max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
-                    </div> --}}
-            
+                @endif
+            </div>
+            <!--form recetas-->
             <form class="form_recipe">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Información de la Receta</h2>
@@ -114,9 +58,7 @@
                             <input wire:model="preparation_time" id="time" name="time" type="text" class="mt-1 p-2 border rounded-md w-full" placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" />
                             <x-input-error for='preparation_time'></x-input-error>
                         </div>
-                        
-                        
-                  
+
                         <div class="sm:col-span-2">
                             <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Dificultad</label>
                             <div class="mt-2">

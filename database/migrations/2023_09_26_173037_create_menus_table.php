@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             // $table->string('slug')->unique();
             // $table->string('details')->nullable();
-            // $table->text('description');
+            $table->text('description');
             $table->double('price');
             // $table->double('shipping_cost');
             $table->unsignedBigInteger('user_id');

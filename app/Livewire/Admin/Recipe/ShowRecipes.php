@@ -1,25 +1,19 @@
 <?php
-
-namespace App\Livewire\Admin\Recipe;
-
-use App\Exports\RecipeExport;
-use App\Livewire\Shared\FormRecipe;
-use App\Models\Category;
-use App\Models\Multimedia;
-use App\Models\Recipe;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
-use Livewire\WithPagination;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Svg\Tag\Rect;
-
+    namespace App\Livewire\Admin\Recipe;
+    use App\Exports\RecipeExport;
+    use App\Livewire\Shared\FormRecipe;
+    use App\Models\Recipe;
+    use Illuminate\Support\Facades\Storage;
+    use Livewire\WithPagination;
+    use Livewire\Component;
+    use Livewire\WithFileUploads;
 
 class ShowRecipes extends Component
 {
     use WithPagination;
     use WithFileUploads; 
     public $search;
+    protected $listeners = ['render'];
 
     public function render()
     {   
@@ -44,9 +38,8 @@ class ShowRecipes extends Component
     public function destroyRecipe(Recipe $recipe) {
          // Eliminar imagen
         foreach ($recipe->multimedia as $multimedia) {
-            if ($multimedia->tipo === 'imagen') {
-                Storage::disk('public')->delete($multimedia->ruta);
-            }
+            Storage::disk('public')->delete($multimedia->ruta);
+            $multimedia->delete();
         }
         $recipe->delete();
         $this->resetPage();

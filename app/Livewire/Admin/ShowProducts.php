@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Exports\ProductExport;
+use App\Livewire\Shared\FormProduct;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,6 +26,7 @@ class ShowProducts extends Component
         'price' =>'numeric|required',
         // 'category' => 'required',
     ];
+    protected $listeners = ['render'];
     private $resetVariables = ['openModal','name','image','price','description','btnModal','titleModal'];
     public function mount(){
         $this->identificador = rand(); //le asigna un numero al azar o random
@@ -88,12 +90,14 @@ class ShowProducts extends Component
     }
 
     public function destroyProduct(Product $product) {
-        //eliminar imagen
-        if($product->image){Storage::disk('public')->delete($product->image);}
-        $product->delete();
-        $this->resetPage();
-        $this->alert = ['type'=>'info','message'=>'no se delete'];
-    }
+        // Eliminar imagen
+       foreach ($product->multimedia as $multimedia) {
+            Storage::disk('public')->delete($multimedia->ruta);
+            $multimedia->delete();
+       }
+       $product->delete();
+       $this->resetPage();
+   }
     public function modalEdit(Product $product){
         $this->productId = $product->id;
         $this->description =$product->description;
@@ -114,5 +118,10 @@ class ShowProducts extends Component
     public function exportar(){
         $productsExport = new ProductExport;
         return $productsExport->download('products.xlsx');
+    }
+
+    public function emitirProduct(Product $product)
+    {
+        $this->dispatch('editarProductForm',$product)->to(FormProduct::class);
     }
 }

@@ -362,7 +362,7 @@ return [
             'can'  => 'admin.recipes.index',
         ],
         [
-            'text' => 'Menu',
+            'text' => 'Platos',
             'route'  => 'admin.menus.index',
             'icon' => 'fas fa-clipboard-list fa-fw',
             'can'  => 'admin.menus.index',
