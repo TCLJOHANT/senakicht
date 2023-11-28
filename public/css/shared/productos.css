@@ -271,6 +271,7 @@
   text-align: center;
   border: var(--border);
   padding: 0.7rem 0;
+  height: 100%;
 }
 .products .box-container .box .icons {
   display: flex;

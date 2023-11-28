@@ -2,6 +2,7 @@
 
 namespace App\Livewire\App\Components\Shared\Card;
 
+use App\Models\Menu;
 use Livewire\Component;
 class CardPlato extends Component
 {
@@ -9,11 +10,14 @@ class CardPlato extends Component
     public $images=[];
     public $currentSlide = 0;
     public $imgPlatoCard;
-    public function mount($plato)
+    public function mount(Menu $plato)
     {
         $this->plato = $plato;
-        $this->imgPlatoCard = asset('storage/' . $plato->multimedia->first()->ruta);
-       
+        foreach($plato->multimedia as $index => $imagenes){
+            if($index ===0){
+                $this->imgPlatoCard = asset('storage/' . $imagenes->ruta);
+            }
+        }
     }
     public function render()
     {

@@ -47,6 +47,8 @@ class MenuFactory extends Factory
         return [
             'name' => implode(' ', $this->faker->words(3)),
             'price' => $this->faker->randomNumber(4),
+            'quantity' => $this->faker->randomNumber(4),
+            'description' =>$this->faker->paragraph(3),
             'user_id' => $randomUserId,
             'category_id' => $category->id,
         ];

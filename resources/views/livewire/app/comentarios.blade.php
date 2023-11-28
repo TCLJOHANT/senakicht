@@ -5,11 +5,11 @@
         <button id="modal-btn" class="styled-button">Comentar</button>
             <div class="box-container">
                 @foreach ($comentarios as $comment )
-                <livewire:app.components.shared.card.card-comment :comment="$comment" :key="$comment->id" lazy/>
+                    <livewire:app.components.shared.card.card-comment :comment="$comment" :key="$comment->id" lazy/>
                 @endforeach
             </div>
        
-       <div id="modal" class="modal">
+        <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2 class="titl">Escribe su opinion</h2><br>

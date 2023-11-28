@@ -25,7 +25,7 @@
         </div>
         <div class="content">
             <h3>{{substr($product->name, 0, 20)}}</h3>
-            <p>{{$product->description}}</p>
+            <p>{{substr($product->description, 0, 100)}}...</p>
             <div class="stars">
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
