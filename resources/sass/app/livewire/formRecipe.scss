@@ -5,9 +5,9 @@
      height: 94vh;
 
      .imgs {
-        width: 50%; 
+        width: 50%;
         max-height: 100%;
-        
+
         img {
             border-radius: 10px;
             width: 100%; // Ocupa el 100% del ancho de su contenedor
@@ -17,7 +17,7 @@
         }
     }
     .form_recipe {
-        width: 50%; 
+        width: 50%;
         padding: 3%;
         max-height: 94vh;
         overflow-y: scroll;
@@ -35,6 +35,6 @@
             max-height: 100%;
             width: 100%; /* Cambia el ancho a 100% en pantallas pequeñas */
         }
-        
+
     }
 }

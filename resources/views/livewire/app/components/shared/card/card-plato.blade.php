@@ -4,7 +4,7 @@
             <img src="{{$imgPlatoCard}}" alt="">
             <div class="card-body">
                 <a href=""><h6 class="card-title">{{ $plato->name }}</h6></a>
-                <p>{{$plato->description}}</p>
+                <p>{{substr($plato->description, 0, 100)}}...</p>
                 <p class="price">$ {{ $plato->price }} COP</p>
                 <form action="{{ route('cart.store') }}" method="POST">
                     {{ csrf_field() }}
@@ -26,10 +26,5 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('livewire:load', function () {
-            // Reinicializar el carrusel de Flowbite después de cada actualización de Livewire
-            flowbite.carousel('#default-carousel').init();
-        });
-    </script>
+   
 </div>

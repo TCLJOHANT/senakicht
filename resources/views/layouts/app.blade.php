@@ -41,6 +41,5 @@
         <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/pago.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> 
-
     </body>
 </html>

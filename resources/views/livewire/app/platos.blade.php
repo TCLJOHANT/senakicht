@@ -11,8 +11,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="box-container">
-                    @foreach($products as $plato)
-                        @livewire('app.components.shared.card.card-plato', ['plato' => $plato])
+                    @foreach($platos as $plato)
+                     <livewire:app.components.shared.card.card-plato :plato="$plato" :key="$plato->id" lazy/>
                     @endforeach
                 </div>
             </div>

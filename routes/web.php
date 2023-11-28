@@ -16,6 +16,7 @@ use App\Livewire\App\Nosotros;
 use App\Livewire\App\Productos;
 use App\Livewire\App\Recetas;
 use App\Livewire\App\Home;
+use App\Livewire\App\Platos;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,14 +35,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::get('recetas',Recetas::class)->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
     //Productos
-    //Route::get('/productos',[HomeController::class,'productos'])->name('productos');  
     Route::get('productos',Productos::class)->name('productos');
     //Nostros
     Route::get('nosotros',Nosotros::class)->name('nosotros');
     //Contactanos
     Route::get('contactanos',Contactos::class)->name('contactos');
     //Menu
-    Route::get('menu',[CartController::class,'shop'])->name('menu');
+    Route::get('menu',Platos::class)->name('menu');
     //Opiniones
     Route::get('comentarios',Comentarios::class)->name('comentarios.index');
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');
