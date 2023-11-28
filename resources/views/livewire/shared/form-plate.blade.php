@@ -65,7 +65,7 @@
 
                         <div class="sm:col-span-2">
                             <label for="time" class="block text-sm font-medium leading-6 text-gray-900">Cantidad</label>
-                            <input wire:model="quantity" id="time"  type="number" class="mt-1 p-2 border rounded-md w-full" placeholder="canidad disponible del producto"  />
+                            <input wire:model="quantity" id="time"  type="number" class="mt-1 p-2 border rounded-md w-full" placeholder="cantidad disponible del producto"  />
                             <x-input-error for='quantity'></x-input-error>
                         </div>
                         <div class="sm:col-span-2">
@@ -92,5 +92,11 @@
             </form>
         </div>
    </x-modificados-jet.modal>
-
+   <script>
+    document.addEventListener('livewire:initialized', () => {
+       @this.on('show-toast', (event) => {
+           toastr[event.type](event.message);
+       });
+   });
+</script>
 </div>

@@ -6,11 +6,12 @@ use Livewire\Component;
 
 class CardRecipe extends Component
 {
-    public $recipe,$openModalDetailRecipe=false;
+    public $recipe,$openModalDetailRecipe=false,$imgRecipeCard; 
 
     public function mount($recipe)
     {
         $this->recipe = $recipe;
+        $this->imgRecipeCard = asset('storage/' . $recipe->multimedia->first()->ruta);
     }
     public function render()
     {

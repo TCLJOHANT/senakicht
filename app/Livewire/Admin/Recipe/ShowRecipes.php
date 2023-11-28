@@ -42,6 +42,7 @@ class ShowRecipes extends Component
             $multimedia->delete();
         }
         $recipe->delete();
+        $this->dispatch('show-toast', type:"error", message: "¡Receta eliminada exitosamente!"); 
         $this->resetPage();
     }
 

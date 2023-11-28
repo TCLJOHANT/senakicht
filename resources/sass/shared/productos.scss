@@ -3,20 +3,22 @@
 @import 'heading';
 @import 'modalDetalle';
 .products {
-    margin: auto 3rem;
+    margin: auto 2rem;
 
     .box-container{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-        gap:1.5rem;
+        justify-content: center;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 18rem));
+        gap:1rem;
         .box{
         text-align: center;
         border:var(--border);
-        padding: .5rem  2rem;
+        padding: .7rem  0;
         .icons {
             display: flex;
             justify-content: center;
             align-items: center; 
+            margin-bottom: 5%;
                 a{
                 border-radius: 30%;
                 height: 3.5rem;
@@ -32,7 +34,10 @@
                 }
             }
         .image{
-            
+            padding: 0 2rem;
+            img{
+                
+            }
         }
         .content{
                 h3{
@@ -40,8 +45,12 @@
                     color:#fff;
                     font-size: 1.4rem;
                 }
+                p{
+                    color: #fff;
+                    font-size: .9rem;
+                }
                 .stars{
-                    padding: 1.5rem;
+                    padding: 1rem;
                     i{
                     font-size: 1.4rem;
                     color: var(--main-color);
@@ -51,7 +60,7 @@
                     color:#fff;
                     font-size: 1.5rem;
                     span{
-                        text-decoration: line-through;
+                        // text-decoration: line-through;
                         font-weight: lighter;
                         font-size: 1rem;
                     }

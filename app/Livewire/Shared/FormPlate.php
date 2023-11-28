@@ -75,7 +75,7 @@ class FormPlate extends Component
                     $multimedia->type = 'imagen';
                     $plato->multimedia()->save($multimedia);
                 }
-
+                $message = '¡Plato ha sido creado exitosamente!';
         } 
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {
@@ -107,9 +107,11 @@ class FormPlate extends Component
                         }
                     }
             }
+            $message = '¡Plato actualizado exitosamente!';
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
+        $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowMenus::class);
     }
 }

@@ -23,6 +23,7 @@ class ContactanosController extends Controller
         ]);
         $correo = new ContactanosMailable($request->all());
         Mail::to('jachate7@misena.edu.co')->send($correo);
+ 
         return redirect()->route('contactos')->with('info','mensaje enviado');
     }
 }

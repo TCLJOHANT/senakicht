@@ -107,11 +107,15 @@
                 <div class="tot">
                     <div class="tots">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }}</li>
+                            <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }} <span class="text-gray-400">cop</span></li>
                         </ul>
                     </div>
-                    <br><a href="{{ route('menu') }}" class="btn btn-dark">Continue en la tienda</a>
-                    <a href="{{ route('paypal') }}" class="btn btn-success">Proceder al Checkout</a>
+                    <div class="">
+                        <a href="{{ route('menu') }}" class="btn w-sm">Continue en la tienda</a>
+                    </div>
+                    <div class="">
+                        <a href="{{ route('paypal') }}" class="btn w-sm">Proceder al Checkout</a>
+                    </div>
                    <div id="wallet_container"></div>
                 </div>
             @endif

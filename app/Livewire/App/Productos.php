@@ -2,12 +2,16 @@
 
 namespace App\Livewire\App;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class Productos extends Component
 {
+    protected $listeners = ['render']; 
+
     public function render()
     {
-        return view('livewire.app.productos');
+        $productos = Product::all();
+        return view('livewire.app.productos',compact('productos'));
     }
 }

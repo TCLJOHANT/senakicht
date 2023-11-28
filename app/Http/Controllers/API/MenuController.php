@@ -13,7 +13,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return Menu::all();
+        $menus = Menu::with('multimedia','comments',)->get();
+        return response()->json($menus);
     }
 
   
@@ -34,9 +35,10 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
+        $menu = $menu->with('multimedia','comments')->get();
         return response()->json([
             'respuesta'=> true,
-            'menu' => $menu
+            'product' => $menu,
         ]);
     }
 

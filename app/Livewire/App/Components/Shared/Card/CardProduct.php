@@ -6,7 +6,8 @@ use Livewire\Component;
 
  class CardProduct extends Component
 {
-    public $product,$openModalDetailProduct=false;
+    protected $listeners = ['render'];
+    public $product,$openModalDetailProduct=false; public $ImgCard; 
    
     public $mainImage;
     public $previewImages;
@@ -36,7 +37,8 @@ use Livewire\Component;
     public function mount(Product $product)
     {
         $this->product = $product;
-
+       $this->ImgCard = asset('storage/' . $product->multimedia->first()->ruta);
+       
         // Null check before accessing multimedia
         if ($product->multimedia->isNotEmpty()) {
             $this->mainImage = asset('storage/' . $product->multimedia->first()->ruta);

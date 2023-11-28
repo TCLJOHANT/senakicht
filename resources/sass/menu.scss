@@ -1,18 +1,15 @@
 /* menú */
 @import 'shared/variables';
 .menu {  
-  margin-top: 6%;
   .box-container {
     display: flex;
     width: 96vw;
     justify-content:space-evenly;
     flex-wrap: wrap;
     
-  
-
     .box {
-      margin: 1% 0;
       width: 20rem;
+      height: 100%;
       border: var(--border);
       color: #fff;
       &:hover {

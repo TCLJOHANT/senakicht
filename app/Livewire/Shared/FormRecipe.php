@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Shared;
 use App\Livewire\Admin\Recipe\ShowRecipes;
+use App\Livewire\App\Recetas;
 use App\Models\Category;
 use App\Models\Ingredient;
 use Livewire\Component;
@@ -90,6 +91,7 @@ class FormRecipe extends Component
                 }
             $this->createIngredients($recipe);
             $this->createPreparationSteps($recipe);
+            $message = '¡Receta creada exitosamente!';
         } 
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {
@@ -144,10 +146,13 @@ class FormRecipe extends Component
                     // Actualizar los pasos de preparación
                     $this->updatePreparationSteps($recipeEdit);
             }
+            $message = '¡Receta actualizada exitosamente!';
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
+        $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowRecipes::class);
+        $this->dispatch('render')->to(Recetas::class);
     }
 
     

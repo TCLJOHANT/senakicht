@@ -3,6 +3,8 @@
 namespace App\Livewire\Shared;
 
 use App\Livewire\Admin\ShowProducts;
+use App\Livewire\App\Components\Shared\Card\CardProduct;
+use App\Livewire\App\Productos;
 use App\Models\Category;
 use App\Models\Multimedia;
 use App\Models\Product;
@@ -74,6 +76,7 @@ class FormProduct extends Component
                     $multimedia->type = 'imagen';
                     $product->multimedia()->save($multimedia);
                 }
+            $message = '¡Producto creado exitosamente!';
 
         } 
         //ACTUALIZAR:UPDATE
@@ -106,9 +109,12 @@ class FormProduct extends Component
                         }
                     }
             }
+            $message = '¡Producto actualizado exitosamente!';
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
+        $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowProducts::class);
+        $this->dispatch('render')->to(Productos::class);
     }
 }

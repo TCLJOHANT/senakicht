@@ -26,24 +26,33 @@
 /* para card recetas  home*/
 .blogs .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(2rem, 18rem));
+  gap: 1rem;
+  justify-content: center;
 }
 .blogs .box-container .box {
   border: var(--border);
+  height: 100%;
 }
 .blogs .box-container .box .image {
   height: 11rem;
   overflow: hidden;
   width: 100%;
-  height: 15rem;
+}
+.blogs .box-container .box .image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.blogs .box-container .box .image img:hover {
+  transform: scale(1.2);
 }
 .blogs .box-container .box .content {
-  padding: 1rem;
+  padding: 0.6rem;
   text-align: center;
 }
 .blogs .box-container .box .content .title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #fff;
 }
 .blogs .box-container .box .content .title:hover {
@@ -52,8 +61,8 @@
 .blogs .box-container .box .content span {
   color: var(--main-color);
   display: block;
-  padding-top: 1rem;
-  font-size: 1.3rem;
+  padding-top: 0.5rem;
+  font-size: 1rem;
 }
 .blogs .box-container .box .content p {
   font-size: 1rem;

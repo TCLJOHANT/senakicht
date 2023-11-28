@@ -1,19 +1,16 @@
-
-
 <header class="header">
     <div href="#" class="logo">
         <img src="{{asset('favicons/LogoSenakicht.png')}}" alt="logo">
     </div>
     <nav class="navbar">
-        <a class="px-2" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i> Inicio</a>
-        <a class="px-2" wire:navigated href="{{ route('nosotros') }}"><i class="fas fa-info-circle fa-fw"></i> Acerca de</a>
-        <a class="px-2" href="{{ route('menu') }}"><i class="fas fa-utensils fa-fw"></i> Platos</a>
-        <a class="px-2" href="{{ route('productos') }}"><i class="fas fa-shopping-basket fa-fw"></i> Productos</a>
-        <a class="px-2" href="{{ route('recetas') }}"><i class="fas fa-book-open fa-fw"></i> Recetas</a>
-        <a class="px-2" href="{{ route('comentarios.index') }}"><i class="fas fa-comments fa-fw"></i> Opiniones</a>
-        <a class="px-2" href="{{ route('contactos') }}"><i class="fas fa-envelope fa-fw"></i> Contacto</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i> Inicio</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('nosotros') ? 'active' : '' }}" href="{{ route('nosotros') }}"><i class="fas fa-info-circle fa-fw"></i> Acerca de</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('menu') ? 'active' : '' }}" href="{{ route('menu') }}"><i class="fas fa-utensils fa-fw"></i> Platos</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('productos') ? 'active' : '' }}" href="{{ route('productos') }}"><i class="fas fa-shopping-basket fa-fw"></i> Productos</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('recetas') ? 'active' : '' }}" href="{{ route('recetas') }}"><i class="fas fa-book-open fa-fw"></i> Recetas</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('comentarios.index') ? 'active' : '' }}" href="{{ route('comentarios.index') }}"><i class="fas fa-comments fa-fw"></i> Opiniones</a>
+        <a wire:navigate class="px-2 {{ request()->routeIs('contactos') ? 'active' : '' }}" href="{{ route('contactos') }}"><i class="fas fa-envelope fa-fw"></i> Contacto</a>
     </nav>
-
     <div class="cont-header-iconos" >
         <div  class="fas fa-search " id="search-btn"></div>
             @livewire('search-nav')

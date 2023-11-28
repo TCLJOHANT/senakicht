@@ -24,14 +24,20 @@
                     <input type="radio" wire:model="rating" id="star1" name="rating" value="1">
                     <label for="star1"></label>
                 </div>
-                <x-input-error for='ranting'></x-input-error>
-
             </div>
+            <x-input-error for='rating'></x-input-error>
         </x-slot>
         <x-slot name="footer">
             <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-            <x-danger-button onclick="alert('success')" wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
+            <x-danger-button  wire:loading.remove wire:click="createOrUpdate()">{{$btnModal}}</x-danger-button>
             <span wire:loading wire:target="createOrUpdate()">cargando ...</span>
         </x-slot>
     </x-dialog-modal>
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+           @this.on('show-toast', (event) => {
+               toastr[event.type](event.message);
+           });
+       });
+    </script>
 </div>

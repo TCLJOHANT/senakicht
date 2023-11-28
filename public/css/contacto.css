@@ -30,24 +30,24 @@
 .cont-contact .contact-form {
   background: #13131a;
 }
-.cont-contact .contact-form form {
+.cont-contact .contact-form .formulario {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.cont-contact .contact-form form label {
+.cont-contact .contact-form .formulario label {
   display: block;
   font-size: 15px;
 }
-.cont-contact .contact-form form p {
+.cont-contact .contact-form .formulario div {
   margin: 0;
   padding: 1em;
 }
-.cont-contact .contact-form form .block {
+.cont-contact .contact-form .formulario .block {
   grid-column: 1/3;
 }
-.cont-contact .contact-form form button,
-.cont-contact .contact-form form input,
-.cont-contact .contact-form form textarea {
+.cont-contact .contact-form .formulario button,
+.cont-contact .contact-form .formulario input,
+.cont-contact .contact-form .formulario textarea {
   width: 100%;
   padding: 0.7em;
   border: none;
@@ -56,13 +56,13 @@
   color: #fff;
   border-bottom: 1px solid rgb(63, 212, 55);
 }
-.cont-contact .contact-form form button {
+.cont-contact .contact-form .formulario button {
   background: rgb(127, 187, 15);
   border: 0;
   text-transform: uppercase;
   padding: 1em;
 }
-.cont-contact .contact-form form button:hover, .cont-contact .contact-form form button:focus {
+.cont-contact .contact-form .formulario button:hover, .cont-contact .contact-form .formulario button:focus {
   background: rgb(43, 172, 31);
   color: #fff;
   transition: background-color 1s ease-out;

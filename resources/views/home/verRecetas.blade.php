@@ -1,5 +1,4 @@
 <x-app-layout >
-    {{-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> --}}
     <section class="text-gray-700 body-font overflow-hidden bg-white">
           <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">

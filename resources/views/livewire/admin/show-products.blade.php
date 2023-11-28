@@ -61,7 +61,7 @@
                                             <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitirProduct({{$product}})" >  
                                                 <i class="fas fa-pencil-alt"></i>
                                             </button> 
-                                            <button onclick="alert('error')" wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
+                                            <button  wire:click="destroyProduct({{$product}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
@@ -76,9 +76,18 @@
                                </div>
                            @endif
                     @endif
+                    
                 </div>
             </div>
-    </div>    
+    </div>   
+    
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+           @this.on('show-toast', (event) => {
+               toastr[event.type](event.message);
+           });
+       });
+   </script>
 </div>
     
 

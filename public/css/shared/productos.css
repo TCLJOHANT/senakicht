@@ -259,22 +259,24 @@
 }
 
 .products {
-  margin: auto 3rem;
+  margin: auto 2rem;
 }
 .products .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1.5rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 18rem));
+  gap: 1rem;
 }
 .products .box-container .box {
   text-align: center;
   border: var(--border);
-  padding: 0.5rem 2rem;
+  padding: 0.7rem 0;
 }
 .products .box-container .box .icons {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
 }
 .products .box-container .box .icons a {
   border-radius: 30%;
@@ -289,13 +291,20 @@
 .products .box-container .box .icons a:hover {
   background: var(--main-color);
 }
+.products .box-container .box .image {
+  padding: 0 2rem;
+}
 .products .box-container .box .content h3 {
   padding-top: 5%;
   color: #fff;
   font-size: 1.4rem;
 }
+.products .box-container .box .content p {
+  color: #fff;
+  font-size: 0.9rem;
+}
 .products .box-container .box .content .stars {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 .products .box-container .box .content .stars i {
   font-size: 1.4rem;
@@ -306,7 +315,6 @@
   font-size: 1.5rem;
 }
 .products .box-container .box .content .price span {
-  text-decoration: line-through;
   font-weight: lighter;
   font-size: 1rem;
 }
