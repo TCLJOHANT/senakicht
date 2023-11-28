@@ -1,13 +1,22 @@
 <div>
-   
     <div class="card">
         <div class="card-header">
-            <x-button wire:click="exportar()" class="btn btn-success">Exportar</x-button>
-            {{-- <x-button class="btn btn-info">Importar</x-button> --}}
+            <button wire:click="exportar()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                <i class="fas fa-download  mr-2"></i>
+                <span>Exportar</span>
+              </button>
         </div>
-        <div class="px-6 py-4 flex items-center">
-            <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
-            <x-danger-button wire:click="abrirModal()">Crear Menu</x-danger-button>
+        <div class="px-6 py-4 flex items-center justify-center flex-wrap">
+            <div class="flex items-center ">
+                <span>mostrar</span>
+                <select wire:model.live="cantidadRegistros"   class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
+                    <option value="10">5</option>
+                    <option value="10">10</option>
+                </select>
+                <span>entradas</span>
+            </div>
+            <x-input type="text" class=" flex-1 m-2" wire:model.live="search" placeholder="Buscar"/>
+           @livewire('shared.form-plate')
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -22,13 +31,15 @@
                 @else
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 text-center">
-                            <tr>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Imagen</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Descripción</th>
-                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Precio</th>
-                                <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
+                            <tr class="cursor-pointer  text-left text-xs font-medium text-gray-500 uppercase">
+                                <th scope="col" class="px-6 py-3">Nombre</th>
+                                <th scope="col" class="px-6 py-3">Imagen</th>
+                                <th scope="col" class="px-6 py-3">Cantidad</th>
+                                <th scope="col" class="px-6 py-3">Descripción</th>
+                                <th scope="col" class="px-6 py-3">Precio</th>
+                                <th colspan="2" class="px-6 py-3">Acciones</th>
                             </tr>
+                            
                         </thead>
                         <tbody >
                             @foreach ($menus as $menu)
@@ -42,6 +53,7 @@
                                     @endforeach
 
                                     </td>
+                                    <td class="p-6">{{$menu->quantity}}</td>
                                     <td class="p-6">{{$menu->description}}</td>
                                     <td class="p-6">{{"$ " . $menu->price . " COP"}}</td>
                     
@@ -50,7 +62,7 @@
                                         <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500">  
                                             <i class="fas fa-eye"></i>
                                         </button> 
-                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="modalEdit({{$menu}})" >  
+                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitPlato({{$menu}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
                                         <button onclick="alert('error')" wire:click="destroyMenu({{$menu}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
@@ -70,68 +82,7 @@
                 @endif
             </div>
         </div>
-     </div>
-    
-{{-- Modal --}}
-<x-dialog-modal wire:model="openModal">
-    <x-slot name="title">
-        {{$titleModal}}
-    </x-slot>
-    <x-slot name="content">
-        <div class="mb-4">
-            @if ($image_path)
-                @if ($btnModal === "Actualizar" )
-                     {{-- si no tien / usa images si no storage --}}
-                    @if (strpos($menu->image_path, '/') === false)
-                        <img class="mb-4 img-thumbnail imagen mx-auto" src="/images/{{ $menu->image_path }}" alt="img" width="100px">
-                    @else
-                        <img class="mb-4 img-thumbnail imagen mx-auto" src="{{asset('storage/' . $image_path)}}" alt="img" width="100px">
-                    @endif
-                @endif
-                @if ($image_path && is_object($image_path))
-                    <img class="mb-4 img-thumbnail imagen mx-auto" src="{{$image_path->temporaryUrl()}}" alt="" width="100px"> 
-                @endif
-            @endif
-            <x-label value="Imagen del Menu"></x-label>
-            <input type="file" wire:model="image_path" id="{{$identificador}}">
-            <x-input-error for='image_path'></x-input-error>
-        </div>
-        <div class="mb-4">
-            <x-label value="Nombre del  Menu"></x-label>
-            <x-input class="w-full" type="text"
-            wire:model="name"></x-input>
-            <x-input-error for='name'></x-input-error>
-        </div>
-       
-     
-        <div class="mb-4">
-            <x-label value="Precio del Menu"></x-label>
-            <x-input class="w-full" type="number" 
-            wire:model="price"></x-input>
-            <x-input-error for='price'></x-input-error>
-        </div>
-  
+</div>    
 
-    </x-slot>
-    <x-slot name="footer">
-        <x-secondary-button  wire:click="$set('openModal', false)">Cancelar</x-secondary-button>
-        <x-danger-button onclick="alert('success')" class="disabled:opacity-25" wire:loading.attr="disabled" wire:click="createOrUpdate()"  wire:target=" createOrUpdate,image_path">{{$btnModal}}</x-danger-button>
-    </x-slot>
-</x-dialog-modal>
-    
-<script>
-    function alert(type) {
-      switch (type) {
-          case 'success':
-              toastr.success('El Menu fue Guardado con éxito');
-              break;
-          case 'error':
-              toastr.error('El Menu fue eliminado con éxito');
-              break;
-          default:
-              break;
-      }
-  }
-  </script>
-    
-</div>
+   
+       

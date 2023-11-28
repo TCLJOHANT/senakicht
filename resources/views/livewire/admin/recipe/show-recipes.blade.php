@@ -1,5 +1,4 @@
 <div>
-    
     <div class="card">
         <div class="card-header">
             <button wire:click="exportar()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -7,7 +6,7 @@
                 <span>Exportar</span>
               </button>
         </div>
-        <div class="px-6 py-4 flex items-center">
+        <div class="px-6 py-4 flex items-center justify-center flex-wrap">
             <div class="flex items-center mr-2">
                 <span>mostrar</span>
                 <select wire:model.live="cantidadRegistros"   class="mx-2  border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm ">
@@ -16,7 +15,7 @@
                 </select>
                 <span>entradas</span>
             </div>
-            <x-input type="text" class="flex-1 mr-4" wire:model.live="search" placeholder="Buscar"/>
+            <x-input type="text" class="flex-1 m-2" wire:model.live="search" placeholder="Buscar"/>
            @livewire('shared.form-recipe')
         </div>
         <div class="card-body">
@@ -80,8 +79,5 @@
                 @endif
             </div>
         </div>
-    </div>
-
-
-    
+    </div>    
 </div>
