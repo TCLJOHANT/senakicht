@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App\Components\Shared\Card;
+namespace App\Livewire\App\Components\Card;
 
 use App\Models\Menu;
 use Livewire\Component;
@@ -21,7 +21,7 @@ class CardPlato extends Component
     }
     public function render()
     {
-        return view('livewire.app.components.shared.card.card-plato');
+        return view('livewire.app.components.card.card-plato');
     }
 
     public function prevSlide()

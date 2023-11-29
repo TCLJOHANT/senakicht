@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App;
+namespace App\Livewire\App\Pages;
 
 use App\Models\Comment;
 use App\Models\Menu;
@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\Recipe;
 use Livewire\Component;
 
-class Home extends Component
+class HomeLivewire extends Component
 {
     public function render()
     {
@@ -16,6 +16,6 @@ class Home extends Component
         $products = Product::take(4)->get();
         $menus = Menu::take(4)->get();
         $comments =Comment::take(3)->get();
-        return view('livewire.app.home',compact('recipes','products','menus','comments'));
+        return view('livewire.app.pages.home-livewire',compact('recipes','products','menus','comments'));
     }
 }

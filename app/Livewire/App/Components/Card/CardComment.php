@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App\Components\Shared\Card;
+namespace App\Livewire\App\Components\Card;
 
 use Livewire\Component;
 
@@ -14,6 +14,6 @@ class CardComment extends Component
     }
     public function render()
     {
-        return view('livewire.app.components.shared.card.card-comment');
+        return view('livewire.app.components.card.card-comment');
     }
 }

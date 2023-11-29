@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Shared;
 use App\Livewire\Admin\ShowComment;
+use App\Livewire\App\Pages\ComentariosLivewire;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -34,6 +35,7 @@ class FormComment extends Component
         
         $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowComment::class);
+        $this->dispatch('render')->to(ComentariosLivewire::class);
 
      }
 

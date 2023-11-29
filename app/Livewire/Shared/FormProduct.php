@@ -4,6 +4,7 @@ namespace App\Livewire\Shared;
 
 use App\Livewire\Admin\ShowProducts;
 use App\Livewire\App\Components\Shared\Card\CardProduct;
+use App\Livewire\App\Pages\ProductsLivewire;
 use App\Livewire\App\Productos;
 use App\Models\Category;
 use App\Models\Multimedia;
@@ -115,6 +116,6 @@ class FormProduct extends Component
         $this->identificador = rand();
         $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowProducts::class);
-        $this->dispatch('render')->to(Productos::class);
+        $this->dispatch('render')->to(ProductsLivewire::class);
     }
 }

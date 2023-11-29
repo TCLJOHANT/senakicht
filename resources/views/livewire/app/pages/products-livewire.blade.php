@@ -9,7 +9,7 @@
             @endcan
             <div class="box-container">
                 @foreach($productos as $product)
-                        <livewire:app.components.shared.card.card-product :product="$product" :key="$product->id" lazy/>
+                        <livewire:app.components.card.card-product :product="$product" :key="$product->id" lazy/>
                 @endforeach 
             </div>
     </section>

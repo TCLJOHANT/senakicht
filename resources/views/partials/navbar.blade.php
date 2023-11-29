@@ -14,13 +14,7 @@
     <div class="cont-header-iconos" >
         <div  class="fas fa-search " id="search-btn"></div>
             @livewire('search-nav')
-            <a class="mx-6" href="{{ route ('cart.index') }}">
-                <div class="fas fa-shopping-cart" id="cart-btn">
-                    @if(\Cart::getTotalQuantity() != 0)
-                        {{ \Cart::getTotalQuantity() }}
-                    @endif
-                </div>
-            </a>
+            @livewire('app.components.cart.mini-cart-detail')
             <div class="fas fa-bars mx-4 px-4" id="menu-btn"></div>
             <!--vista auth-->
             @if(auth()->check())
