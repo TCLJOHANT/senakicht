@@ -1,4 +1,3 @@
-
 <x-layouts.admin >
 
     @livewire('admin.show-products')  

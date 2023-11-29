@@ -107,7 +107,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'img' => [
             'path' => 'favicons/LogoSenakicht.png',
             'alt' => 'AdminLTE Preloader Image',
@@ -343,17 +343,18 @@ return [
             'icon' => 'fas fa-tags fa-fw',
             'can'  => 'admin.categories.index',
         ],
-        [
-            'text' => 'Calendario',
-            'route'  => 'admin.calendario.index',
-            'icon' => 'far fa-calendar-alt fa-fw',
-        ],
         ['header' => 'Aprendiz'],
         [
             'text' => 'Productos',
             'route'  => 'admin.products.index',
             'icon' => 'fas fa-shopping-bag fa-fw',
             'can'  => 'admin.products.index',
+        ],
+        [
+            'text' => 'Pedidos',
+            'url'  => 'admin.products.index',
+            'icon' => 'fas fa-shopping-cart fa-fw',
+            // 'can'  => 'admin.products.index',
         ],
         [
             'text' => 'Recetas',

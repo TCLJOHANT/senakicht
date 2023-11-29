@@ -83,7 +83,9 @@
     <script>
         document.addEventListener('livewire:initialized', () => {
            @this.on('show-toast', (event) => {
-               toastr[event.type](event.message);
+                if(event.type==='error'){
+                    toastr[event.type](event.message);
+                }
            });
        });
    </script>  

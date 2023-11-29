@@ -27,27 +27,27 @@ Route::get('authfacebook/callback',[AuthController::class,'callbackFacebook'])->
 Route::get('authgoogle/redirect',[AuthController::class,'redirectGoogle'])->name('authgoogle.redirect');
 Route::get('/google-callback',[AuthController::class,'callbackGoogle']);
 
+Route::get('',HomeLivewire::class)->name('home');    
+//Recetas
+Route::get('recetas',RecipesLivewire::class)->name('recetas');
+Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
+//Productos
+Route::get('productos',ProductsLivewire::class)->name('productos');
+//Nostros
+Route::get('nosotros',NosotrosLivewire::class)->name('nosotros');
+//Contactanos
+Route::get('contactanos',ContactLivewire::class)->name('contactos');
+//Menu
+Route::get('menu',PlatosLivewire::class)->name('menu');
+//Opiniones
+Route::get('comentarios',ComentariosLivewire::class)->name('comentarios.index');
+Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
+Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
+Route::get('ver',[HomeController::class,'verr']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
-    
-    Route::get('',HomeLivewire::class)->name('home');    
-    //Recetas
-    Route::get('recetas',RecipesLivewire::class)->name('recetas');
-    Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
-    //Productos
-    Route::get('productos',ProductsLivewire::class)->name('productos');
-    //Nostros
-    Route::get('nosotros',NosotrosLivewire::class)->name('nosotros');
-    //Contactanos
-    Route::get('contactanos',ContactLivewire::class)->name('contactos');
-    //Menu
-    Route::get('menu',PlatosLivewire::class)->name('menu');
-    //Opiniones
-    Route::get('comentarios',ComentariosLivewire::class)->name('comentarios.index');
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');
-    Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
     Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
-    Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
@@ -57,8 +57,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //Payment
     Route::get('/paypal/pay',[PaymentController::class, 'paypalPayment'])->name('paypal');
     Route::get('/paypal/status',[PaymentController::class, 'paypalStatus']);
-
-    Route::get('ver',[HomeController::class,'verr']);
 });
 
 

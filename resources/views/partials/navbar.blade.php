@@ -91,10 +91,11 @@
                                 {{ __('Bienvenido a Senakitch') }}
                             </div>
         
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('register') }}">
                                 {{ __('Registrarse') }}
                             </x-dropdown-link>
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            
+                            <x-dropdown-link href="{{ route('login') }}">
                                 {{ __('Iniciar sesión') }}
                             </x-dropdown-link>
         

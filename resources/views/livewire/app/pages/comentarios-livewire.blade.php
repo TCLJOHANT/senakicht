@@ -3,8 +3,11 @@
     <section class="review" id="review">
         <h1 class="heading"> su <span>opinion</span> </h1>
         <div class="my-4">
-            {{-- <button id="modal-btn" class="styled-button">Comentar</button> --}}
-            @livewire('shared.form-comment') 
+            @can('admin.recipes.store')
+                <div class="flex m-6 mx-auto w-full">
+                @livewire('shared.form-comment') 
+                </div>
+            @endcan
         </div>
             <div class="box-container">
                 @foreach ($comentarios as $comment )

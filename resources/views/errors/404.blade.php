@@ -6,6 +6,7 @@
         <p class="lead">
             La página que estás buscando no existe.
           </p>
+          <a href="{{Route::previous()}}" class="btn btn-success">volver Atras</a>
         <a href="{{route('home')}}" class="btn btn-primary">Ir a Home</a>
     </div>
 </div><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
