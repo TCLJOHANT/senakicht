@@ -3,7 +3,7 @@
 namespace App\Livewire\Shared;
 
 use App\Livewire\Admin\ShowMenus;
-use App\Livewire\App\Platos;
+use App\Livewire\App\Pages\PlatosLivewire;;
 use App\Models\Category;
 use App\Models\Menu;
 use App\Models\Multimedia;
@@ -114,7 +114,7 @@ class FormPlate extends Component
         $this->identificador = rand();
         $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowMenus::class);
-        $this->dispatch('render')->to(Platos::class);
+        $this->dispatch('render')->to(PlatosLivewire::class);
     }
 
 

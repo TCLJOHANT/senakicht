@@ -2,14 +2,17 @@
     <link rel="stylesheet" href="{{ asset('css/shared/opinion.css')}}"> 
     <section class="review" id="review">
         <h1 class="heading"> su <span>opinion</span> </h1>
-        <button id="modal-btn" class="styled-button">Comentar</button>
+        <div class="my-4">
+            {{-- <button id="modal-btn" class="styled-button">Comentar</button> --}}
+            @livewire('shared.form-comment') 
+        </div>
             <div class="box-container">
                 @foreach ($comentarios as $comment )
-                    <livewire:app.components.shared.card.card-comment :comment="$comment" :key="$comment->id" lazy/>
+                    <livewire:app.components.card.card-comment :comment="$comment" :key="$comment->id" lazy/>
                 @endforeach
             </div>
        
-        <div id="modal" class="modal">
+        {{-- <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2 class="titl">Escribe su opinion</h2><br>
@@ -48,6 +51,6 @@
                 </form>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </section> 
 </div>

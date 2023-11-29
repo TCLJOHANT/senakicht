@@ -11,7 +11,7 @@
       @endcan
     <div class="box-container">
         @foreach($recetas as $recipe)
-            <livewire:app.components.shared.card.card-recipe :recipe="$recipe" :key="$recipe->id" lazy  />
+            <livewire:app.components.card.card-recipe :recipe="$recipe" :key="$recipe->id" lazy  />
         @endforeach
     </div> 
   </section>

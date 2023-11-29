@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\App;
+namespace App\Livewire\App\Pages;
 
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
-class Contactos extends Component
+class ContactLivewire extends Component
 {
     public $name, $email,$phone, $affair,$message;
     public $rules = [
@@ -18,7 +18,7 @@ class Contactos extends Component
     ];
     public function render()
     {
-        return view('livewire.app.contactos');
+        return view('livewire.app.pages.contact-livewire');
     }
     public function enviarCorreo(){
         $this->validate();

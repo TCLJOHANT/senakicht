@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App\Components\Shared\Card;
+namespace App\Livewire\App\Components\Card;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -55,7 +55,7 @@ use Livewire\Component;
 
     public function render()
     {
-        return view('livewire.app.components.shared.card.card-product');
+        return view('livewire.app.components.card.card-product');
     }
 
     public function openModalDetalle()

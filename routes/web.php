@@ -9,15 +9,15 @@ use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RecipeController;
-use App\Livewire\App\Comentarios;
-use App\Livewire\App\Contactos;
-use App\Livewire\App\Nosotros;
-use App\Livewire\App\Productos;
-use App\Livewire\App\Recetas;
-use App\Livewire\App\Home;
-use App\Livewire\App\Platos;
+use App\Livewire\App\Pages\CartDetailLivewire;
+use App\Livewire\App\Pages\ComentariosLivewire;
+use App\Livewire\App\Pages\ContactLivewire;
+use App\Livewire\App\Pages\HomeLivewire;
+use App\Livewire\App\Pages\NosotrosLivewire;
+use App\Livewire\App\Pages\PlatosLivewire;
+use App\Livewire\App\Pages\ProductsLivewire;
+use App\Livewire\App\Pages\RecipesLivewire;
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,24 +31,24 @@ Route::get('/google-callback',[AuthController::class,'callbackGoogle']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     
-    Route::get('',Home::class)->name('home');    
+    Route::get('',HomeLivewire::class)->name('home');    
     //Recetas
-    Route::get('recetas',Recetas::class)->name('recetas');
+    Route::get('recetas',RecipesLivewire::class)->name('recetas');
     Route::get('/recetas/{recetas}/recetas',[HomeController::class,'ver'])->name('verRecetas');
     //Productos
-    Route::get('productos',Productos::class)->name('productos');
+    Route::get('productos',ProductsLivewire::class)->name('productos');
     //Nostros
-    Route::get('nosotros',Nosotros::class)->name('nosotros');
+    Route::get('nosotros',NosotrosLivewire::class)->name('nosotros');
     //Contactanos
-    Route::get('contactanos',Contactos::class)->name('contactos');
+    Route::get('contactanos',ContactLivewire::class)->name('contactos');
     //Menu
-    Route::get('menu',Platos::class)->name('menu');
+    Route::get('menu',PlatosLivewire::class)->name('menu');
     //Opiniones
-    Route::get('comentarios',Comentarios::class)->name('comentarios.index');
+    Route::get('comentarios',ComentariosLivewire::class)->name('comentarios.index');
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');
     Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
     Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
-    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+    Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');

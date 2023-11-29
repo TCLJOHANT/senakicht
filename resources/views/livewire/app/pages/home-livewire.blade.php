@@ -35,7 +35,7 @@
                     <div class="col-lg-12">
                         <div class="box-container">
                             @foreach($menus as $plato)
-                                <livewire:app.components.shared.card.card-plato  :plato="$plato"  />
+                                <livewire:app.components.card.card-plato  :plato="$plato"  />
                             @endforeach
                         </div>
                     </div>
@@ -49,7 +49,7 @@
             <h1 class="heading"> nuestros  <span>productos</span> </h1>
             <div class="box-container">
                 @foreach($products as $product)
-                    <livewire:app.components.shared.card.card-product :product="$product" />
+                    <livewire:app.components.card.card-product :product="$product" />
                 @endforeach
             </div>
         </section>
@@ -60,7 +60,7 @@
             <h1 class="heading"> su <span>opinion</span> </h1>
             <div class="box-container">
                 @foreach ($comments as $comment )
-                        @livewire('app.components.shared.card.card-comment', ['comment' => $comment])
+                        @livewire('app.components.card.card-comment', ['comment' => $comment])
                 @endforeach
                 </div>
         </section>
@@ -95,7 +95,7 @@
             <h1 class="heading"> nuestras <span>recetas </span> </h1>
             <div class="box-container">
                 @foreach ($recipes as $recipe)
-                    <livewire:app.components.shared.card.card-recipe :recipe="$recipe"  />
+                    <livewire:app.components.card.card-recipe :recipe="$recipe"  />
                 @endforeach
             </div>
         </section>

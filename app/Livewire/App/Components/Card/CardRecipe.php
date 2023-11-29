@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\App\Components\Shared\Card;
+namespace App\Livewire\App\Components\Card;
 
 use Livewire\Component;
 
@@ -15,6 +15,6 @@ class CardRecipe extends Component
     }
     public function render()
     {
-        return view('livewire.app.components.shared.card.card-recipe');
+        return view('livewire.app.components.card.card-recipe');
     }
 }

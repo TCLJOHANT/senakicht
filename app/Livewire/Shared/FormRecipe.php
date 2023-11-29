@@ -1,7 +1,7 @@
 <?php
 namespace App\Livewire\Shared;
 use App\Livewire\Admin\Recipe\ShowRecipes;
-use App\Livewire\App\Recetas;
+use App\Livewire\App\Pages\RecipesLivewire;
 use App\Models\Category;
 use App\Models\Ingredient;
 use Livewire\Component;
@@ -152,7 +152,7 @@ class FormRecipe extends Component
         $this->identificador = rand();
         $this->dispatch('show-toast', type:"success", message: $message); 
         $this->dispatch('render')->to(ShowRecipes::class);
-        $this->dispatch('render')->to(Recetas::class);
+        $this->dispatch('render')->to(RecipesLivewire::class);
     }
 
     
