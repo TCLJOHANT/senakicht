@@ -131,6 +131,17 @@ class PaymentController extends Controller
         foreach ($cartData as $item) {
             $totalPrice += $item->price * $item->quantity;
         }
+
+        foreach ($cartData as $item) {
+          Cart::create([
+            'order_number' => $orderNumber,
+              'price' => $item->price,
+              'quantity' => $item->quantity,
+              'menu_id' => $item->id,
+              'sale_id' => $sale->id,
+          ]);
+          
+      }
         
         Sale::create([
          'order_number' => $orderNumber,
@@ -138,15 +149,7 @@ class PaymentController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        foreach ($cartData as $item) {
-         Cart::create([
-           'order_number' => $orderNumber,
-             'price' => $item->price,
-             'quantity' => $item->quantity,
-             'menu_id' => $item->id,
-         
-         ]);
-     }
+       
     }
   
 

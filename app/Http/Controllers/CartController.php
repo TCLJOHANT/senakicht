@@ -14,11 +14,7 @@ use MercadoPago\MercadoPagoConfig;
 class CartController extends Controller
 {
 
-    public function __construct(
-
-        private MercadoPagoService $mercadoPagoService,
-       
-    ){}
+   
 
 
 
@@ -31,12 +27,11 @@ class CartController extends Controller
 
     public function cart()  {
     
-       $client = $this->mercadoPagoService->crearPreferece();
       
        
         $cartCollection = \Cart::getContent();
 
-        return view('cart',compact('cartCollection', 'client'));
+        return view('cart',compact('cartCollection'));
     }
     
     public function remove(Request $request){

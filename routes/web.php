@@ -6,6 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Models\Cart;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactanosController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RecipeController;
@@ -57,6 +58,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //Payment
     Route::get('/paypal/pay',[PaymentController::class, 'paypalPayment'])->name('paypal');
     Route::get('/paypal/status',[PaymentController::class, 'paypalStatus']);
+
+    Route::post('envio',[DeliveryController::class,'store'])->name('envio.store');
 });
 
 
