@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
                 UsersTableSeeder::class,
                 CategoriesSeeder::class,
                 MenusTableSeeder::class,
-                ProductsTableSeeder::class ,
+                ProductsTableSeeder::class,
                 // RecipesTableSeeder::class,
                 CommentsTableSeeder::class,
             ]);

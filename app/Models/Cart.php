@@ -17,4 +17,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Menu::class);
     }
+
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class,'sale_id');
+    }
 }
