@@ -8,13 +8,13 @@
     </div>
 
     <div class="links">
-    <a href="<?php echo e(route('home')); ?>">inicio</a>
-        <a href="<?php echo e(route('nosotros')); ?>" >acerca de</a>
-        <a href="<?php echo e(route('menu')); ?>">platos</a>
-        <a href="<?php echo e(route('productos')); ?>">productos</a>
-        <a href="<?php echo e(route('comentarios.index')); ?>">opiniones</a>
-        <a href="{{route('contactos')}}">contacto</a>
-        <a href="<?php echo e(route('recetas')); ?>">Recetas</a>
+        <a wire:navigatehref="{{route('home')}}">inicio</a>
+        <a wire:navigate href="{{route('nosotros')}}" >acerca de</a>
+        <a wire:navigate href="{{route('menu')}}">platos</a>
+        <a wire:navigate href="{{route('productos')}}">productos</a>
+        <a wire:navigate href="{{route('comentarios.index')}}">opiniones</a>
+        <a wire:navigate href="{{route('contactos')}}">contacto</a>
+        <a wire:navigate href="{{route('recetas')}}">Recetas</a>
     </div>
 
     <div class="credit">creado por <span>Senakitch</span> | Todos los derechos reservados</div>

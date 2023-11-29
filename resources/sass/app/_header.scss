@@ -17,7 +17,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 40;
+  z-index: 30;
 
   .logo img {
     height: 4rem;
@@ -29,11 +29,16 @@
     a {
       font-size: large;
       color: #fff;
-      &:hover {
+      &:hover{
         color: $main-color;
         border-bottom: 0.1rem solid $main-color;
         padding-bottom: 0.5rem;
       }
+      &.active {
+        color: $main-color; // Cambia $active-color al color que desees para el enlace activo
+        border-bottom: 0.1rem solid $main-color;
+        padding-bottom: 0.5rem;
+    }
     }
   }
 

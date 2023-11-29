@@ -7,7 +7,6 @@
 
 </x-admin.admin-modal> --}}
 <x-layouts.admin >
-
     <x-slot name="title">Lista de Comentarios</x-slot>
     {{-- @livewire('crud', ['fields' => [
       ["name" => "description", "type" => "textarea"],

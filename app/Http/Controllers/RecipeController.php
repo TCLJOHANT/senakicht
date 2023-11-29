@@ -11,54 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
-    
-    public function index()
-    {
-        //
-    }
-
     public function pdf($id){
         
         $receta = Recipe::find($id);
         $recipe = $receta->with('multimedia','ingredients','preparationSteps','comments')->find($receta->id);
         $pdf = Pdf::loadView('home.pdf', compact('recipe'));
         return $pdf->stream();
-    }
-
-  
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name'=> 'required',
-            'images'=> 'required|image|mimes:png,jpg',
-            'description'=> 'required',
-            'ingredients' =>'required',
-            'preparation' =>'required',
-            // 'category' => 'required',
-        ]);
-     
-        $files = $request->file('images');
-        $name = $files->getClientOriginalName();
-        $estencion = $files->getClientOriginalExtension();
-        
-        $rutaImagen = $files->storeAs('recipes',$name, ['disk' => 'public']);
-        $data = $request->only('name','description','ingredients','preparation');
-        $data['user_id'] = Auth::user()->id; // Recuperar el ID del usuario autenticado
-        $data['images']=$rutaImagen;
-         Recipe::create($data);
-        
-
-        return redirect('recetas');
-    }
-
-    public function update(Request $request, Recipe $recetas)
-    {
-        //
-    }
-
- 
-    public function destroy(Recipe $recetas)
-    {
-       //
     }
 }

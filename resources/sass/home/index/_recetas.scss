@@ -3,30 +3,31 @@
 .blogs {
     .box-container{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-        gap:1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(2rem, 18rem));
+        gap:1rem;
+        justify-content: center;
 
     .box{
         border:var(--border);
+        height: 100%;
         .image{
             height: 11rem;
             overflow:hidden;
             width: 100%;
-            height: 15rem;
-        //     img{
-        //        height: 100%;
-        //        object-fit: cover;
-        //        width: 100%;
-        //     //    &:hover{
-        //     //     transform: scale(1.2);
-        //     //    }
-        //    }
+            img{
+                height: 100%;
+               object-fit: cover;
+               width: 100%;
+                 &:hover{
+                  transform: scale(1.2);
+                 }
+            }
         }
         .content{
-           padding:1rem;
+           padding:.6rem;
            text-align: center;
            .title{
-               font-size: 1.4rem;
+               font-size: 1.3rem;
                color:#fff;
                &:hover{
                    color:var(--main-color);
@@ -35,8 +36,8 @@
            span{
                color:var(--main-color);
                display: block;
-               padding-top: 1rem;
-               font-size: 1.3rem;
+               padding-top: .5rem;
+               font-size: 1rem;
            }
            p{
               font-size: 1rem;

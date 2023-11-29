@@ -96,6 +96,7 @@ class ShowProducts extends Component
             $multimedia->delete();
        }
        $product->delete();
+       $this->dispatch('show-toast', type:"error", message: "¡Producto eliminado exitosamente!"); 
        $this->resetPage();
    }
     public function modalEdit(Product $product){

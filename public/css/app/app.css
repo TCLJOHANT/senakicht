@@ -63,7 +63,7 @@ main {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 40;
+  z-index: 30;
 }
 .header .logo img {
   height: 4rem;
@@ -76,6 +76,11 @@ main {
   color: #fff;
 }
 .header .navbar a:hover {
+  color: var(--main-color);
+  border-bottom: 0.1rem solid var(--main-color);
+  padding-bottom: 0.5rem;
+}
+.header .navbar a.active {
   color: var(--main-color);
   border-bottom: 0.1rem solid var(--main-color);
   padding-bottom: 0.5rem;

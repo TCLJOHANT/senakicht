@@ -1,8 +1,5 @@
 @charset "UTF-8";
 /* menú */
-.menu {
-  margin-top: 6%;
-}
 .menu .box-container {
   display: flex;
   width: 96vw;
@@ -10,8 +7,8 @@
   flex-wrap: wrap;
 }
 .menu .box-container .box {
-  margin: 1% 0;
   width: 20rem;
+  height: 100%;
   border: var(--border);
   color: #fff;
 }

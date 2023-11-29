@@ -21,10 +21,11 @@ class ShowComment extends Component
     }
     public function destroyComment(Comment $comment){
         $comment->delete();
+        $this->dispatch('show-toast', type:"error", message: "¡Comentario eliminado exitosamente!"); 
         $this->resetPage();
     }
 
-    private function emitComment(Comment $comment){
+    public function emitComment(Comment $comment){
         $this->dispatch('editarCommentForm',$comment)->to(FormComment::class);
     }
     //reiniciar paginacion si se cambia la variable search

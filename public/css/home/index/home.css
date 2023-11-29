@@ -614,22 +614,25 @@
 }
 
 .products {
-  margin: auto 3rem;
+  margin: auto 2rem;
 }
 .products .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1.5rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 18rem));
+  gap: 1rem;
 }
 .products .box-container .box {
   text-align: center;
   border: var(--border);
-  padding: 0.5rem 2rem;
+  padding: 0.7rem 0;
+  height: 100%;
 }
 .products .box-container .box .icons {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
 }
 .products .box-container .box .icons a {
   border-radius: 30%;
@@ -644,13 +647,20 @@
 .products .box-container .box .icons a:hover {
   background: var(--main-color);
 }
+.products .box-container .box .image {
+  padding: 0 2rem;
+}
 .products .box-container .box .content h3 {
   padding-top: 5%;
   color: #fff;
   font-size: 1.4rem;
 }
+.products .box-container .box .content p {
+  color: #fff;
+  font-size: 0.9rem;
+}
 .products .box-container .box .content .stars {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 .products .box-container .box .content .stars i {
   font-size: 1.4rem;
@@ -661,7 +671,6 @@
   font-size: 1.5rem;
 }
 .products .box-container .box .content .price span {
-  text-decoration: line-through;
   font-weight: lighter;
   font-size: 1rem;
 }
@@ -709,9 +718,6 @@
 }
 
 /* menú */
-.menu {
-  margin-top: 6%;
-}
 .menu .box-container {
   display: flex;
   width: 96vw;
@@ -719,8 +725,8 @@
   flex-wrap: wrap;
 }
 .menu .box-container .box {
-  margin: 1% 0;
   width: 20rem;
+  height: 100%;
   border: var(--border);
   color: #fff;
 }
@@ -783,24 +789,33 @@
 /* para card recetas  home*/
 .blogs .box-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(2rem, 18rem));
+  gap: 1rem;
+  justify-content: center;
 }
 .blogs .box-container .box {
   border: var(--border);
+  height: 100%;
 }
 .blogs .box-container .box .image {
   height: 11rem;
   overflow: hidden;
   width: 100%;
-  height: 15rem;
+}
+.blogs .box-container .box .image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.blogs .box-container .box .image img:hover {
+  transform: scale(1.2);
 }
 .blogs .box-container .box .content {
-  padding: 1rem;
+  padding: 0.6rem;
   text-align: center;
 }
 .blogs .box-container .box .content .title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #fff;
 }
 .blogs .box-container .box .content .title:hover {
@@ -809,8 +824,8 @@
 .blogs .box-container .box .content span {
   color: var(--main-color);
   display: block;
-  padding-top: 1rem;
-  font-size: 1.3rem;
+  padding-top: 0.5rem;
+  font-size: 1rem;
 }
 .blogs .box-container .box .content p {
   font-size: 1rem;

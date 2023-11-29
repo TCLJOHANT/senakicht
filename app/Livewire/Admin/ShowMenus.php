@@ -55,6 +55,7 @@ class ShowMenus extends Component
             $multimedia->delete();
        }
        $menu->delete();
+       $this->dispatch('show-toast', type:"error", message: "¡Plato eliminado exitosamente!"); 
        $this->resetPage();
    }
 
