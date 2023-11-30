@@ -118,4 +118,9 @@ class FormProduct extends Component
         $this->dispatch('render')->to(ShowProducts::class);
         $this->dispatch('render')->to(ProductsLivewire::class);
     }
+
+    public function abrirModal(){
+        $this->reset($this->resetVariables); 
+        $this->openModal= true;
+    }
 }

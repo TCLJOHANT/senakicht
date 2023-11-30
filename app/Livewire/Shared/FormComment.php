@@ -10,7 +10,7 @@ class FormComment extends Component
     public $openModal = false;
     public $titleModal = "Crear Comentario";
     public $btnModal = "Crear";
-    public $description, $rating,$commentId;
+    public $description,$rating,$commentId;
     public $rules = ['description'=>'required','rating'=>'required'];
     protected $listeners = ['editarCommentForm'];
 
@@ -45,6 +45,10 @@ class FormComment extends Component
         $this->rating =$comment->rating;
         $this->titleModal = "Editar Comentario";
         $this->btnModal = "Actualizar";
+        $this->openModal= true;
+    }
+    public function abrirModal(){
+        $this->reset('description','rating','commentId');
         $this->openModal= true;
     }
 }

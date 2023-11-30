@@ -98,8 +98,8 @@ class FormRecipe extends Component
             // dd($recipeData);
              $recipeEdit = Recipe::find($this->recipeId);
              if ($recipeEdit) {
-                 $recipeData['user_id'] = $recipeEdit->user_id;
-                 $recipeEdit->update($recipeData);
+                //  $recipeData['user_id'] = $recipeEdit->user_id;
+                //  $recipeEdit->update($recipeData);
             //       // Rastrear las imágenes existentes
             //         $existingImages = $recipeEdit->multimedia->pluck('ruta')->toArray();
             //         // Eliminar las imágenes existentes que no están en la nueva lista
@@ -141,11 +141,11 @@ class FormRecipe extends Component
             //     //     $recipeEdit->multimedia()->save($multimedia);
             //     // }
             //         // Actualizar los ingredientes existentes
-            //         $this->updateIngredients($recipeEdit);
+                     $this->updateIngredients($recipeEdit);
             //         // Crear nuevos ingredientes si es necesario
-            //         $this->createIngredients($recipeEdit);
+                     $this->createIngredients($recipeEdit);
             //         // Actualizar los pasos de preparación
-            //         $this->updatePreparationSteps($recipeEdit);
+                     $this->updatePreparationSteps($recipeEdit);
              }
              $message = '¡Receta actualizada exitosamente!';
         }
@@ -206,6 +206,7 @@ class FormRecipe extends Component
         }
     }
     //Frontend agregar o eliminar, paso,ingrediente,imagen
+    public function abrirModal(){$this->reset($this->resetVariables); $this->openModal= true;}
     public function agregarIngrediente()
     { $this->ingredientes[] = ['quantity' => '', 'unit' =>'','name' => '', 'measurement' => '',];}
 

@@ -13,15 +13,21 @@
                 <section class="acerca-de">
                     <div class="container">
                         <h2 class="sobre-nosotros">Sobre nosotros</h2>
-
-                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dicta rem hic totam necessitatibus
-                            tempora animi error perferendis. Vero corrupti porro quia! Ad saepe alias, officiis voluptatem sed, odio
-                            dolores neque dolorem placeat nam quia numquam soluta ipsam nostrum consequuntur, a magnam non. Tenetur
-                            repudiandae distinctio inventore voluptate fugit laborum?</p>
-                        <p class="parrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dicta rem hic totam necessitatibus
-                            tempora animi error perferendis. Vero corrupti porro quia! Ad saepe alias, officiis voluptatem sed, odio
-                            dolores neque dolorem placeat nam quia numquam soluta ipsam nostrum consequuntur, a magnam non. Tenetur
-                            repudiandae distinctio inventore voluptate fugit laborum?</p>
+                                            <h2 class="text-center">Misión</h2>
+                        <p class="parrafo"> La finalidad que busca el proyecto 
+                            <b class="text-green-500">SENAKITCH</b>  es 
+                            permitir que los <b>aprendices del Sena</b> cuenten con un sistema de 
+                            información el cual les permita dar a publicar y promocionar
+                             las recetas que ellos tienen para publicitar en un sistema que 
+                             sea de fácil uso para los usuarios."
+                        </p>
+                        <h2 class="text-center">Visión</h2>
+                        <p class="parrafo">
+                            Este proyecto será de gran ayuda para muchas personas tanto para
+                             los apéndices como para los usuarios, tras el gran aporte que se
+                              desarrolla tanto en el área de la investigación como en la de la 
+                              tecnología para el año 2023."
+                        </p>
 
                     </div>
                 </section>

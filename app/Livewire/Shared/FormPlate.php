@@ -20,7 +20,7 @@ class FormPlate extends Component
     protected $listeners = ['editarPlateForm'];
          //variables inputs
     public $name,$price,$quantity,$description,$category_id,$identificador,$platoId,
-    $listaImages = [] ;
+    $listaImages = [], $NewImage = [];
      
      private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','platoId'];
          //emit    
@@ -34,7 +34,7 @@ class FormPlate extends Component
      ];
      public function mount(){ 
          $this->identificador = rand(); //le asigna un numero al azar o random
-         $this->listaImages = []; //array vacio
+        //  $this->listaImages = []; //array vacio
      }
     public function render()
     {
@@ -118,5 +118,23 @@ class FormPlate extends Component
     }
 
 
+    public function abrirModal(){$this->reset($this->resetVariables); $this->openModal= true;}
+
+ //si se cambia variable nuevaImage ejecutar:
+    public function updatingNewImage(){
+        dd($this->NewImage,$this->listaImages );
+        // $this->listaImages[] = $this->nuevaImage;
+        // $this->nuevaImage = null;  
+    }
+    public function agregarImagen(){
+        // $rutaNuevaImagen = $this->nuevaImage->store('images', 'public');
+        // $this->listaImages[] = $rutaNuevaImagen;
+        // $this->render();
+    }
+
+    public function removeImage($index){
+        unset($this->listaImages[$index]);
+        $this->listaImages = array_values($this->listaImages); // Reindexar el array después de eliminar una imagen
+    }
 
 }

@@ -1,6 +1,6 @@
 <div>
      <link rel="stylesheet" href="{{ asset('css/shared/opinion.css')}}"> 
-     <x-danger-button wire:click="$set('openModal', true)">Crear COmentario</x-danger-button>
+     <x-danger-button wire:click="abrirModal()">Crear COmentario</x-danger-button>
      <x-dialog-modal wire:model="openModal">
         <x-slot name="title">
             {{$titleModal}} 

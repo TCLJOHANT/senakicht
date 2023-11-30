@@ -1,6 +1,6 @@
 <div>
     <link rel="stylesheet" href="{{asset('css/app/livewire/formRecipe.css')}}">
-    <x-danger-button wire:click="$set('openModal', true)">Crear Producto</x-danger-button>
+    <x-danger-button wire:click="abrirModal()">Crear Producto</x-danger-button>
     <x-modificados-jet.modal wire:model="openModal" maxWidth="full" >
         <div class="cont_form_recipe">
             <div class="grid grid-cols-2 gap-2 imgs">
