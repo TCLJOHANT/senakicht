@@ -33,7 +33,7 @@ class FormComment extends Component
          }
         $this->reset(['openModal','description','rating','commentId','btnModal','titleModal']);
         
-        $this->dispatch('show-toast', type:"success", message: $message); 
+        $this->dispatch('show-toast', type:"success", message: $message)->self(); 
         $this->dispatch('render')->to(ShowComment::class);
         $this->dispatch('render')->to(ComentariosLivewire::class);
 

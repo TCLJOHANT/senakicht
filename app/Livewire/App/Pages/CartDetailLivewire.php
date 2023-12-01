@@ -26,7 +26,6 @@ class CartDetailLivewire extends Component
         public function shop()
         {
             $products = Menu::all();
-           //dd($products);
             return view('home.menu', compact('products'));
         }
     
@@ -77,9 +76,8 @@ class CartDetailLivewire extends Component
             return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
         }
     
-        public function clear(){
+        public function clearCart(){
             \Cart::clear();
-            return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
         }
     
 }

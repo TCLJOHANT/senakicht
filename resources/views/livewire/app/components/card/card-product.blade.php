@@ -21,7 +21,7 @@
             </div>
         </form>
         <div class="image">
-            <img src="{{$ImgCard}}" alt=""> 
+            <img src="{{$ImgCard}}" alt="..."> 
         </div>
         <div class="content">
             <h3>{{substr($product->name, 0, 20)}}</h3>

@@ -11,7 +11,13 @@ class CardRecipe extends Component
     public function mount($recipe)
     {
         $this->recipe = $recipe;
-        $this->imgRecipeCard = asset('storage/' . $recipe->multimedia->first()->ruta);
+        if ($recipe->multimedia->isNotEmpty()) {
+            $this->imgRecipeCard = asset('storage/' . $recipe->multimedia->first()->ruta);
+          
+        } else {
+
+            $this->imgRecipeCard  == asset('path/to/default/image.jpg');
+        }
     }
     public function render()
     {

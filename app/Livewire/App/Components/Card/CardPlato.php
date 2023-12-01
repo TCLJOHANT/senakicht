@@ -13,9 +13,11 @@ class CardPlato extends Component
     public function mount(Menu $plato)
     {
         $this->plato = $plato;
-        foreach($plato->multimedia as $index => $imagenes){
-            if($index ===0){
-                $this->imgPlatoCard = asset('storage/' . $imagenes->ruta);
+        if($plato->multimedia){
+            foreach($plato->multimedia as $index => $imagenes){
+                if($index ===0){
+                    $this->imgPlatoCard = asset('storage/' . $imagenes->ruta);
+                }
             }
         }
     }

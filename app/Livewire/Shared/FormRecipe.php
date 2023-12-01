@@ -18,9 +18,9 @@ class FormRecipe extends Component
     public  $titleModal = "Crear Receta", $btnModal = "Crear" , $openModal =false;
     //variables inputs
     public $name,$difficulty,$preparation_time,$description,$category_id,$identificador,$recipeId,
-    $ingredientes = [],$pasos=[], $lista = []  , $nuevaImagen;
+    $ingredientes = [],$pasos=[],$listaImages = [], $NewImage=[];
 
-    private $resetVariables = ['openModal','category_id','name','preparation_time','difficulty','description','ingredientes','pasos','btnModal','titleModal','lista'];
+    private $resetVariables = ['openModal','category_id','name','preparation_time','difficulty','description','ingredientes','pasos','btnModal','titleModal','listaImages','NewImage'];
     //emit    
     protected $listeners = ['editarRecetaForm'];
     public $rules = [
@@ -34,9 +34,6 @@ class FormRecipe extends Component
 
     public function mount(){ 
         $this->identificador = rand(); //le asigna un numero al azar o random
-        $this->ingredientes = []; //array vacio
-        $this->pasos = []; //array vacio
-        $this->lista = []; //array vacio
     }
     public function render(){
         $categories = Category::where('type', 'recipeAndMenu')->get();
@@ -64,7 +61,7 @@ class FormRecipe extends Component
         foreach ($recipe->preparationSteps as $pasos) {
             $this->pasos[] = $pasos->description_step;}
         foreach ($recipe->multimedia as $multimedia) {
-            $this->lista[] = $multimedia->ruta;}
+            $this->listaImages[] = $multimedia->ruta;}
         $this->titleModal = "Editar Receta"; $this->btnModal = "Actualizar";
          $this->openModal= true;
     }
@@ -82,76 +79,105 @@ class FormRecipe extends Component
         if ($this->btnModal == "Crear") {
             $this->validate();
             $recipe = Recipe::create($recipeData);
-                foreach ($this->lista as $image) {
+                //crear imagenes
+                foreach ($this->listaImages as $image) {
                     $path = $image->store('recipes');
                     $multimedia = new Multimedia();
                     $multimedia->ruta = $path;
                     $multimedia->type = 'imagen';
                     $recipe->multimedia()->save($multimedia);
                 }
-            $this->createIngredients($recipe);
-            $this->createPreparationSteps($recipe);
-            $message = '¡Receta creada exitosamente!';
+                //crear ingredientes
+                foreach ($this->ingredientes as $ingrediente) {
+                    Ingredient::create([
+                        'recipe_id' => $recipe->id,
+                        'quantity' => $ingrediente['quantity'],
+                        'unit' => $ingrediente['unit'],
+                        'name' => $ingrediente['name'],
+                        'measurement' => $ingrediente['measurement'],
+                    ]);
+                }
+                //crear pasos
+                foreach ($this->pasos as $index => $paso) {
+                    PreparationStep::create([
+                        'recipe_id' => $recipe->id,
+                        'step_number' => $index + 1,
+                        'description_step' => $paso,
+                    ]);
+                }
+                //mensaje
+                $message = '¡La Receta fue creada exitosamente!';
         } 
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {
-            // dd($recipeData);
-             $recipeEdit = Recipe::find($this->recipeId);
+            $recipeEdit = Recipe::find($this->recipeId);
+            $existingImages = $recipeEdit->multimedia()->pluck('ruta')->toArray();
+            $existingIngredients = $recipeEdit->ingredients()->pluck('name')->toArray();
+            $existingSteps = $recipeEdit->preparationSteps()->pluck('description_step')->toArray();
              if ($recipeEdit) {
-                //  $recipeData['user_id'] = $recipeEdit->user_id;
-                //  $recipeEdit->update($recipeData);
-            //       // Rastrear las imágenes existentes
-            //         $existingImages = $recipeEdit->multimedia->pluck('ruta')->toArray();
-            //         // Eliminar las imágenes existentes que no están en la nueva lista
-            //         foreach ($existingImages as $existingImage) {
-            //             if (!in_array($existingImage, $this->lista)) {
-            //                 Storage::disk('public')->delete($existingImage);
-            //                 // Eliminar de la base de datos
-            //                 $recipeEdit->multimedia()->where('ruta', $existingImage)->delete();
-            //             }
-            //         }
+                 $recipeData['user_id'] = $recipeEdit->user_id;
+                 $recipeEdit->update($recipeData);
+                 //eliminar imagenes que ya no exixten en nuevo array de imagenes 
+                 foreach ($existingImages as $existingImage) {
+                     if (!in_array($existingImage, $this->listaImages)) {
+                         Storage::disk('public')->delete($existingImage);
+                         $recipeEdit->multimedia()->where('ruta', $existingImage)->delete();
+                     }
+                 }
+                 //crear las nuevas imagenes
+                 foreach ($this->listaImages as $Image) {
+                     if (is_string($Image)) {
+                         // La imagen ya existe, no es necesario hacer nada
+                     } else {
+                         $path = $Image->store('recipes');
+                         $multimedia = new Multimedia();
+                         $multimedia->ruta = $path;
+                         $multimedia->type = 'imagen';
+                         $recipeEdit->multimedia()->save($multimedia);
+                     }
+                 }
+                 //actualizar ingredientes
+                 foreach ($this->ingredientes as $ingredient) {
+                    if (!in_array($ingredient, $existingIngredients)) {
+                        Ingredient::create([
+                            'recipe_id' => $recipeEdit->id,
+                            'quantity' => $ingredient['quantity'],
+                            'unit' => $ingredient['unit'],
+                            'name' => $ingredient['name'],
+                            'measurement' => $ingredient['measurement'],
+                        ]);
+                    }
+                }
+                 foreach ($existingIngredients as $existingIngredient) {
+                    if (!in_array($existingIngredient, $this->ingredientes)) {
+                        $recipeEdit->ingredients()->where('name', $existingIngredient)->delete();
+                    }
+                }
+                //actualizar pasos
+                foreach ($existingSteps as $existingStep) {
+                    if (!in_array($existingStep, $this->pasos)) {
+                        $recipeEdit->preparationSteps()->where('description_step', $existingStep)->delete();
+                    }
+                }
 
-            //         // Guardar nuevas imágenes
-            //         foreach ($this->lista as $image) {
-            //             $path = $image->store('recipes');
-
-            //             // Si la imagen ya existe, no la guardamos de nuevo
-            //             if (!in_array($path, $existingImages)) {
-            //                 $multimedia = new Multimedia();
-            //                 $multimedia->ruta = $path;
-            //                 $multimedia->type = 'imagen';
-            //                 $recipeEdit->multimedia()->save($multimedia);
-            //             }
-            //         }
-
-            //     // // Eliminar todas las imágenes existentes en el disco
-            //     // foreach ($recipeEdit->multimedia as $media) {
-            //     //     Storage::disk('public')->delete($media->ruta);
-            //     //     $media->delete();
-            //     // }
-            //     // // Eliminar todas las imágenes existentes en registros base de datos
-            //     // $recipeEdit->multimedia()->delete();
-
-            //     // // Guardar nuevas imágenes
-            //     // foreach ($this->lista as $image) {
-            //     //     $path = $image->store('recipes');
-            //     //     $multimedia = new Multimedia();
-            //     //     $multimedia->ruta = $path;
-            //     //     $multimedia->type = 'imagen';
-            //     //     $recipeEdit->multimedia()->save($multimedia);
-            //     // }
-            //         // Actualizar los ingredientes existentes
-                     $this->updateIngredients($recipeEdit);
-            //         // Crear nuevos ingredientes si es necesario
-                     $this->createIngredients($recipeEdit);
-            //         // Actualizar los pasos de preparación
-                     $this->updatePreparationSteps($recipeEdit);
+                foreach ($this->pasos as $index => $paso) {
+                    if (!in_array($paso, $existingSteps)) {
+                        PreparationStep::create([
+                            'recipe_id' => $recipeEdit->id,
+                            'step_number' => $index + 1,
+                            'description_step' => $paso,
+                        ]);
+                    }
+                }
              }
-             $message = '¡Receta actualizada exitosamente!';
+             
+             $message = '¡la Receta ha sido actualizada exitosamente!';
+            
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
-        $this->dispatch('show-toast', type:"success", message: $message); 
+        //emitir al mismo componente
+        $this->dispatch('show-toast', type:"success", message: $message)->self();
         $this->dispatch('render')->to(ShowRecipes::class);
         $this->dispatch('render')->to(RecipesLivewire::class);
     }
@@ -159,17 +185,7 @@ class FormRecipe extends Component
     
     // Métodos auxiliares para crear y 
     //actualizar ingredientes y pasos de preparación
-    private function createIngredients($recipe){
-        foreach ($this->ingredientes as $ingrediente) {
-            Ingredient::create([
-                'recipe_id' => $recipe->id,
-                'quantity' => $ingrediente['quantity'],
-                'unit' => $ingrediente['unit'],
-                'name' => $ingrediente['name'],
-                'measurement' => $ingrediente['measurement'],
-            ]);
-        }
-    }
+
 
     private function updateIngredients($recipe){
         foreach ($this->ingredientes as $index => $ingrediente) {
@@ -182,16 +198,6 @@ class FormRecipe extends Component
                     'measurement' => $ingrediente['measurement'],
                 ]);
             }
-        }
-    }
-
-    private function createPreparationSteps($recipe){
-        foreach ($this->pasos as $index => $paso) {
-            PreparationStep::create([
-                'recipe_id' => $recipe->id,
-                'step_number' => $index + 1,
-                'description_step' => $paso,
-            ]);
         }
     }
 
@@ -223,15 +229,16 @@ class FormRecipe extends Component
     }
 
     public function agregarImagen(){
-        $rutaNuevaImagen = $this->nuevaImagen->store('images', 'public');
-        $this->lista[] = $rutaNuevaImagen;
-        $this->nuevaImagen = null;  
+        foreach ($this->NewImage as $image){
+            $this->listaImages[] = $image;
+        }
+        $this->NewImage = [];
         $this->render();
     }
 
     public function removeImage($index){
-        unset($this->lista[$index]);
-        $this->lista = array_values($this->lista); // Reindexar el array después de eliminar una imagen
+        unset($this->listaImages[$index]);
+        $this->listaImages = array_values($this->listaImages); // Reindexar el array después de eliminar una imagen
     }
 
 }

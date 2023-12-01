@@ -56,10 +56,8 @@
                                     <td class="px-6 py-6">{{$recipe->difficulty}}</td>
                                     <td class="px-6 py-6">{{$recipe->preparation_time}}</td>
                                     <td class="px-6 py-6 flex items-center">
-                                        <button class="ml-2 font-bold text-white p-2  rounded cursor-pointer bg-blue-500"   >  
-                                            <i class="fas fa-eye"></i>
-                                        </button> 
-                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-green-500" wire:click="emitirReceta({{$recipe}})" >  
+                                        
+                                        <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-blue-500" wire:click="emitirReceta({{$recipe}})" >  
                                             <i class="fas fa-pencil-alt"></i>
                                         </button> 
                                         <button  wire:click="destroyRecipe({{$recipe}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-500">

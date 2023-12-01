@@ -20,28 +20,26 @@ class FormPlate extends Component
     protected $listeners = ['editarPlateForm'];
          //variables inputs
     public $name,$price,$quantity,$description,$category_id,$identificador,$platoId,
-    $listaImages = [], $NewImage = [];
+    $listaImages = [], $NewImage=[];
      
-     private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','platoId'];
-         //emit    
+     private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','platoId','NewImage'];
      public $rules = [
          'name'=> 'required',
          'price'=>'required',
          'quantity' => 'required',
          'description'=> 'required',
          'category_id' => 'required',
-         //'lista.*' => 'image|max:1024', // Ajusta según tus necesidades
+         //'listaImages.*' => 'required|image|mimes:jpeg,png,gif|max:1024',
      ];
      public function mount(){ 
          $this->identificador = rand(); //le asigna un numero al azar o random
-        //  $this->listaImages = []; //array vacio
      }
     public function render()
     {
         $categories = Category::where('type', 'recipeAndMenu')->get();
         return view('livewire.shared.form-plate',compact('categories'));
     }
-
+    //LLENAR FORMULARIO DE LA DATA DE PLATOS
     public function editarPlateForm(Menu $menu){
         $this->reset($this->resetVariables);
         $this->platoId = $menu->id;
@@ -76,60 +74,52 @@ class FormPlate extends Component
                     $multimedia->type = 'imagen';
                     $plato->multimedia()->save($multimedia);
                 }
-                $message = '¡Plato ha sido creado exitosamente!';
+                $message = '¡El Plato ha sido creado exitosamente!';
         } 
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {
             $platoEdit =Menu::find($this->platoId);
+            $existingImages = $platoEdit->multimedia()->pluck('ruta')->toArray();
             if ($platoEdit) {
-                $productData['user_id'] = $platoEdit->user_id;
-                $platoEdit->update($productData);
-                  // Rastrear las imágenes existentes
-                    $existingImages = $platoEdit->multimedia->pluck('ruta')->toArray();
-                    // Eliminar las imágenes existentes que no están en la nueva lista
-                    foreach ($existingImages as $existingImage) {
-                        if (!in_array($existingImage, $this->listaImages)) {
-                            Storage::disk('public')->delete($existingImage);
-                            // Eliminar de la base de datos
-                            $platoEdit->multimedia()->where('ruta', $existingImage)->delete();
-                        }
+                $platoData['user_id'] = $platoEdit->user_id;
+                $platoEdit->update($platoData);
+                foreach ($existingImages as $existingImage) {
+                    if (!in_array($existingImage, $this->listaImages)) {
+                        Storage::disk('public')->delete($existingImage);
+                        $platoEdit->multimedia()->where('ruta', $existingImage)->delete();
                     }
-
-                    // Guardar nuevas imágenes
-                    foreach ($this->listaImages as $image) {
-                        $path = $image->store('recipes');
-
-                        // Si la imagen ya existe, no la guardamos de nuevo
-                        if (!in_array($path, $existingImages)) {
-                            $multimedia = new Multimedia();
-                            $multimedia->ruta = $path;
-                            $multimedia->type = 'imagen';
-                            $platoEdit->multimedia()->save($multimedia);
-                        }
+                }
+                foreach ($this->listaImages as $Image) {
+                    if (is_string($Image)) {
+                        // La imagen ya existe, no es necesario hacer nada
+                    } else {
+                        $path = $Image->store('recipes');
+                        $multimedia = new Multimedia();
+                        $multimedia->ruta = $path;
+                        $multimedia->type = 'imagen';
+                        $platoEdit->multimedia()->save($multimedia);
                     }
+                }
             }
             $message = '¡Plato actualizado exitosamente!';
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
-        $this->dispatch('show-toast', type:"success", message: $message); 
+       //emitir al mismo componente
+        $this->dispatch('show-toast', type:"success", message: $message)->self(); 
         $this->dispatch('render')->to(ShowMenus::class);
         $this->dispatch('render')->to(PlatosLivewire::class);
     }
 
-
+    //METODOS PARA EL FRONTEND DEL COMPONENTE
     public function abrirModal(){$this->reset($this->resetVariables); $this->openModal= true;}
 
- //si se cambia variable nuevaImage ejecutar:
-    public function updatingNewImage(){
-        dd($this->NewImage,$this->listaImages );
-        // $this->listaImages[] = $this->nuevaImage;
-        // $this->nuevaImage = null;  
-    }
     public function agregarImagen(){
-        // $rutaNuevaImagen = $this->nuevaImage->store('images', 'public');
-        // $this->listaImages[] = $rutaNuevaImagen;
-        // $this->render();
+        foreach ($this->NewImage as $image){
+            $this->listaImages[] = $image;
+        }
+        $this->NewImage = [];
+        $this->render();
     }
 
     public function removeImage($index){

@@ -22,9 +22,8 @@ class FormProduct extends Component
     protected $listeners = ['editarProductForm'];
         //variables inputs
     public $name,$price,$quantity,$description,$category_id,$identificador,$productId,
-        $listaImages = [] ;
-    
-    private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','productId'];    
+        $listaImages = [] , $NewImage=[];
+    private $resetVariables = ['openModal','category_id','name','price','quantity','description','btnModal','titleModal','listaImages','category_id','productId','NewImage'];    
     public $rules = [
         'name'=> 'required',
         'price'=>'required',
@@ -83,38 +82,34 @@ class FormProduct extends Component
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {
             $productEdit =Product::find($this->productId);
+            $existingImages = $productEdit->multimedia()->pluck('ruta')->toArray();
             if ($productEdit) {
                 $productData['user_id'] = $productEdit->user_id;
                 $productEdit->update($productData);
-                  // Rastrear las imágenes existentes
-                    $existingImages = $productEdit->multimedia->pluck('ruta')->toArray();
-                    // Eliminar las imágenes existentes que no están en la nueva lista
-                    foreach ($existingImages as $existingImage) {
-                        if (!in_array($existingImage, $this->listaImages)) {
-                            Storage::disk('public')->delete($existingImage);
-                            // Eliminar de la base de datos
-                            $productEdit->multimedia()->where('ruta', $existingImage)->delete();
-                        }
+                foreach ($existingImages as $existingImage) {
+                    if (!in_array($existingImage, $this->listaImages)) {
+                        Storage::disk('public')->delete($existingImage);
+                        $productEdit->multimedia()->where('ruta', $existingImage)->delete();
                     }
-
-                    // Guardar nuevas imágenes
-                    foreach ($this->listaImages as $image) {
-                        $path = $image->store('recipes');
-
-                        // Si la imagen ya existe, no la guardamos de nuevo
-                        if (!in_array($path, $existingImages)) {
-                            $multimedia = new Multimedia();
-                            $multimedia->ruta = $path;
-                            $multimedia->type = 'imagen';
-                            $productEdit->multimedia()->save($multimedia);
-                        }
+                }
+                foreach ($this->listaImages as $Image) {
+                    if (is_string($Image)) {
+                        // La imagen ya existe, no es necesario hacer nada
+                    } else {
+                        $path = $Image->store('recipes');
+                        $multimedia = new Multimedia();
+                        $multimedia->ruta = $path;
+                        $multimedia->type = 'imagen';
+                        $productEdit->multimedia()->save($multimedia);
                     }
+                }
             }
             $message = '¡Producto actualizado exitosamente!';
         }
         $this->reset($this->resetVariables);
         $this->identificador = rand();
-        $this->dispatch('show-toast', type:"success", message: $message); 
+        //emitir al mismo componente
+        $this->dispatch('show-toast', type:"success", message: $message)->self();
         $this->dispatch('render')->to(ShowProducts::class);
         $this->dispatch('render')->to(ProductsLivewire::class);
     }
@@ -122,5 +117,18 @@ class FormProduct extends Component
     public function abrirModal(){
         $this->reset($this->resetVariables); 
         $this->openModal= true;
+    }
+
+    public function agregarImagen(){
+        foreach ($this->NewImage as $image){
+            $this->listaImages[] = $image;
+        }
+        $this->NewImage = [];
+        $this->render();
+    }
+
+    public function removeImage($index){
+        unset($this->listaImages[$index]);
+        $this->listaImages = array_values($this->listaImages); // Reindexar el array después de eliminar una imagen
     }
 }

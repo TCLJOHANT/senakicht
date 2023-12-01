@@ -1,33 +1,15 @@
 <div>
     <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}"> 
-     {{-- <link rel="stylesheet" href="{{ asset ('js/c.css') }}"> --}}
     @if(isset($cartCollection))
         @if(session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
-    @endif
+        @endif
 
     <section >
         <h1 class="heading"> Carro de <span>Compras</span> </h1>
-        <div class="contain" style="margin-top: 40px">
-            @if(session()->has('success_msg'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session()->get('success_msg') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            @endif
-            @if(session()->has('alert_msg'))
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    {{ session()->get('alert_msg') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            @endif
-           
+        <div class="contain" style="margin-top: 40px">       
             <div class="comp">
                 <div class="comp1">
                     @if(\Cart::getTotalQuantity() > 0)
@@ -37,13 +19,12 @@
                             <div class="alert alert-success">
                                 {{ session('status') }}
                             </div>
-                            @else
+                        @else
                             @if(session('status'))
-                            <div class="alert alert-danger">
-                                {{ session('status') }}
-                            </div>
+                                <div class="alert alert-danger">
+                                    {{ session('status') }}
+                                </div>
                             @endif
-
                             <h4>No hay productos en su carrito</h4><br>
                             <a href="{{ route('menu') }}" class="btn btn-dark">Continuar en la tienda</a>
                         @endif
@@ -55,19 +36,12 @@
                         <div class="row">
                             <div class="ros">
                                     {{-- si no tien / usa images si no storage --}}
-                                    @if (strpos($item->attributes->image , '/') === false)
+                                @if (strpos($item->attributes->image , '/') === false)
                                     <img src="/images/{{ $item->attributes->image  }}" alt="">
                                 @else
                                     <img src="{{ asset('storage/' . $item->attributes->image ) }}" >
                                 @endif
-                            {{-- 
-                            </div>
-                            <div class="des">
-                                <p>
-                                    <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b><br>
-                                    <b>Precio: </b> <span>${{ $item->price }}</span><br>
-                                    <b>Sub Total: </b> <span>${{ \Cart::get($item->id)->getPriceSum() }}</span><br>
-                                    {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }}--}}
+                            
                                 </p>
                             </div>
                             <div class="rov">
@@ -94,10 +68,7 @@
         
             @endif
                     @if(count($cartCollection)>0)
-                        <form action="{{ route('cart.clear') }}" method="POST">
-                            {{ csrf_field() }}
-                            <button class="btn btn-secondary btn-md">Borrar Carrito</button> 
-                        </form>
+                            <button wire:click="clearCart()" class="btn btn-secondary btn-md">Borrar Carrito</button> 
                     @endif
                 </div>
                 @if(count($cartCollection)>0)
@@ -177,12 +148,7 @@
             </div> 
         </div>
     </section>
-
-
-
 <!-- Asegúrate de tener un elemento con el ID 'miElemento' y un atributo 'data' para tu clave de Mercado Pago -->
 {{-- <div id="miElemento" data-mercado-pago-key="{{ config('services.mercadopago.key') }}" data-mi-variable="{{ $client->id }}"></div> --}}
-
-
     <script src="{{ asset('js/pago.js') }}"></script>
 </div>
