@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    protected $guarded = [];
     use HasFactory;
      //RELACION  UNO A MUCHOS
     public function recipes(){
