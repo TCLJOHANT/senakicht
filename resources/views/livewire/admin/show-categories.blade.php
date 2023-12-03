@@ -1,5 +1,4 @@
 <div>
-    @livewire('table-component', ['data' => $categories])
     <div class="card">
         <div class="card-header">
             <button wire:click="exportar()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -21,7 +20,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @if ($data->isEmpty())
+                @if ($categories->isEmpty())
                     <div class="px-6 py-4">
                         @if ($this->search)
                             No Existe la categoria
@@ -39,9 +38,9 @@
                             </tr>
                         </thead>
                         <tbody >
-                            @foreach ($data as $atribute)
+                            @foreach ($categories as $category)
                             <tr >
-                                <td class="px-6 py-6">{{$data->name}}</td>
+                                <td class="px-6 py-6">{{$category->name}}</td>
                             
                                 <td class="px-6 py-6 text-center">
                                     {{$category->type}}
@@ -60,9 +59,9 @@
                         </tbody>
                     </table>
                     {{-- si tiene al menos dos paginas se mostrata si no se oculta --}}
-                    @if ($data->hasPages())
+                    @if ($categories->hasPages())
                         <div class="px-6 py-3">
-                            {{$data->links()}}
+                            {{$categories->links()}}
                         </div>
                     @endif
                 @endif

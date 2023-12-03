@@ -11,7 +11,7 @@ class FormRole extends Component
 {
     public  $openModal= false,$titleModal="Crear Rol",$btnModal="Crear";
     private $resetVariables =  ['openModal','btnModal','name','roleId'];
-    public $name,$roleId;
+    public $name,$roleId,$permissionsLista = [];
     public $rules=[
         'name'=> 'required',
     ];
@@ -24,9 +24,10 @@ class FormRole extends Component
         $this->validate();
          ///CREAR:CREATE
          if ($this->btnModal == "Crear") {
-            $newRol = Role::create(['name' => $this->name]);
-            $newRol->permissions()->sync(); //permissions
-            $message = '¡EL Rol ha sido creado exitosamente!';
+            dd();
+            // $newRol = Role::create(['name' => $this->name]);
+            // $newRol->permissions()->sync(); //permissions
+            // $message = '¡EL Rol ha sido creado exitosamente!';
         } 
         //ACTUALIZAR:UPDATE
         elseif ($this->btnModal == "Actualizar") {

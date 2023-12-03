@@ -6,20 +6,18 @@
         </x-slot>
         <x-slot name="content">
             <div class="mb-4">
-                <x-label value="Nombre de Categoria"></x-label>
-                <x-input wire:model=name placeholder="Ej:Postres"></x-input>
+                <x-label value="Nombre del Rol"></x-label>
+                <x-input wire:model=name placeholder="Ej:Postres" class="w-full"></x-input>
                 <x-input-error for='name'></x-input-error>
             </div>
             <div class="mb-4">
-                <x-label value="permissos:"></x-label>
-                
+                    <x-label value="permissos:"></x-label>
                     @foreach ($permissions as $permission)
-                    <div class="w-full">
+                    <div class="flex w-sm px-2">
                         <input type="checkbox"  wire:model="role_id" value="{{$permission->id}}">
                         <label for="permissions.0">{{$permission->description}}</label>
                     </div>
                     @endforeach
-                 
             </div>
           
 
