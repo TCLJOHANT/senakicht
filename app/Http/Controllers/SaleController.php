@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Sale;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 class SaleController extends Controller
 {
     public function factura($id){
         
-        $venta = Sale::with('carts')->find($id);
+        $venta = Sale::with('carts','user')->find($id);
         $pdf = Pdf::loadView('home.factura', compact('venta'));
         return $pdf->stream();
     }
 
     public function index()
     {
-        $sale = Sale::all();
-        return view('profile.show',compact('sale'));
+        $sales = Sale::all();
+        return View::make('profile.show', ['sales' => $sales]);
+        
     }
 }
