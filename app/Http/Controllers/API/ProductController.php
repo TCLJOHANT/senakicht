@@ -13,8 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('multimedia','comments',)->get();
-        return response()->json($products);
+        return Product::all();
     }
 
     /**
@@ -23,10 +22,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         Product::create($request->all());
-        return response()->json([
-            'respuesta'=> true,
-            'mensaje' => 'product guardado con exito'
-        ]);
+        // No se devuelve ningún mensaje adicional
+        return response()->json([]);
     }
 
     /**
@@ -34,10 +31,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json([
-            'respuesta'=> true,
-            'product' => $product
-        ]);
+        return response()->json($product);
     }
 
     /**
@@ -46,10 +40,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->update($request->all());
-        return response()->json([
-             "respuesta" => True,
-             "mensaje" => "Producto Actualizado Correctamente"
-         ],200);
+        // No se devuelve ningún mensaje adicional
+        return response()->json($product, 200);
     }
 
     /**
@@ -58,9 +50,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return response()->json([
-            "respuesta" => True,
-            "mensaje" => "Prducto Eliminado Exitosamente"
-        ],200);
+        // No se devuelve ningún mensaje adicional
+        return response()->json([]);
     }
 }

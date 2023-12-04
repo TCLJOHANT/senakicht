@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->double('price');
-            $table->text('description');
+            $table->string('description')->nullable();
             $table->double('quantity')->nullable();
-            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('category_id')->nullable();
