@@ -14,4 +14,10 @@ class SaleController extends Controller
         $pdf = Pdf::loadView('home.factura', compact('venta'));
         return $pdf->stream();
     }
+
+    public function index()
+    {
+        $sale = Sale::all();
+        return view('profile.show',compact('sale'));
+    }
 }

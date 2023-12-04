@@ -47,6 +47,8 @@ Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.
 Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
 Route::get('venta/{id}',[SaleController::class,'factura']);
 
+Route::post('envio',[DeliveryController::class,'store'])->name('envio.store');
+
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');
     Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
@@ -59,8 +61,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //Payment
     Route::get('/paypal/pay',[PaymentController::class, 'paypalPayment'])->name('paypal');
     Route::get('/paypal/status',[PaymentController::class, 'paypalStatus']);
-
-    Route::post('envio',[DeliveryController::class,'store'])->name('envio.store');
 });
 
 

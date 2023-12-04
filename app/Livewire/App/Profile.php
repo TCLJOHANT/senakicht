@@ -10,4 +10,6 @@ class Profile extends Component
     {
         return view('livewire.app.profile');
     }
+
+    
 }
