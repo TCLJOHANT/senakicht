@@ -16,45 +16,41 @@
                 <span>entradas</span>
             </div>
             <x-input type="text" class=" flex-1 m-2" wire:model.live="search" placeholder="Buscar"/>
-           @livewire('shared.form-comment')
+           @livewire('shared.form-category')
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                @if ($comments->isEmpty())
+                @if ($categories->isEmpty())
                     <div class="px-6 py-4">
                         @if ($this->search)
-                            No Existe el comentario
+                            No Existe la categoria
                         @else
-                            No hay comntarios creados actualmente <b> pero puedes crear uno ahora.</b>
+                            no hay categorias actualmente <b> pero puedes crear uno ahora.</b>
                         @endif
                     </div>
                 @else
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50 text-center">
-                            <tr class="cursor-pointer  text-left text-xs font-medium text-gray-500 uppercase">
-                                <th scope="col" class="px-6 py-3">Mensaje</th>
-                                <th scope="col" class="px-6 py-3">Calificación</th>
-                                
-                                <th colspan="2" class="px-6 py-3">Acciones</th>
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Mensaje</th>
+                                <th scope="col"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Calificación</th>
+                                <th colspan="2"  class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase text-center">Acciones</th>
                             </tr>
-                            
                         </thead>
                         <tbody >
-                            @foreach ($comments as $comment)
+                            @foreach ($categories as $category)
                             <tr >
-                                <td class="px-6 py-6">{{$comment->description}}</td>
+                                <td class="px-6 py-6">{{$category->name}}</td>
                             
                                 <td class="px-6 py-6 text-center">
-                                    @for($i=1; $i<=$comment->rating; $i++)
-                                        <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
-                                    @endfor 
+                                    {{$category->type}}
                                 </td> 
                                 <td class="px-6 py-6 flex items-center">
                                 
-                                    <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-blue-500" wire:click="emitComment({{$comment}})" >  
+                                    <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-blue-500" wire:click="emitCategory({{$category}})" >  
                                         <i class="fas fa-pencil-alt"></i>
                                     </button> 
-                                    <button wire:click="destroyComment({{$comment}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
+                                    <button wire:click="destroyCategory({{$category}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
@@ -63,24 +59,20 @@
                         </tbody>
                     </table>
                     {{-- si tiene al menos dos paginas se mostrata si no se oculta --}}
-                    @if ($comments->hasPages())
+                    @if ($categories->hasPages())
                         <div class="px-6 py-3">
-                            {{$comments->links()}}
+                            {{$categories->links()}}
                         </div>
                     @endif
                 @endif
             </div>
         </div>
-
-        <script>
-            document.addEventListener('livewire:initialized', () => {
-               @this.on('show-toast', (event) => {
-                   toastr[event.type](event.message);
-               });
-           });
-       </script>
-</div>    
-
-   
-       
-
+    </div>
+    <script>
+         document.addEventListener('livewire:initialized', () => {
+            @this.on('show-toast', (event) => {
+                toastr[event.type](event.message);
+            });
+        });
+    </script>
+</div>
