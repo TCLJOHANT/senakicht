@@ -17,5 +17,8 @@ class Sale extends Model
     //     return $this->belongsTo(Menu::class);
     // }
 
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
     
 }

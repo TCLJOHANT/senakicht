@@ -10,6 +10,7 @@ use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\SaleController;
 use App\Livewire\App\Pages\CartDetailLivewire;
 use App\Livewire\App\Pages\ComentariosLivewire;
 use App\Livewire\App\Pages\ContactLivewire;
@@ -44,7 +45,7 @@ Route::get('menu',PlatosLivewire::class)->name('menu');
 Route::get('comentarios',ComentariosLivewire::class)->name('comentarios.index');
 Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
 Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
-Route::get('ver',[HomeController::class,'verr']);
+Route::get('venta/{id}',[SaleController::class,'factura']);
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');

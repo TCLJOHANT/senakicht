@@ -107,7 +107,7 @@ class PaymentController extends Controller
 
         $this->cartService->clearCart();
     
-          return redirect('cart')->with(compact('status'));
+        return redirect('cart')->with(compact('status'));
        
       }
 
@@ -117,13 +117,13 @@ class PaymentController extends Controller
 
       }
 
-      public function createSale()
+      public function createSale($id)
       {
+        
           
         $orderNumber = uniqid('order_', true);
 
         $cartData = $this->cartService->DatosCart();
-
 
 
         $totalPrice = 0;
@@ -132,22 +132,30 @@ class PaymentController extends Controller
             $totalPrice += $item->price * $item->quantity;
         }
 
+
+        
+              
+       $sale = Sale::create([
+         'order_number' => $orderNumber,
+            'price_total' =>$totalPrice,
+            'user_id' => auth()->user()->id,
+            
+        ]);
+
+
+        
         foreach ($cartData as $item) {
           Cart::create([
             'order_number' => $orderNumber,
               'price' => $item->price,
               'quantity' => $item->quantity,
               'menu_id' => $item->id,
+              'name_product' => $item->name,
               'sale_id' => $sale->id,
+              
           ]);
           
       }
-        
-        Sale::create([
-         'order_number' => $orderNumber,
-            'price_total' =>$totalPrice,
-            'user_id' => auth()->user()->id,
-        ]);
 
        
     }
