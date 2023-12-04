@@ -78,6 +78,10 @@ class User extends Authenticatable
         public function menus(){
             return $this->hasMany('App\Models\Menu');
         }
+
+        public function sales(){
+            return $this->hasMany(Sale::class);
+        }
         //1:1
 
 

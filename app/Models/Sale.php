@@ -20,5 +20,10 @@ class Sale extends Model
     public function carts(){
         return $this->hasMany(Cart::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 }
