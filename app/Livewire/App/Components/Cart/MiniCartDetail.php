@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class MiniCartDetail extends Component
 {
+    protected $listeners = ['render'];
     public function render()
     {     
          $cartCollection = \Cart::getContent();

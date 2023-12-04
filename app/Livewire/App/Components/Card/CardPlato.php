@@ -2,6 +2,8 @@
 
 namespace App\Livewire\App\Components\Card;
 
+use App\Livewire\App\Components\Cart\MiniCartDetail;
+use App\Livewire\App\Pages\PlatosLivewire;
 use App\Models\Menu;
 use Livewire\Component;
 class CardPlato extends Component
@@ -25,14 +27,18 @@ class CardPlato extends Component
     {
         return view('livewire.app.components.card.card-plato');
     }
-
-    public function prevSlide()
-    {
-        $this->currentSlide = ($this->currentSlide - 1 + count($this->images)) % count($this->images);
+    public function addItem($quantity, Menu $plato){
+        \Cart::add(array(
+            'id' => $plato->id,
+            'name' => $plato->name,
+            'price' => $plato->price,
+            'quantity' => $quantity,
+            'attributes' => array(
+                'image' =>  $plato->multimedia->first()->ruta, // Obtener la imagen del modelo
+            )
+        ));
+        $this->dispatch('alert','item agregado al carrito')->to(PlatosLivewire::class);
+        $this->dispatch('render')->to(MiniCartDetail::class);
     }
-
-    public function nextSlide()
-    {
-        $this->currentSlide = ($this->currentSlide + 1) % count($this->images);
-    }
+   
 }

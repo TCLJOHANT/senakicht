@@ -2,24 +2,16 @@
     <link rel="stylesheet" href="{{ asset('css/app/livewire/detalleProduct.css')}}">
     <!-- Card product-->
     <div class="box">
-        <form action="{{ route('cart.store') }}" method="POST">
-            {{ csrf_field() }}
-            <input type="hidden" value="{{ $product->id }}" id="id" name="id">
-            <input type="hidden" value="{{ $product->name }}" id="name" name="name">
-            <input type="hidden" value="{{ $product->price }}" id="price" name="price">
-            <input type="hidden" value="{{ $product->image }}" id="img" name="img">
-            <input type="hidden" value="1" id="quantity" name="quantity">
             <div class="card-footer">
                 <div class="row">
                     <div class="icons">
-                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="#"  wire:click.prevent="addItem(1,{{$product}})" class="fas fa-shopping-cart"></a>
                         <a href="#" class="fas fa-heart"></a>
                         <!--evita el comportamiento predeterminado del clic en este caso en un link-->
                         <a  wire:click.prevent="openModalDetalle()" href="#" class="fas fa-eye" id="loca"></a>
                     </div>
                 </div>
             </div>
-        </form>
         <div class="image">
             <img src="{{$ImgCard}}" alt="..."> 
         </div>
@@ -160,6 +152,7 @@
                             <div class="flex flex-wrap items-center -mx-4 ">
                                 <div class="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                                     <button
+                                    wire:click="addItem(1,{{$product}})"
                                         class="flex items-center justify-center w-full p-4  rounded-md dark:text-gray-200  bg-green-600 border-blue-600 text-gray-100 ">
                                         Agregar al Carrito
                                     </button>

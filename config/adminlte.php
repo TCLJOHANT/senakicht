@@ -357,6 +357,12 @@ return [
             // 'can'  => 'admin.products.index',
         ],
         [
+            'text' => 'Ventas',
+            'route'  => 'admin.sales.index',
+            'icon' => 'fas fa-chart-bar fa-fw',
+            // 'can'  => 'admin.products.index',
+        ],
+        [
             'text' => 'Recetas',
             'route'  => 'admin.recipes.index',
             'icon' => 'fas fa-utensils fa-fw',

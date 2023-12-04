@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Livewire\App\Pages;
+
+use App\Livewire\App\Components\Cart\MiniCartDetail;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Services\MercadoPagoService;
@@ -39,19 +41,13 @@ class CartDetailLivewire extends Component
             return view('cart',compact('cartCollection', 'client'));
         }
         
-        public function remove(Request $request){
-            \Cart::remove($request->id);
-            return redirect()->route('cart.index')->with('success_msg', 'Item is removed!');
+        public function removeItem($id){
+            \Cart::remove($id);
+            $this->dispatch('render')->to(MiniCartDetail::class);
+            $this->dispatch('show-toast', type:"info", message:"item removido con exito")->self(); 
         }
         public function add(Request $request){
-            $item = null;
-            $menu = Menu::find($request->id);
-            $product = Product::find($request->id);
-            if($menu){
-                $item = $menu;
-            }elseif($product){
-                $item = $product;
-            }
+       
             \Cart::add(array(
                 'id' => $request->id,
                 'name' => $request->name,
@@ -62,7 +58,6 @@ class CartDetailLivewire extends Component
                     'slug' => $request->slug
                 )
             ));
-            return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a sú Carrito!');
         }
     
         public function update(Request $request){
@@ -78,6 +73,8 @@ class CartDetailLivewire extends Component
     
         public function clearCart(){
             \Cart::clear();
+            $this->dispatch('render')->to(MiniCartDetail::class);
+            $this->dispatch('show-toast', type:"success", message:"el carrito se vació con exito")->self(); 
         }
     
 }

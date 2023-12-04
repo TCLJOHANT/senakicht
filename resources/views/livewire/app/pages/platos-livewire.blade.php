@@ -19,5 +19,12 @@
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+           @this.on('show-toast', (event) => {
+               toastr[event.type](event.message);
+           });
+       });
+    </script>
 
 </div>

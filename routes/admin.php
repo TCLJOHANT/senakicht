@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::resource('users',UserController::class)->names('admin.users')->except($ro
 Route::resource('products',ProductController::class)->names('admin.products')->except($routesNotGenerate);
 Route::get('exportProduct',[ProductController::class,'export'])->name('exportProduct');
 Route::get('recipes',[RecipeController::class,'index'])->name('admin.recipes.index');
+Route::get('sales',[SalesController::class,'index'])->name('admin.sales.index');
 Route::resource('comments',CommentController::class)->names('admin.comments')->except($routesNotGenerate);
 Route::resource('categories',CategoryController::class)->names('admin.categories')->except($routesNotGenerate);
 Route::resource('menus',MenuController::class)->names('admin.menus')->except($routesNotGenerate);

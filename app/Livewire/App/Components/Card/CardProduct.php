@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Livewire\App\Components\Card;
+
+use App\Livewire\App\Components\Cart\MiniCartDetail;
+use App\Livewire\App\Pages\ProductsLivewire;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -40,16 +43,24 @@ use Livewire\Component;
     {
         $this->openModalDetailProduct = true;
     }
-
     public function changeMainImage($image)
     {
-        $this->mainImage = asset('storage/' . $image);
+            $nuevaImg = asset('storage/' . $image);
+            $this->mainImage = $nuevaImg;
+    }
 
-        // Null check before filtering
-        if ($this->previewImages) {
-            $this->previewImages = $this->previewImages->filter(function ($previewImage) use ($image) {
-                return $previewImage !== $image;
-            });
-        }
+    public function addItem($quantity, Product $product){
+        \Cart::add(array(
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $quantity,
+            'attributes' => array(
+                'image' =>  $product->multimedia->first()->ruta, // Obtener la imagen del modelo
+            )
+        ));
+        $this->openModalDetailProduct=false;
+        $this->dispatch('alert','item agregado al carrito')->to(ProductsLivewire::class);
+        $this->dispatch('render')->to(MiniCartDetail::class);
     }
 }
