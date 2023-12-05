@@ -3,7 +3,6 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
-use App\Models\Cart;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\DeliveryController;
@@ -44,14 +43,14 @@ Route::get('contactanos',ContactLivewire::class)->name('contactos');
 Route::get('menu',PlatosLivewire::class)->name('menu');
 //Opiniones
 Route::get('comentarios',ComentariosLivewire::class)->name('comentarios.index');
-Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
-Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
-Route::get('venta/{id}',[SaleController::class,'factura'])->name('factura');
 
-Route::post('envio',[DeliveryController::class,'store'])->name('envio.store');
 
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+    Route::get('/descarga_pdf/{id}',[RecipeController::class,'pdf'])->name('recetas.pdf');
+    Route::get('/cart',CartDetailLivewire::class)->name('cart.index');
+    Route::get('venta/{id}',[SaleController::class,'factura'])->name('factura');
+    Route::post('envio',[DeliveryController::class,'store'])->name('envio.store');
     Route::post('comentarios',[CommentController::class,'store'])->name('comentarios.store');
     Route::post('contactanos',[ContactanosController::class,'store'])->name('contactanos.store');
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');

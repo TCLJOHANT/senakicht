@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('number')->nullable();
             $table->string('address');
             $table->string('postal_code')->nullable();
-            $table->foreignId('delivery_id')->references('id')->on('deliveries')->onDelete('cascade')->nullable();
+           // $table->foreignId('delivery_id')->references('id')->on('deliveries')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

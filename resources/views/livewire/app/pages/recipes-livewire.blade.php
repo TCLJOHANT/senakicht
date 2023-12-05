@@ -5,7 +5,7 @@
        nuestras <span>recetas </span> 
       </h1>
       @can('admin.recipes.store')
-      <div class="flex m-6 mx-auto w-full">
+      <div class="flex justify-center m-6 mx-auto w-full">
         @livewire('shared.form-recipe') 
       </div>
       @endcan

@@ -24,7 +24,7 @@ private function generarImagen()
             'Authorization' => $apiKey,
         ],
         'query' => [
-            'query' => 'product',
+            'query' => 'Utensils',
         ],
     ]);
     $imageData = json_decode($response->getBody(), true);

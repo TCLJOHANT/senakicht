@@ -29,5 +29,8 @@ class Sale extends Model
     public function delivery(){
         return $this->hasMany(Cart::class);
     }
-    
+    //1:N
+    public function detailSales(){
+        return $this->hasMany('App\Models\Cart');
+    }
 }

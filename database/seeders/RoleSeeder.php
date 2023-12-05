@@ -32,9 +32,9 @@ class RoleSeeder extends Seeder
        Permission::create(['name'=>'admin.products.destroy','description'=>'eliminar productos'])->syncRoles([$AdminRol,$AprendizRol]);
         //comments
        Permission::create(['name'=>'admin.comments.index','description'=>'ver listado de comentarios'])->syncRoles($AdminRol);
-       Permission::create(['name'=>'admin.comments.store','description'=>'crear comentarios'])->syncRoles($AdminRol);
-       Permission::create(['name'=>'admin.comments.update','description'=>'actualizar comentarios'])->syncRoles($AdminRol);
-       Permission::create(['name'=>'admin.comments.destroy','description'=>'eliminar comentarios'])->syncRoles($AdminRol);
+       Permission::create(['name'=>'admin.comments.store','description'=>'crear comentarios'])->syncRoles($AdminRol,$AprendizRol,$UsuarioRol);
+       Permission::create(['name'=>'admin.comments.update','description'=>'actualizar comentarios'])->syncRoles($AdminRol,$AprendizRol,$UsuarioRol);
+       Permission::create(['name'=>'admin.comments.destroy','description'=>'eliminar comentarios'])->syncRoles($AdminRol,$AprendizRol,$UsuarioRol);
         //users
        Permission::create(['name'=>'admin.users.index','description'=>'ver listado de usarios'])->syncRoles($AdminRol);
        Permission::create(['name'=>'admin.users.store','description'=>'crear usaurios'])->syncRoles($AdminRol);

@@ -23,9 +23,9 @@
                     @if ($sales->isEmpty())
                         <div class="px-6 py-4">
                             @if ($this->search)
-                                No Existe el Rol
+                                No Existe la venta
                             @else
-                                No hay roled creados actualmente <b> pero puedes crear uno ahora.</b>
+                                No hay ventas actualmente <b> pero puedes crear uno ahora.</b>
                             @endif
                         </div>
                     @else
@@ -36,7 +36,7 @@
                                     <th scope="col" class="px-6 py-3">numero de orden</th>
                                     <th scope="col" class="px-6 py-3">Precio Total</th>
                                     <th scope="col" class="px-6 py-3">Fecha</th>
-                                    <th scope="col" class="px-6 py-3">Id_usuario</th>
+                                    <th scope="col" class="px-6 py-3">Comprador</th>
                                     <th colspan="2" class="px-6 py-3">Acciones</th>
                                 </tr>
                                 
@@ -48,16 +48,16 @@
                                     <td class="px-6 py-6">{{$sale->order_number}}</td>
                                     <td class="px-6 py-6">{{$sale->price_total}}</td>
                                     <td class="px-6 py-6">{{$sale->created_at->format('M d, Y') }}</td>
-                                    <td class="px-6 py-6">{{$sale->user_id}}</td>
+                                    <td class="px-6 py-6">{{$sale->user->name}}</td>
                                     
                                     <td class="px-6 py-6 flex items-center">
                                     
-                                         <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-blue-500" wire:click="emitRole({{$sale}})" >  
+                                         <button class="ml-2 font-bold text-white p-2 rounded cursor-pointer  bg-blue-500" wire:click="openModalDetalle({{$sale}})" >  
                                             <i class="fas fa-eye fa-fw"></i>
                                         </button> 
-                                        <button wire:click="destroyRole({{$sale}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
+                                        {{-- <button wire:click="destroyRole({{$sale}})" class="ml-2 font-bold text-white p-2 rounded cursor-pointer bg-red-600">
                                             <i class="fas fa-trash"></i>
-                                        </button> 
+                                        </button>  --}}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -72,7 +72,47 @@
                     @endif
                 </div>
             </div>
-            
+            <!--modal detalle de venta-->
+            <x-modificados-jet.modal wire:model="openModalDetailSale" maxWidth="full" >
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center text-xl ">Detalles de la venta</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @if ($detalleVenta)
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50 text-center" >
+                                    <tr class="cursor-pointer  text-left text-xs font-medium text-gray-500 uppercase">
+                                        <th scope="col" class="px-6 py-3">Id</th>
+                                        <th scope="col" class="px-6 py-3">Precio</th>
+                                        <th scope="col" class="px-6 py-3">Cantidad</th>
+                                        <th scope="col" class="px-6 py-3">Nombre del item</th>
+                                        <th colspan="2" class="px-6 py-3">id menu</th>
+                                        <th colspan="2" class="px-6 py-3">comprado el</th>
+                                    </tr>
+                                    
+                                </thead>
+                                <tbody class="">
+                                    @foreach ($detalleVenta as $venta)
+                                    <tr >
+                                        <td class="px-6 py-6">{{$venta->id }}</td>
+                                        <td class="px-6 py-6">{{$venta->price }}</td>
+                                        <td class="px-6 py-6">{{ $venta->quantity}}</td>
+                                        <td class="px-6 py-6">{{$venta->name_product}}</td>
+                                        <td class="px-6 py-6">{{$venta->menu_id}}</td>
+                                        <td class="px-6 py-6 ">{{$venta->created_at->format('M d, Y') }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                                
+                            @endif
+                        </div>
+                    </div>
+                </div>
+             
+           </x-modificados-jet.modal>
             <script>
                 document.addEventListener('livewire:initialized', () => {
                    @this.on('show-toast', (event) => {
