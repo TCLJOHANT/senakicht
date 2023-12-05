@@ -6,12 +6,12 @@
                     <div class="bg-white my-4 p-3 border-t-4 border-green-400">
                         <div class="image overflow-hidden">
                             @if(isset(Auth::user()->profile_photo_path))
-                                <img src="{{ Auth::user()->profile_photo_path }}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
-                            @elseif(isset(Auth::user()->profile_photo_url) )
-                                <img src="{{ Auth::user()->profile_photo_url }}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
-                            @elseif(strpos($user->profile_photo_path, 'http') === 0)
-                                <img src="{{ Auth::user()->profile_photo_path}}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
-                            @endif
+                                <img src="{{asset('storage/' .  Auth::user()->profile_photo_path) }}" alt="."  class="rounded-full h-24 w-24 object-cover mx-auto">
+                            @elseif(strpos( Auth::user()->profile_photo_path, 'http') === 0)
+                                <img src="{{ Auth::user()->profile_photo_path}}" alt="."  class="rounded-full h-24 w-24 object-cover mx-auto">
+                            @elseif(Auth::user()->profile_photo_path === null)
+                                <img src="{{ Auth::user()->profile_photo_url}}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
+                            @endif     
                         </div>
                         <h1 class="text-gray-900 font-bold text-center leading-8 my-1 ">{{Auth::user()->name}}</h1>
                         <h3 class="text-gray-600 font-lg text-center leading-6">Rol: {{Auth::user()->adminlte_desc()}}</h3>
@@ -66,10 +66,7 @@
                                         <a class="text-blue-800" href="#">{{Auth::user()->email}}</a>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2">
-                                    <div class="px-4 py-2 font-semibold">Cumpleaños </div>
-                                    <div class="px-4 py-2">Feb 06, 1998</div>
-                                </div>
+                              
 
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">facturas </div>

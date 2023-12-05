@@ -4,14 +4,18 @@
     <x-modificados-jet.modal wire:model="openModalUserEdit" maxWidth="full" >
         <div class="cont_form_recipe">
             <div class="imgs">
-                         <div class="relative inline-block">
-                            
-                                <img src="{{$avatar}}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
-                           
-                             <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                 <span>subir imagen</span>
-                                 <input wire:model="listaImages" id="file-upload" name="file-upload" type="file" class="sr-only" >
-                             </label>
+                         <div class="h-1/2 inline-block p-2">
+                            @if (is_string($avatar))                         
+                                <img src="{{$avatar}}" alt="" class="rounded-full h-24 w-full object-cover mx-auto">
+                            @else
+                                <img src="{{$avatar->temporaryUrl()}}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
+                            @endif
+                            <div class=" m-4 flex justify-center">
+                                <label for="file-upload" class=" relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                <span>subir imagen</span>
+                                <input wire:model="avatar" id="file-upload" name="file-upload" type="file" class="sr-only" >
+                                </label>
+                            </div>
                          </div>
                        
                           

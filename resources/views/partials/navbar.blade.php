@@ -23,13 +23,12 @@
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-
                                 @if(isset(Auth::user()->profile_photo_path))
-                                    <img src="{{ Auth::user()->profile_photo_path }}" alt="" class="h-10 w-10 rounded-full object-cover">
-                                @elseif(isset(Auth::user()->profile_photo_url) )
-                                    <img src="{{ Auth::user()->profile_photo_url }}" alt="" class="h-10 w-10 rounded-full object-cover">
-                                @elseif(strpos($user->profile_photo_path, 'http') === 0)
+                                    <img src="{{asset('storage/' .  Auth::user()->profile_photo_path) }}" alt="" class="h-10 w-10 rounded-full object-cover">
+                                @elseif(strpos(Auth::user()->profile_photo_path, 'http') === 0)
                                     <img src="{{ Auth::user()->profile_photo_path}}" alt="" class="h-10 w-10 rounded-full object-cover">
+                                @elseif(Auth::user()->profile_photo_path === null)
+                                    <img src="{{ Auth::user()->profile_photo_url}}" alt="" class="h-10 w-10 rounded-full object-cover">
                                 @endif
                                 </button>
                             @else
