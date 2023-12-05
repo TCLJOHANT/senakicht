@@ -1,11 +1,7 @@
 <div>
     <link rel="stylesheet" href="{{ asset ('css/carrito.css') }}"> 
     @if(isset($cartCollection))
-        @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
+      
 
     <section >
         <h1 class="heading"> Carro de <span>Compras</span> </h1>
@@ -16,16 +12,7 @@
                         <h4>{{ \Cart::getTotalQuantity() }} Producto(s) en el carrito</h4><br>
                     @else
                         @if(session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @else
-                            @if(session('status'))
-                                <div class="alert alert-danger">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            <h4>No hay productos en su carrito</h4><br>
+                            <h4>{{ session('status') }}</h4><br>
                             <a href="{{ route('menu') }}" class="btn btn-dark">Continuar en la tienda</a>
                         @endif
                     @endif

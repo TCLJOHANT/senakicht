@@ -12,7 +12,7 @@ class DeliveryController extends Controller
     {
         Delivery::create($request->all());
         
-        return to_route('cart.index');
+        return to_route('paypal');
     }
 
     public function factura()

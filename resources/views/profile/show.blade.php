@@ -24,7 +24,12 @@
                 <div class="w-full md:w-3/12 md:mx-2 ">
                     <div class="bg-white my-4 p-3 border-t-4 border-green-400">
                         <div class="image overflow-hidden">
-                            <img src="{{ Auth::user()->profile_photo_url }}" alt="" class="rounded-full h-24 w-24 object-cover  mx-auto">
+                            @if(isset(Auth::user()->profile_photo_path))
+                            <img src="{{ Auth::user()->profile_photo_path }}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
+                            @elseif(isset(Auth::user()->profile_photo_url) )
+                            <img src="{{ Auth::user()->profile_photo_url }}" alt="" class="rounded-full h-24 w-24 object-cover mx-auto">
+
+                            @endif
                         </div>
                         <h1 class="text-gray-900 font-bold text-center leading-8 my-1 ">{{Auth::user()->name}}</h1>
                         <h3 class="text-gray-600 font-lg text-center leading-6">Rol: {{Auth::user()->adminlte_desc()}}</h3>
@@ -135,7 +140,7 @@
 
                                 <div class="grid grid-cols-2">
                                     <div class="px-4 py-2 font-semibold">facturas </div>
-                                    <div class="px-4 py-2"><button  class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" data-modal-target="static-modal" data-modal-toggle="static-modal">Ver facturas</button></div>
+                                    <div class="px-4 py-2"><button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" data-modal-target="static-modal" data-modal-toggle="static-modal">Ver facturas</button></div>
                                 </div>
 
                                 <!-- Main modal -->
