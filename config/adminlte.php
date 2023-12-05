@@ -315,9 +315,9 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
-            'can'         => 'admin.home',
+            'can'         => 'admin.dashboard.index',
         ],
-        ['header' => 'Administrador'],
+        ['header' => 'Administrador','can' => 'admin.dashboard.index',],
         [
             'text' => 'Usuarios',
             'route'  => 'admin.users.index',
@@ -352,7 +352,7 @@ return [
         ],
         [
             'text' => 'Pedidos',
-            'url'  => 'admin.products.index',
+            'route'  => 'admin.orders.index',
             'icon' => 'fas fa-shopping-cart fa-fw',
             // 'can'  => 'admin.products.index',
         ],

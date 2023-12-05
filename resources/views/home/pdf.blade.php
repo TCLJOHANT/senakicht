@@ -13,8 +13,11 @@
         </div>
 		<main>
 			<div class="container-img">
+                @if ($recipe->multimedia->isNotEmpty())
+                <img alt="img" class="" src="{{asset('storage/' . $recipe->multimedia->first()->ruta)}}">
+                    
+                @endif
                 @foreach($recipe->multimedia as $imagenes)
-                    <img alt="img" class="" src="{{ asset('storage/' . $imagenes->ruta) }}">
                 @endforeach
 			</div>
             <b>tiempo de preparacion: {{$recipe->preparation_time}}</b>
@@ -51,7 +54,9 @@
                     </div>
                     <div class="text-description">
                         <ol>
-                            <li><i class="fas fa-hand-sparkles"></i>{{json_encode($recipe->preparation_steps) }} </li>
+                            @foreach($recipe->preparationSteps as $step)
+                            <li class="fas fa-hand-sparkles">{{$step->description_step}}</li>
+                            @endforeach
                         </ol>
                     </div>
                 </div>

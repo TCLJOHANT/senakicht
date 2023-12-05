@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RecipeController;
 use App\Http\Controllers\Admin\RoleController;
@@ -18,6 +19,7 @@ Route::resource('products',ProductController::class)->names('admin.products')->e
 Route::get('exportProduct',[ProductController::class,'export'])->name('exportProduct');
 Route::get('recipes',[RecipeController::class,'index'])->name('admin.recipes.index');
 Route::get('sales',[SalesController::class,'index'])->name('admin.sales.index');
+Route::get('orders',[OrdersController::class,'index'])->name('admin.orders.index');
 Route::resource('comments',CommentController::class)->names('admin.comments')->except($routesNotGenerate);
 Route::resource('categories',CategoryController::class)->names('admin.categories')->except($routesNotGenerate);
 Route::resource('menus',MenuController::class)->names('admin.menus')->except($routesNotGenerate);

@@ -25,7 +25,7 @@
                             @if ($this->search)
                                 No Existe la venta
                             @else
-                                No hay ventas actualmente <b> pero puedes crear uno ahora.</b>
+                                No hay registros de ventas actualmente 
                             @endif
                         </div>
                     @else
