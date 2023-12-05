@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
- 
+use Spatie\Permission\Models\Role;
+
 class AuthController extends Controller
 {
      //REGISTRO E INICIO SECION CON FACEBOOK
@@ -39,8 +40,9 @@ class AuthController extends Controller
           'name'=> $user->getName(),
           'profile_photo_path' => $user->getAvatar(),
 
-
-          ]);
+          
+     ]);
+          $user->assignRole('Usuario');
           auth()->login($user); //iniciar secion automaticamente despues de guardar registro
           return redirect()->to('/');
      }

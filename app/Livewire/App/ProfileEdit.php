@@ -25,15 +25,17 @@ class ProfileEdit extends Component
         $this->descripcion = $user->descripcion;
         $this->location = $user->ubicacion;
         $this->userId =$user->id;
-        if(isset(Auth::user()->profile_photo_path)){
-            $this->avatar = asset('storage/' .  Auth::user()->profile_photo_path);
+        if(Auth::user()->profile_photo_path ===null){
+            $this->avatar = Auth::user()->profile_photo_url;
+
         }
         elseif(strpos(Auth::user()->profile_photo_path, 'http') === 0){
             $this->avatar = Auth::user()->profile_photo_path;
 
         }
-        elseif(Auth::user()->profile_photo_path === null){
-            $this->avatar = Auth::user()->profile_photo_url;
+        elseif(file_exists(public_path('storage/' . Auth::user()->profile_photo_path))){
+            $this->avatar =  asset('storage/' . Auth::user()->profile_photo_path);
+
         }
     }
     public function render()

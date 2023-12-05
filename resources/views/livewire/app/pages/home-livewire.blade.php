@@ -7,7 +7,7 @@
             <h3>de nosotros</h3>
             <p>averigua todos los productos y recetas</p>
             <p>que el sena tiene para ofrecerte.</p>
-            <a href="#" class="btn">adquierelo ya!</a>
+            <a href="{{route('login')}}" class="btn">adquierelo ya!</a>
         </div>
     </section>
     <!-- seccion acerca de home -->

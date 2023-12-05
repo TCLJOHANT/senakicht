@@ -31,6 +31,14 @@
 
                     </div>
                 </section>
+                <div class="flex justify-center">
+                    <a target="_blank" href="manualtecnico" class="text-green-500" >
+                        <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center me-2 mb-2">Manual tecnico</button>
+                    </a>
+                    <a target="_blank" href="https://www.calameo.com/books/007537722286bef9178ec" class="text-green-500" >
+                        <button type="button" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center me-2 mb-2">Manual de Usuario</button>
+                    </a>
+                </div>
 
 
                 <section class="galeria">
