@@ -9,4 +9,10 @@ class Delivery extends Model
 {
     use HasFactory;
     protected  $guarded = [];
+
+   
+    public function sale()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

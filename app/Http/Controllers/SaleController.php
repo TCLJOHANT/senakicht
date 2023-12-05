@@ -12,7 +12,7 @@ class SaleController extends Controller
 {
     public function factura($id){
         
-        $venta = Sale::with('carts','user')->find($id);
+        $venta = Sale::with('carts','user', 'delivery')->find($id);
         $pdf = Pdf::loadView('home.factura', compact('venta'));
         return $pdf->stream();
     }

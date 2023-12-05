@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Delivery;
 use App\Models\PaypalTransaction;
 use App\Models\Sale;
 use App\Services\CartService;
@@ -138,8 +139,7 @@ class PaymentController extends Controller
        $sale = Sale::create([
          'order_number' => $orderNumber,
             'price_total' =>$totalPrice,
-            'user_id' => auth()->user()->id,
-            
+            'user_id' => auth()->user()->id, 
         ]);
 
 

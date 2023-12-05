@@ -21,8 +21,6 @@
             <div>
                 <h2 class="text-lg font-semibold">Cliente:</h2>
                 <p>{{ $venta->user->name}}</p>
-                <p>Dirección del Cliente</p>
-                <p>Ciudad, País</p>
             </div>
             <div>
                 <h2 class="text-lg font-semibold">Fecha:</h2>

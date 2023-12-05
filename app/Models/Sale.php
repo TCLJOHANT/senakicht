@@ -25,5 +25,9 @@ class Sale extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function delivery(){
+        return $this->hasMany(Cart::class);
+    }
     
 }

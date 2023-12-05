@@ -12,9 +12,9 @@
         <label for="star{{$i}}" class="star-label"><i class="fas fa-star"></i></label>
         @endfor 
 
-        @if($comment->user_id === auth()->user()->id)
+    {{--   @if($comment->user_id === auth()->user()->id)
         
-        @endif 
+        @endif --}} 
         
         </div>
 </div>
